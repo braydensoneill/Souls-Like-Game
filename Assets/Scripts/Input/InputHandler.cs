@@ -16,16 +16,25 @@ namespace BON
         public float mouseY;
 
         public bool b_input;
+        public bool rb_input;
+        public bool rt_input;
 
         public bool rollFlag;
         public bool sprintFlag;
         public float rollInputTimer;
 
         private PlayerControls inputActions;
-        CameraHandler cameraHandler;
+        PlayerAttacker playerAttacker;
+        PlayerInventory playerInventory;
 
         private Vector2 movementInput;
         private Vector2 cameraInput;
+
+        private void Awake()
+        {
+            playerAttacker = GetComponent<PlayerAttacker>();
+            playerInventory = GetComponent<PlayerInventory>();
+        }
 
         public void OnEnable()
         {
@@ -48,6 +57,7 @@ namespace BON
         {
             MoveInput(delta);
             HandleRollInput(delta);
+            HandleAttackInput(delta);
         }
 
         private void MoveInput(float delta)
@@ -79,6 +89,19 @@ namespace BON
 
                 rollInputTimer = 0;
             }
+        }
+
+        private void HandleAttackInput(float delta)
+        {
+            inputActions.PlayerActions.RB.performed += i => rb_input = true;
+            inputActions.PlayerActions.RT.performed += i => rt_input = true;
+
+            if(rb_input)
+                playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+
+            if (rt_input)
+                playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+
         }
     }
 }
