@@ -90,15 +90,23 @@ namespace BON
 
             float speed = movementSpeed;
 
-            if(inputHandler.sprintFlag)
+            if (inputHandler.moveAmount < 0.5)
+            {
+                moveDirection *= walkSpeed;
+                playerManager.isSprinting = false;
+            }
+
+            else if (inputHandler.sprintFlag && inputHandler.moveAmount > 0.5)
             {
                 speed = sprintSpeed;
                 playerManager.isSprinting = true;
                 moveDirection *= speed;
             }
+
             else
             {
                 moveDirection *= speed;
+                playerManager.isSprinting = false;
             }
 
             Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);

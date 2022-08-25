@@ -60,7 +60,6 @@ namespace BON
         {
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
-            isSprinting = inputHandler.b_input;
 
             if (isAirborne)
                 playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
