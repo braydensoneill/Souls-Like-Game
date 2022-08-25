@@ -14,6 +14,8 @@ namespace BON
         [Header("Player Flags")]
         public bool isInteracting;
         public bool isSprinting;
+        public bool isAirborne;
+        public bool isGrounded;
 
         private void Awake()
         {
@@ -40,6 +42,7 @@ namespace BON
             inputHandler.TickInput(delta);
             playerLocomotion.HandleMovement(delta);
             playerLocomotion.HandleRollingAndSprinting(delta);
+            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
         }
 
         private void FixedUpdate()
@@ -58,6 +61,9 @@ namespace BON
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
             isSprinting = inputHandler.b_input;
+
+            if (isAirborne)
+                playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
         }
     }
 }

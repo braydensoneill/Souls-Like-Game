@@ -68,6 +68,7 @@ namespace BON
                 rollInputTimer += delta;
                 sprintFlag = true;
             }
+
             else
             {
                 if(rollInputTimer > 0 && rollInputTimer < 0.5f)
