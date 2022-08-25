@@ -19,12 +19,13 @@ namespace BON
 
         private void Awake()
         {
-            cameraHandler = CameraHandler.singleton;
+            
         }
 
         // Start is called before the first frame update
         void Start()
         {
+            cameraHandler = CameraHandler.singleton;
             inputHandler = GetComponent<InputHandler>();
             anim = GetComponentInChildren<Animator>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
