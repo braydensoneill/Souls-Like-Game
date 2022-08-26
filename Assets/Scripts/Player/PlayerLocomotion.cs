@@ -31,7 +31,7 @@ namespace BON
         [SerializeField] float sprintSpeed = 7;
         [SerializeField] float rotationSpeed = 10;
         [SerializeField] float fallSpeed = 100;
-        [SerializeField] float fallForce = 10;
+        [SerializeField] float fallForce = 5;
 
         // Start is called before the first frame update
         void Start()
@@ -185,7 +185,7 @@ namespace BON
 
                     else
                     {
-                        animatorHandler.PlayTargetAnimation("Locomotion", true);
+                        animatorHandler.PlayTargetAnimation("Empty", true);
                         inAirTimer = 0;
                     }
 
