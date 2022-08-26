@@ -29,7 +29,7 @@ namespace BON
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.tag == "Hittable")
+            if(other.tag == "Player")
             {
                 PlayerStats playerStats = other.GetComponent<PlayerStats>();
 
@@ -39,6 +39,15 @@ namespace BON
                 }    
             }
 
+            if (other.tag == "Enemy")
+            {
+                EnemyStats enemyStats = other.GetComponent<EnemyStats>();
+
+                if (enemyStats != null)
+                {
+                    enemyStats.TakeDamage(currentWeaponDamage);
+                }
+            }
         }
     }
 }

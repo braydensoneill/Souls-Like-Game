@@ -44,12 +44,12 @@ namespace BON
         }
 
         #region Handle Weapon's Damage Collider
-        private void LoadLeftWeaponDamageCollider()
+        public void LoadLeftWeaponDamageCollider()
         {
             leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
         }
 
-        private void LoadRightWeaponDamageCollider()
+        public void LoadRightWeaponDamageCollider()
         {
             rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
         }

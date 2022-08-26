@@ -31,6 +31,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2552299819598602481
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018280475606142098}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.16756478, y: 1.730886, z: 0.15134084}
+  m_Center: {x: -0.00335054, y: 1.1716639, z: -0.003415844}
+--- !u!114 &8668719990234865978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5018280475606142098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d84b0e7ca10d854a995479d17737d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponDamage: 25
 --- !u!1 &5567937326463158391
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +172,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7947460725b69c4babd391387e232b2, type: 3}
+--- !u!1 &5018280475606142098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 924381003339382869, guid: d7947460725b69c4babd391387e232b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5291883626242346183}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1009640163061529201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5148312013421573814, guid: d7947460725b69c4babd391387e232b2,
