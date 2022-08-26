@@ -21,11 +21,13 @@ namespace BON
 
         public bool rollFlag;
         public bool sprintFlag;
+        public bool comboFlag;
         public float rollInputTimer;
 
         private PlayerControls inputActions;
         PlayerAttacker playerAttacker;
         PlayerInventory playerInventory;
+        PlayerManager playerManager;
 
         private Vector2 movementInput;
         private Vector2 cameraInput;
@@ -34,6 +36,7 @@ namespace BON
         {
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
+            playerManager = GetComponent<PlayerManager>();
         }
 
         public void OnEnable()
@@ -97,10 +100,28 @@ namespace BON
             inputActions.PlayerActions.RT.performed += i => rt_input = true;
 
             if(rb_input)
-                playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+            {
+                if(playerManager.canDoCombo)
+                {
+                    comboFlag = true;
+                    playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                    comboFlag = false;
+                }
+
+                else
+                {
+                    if (playerManager.canDoCombo || playerManager.isInteracting)
+                        return;
+
+                    playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                }
+            }
 
             if (rt_input)
+            {
                 playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+
+            }
 
         }
     }

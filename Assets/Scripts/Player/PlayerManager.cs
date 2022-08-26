@@ -16,6 +16,7 @@ namespace BON
         public bool isSprinting;
         public bool isAirborne;
         public bool isGrounded;
+        public bool canDoCombo;
 
         private void Awake()
         {
@@ -37,6 +38,8 @@ namespace BON
             float delta = Time.deltaTime;
 
             isInteracting = anim.GetBool("isInteracting");
+            canDoCombo = anim.GetBool("canDoCombo");
+
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
 
