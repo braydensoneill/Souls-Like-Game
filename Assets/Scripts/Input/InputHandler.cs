@@ -119,10 +119,12 @@ namespace BON
 
             if (rt_input)
             {
-                playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
-
+                if (playerManager.canDoCombo || !playerManager.isInteracting)
+                {
+                    comboFlag = true;
+                    playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+                }
             }
-
         }
     }
 }
