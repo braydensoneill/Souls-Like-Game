@@ -123,6 +123,7 @@ namespace BON
                 {
                     comboFlag = true;
                     playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+                    comboFlag = false;
                 }
             }
         }
