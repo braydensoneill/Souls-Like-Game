@@ -1636,13 +1636,13 @@ PrefabInstance:
         type: 3}
       propertyPath: leftWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 971607ba83145b8459122ff893c54987,
+      objectReference: {fileID: 11400000, guid: e717e9f199f617d478ff5d5dacb28435,
         type: 2}
     - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}
       propertyPath: rightWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a,
+      objectReference: {fileID: 11400000, guid: 971607ba83145b8459122ff893c54987,
         type: 2}
     - target: {fileID: 4381958212615282317, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}
