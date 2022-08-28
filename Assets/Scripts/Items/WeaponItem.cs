@@ -10,9 +10,13 @@ namespace BON
         public GameObject modelPrefab;
         public bool isUnarmed;
 
-        [Header("One Handed Attacks Animations")]
-        public string OH_Light_Attack_01;
-        public string OH_Light_Attack_02;
-        public string OH_Heavy_Attack_01;
+        [Header("Idle Animations")]
+        public string right_hand_idle;
+        public string left_hand_idle;
+
+        [Header("Attack Animations")]
+        public string oh_right_sword_attack_01;
+        public string oh_right_sword_attack_02;
+        public string oh_heavy_attack_01;
     }
 }

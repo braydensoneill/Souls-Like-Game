@@ -18,6 +18,10 @@ namespace BON
         public bool b_input;
         public bool rb_input;
         public bool rt_input;
+        public bool d_pad_up;
+        public bool d_pad_down;
+        public bool d_pad_left;
+        public bool d_pad_right;
 
         public bool rollFlag;
         public bool sprintFlag;
@@ -61,6 +65,7 @@ namespace BON
             MoveInput(delta);
             HandleRollInput(delta);
             HandleAttackInput(delta);
+            HandleQuickSlotInput(delta);
         }
 
         private void MoveInput(float delta)
@@ -119,12 +124,28 @@ namespace BON
 
             if (rt_input)
             {
-                if (playerManager.canDoCombo || !playerManager.isInteracting)
+                if (playerManager. canDoCombo || !playerManager.isInteracting)
                 {
                     comboFlag = true;
                     playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
                     comboFlag = false;
                 }
+            }
+        }
+
+        private void HandleQuickSlotInput(float delta)
+        {
+            inputActions.PlayerQuickslots.DPadRight.performed += inputActions => d_pad_right = true;
+            inputActions.PlayerQuickslots.DPadLeft.performed += inputActions => d_pad_left = true;
+
+            if(d_pad_right)
+            {
+                playerInventory.ChangeRightWeapon();
+            }
+
+            if(d_pad_left)
+            {
+                playerInventory.ChangeLeftWeapon();
             }
         }
     }

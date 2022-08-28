@@ -62,10 +62,16 @@ namespace BON
 
         private void LateUpdate()
         {
+            #region Check for Inputs
             inputHandler.rollFlag = false;
             inputHandler.sprintFlag = false;
             inputHandler.rb_input = false;
             inputHandler.rt_input = false;
+            inputHandler.d_pad_up = false;
+            inputHandler.d_pad_down = false;
+            inputHandler.d_pad_left = false;
+            inputHandler.d_pad_right = false;
+            #endregion
 
             if (isAirborne)
                 playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;

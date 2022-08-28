@@ -22,23 +22,23 @@ namespace BON
             {
                 animatorHandler.anim.SetBool("canDoCombo", false);
 
-                if (lastAttack == weapon.OH_Light_Attack_01)
+                if (lastAttack == weapon.oh_right_sword_attack_01)
                 {
-                    animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_02, true);
+                    animatorHandler.PlayTargetAnimation(weapon.oh_right_sword_attack_02, true);
                 }
             }
         }
 
         public void HandleLightAttack(WeaponItem weapon)
         {
-            animatorHandler.PlayTargetAnimation(weapon.OH_Light_Attack_01, true);
-            lastAttack = weapon.OH_Light_Attack_01;
+            animatorHandler.PlayTargetAnimation(weapon.oh_right_sword_attack_01, true);
+            lastAttack = weapon.oh_right_sword_attack_01;
         }
 
         public void HandleHeavyAttack(WeaponItem weapon)
         {
-            animatorHandler.PlayTargetAnimation(weapon.OH_Heavy_Attack_01, true);
-            lastAttack = weapon.OH_Light_Attack_01;
+            animatorHandler.PlayTargetAnimation(weapon.oh_heavy_attack_01, true);
+            lastAttack = weapon.oh_right_sword_attack_01;
         }
     }
 }
