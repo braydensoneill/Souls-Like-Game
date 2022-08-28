@@ -6,35 +6,46 @@ namespace BON
 {
     public class InputHandler : MonoBehaviour
     {
+        // References
+        private PlayerControls inputActions;
+        private PlayerAttacker playerAttacker;
+        private PlayerInventory playerInventory;
+        private PlayerManager playerManager;
+
+        // Direction Variables
         [Header("Direction")]
         public float horizontal;
         public float vertical;
 
+        // Mouse Variables
         [Header("Mouse")]
         public float moveAmount;
         public float mouseX;
         public float mouseY;
 
-        public bool b_input;
-        public bool rb_input;
-        public bool rt_input;
-        public bool d_pad_up;
-        public bool d_pad_down;
-        public bool d_pad_left;
-        public bool d_pad_right;
+        // Input Variables
+        [Header("Inputs")]
+        public bool input_B;
+        public bool input_RB;
+        public bool input_RT;
+        public bool input_Dpad_Up;
+        public bool input_Dpad_Down;
+        public bool input_Dpad_Left;
+        public bool input_Dpad_Right;
 
-        public bool rollFlag;
-        public bool sprintFlag;
-        public bool comboFlag;
-        public float rollInputTimer;
+        // Flag Variables
+        [Header("Flags")]
+        public bool flag_Roll;
+        public bool flag_Sprint;
+        public bool flag_Combo;
 
-        private PlayerControls inputActions;
-        PlayerAttacker playerAttacker;
-        PlayerInventory playerInventory;
-        PlayerManager playerManager;
+        // Timer Variables
+        [Header("Timers")]
+        public float timer_Roll_Input;
 
-        private Vector2 movementInput;
-        private Vector2 cameraInput;
+        // Input Vectors
+        private Vector2 _movementInput;
+        private Vector2 _cameraInput;
 
         private void Awake()
         {
@@ -48,8 +59,8 @@ namespace BON
             if(inputActions == null)
             {
                 inputActions = new PlayerControls();
-                inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
-                inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+                inputActions.PlayerMovement.Movement.performed += inputActions => _movementInput = inputActions.ReadValue<Vector2>();
+                inputActions.PlayerMovement.Camera.performed += i => _cameraInput = i.ReadValue<Vector2>();
             }
 
             inputActions.Enable();
@@ -70,47 +81,47 @@ namespace BON
 
         private void MoveInput(float delta)
         {
-            horizontal = movementInput.x;
-            vertical = movementInput.y;
+            horizontal = _movementInput.x;
+            vertical = _movementInput.y;
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
-            mouseX = cameraInput.x;
-            mouseY = cameraInput.y;
+            mouseX = _cameraInput.x;
+            mouseY = _cameraInput.y;
         }
 
         private void HandleRollInput(float delta)
         {
-            b_input = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+            input_B = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
 
-            if (b_input)
+            if (input_B)
             {
-                rollInputTimer += delta;
-                sprintFlag = true;
+                timer_Roll_Input += delta;
+                flag_Sprint = true;
             }
 
             else
             {
-                if(rollInputTimer > 0 && rollInputTimer < 0.5f)
+                if(timer_Roll_Input > 0 && timer_Roll_Input < 0.5f)
                 {
-                    sprintFlag = false;
-                    rollFlag = true;
+                    flag_Sprint = false;
+                    flag_Roll = true;
                 }
 
-                rollInputTimer = 0;
+                timer_Roll_Input = 0;
             }
         }
 
         private void HandleAttackInput(float delta)
         {
-            inputActions.PlayerActions.RB.performed += i => rb_input = true;
-            inputActions.PlayerActions.RT.performed += i => rt_input = true;
+            inputActions.PlayerActions.RB.performed += i => input_RB = true;
+            inputActions.PlayerActions.RT.performed += i => input_RT = true;
 
-            if(rb_input)
+            if(input_RB)
             {
                 if(playerManager.canDoCombo)
                 {
-                    comboFlag = true;
+                    flag_Combo = true;
                     playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
-                    comboFlag = false;
+                    flag_Combo = false;
                 }
 
                 else
@@ -122,28 +133,28 @@ namespace BON
                 }
             }
 
-            if (rt_input)
+            if (input_RT)
             {
                 if (playerManager. canDoCombo || !playerManager.isInteracting)
                 {
-                    comboFlag = true;
+                    flag_Combo = true;
                     playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
-                    comboFlag = false;
+                    flag_Combo = false;
                 }
             }
         }
 
         private void HandleQuickSlotInput(float delta)
         {
-            inputActions.PlayerQuickslots.DPadRight.performed += inputActions => d_pad_right = true;
-            inputActions.PlayerQuickslots.DPadLeft.performed += inputActions => d_pad_left = true;
+            inputActions.PlayerQuickslots.DPadRight.performed += inputActions => input_Dpad_Right = true;
+            inputActions.PlayerQuickslots.DPadLeft.performed += inputActions => input_Dpad_Left = true;
 
-            if(d_pad_right)
+            if(input_Dpad_Right)
             {
                 playerInventory.ChangeRightWeapon();
             }
 
-            if(d_pad_left)
+            if(input_Dpad_Left)
             {
                 playerInventory.ChangeLeftWeapon();
             }

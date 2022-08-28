@@ -6,25 +6,25 @@ namespace BON
 {
     public class DamageCollider : MonoBehaviour
     {
-        Collider damageCollider;
-        public int currentWeaponDamage = 25;
+        public int CurrentWeaponDamage = 25;
+        private Collider _damageCollider;
 
         private void Awake()
         {
-            damageCollider = GetComponent<Collider>();
-            damageCollider.gameObject.SetActive(true);
-            damageCollider.isTrigger = true;
-            damageCollider.enabled = false;
+            _damageCollider = GetComponent<Collider>();
+            _damageCollider.gameObject.SetActive(true);
+            _damageCollider.isTrigger = true;
+            _damageCollider.enabled = false;
         }
 
         public void EnableDamageCollider()
         {
-            damageCollider.enabled = true;
+            _damageCollider.enabled = true;
         }
 
         public void DisableDamageCollider()
         {
-            damageCollider.enabled = false;
+            _damageCollider.enabled = false;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -35,7 +35,7 @@ namespace BON
 
                 if(playerStats != null)
                 {
-                    playerStats.TakeDamage(currentWeaponDamage);
+                    playerStats.TakeDamage(CurrentWeaponDamage);
                 }    
             }
 
@@ -45,7 +45,7 @@ namespace BON
 
                 if (enemyStats != null)
                 {
-                    enemyStats.TakeDamage(currentWeaponDamage);
+                    enemyStats.TakeDamage(CurrentWeaponDamage);
                 }
             }
         }

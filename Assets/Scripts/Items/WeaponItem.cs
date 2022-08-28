@@ -11,12 +11,12 @@ namespace BON
         public bool isUnarmed;
 
         [Header("Idle Animations")]
-        public string right_hand_idle;
-        public string left_hand_idle;
+        public string Idle_Arm_Right_01;
+        public string Idle_Arm_Left_01;
 
         [Header("Attack Animations")]
-        public string oh_right_sword_attack_01;
-        public string oh_right_sword_attack_02;
-        public string oh_heavy_attack_01;
+        public string OH_Right_Sword_Attack_01;
+        public string OH_Right_Sword_Attack_02;
+        public string OH_Heavy_Attack_01;
     }
 }

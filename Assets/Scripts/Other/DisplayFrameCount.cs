@@ -7,23 +7,24 @@ namespace BON
 {
     public class DisplayFrameCount : MonoBehaviour
     {
-        public TextMeshProUGUI FpsText;
-
+        [Header("General")]
+        public TextMeshProUGUI frameCountText;
         public float pollingTime = 1f;
-        private float time;
-        private int frameCount;
+
+        private float _time;
+        private int _frameCount;
 
         // Update is called once per frame
         void Update()
         {
-            time += Time.deltaTime;
+            _time += Time.deltaTime;
 
-            frameCount++;
+            _frameCount++;
 
-            if (time > -pollingTime)
+            if (_time > -pollingTime)
             {
-                int frameRate = Mathf.RoundToInt(frameCount / time);
-                FpsText.text = "FPS: " + frameRate.ToString();
+                int frameRate = Mathf.RoundToInt(_frameCount / _time);
+                frameCountText.text = "FPS: " + frameRate.ToString();
             }
         }
     }

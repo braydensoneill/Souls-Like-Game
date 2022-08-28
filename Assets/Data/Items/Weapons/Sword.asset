@@ -17,8 +17,8 @@ MonoBehaviour:
   modelPrefab: {fileID: 4329264159065547410, guid: f072e4f95ce9f0d4db8029e04539bad1,
     type: 3}
   isUnarmed: 0
-  right_hand_idle: Right_Arm_Idle_01
-  left_hand_idle: Left_Arm_Idle_01
-  oh_right_sword_attack_01: OH_Right_Sword_Attack_01
-  oh_right_sword_attack_02: OH_Right_Sword_Attack_02
-  oh_heavy_attack_01: OH_Heavy_Attack_01
+  Idle_Arm_Right_01: Right_Arm_Idle_01
+  Idle_Arm_Left_01: Left_Arm_Idle_01
+  OH_Right_Sword_Attack_01: OH_Right_Sword_Attack_01
+  OH_Right_Sword_Attack_02: OH_Right_Sword_Attack_02
+  OH_Heavy_Attack_01: OH_Heavy_Attack_01

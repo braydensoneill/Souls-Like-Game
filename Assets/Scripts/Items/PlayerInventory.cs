@@ -6,12 +6,11 @@ namespace BON
 {
     public class PlayerInventory : MonoBehaviour
     {
-        WeaponSlotManager weaponSlotManager;
-
+        [Header("Weapon Slots")]
         public WeaponItem rightWeapon;
         public WeaponItem leftWeapon;
-
         public WeaponItem unarmedWeapon;
+        private WeaponSlotManager weaponSlotManager;
 
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[1];
         public WeaponItem[] weaponsInLeftHandSlots = new WeaponItem[1];
@@ -68,7 +67,6 @@ namespace BON
                 currentLeftWeaponIndex = -1;
             }
         }
-
 
         private void LoadRightWeapon(WeaponItem weapon)
         {

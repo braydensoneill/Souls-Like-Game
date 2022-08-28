@@ -6,13 +6,13 @@ namespace BON
 {
     public class WeaponSlotManager : MonoBehaviour
     {
-        WeaponHolderSlot leftHandSlot;
-        WeaponHolderSlot rightHandSlot;
+        public WeaponHolderSlot leftHandSlot;
+        public WeaponHolderSlot rightHandSlot;
 
-        DamageCollider leftHandDamageCollider;
-        DamageCollider rightHandDamageCollider;
+        private DamageCollider _leftHandDamageCollider;
+        private DamageCollider _rightHandDamageCollider;
 
-        Animator animator;
+        private Animator animator;
 
         private void Awake()
         {
@@ -41,10 +41,10 @@ namespace BON
                 LoadLeftWeaponDamageCollider();
                 #region Handle Left Weapon Idle Animations
                 if(weaponItem != null)
-                    animator.CrossFade(weaponItem.left_hand_idle, 0.2f);
+                    animator.CrossFade(weaponItem.Idle_Arm_Left_01, 0.2f);
 
                 else
-                    animator.CrossFade("Left Arm Empty", 0.2f);
+                    animator.CrossFade("Left_Arm_Empty", 0.2f);
                 #endregion
             }
             else
@@ -53,10 +53,10 @@ namespace BON
                 LoadRightWeaponDamageCollider();
                 #region Handle Right Weapon Idle Animations
                 if (weaponItem != null)
-                    animator.CrossFade(weaponItem.right_hand_idle, 0.2f);
+                    animator.CrossFade(weaponItem.Idle_Arm_Right_01, 0.2f);
 
                 else
-                    animator.CrossFade("Right Arm Empty", 0.2f);
+                    animator.CrossFade("Right_Arm_Empty", 0.2f);
                 #endregion
             }
         }
@@ -64,34 +64,33 @@ namespace BON
         #region Handle Weapon's Damage Collider
         public void LoadLeftWeaponDamageCollider()
         {
-            leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            _leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
         }
 
         public void LoadRightWeaponDamageCollider()
         {
-            rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            _rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
         }
 
         public void OpenLeftDamageCollider()
         {
-            leftHandDamageCollider.EnableDamageCollider();
+            _leftHandDamageCollider.EnableDamageCollider();
         }
 
         public void OpenRightDamageCollider()
         {
-            rightHandDamageCollider.EnableDamageCollider();
+            _rightHandDamageCollider.EnableDamageCollider();
         }
 
         public void CloseLeftHandDamageCollider()
         {
-            leftHandDamageCollider.DisableDamageCollider();
+            _leftHandDamageCollider.DisableDamageCollider();
         }
 
         public void CloseRightHandDamageCollider()
         {
-            rightHandDamageCollider.DisableDamageCollider();
+            _rightHandDamageCollider.DisableDamageCollider();
         }
         #endregion
     }
-
 }

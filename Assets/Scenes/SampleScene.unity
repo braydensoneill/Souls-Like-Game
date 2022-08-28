@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23eb15185de7f084db7c613fa39da412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 16892260}
+  _slider: {fileID: 0}
 --- !u!114 &16892260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "[WASD] -> Move\n[Shift] -> Backstep (Tap)\n[Shift] -> Roll (Tap + Move)\t\n[Shift]
     -> Sprint (Hold + Move)\n[Q] -> Left Hand Attacks\n[E] -> Right Hand Attacks\n[R]
-    -> Special Attack\n"
+    -> Special Attack\n[Arrow Keys] -> Change Weapons"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23eb15185de7f084db7c613fa39da412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 259230404}
+  _slider: {fileID: 259230404}
 --- !u!1 &282840810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23eb15185de7f084db7c613fa39da412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 353971173}
+  _slider: {fileID: 0}
 --- !u!114 &353971173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,7 +1123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &436436183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1577,7 +1577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66aab02a540b0ff49a4a717fb6fbb410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FpsText: {fileID: 1324348883}
+  frameCountText: {fileID: 1324348883}
   pollingTime: 1
 --- !u!114 &1324348883
 MonoBehaviour:
@@ -2295,6 +2295,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1936005283 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4381958214104363915, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+    type: 3}
+  m_PrefabInstance: {fileID: 4381958213783511167}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e70f9c393616b48bcfb2b7ba2bc70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1984539239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4381958212274349435, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+    type: 3}
+  m_PrefabInstance: {fileID: 4381958213783511167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1984539241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984539239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e70f9c393616b48bcfb2b7ba2bc70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentOverride: {fileID: 0}
+  isLeftHandSlot: 0
+  isRightHandSlot: 0
+  currentWeaponModel: {fileID: 0}
 --- !u!4 &2057436914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4381958212615282317, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
@@ -2346,7 +2380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 2057436914}
-  cameraTransform: {fileID: 282840814}
+  cameraTransform: {fileID: 129772747}
   cameraPivotTransform: {fileID: 891400276}
   lookSpeed: 0.1
   followSpeed: 0.1
@@ -2737,9 +2771,25 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 259230405}
+    - target: {fileID: 4381958212615282309, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: health_Bar
+      value: 
+      objectReference: {fileID: 259230405}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: LeftWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a,
+        type: 2}
     - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}
       propertyPath: leftWeapon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: RightWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a,
         type: 2}
@@ -2747,7 +2797,12 @@ PrefabInstance:
         type: 3}
       propertyPath: rightWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a,
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: UnarmedWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 2b3a9b2b785ac324cbcbe08895554d5c,
         type: 2}
     - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}
@@ -2757,7 +2812,17 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}
+      propertyPath: WeaponsInLeftHandSlots.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
       propertyPath: weaponsInLeftHandSlots.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInRightHandSlots.Array.size
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
@@ -2765,6 +2830,42 @@ PrefabInstance:
       propertyPath: weaponsInRightHandSlots.Array.size
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInLeftHandSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInLeftHandSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 971607ba83145b8459122ff893c54987,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInLeftHandSlots.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: e717e9f199f617d478ff5d5dacb28435,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInLeftHandSlots.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 59ddb3679bb8c8e4fbb69d478e8c761f,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInLeftHandSlots.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: ff15620b9d573bb438d01f0dfd08c627,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInLeftHandSlots.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: b80245d640232ca4387be3f317cc0f35,
+        type: 2}
     - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}
       propertyPath: weaponsInLeftHandSlots.Array.data[0]
@@ -2806,6 +2907,42 @@ PrefabInstance:
       propertyPath: weaponsInLeftHandSlots.Array.data[6]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInRightHandSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInRightHandSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 971607ba83145b8459122ff893c54987,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInRightHandSlots.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 59ddb3679bb8c8e4fbb69d478e8c761f,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInRightHandSlots.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: e717e9f199f617d478ff5d5dacb28435,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInRightHandSlots.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: ff15620b9d573bb438d01f0dfd08c627,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: WeaponsInRightHandSlots.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: b80245d640232ca4387be3f317cc0f35,
+        type: 2}
     - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}
       propertyPath: weaponsInRightHandSlots.Array.data[0]
@@ -2907,6 +3044,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381958213099852296, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: LeftHandSlot
+      value: 
+      objectReference: {fileID: 1984539241}
+    - target: {fileID: 4381958213099852296, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: leftHandSlot
+      value: 
+      objectReference: {fileID: 1984539241}
+    - target: {fileID: 4381958213099852296, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: RightHandSlot
+      value: 
+      objectReference: {fileID: 1936005283}
+    - target: {fileID: 4381958213099852296, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: rightHandSlot
+      value: 
+      objectReference: {fileID: 1936005283}
+    - target: {fileID: 4381958213099852297, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: CanRotate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381958214104363915, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: IsRightHandSlot
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7782508720606494814, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}

@@ -7,17 +7,17 @@ namespace BON
 {
     public class HealthBar : MonoBehaviour
     {
-        public Slider slider;
+        public Slider _slider;
 
-        public void SetMaxHealth(float maxHealth)
+        public void SetBarMaxHealth(float maxHealth)
         {
-            slider.maxValue = maxHealth;
-            slider.value = maxHealth;
+            _slider.maxValue = maxHealth;
+            _slider.value = maxHealth;
         }
 
-        public void SetCurrentHealth(float currentHealth)
+        public void SetBarCurrentHealth(float currentHealth)
         {
-            slider.value = currentHealth;
+            _slider.value = currentHealth;
         }
     }
 }

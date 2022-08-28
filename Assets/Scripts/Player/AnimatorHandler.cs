@@ -6,101 +6,96 @@ namespace BON
 {
     public class AnimatorHandler : MonoBehaviour
     {
-        PlayerManager playerManager;
-        public Animator anim;
-        InputHandler inputHandler;
-        PlayerLocomotion playerLocomotion;
+        private PlayerManager playerManager;
+        public Animator animator;
+        private InputHandler inputHandler;
+        private PlayerLocomotion playerLocomotion;
 
-        private int vertical;
-        private int horizontal;
         public bool canRotate;
+        private int _vertical;
+        private int _horizontal;
 
         public void Initialise()
         {
             playerManager = GetComponentInParent<PlayerManager>();
-            anim = GetComponent<Animator>();
+            animator = GetComponent<Animator>();
             inputHandler = GetComponentInParent<InputHandler>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
 
-            vertical = Animator.StringToHash("Vertical");
-            horizontal = Animator.StringToHash("Horizontal");
+            _vertical = Animator.StringToHash("Vertical");
+            _horizontal = Animator.StringToHash("Horizontal");
         }
 
         public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting)
         {
             #region Vertical
-            float v = 0;
+            float _v = 0;
 
             if(verticalMovement > 0 && verticalMovement < 0.55f)
-                v = 0.5f;
+                _v = 0.5f;
 
             else if (verticalMovement > 0.55f)
-                v = 1;
+                _v = 1;
 
             else if (verticalMovement < 0 && verticalMovement > -0.55f)
-                v = 0.5f;
+                _v = 0.5f;
 
             else if (verticalMovement < -0.55f)
-                v = -1;
+                _v = -1;
 
             else
-                v = 0;
+                _v = 0;
             #endregion
 
             #region Horizontal
-            float h = 0;
+            float _h = 0;
 
             if (horizontalMovement > 0 && horizontalMovement < 0.55f)
-                h = 0.5f;
+                _h = 0.5f;
 
             else if (horizontalMovement > 0.55f)
-                h = 1;
+                _h = 1;
 
             else if (horizontalMovement < 0 && horizontalMovement > -0.55f)
-                h = 0.5f;
+                _h = 0.5f;
 
             else if (horizontalMovement < -0.55f)
-                h = -1;
+                _h = -1;
 
             else
-                h = 0;
+                _h = 0;
             #endregion
 
             if(isSprinting)
             {
-                v = 2;
-                h = horizontalMovement;
+                _v = 2;
+                _h = horizontalMovement;
             }
 
-            anim.SetFloat(vertical, v, 0.1f, Time.deltaTime);
-            anim.SetFloat(horizontal, h, 0.1f, Time.deltaTime);
+            animator.SetFloat(_vertical, _v, 0.1f, Time.deltaTime);
+            animator.SetFloat(_horizontal, _h, 0.1f, Time.deltaTime);
         }
 
         public void PlayTargetAnimation(string targetAnim, bool isInteracting)
         {
-            anim.applyRootMotion = isInteracting;
-            anim.SetBool("isInteracting", isInteracting);
-            anim.CrossFade(targetAnim, 0.2f);
+            animator.applyRootMotion = isInteracting;
+            animator.SetBool("isInteracting", isInteracting);
+            animator.CrossFade(targetAnim, 0.2f);
         }
 
-        public void CanRotate()
+        public void SetRotation(bool canRotate)
         {
-            canRotate = true;
-        }
-
-        public void StopRotation()
-        {
-            canRotate = false;
+            this.canRotate = canRotate;
         }
 
         public void EnableCombo()
         {
-            anim.SetBool("canDoCombo", true);
+            animator.SetBool("canDoCombo", true);
         }
 
         public void DisableCombo()
         {
-            anim.SetBool("canDoCombo", false);
+            animator.SetBool("canDoCombo", false);
         }
 
         private void OnAnimatorMove()
@@ -108,13 +103,15 @@ namespace BON
             if (playerManager.isInteracting == false)
                 return;
 
-            float delta = Time.deltaTime;
+            float _delta = Time.deltaTime;
 
             playerLocomotion.rigidbody.drag = 0;
-            Vector3 deltaPosition = anim.deltaPosition;
-            deltaPosition.y = 0;
-            Vector3 velocity = deltaPosition / delta;
-            playerLocomotion.rigidbody.velocity = velocity;
+
+            Vector3 _deltaPosition = animator.deltaPosition;
+            _deltaPosition.y = 0;
+
+            Vector3 _velocity = _deltaPosition / _delta;
+            playerLocomotion.rigidbody.velocity = _velocity;
         }
     }
 }

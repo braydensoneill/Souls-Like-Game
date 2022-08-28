@@ -6,39 +6,39 @@ namespace BON
 {
     public class EnemyStats : MonoBehaviour
     {
-        public float healthLevel = 10;
-        public float maxHealth;
-        public float currentHealth;
+        private Animator animator;
 
-        Animator animator;
+        [Header("Stats")]
+        public float health_Level = 10;
+        public float health_Max;
+        public float health_Current;
 
         private void Awake()
         {
             animator = GetComponentInChildren<Animator>();
         }
 
-        // Start is called before the first frame update
         void Start()
         {
-            maxHealth = CalculateMaxHealth();
-            currentHealth = maxHealth;
+            health_Max = CalculateMaxHealth();
+            health_Current = health_Max;
         }
 
         private float CalculateMaxHealth()
         {
-            maxHealth = healthLevel * 10;
-            return maxHealth;
+            health_Max = health_Level * 10;
+            return health_Max;
         }
 
         public void TakeDamage(int damage)
         {
-            currentHealth = currentHealth - damage;
+            health_Current = health_Current - damage;
 
             animator.Play("Damage_01");
 
-            if (currentHealth <= 0)
+            if (health_Current <= 0)
             {
-                currentHealth = 0;
+                health_Current = 0;
                 animator.Play("Dead_01");
             }
         }

@@ -6,32 +6,32 @@ namespace BON
 { 
     public class PlayerLocomotion : MonoBehaviour
     {
-        PlayerManager playerManager;
-        Transform cameraObject;
-        InputHandler inputHandler;
-        public Vector3 moveDirection;
-
+        [Header("References")]
+        public new Rigidbody rigidbody;
+        private PlayerManager playerManager;
+        private Transform cameraObject;
+        private InputHandler inputHandler;
         [HideInInspector] public Transform myTransform;
         [HideInInspector] public AnimatorHandler animatorHandler;
 
         [Header("General")]
-        public new Rigidbody rigidbody;
         public GameObject normalCamera;
 
         [Header("Ground and Air Detection Stats")]
-        [SerializeField] float groundDetectionRayStartPoint = 0.5f;
-        [SerializeField] float minimumDistanceNeededToBeginFall = 1f;
-        [SerializeField] float groundDirectionRayDistance = 0.2f;
-        LayerMask ignoreForGroundCheck;
-        public float inAirTimer;
+        public float InAirTimer;
+        [SerializeField] private float _groundDetectionRayStartPoint = 0.5f;
+        [SerializeField] private float _minimumDistanceNeededToBeginFall = 1f;
+        [SerializeField] private float _groundDirectionRayDistance = 0.2f;
+        private LayerMask _ignoreForGroundCheck;
 
         [Header("Movement Stats")]
-        [SerializeField] float movementSpeed = 5;
-        [SerializeField] float walkSpeed = 1;
-        [SerializeField] float sprintSpeed = 7;
-        [SerializeField] float rotationSpeed = 10;
-        [SerializeField] float fallSpeed = 100;
-        [SerializeField] float fallForce = 5;
+        public Vector3 moveDirection;
+        [SerializeField] private float _movementSpeed = 5;
+        [SerializeField] private float _walkSpeed = 1;
+        [SerializeField] private float _sprintSpeed = 7;
+        [SerializeField] private float _rotationSpeed = 10;
+        [SerializeField] private float _fallSpeed = 100;
+        [SerializeField] private float _fallForce = 5;
 
         // Start is called before the first frame update
         void Start()
@@ -46,38 +46,38 @@ namespace BON
             animatorHandler.Initialise();
 
             playerManager.isGrounded = true;
-            ignoreForGroundCheck = ~(1 << 8 | 1 << 11);
+            _ignoreForGroundCheck = ~(1 << 8 | 1 << 11);
         }
 
         #region Movement
-        Vector3 normalVector;
-        Vector3 targetPosition;
+        Vector3 _normalVector;
+        Vector3 _targetPosition;
 
         private void HandleRotation(float delta)
         {
-            Vector3 targetDir = Vector3.zero;
-            float moveOverride = inputHandler.moveAmount;
+            Vector3 _targetDir = Vector3.zero;
+            float _moveOverride = inputHandler.moveAmount;
 
-            targetDir = cameraObject.forward * inputHandler.vertical;
-            targetDir += cameraObject.right * inputHandler.horizontal;
+            _targetDir = cameraObject.forward * inputHandler.vertical;
+            _targetDir += cameraObject.right * inputHandler.horizontal;
 
-            targetDir.Normalize();
-            targetDir.y = 0;
+            _targetDir.Normalize();
+            _targetDir.y = 0;
 
-            if (targetDir == Vector3.zero)
-                targetDir = myTransform.forward;
+            if (_targetDir == Vector3.zero)
+                _targetDir = myTransform.forward;
 
-            float rs = rotationSpeed;
+            float _rs = _rotationSpeed;
 
-            Quaternion tr = Quaternion.LookRotation(targetDir);
-            Quaternion targetRotation = Quaternion.Slerp(myTransform.rotation, tr, rs * delta);
+            Quaternion _tr = Quaternion.LookRotation(_targetDir);
+            Quaternion _targetRotation = Quaternion.Slerp(myTransform.rotation, _tr, _rs * delta);
 
-            myTransform.rotation = targetRotation;
+            myTransform.rotation = _targetRotation;
         }
 
         public void HandleMovement(float delta)
         {
-            if (inputHandler.rollFlag)
+            if (inputHandler.flag_Roll)
                 return;
 
             if (playerManager.isInteracting)
@@ -88,17 +88,17 @@ namespace BON
             moveDirection.Normalize();
             moveDirection.y = 0;
 
-            float speed = movementSpeed;
+            float speed = _movementSpeed;
 
             if (inputHandler.moveAmount < 0.5)
             {
-                moveDirection *= walkSpeed;
+                moveDirection *= _walkSpeed;
                 playerManager.isSprinting = false;
             }
 
-            else if (inputHandler.sprintFlag && inputHandler.moveAmount > 0.5)
+            else if (inputHandler.flag_Sprint && inputHandler.moveAmount > 0.5)
             {
-                speed = sprintSpeed;
+                speed = _sprintSpeed;
                 playerManager.isSprinting = true;
                 moveDirection *= speed;
             }
@@ -109,8 +109,8 @@ namespace BON
                 playerManager.isSprinting = false;
             }
 
-            Vector3 projectedVelocity = Vector3.ProjectOnPlane(moveDirection, normalVector);
-            rigidbody.velocity = projectedVelocity;
+            Vector3 _projectedVelocity = Vector3.ProjectOnPlane(moveDirection, _normalVector);
+            rigidbody.velocity = _projectedVelocity;
 
             animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
 
@@ -120,10 +120,10 @@ namespace BON
 
         public void HandleRollingAndSprinting(float delta)
         {
-            if (animatorHandler.anim.GetBool("isInteracting"))
+            if (animatorHandler.animator.GetBool("isInteracting"))
                 return;
 
-            if(inputHandler.rollFlag)
+            if(inputHandler.flag_Roll)
             {
                 moveDirection = cameraObject.forward * inputHandler.vertical;
                 moveDirection += cameraObject.right * inputHandler.horizontal;
@@ -132,8 +132,8 @@ namespace BON
                 {
                     animatorHandler.PlayTargetAnimation("Roll", true);
                     moveDirection.y = 0;
-                    Quaternion rollRotation = Quaternion.LookRotation(moveDirection);
-                    myTransform.rotation = rollRotation;
+                    Quaternion _rollRotation = Quaternion.LookRotation(moveDirection);
+                    myTransform.rotation = _rollRotation;
                 }
 
                 else
@@ -143,50 +143,49 @@ namespace BON
             }
         }
 
-        //Fix this mess
         public void HandleFalling(float delta, Vector3 moveDirection)
         {
             playerManager.isGrounded = false;
-            RaycastHit hit;
-            Vector3 origin = myTransform.position;
-            origin.y += groundDetectionRayStartPoint;
+            RaycastHit _hit;
+            Vector3 _origin = myTransform.position;
+            _origin.y += _groundDetectionRayStartPoint;
 
-            if(Physics.Raycast(origin, myTransform.forward, out hit, 0.4f))
+            if(Physics.Raycast(_origin, myTransform.forward, out _hit, 0.4f))
                 moveDirection = Vector3.zero;
 
             if(playerManager.isAirborne)
             {
-                rigidbody.AddForce(-Vector3.up * fallSpeed);
-                rigidbody.AddForce(moveDirection * fallSpeed / fallForce);
+                rigidbody.AddForce(-Vector3.up * _fallSpeed);
+                rigidbody.AddForce(moveDirection * _fallSpeed / _fallForce);
             }
 
-            Vector3 dir = moveDirection;
-            dir.Normalize();
-            origin = origin + dir * groundDirectionRayDistance;
+            Vector3 _dir = moveDirection;
+            _dir.Normalize();
+            _origin = _origin + _dir * _groundDirectionRayDistance;
 
-            targetPosition = myTransform.position;
-            Debug.DrawRay(origin, -Vector3.up * minimumDistanceNeededToBeginFall, Color.red, 0.1f, false);
+            _targetPosition = myTransform.position;
+            Debug.DrawRay(_origin, -Vector3.up * _minimumDistanceNeededToBeginFall, Color.red, 0.1f, false);
 
-            if(Physics.Raycast(origin, -Vector3.up, out hit, minimumDistanceNeededToBeginFall, ignoreForGroundCheck))
+            if(Physics.Raycast(_origin, -Vector3.up, out _hit, _minimumDistanceNeededToBeginFall, _ignoreForGroundCheck))
             {
-                normalVector = hit.normal;
-                Vector3 tp = hit.point;
+                _normalVector = _hit.normal;
+                Vector3 _tp = _hit.point;
                 playerManager.isGrounded = true;
-                targetPosition.y = tp.y;
+                _targetPosition.y = _tp.y;
 
                 if(playerManager.isAirborne)
                 {
-                    if(inAirTimer > 0.5f)
+                    if(InAirTimer > 0.5f)
                     {
-                        Debug.Log("Air Time: " + inAirTimer);
+                        Debug.Log("Air Time: " + InAirTimer);
                         animatorHandler.PlayTargetAnimation("Land", true);
-                        inAirTimer = 0;
+                        InAirTimer = 0;
                     }
 
                     else
                     {
                         animatorHandler.PlayTargetAnimation("Empty", true);
-                        inAirTimer = 0;
+                        InAirTimer = 0;
                     }
 
                     playerManager.isAirborne = false;
@@ -207,21 +206,21 @@ namespace BON
                         animatorHandler.PlayTargetAnimation("Fall", true);
                     }
 
-                    Vector3 vel = rigidbody.velocity;
-                    vel.Normalize();
-                    rigidbody.velocity = vel * (movementSpeed / 2);
+                    Vector3 _vel = rigidbody.velocity;
+                    _vel.Normalize();
+                    rigidbody.velocity = _vel * (_movementSpeed / 2);
                     playerManager.isAirborne = true;
                 }
             }
 
             if(playerManager.isInteracting || inputHandler.moveAmount > 0)
             {
-                myTransform.position = Vector3.Lerp(myTransform.position, targetPosition, Time.deltaTime / 0.1f);
+                myTransform.position = Vector3.Lerp(myTransform.position, _targetPosition, Time.deltaTime / 0.1f);
             }
 
             else
             {
-                myTransform.position = targetPosition;
+                myTransform.position = _targetPosition;
             }
         }
         #endregion

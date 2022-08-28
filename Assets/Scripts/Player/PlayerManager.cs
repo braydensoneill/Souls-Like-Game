@@ -6,10 +6,10 @@ namespace BON
 {
     public class PlayerManager : MonoBehaviour
     {
-        InputHandler inputHandler;
-        Animator anim;
-        CameraHandler cameraHandler;
-        PlayerLocomotion playerLocomotion;
+        private InputHandler inputHandler;
+        private Animator animator;
+        private CameraHandler cameraHandler;
+        private PlayerLocomotion playerLocomotion;
 
         [Header("Player Flags")]
         public bool isInteracting;
@@ -28,53 +28,53 @@ namespace BON
         {
             cameraHandler = CameraHandler.singleton;
             inputHandler = GetComponent<InputHandler>();
-            anim = GetComponentInChildren<Animator>();
+            animator = GetComponentInChildren<Animator>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            float delta = Time.deltaTime;
+            float _delta = Time.deltaTime;
 
-            isInteracting = anim.GetBool("isInteracting");
-            canDoCombo = anim.GetBool("canDoCombo");
+            isInteracting = animator.GetBool("isInteracting");
+            canDoCombo = animator.GetBool("canDoCombo");
 
-            inputHandler.rollFlag = false;
-            inputHandler.sprintFlag = false;
+            inputHandler.flag_Roll = false;
+            inputHandler.flag_Sprint = false;
 
-            inputHandler.TickInput(delta);
-            playerLocomotion.HandleMovement(delta);
-            playerLocomotion.HandleRollingAndSprinting(delta);
-            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            inputHandler.TickInput(_delta);
+            playerLocomotion.HandleMovement(_delta);
+            playerLocomotion.HandleRollingAndSprinting(_delta);
+            playerLocomotion.HandleFalling(_delta, playerLocomotion.moveDirection);
         }
 
         private void FixedUpdate()
         {
-            float delta = Time.fixedDeltaTime;
+            float _delta = Time.fixedDeltaTime;
 
             if (cameraHandler != null)
             {
-                cameraHandler.FollowTarget(delta);
-                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+                cameraHandler.FollowTarget(_delta);
+                cameraHandler.HandleCameraRotation(_delta, inputHandler.mouseX, inputHandler.mouseY);
             }
         }
 
         private void LateUpdate()
         {
             #region Check for Inputs
-            inputHandler.rollFlag = false;
-            inputHandler.sprintFlag = false;
-            inputHandler.rb_input = false;
-            inputHandler.rt_input = false;
-            inputHandler.d_pad_up = false;
-            inputHandler.d_pad_down = false;
-            inputHandler.d_pad_left = false;
-            inputHandler.d_pad_right = false;
+            inputHandler.flag_Roll = false;
+            inputHandler.flag_Sprint = false;
+            inputHandler.input_RB = false;
+            inputHandler.input_RT = false;
+            inputHandler.input_Dpad_Up = false;
+            inputHandler.input_Dpad_Down = false;
+            inputHandler.input_Dpad_Left = false;
+            inputHandler.input_Dpad_Right = false;
             #endregion
 
             if (isAirborne)
-                playerLocomotion.inAirTimer = playerLocomotion.inAirTimer + Time.deltaTime;
+                playerLocomotion.InAirTimer = playerLocomotion.InAirTimer + Time.deltaTime;
         }
     }
 }

@@ -38,24 +38,24 @@ namespace BON
                 return;
             }
 
-            GameObject model = Instantiate(weaponItem.modelPrefab);
-            if (model != null)
+            GameObject _model = Instantiate(weaponItem.modelPrefab);
+            if (_model != null)
             {
                 if(parentOverride != null)
                 {
-                    model.transform.parent = parentOverride;
+                    _model.transform.parent = parentOverride;
                 }
                 else
                 {
-                    model.transform.parent = transform;
+                    _model.transform.parent = transform;
                 }
 
-                model.transform.localPosition = Vector3.zero;
-                model.transform.localRotation = Quaternion.identity;
-                model.transform.localScale = Vector3.one;
+                _model.transform.localPosition = Vector3.zero;
+                _model.transform.localRotation = Quaternion.identity;
+                _model.transform.localScale = Vector3.one;
             }
 
-            currentWeaponModel = model;
+            currentWeaponModel = _model;
         }
     }
 }

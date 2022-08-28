@@ -6,11 +6,11 @@ namespace BON
 {
     public class PlayerStats : MonoBehaviour
     {
-        public float healthLevel = 10;
-        public float maxHealth;
-        public float currentHealth;
+        public float health_level = 10;
+        public float health_max;
+        public float health_current;
 
-        public HealthBar healthBar;
+        public HealthBar health_Bar;
 
         AnimatorHandler animatorHandler;
 
@@ -22,28 +22,28 @@ namespace BON
         // Start is called before the first frame update
         void Start()
         {
-            maxHealth = CalculateMaxHealth();
-            currentHealth = maxHealth;
-            healthBar.SetMaxHealth(maxHealth);
+            health_max = CalculateMaxHealth();
+            health_current = health_max;
+            health_Bar.SetBarMaxHealth(health_max);
         }
 
         private float CalculateMaxHealth()
         {
-            maxHealth = healthLevel * 10;
-            return maxHealth;
+            health_max = health_level * 10;
+            return health_max;
         }
 
         public void TakeDamage(int damage)
         {
-            currentHealth = currentHealth - damage;
+            health_current = health_current - damage;
 
-            healthBar.SetCurrentHealth(currentHealth);
+            health_Bar.SetBarCurrentHealth(health_current);
 
             animatorHandler.PlayTargetAnimation("Damage_01", true);
 
-            if(currentHealth <= 0)
+            if(health_current <= 0)
             {
-                currentHealth = 0;
+                health_current = 0;
                 animatorHandler.PlayTargetAnimation("Dead_01", true);
                 //HandlePlayerDeath
             }
