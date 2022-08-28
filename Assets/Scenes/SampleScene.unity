@@ -2803,6 +2803,11 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}
+      propertyPath: weaponsInLeftHandSlots.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
       propertyPath: weaponsInRightHandSlots.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a,
@@ -2834,6 +2839,12 @@ PrefabInstance:
     - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}
       propertyPath: weaponsInRightHandSlots.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: b80245d640232ca4387be3f317cc0f35,
+        type: 2}
+    - target: {fileID: 4381958212615282311, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: weaponsInRightHandSlots.Array.data[6]
       value: 
       objectReference: {fileID: 11400000, guid: b80245d640232ca4387be3f317cc0f35,
         type: 2}
