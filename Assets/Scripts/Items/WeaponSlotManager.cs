@@ -14,9 +14,12 @@ namespace BON
 
         private Animator animator;
 
+        private QuickSlotsUI quickslotsUI;
+
         private void Awake()
         {
             animator = GetComponent<Animator>();
+            quickslotsUI = FindObjectOfType<QuickSlotsUI>();
 
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
 
@@ -39,6 +42,7 @@ namespace BON
             {
                 leftHandSlot.LoadWeaponModel(weaponItem);
                 LoadLeftWeaponDamageCollider();
+                quickslotsUI.UpdateWeaponQuickslotsUI(true, weaponItem);
                 #region Handle Left Weapon Idle Animations
                 if(weaponItem != null)
                     animator.CrossFade(weaponItem.Idle_Arm_Left_01, 0.2f);
@@ -51,6 +55,7 @@ namespace BON
             {
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
+                quickslotsUI.UpdateWeaponQuickslotsUI(false, weaponItem);
                 #region Handle Right Weapon Idle Animations
                 if (weaponItem != null)
                     animator.CrossFade(weaponItem.Idle_Arm_Right_01, 0.2f);
