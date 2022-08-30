@@ -13,32 +13,32 @@ namespace BON
         private static string item_Epic = "#a335ee";        // Purple
         private static string item_Legendary = "#ff8000";   // Orange
 
-        public string GetItemPoor()
+        public string GetItemColorPoor()
         {
             return item_Poor;
         }
 
-        public string GetItemCommon()
+        public string GetItemColorCommon()
         {
             return item_Common;
         }
 
-        public string GetItemUncommon()
+        public string GetItemColorUncommon()
         {
             return item_Uncommon;
         }
 
-        public string GetItemRare()
+        public string GetItemColorRare()
         {
             return item_Rare;
         }
 
-        public string GetItemEpic()
+        public string GetItemColorEpic()
         {
             return item_Epic;
         }
 
-        public string GetItemLegenary()
+        public string GetItemColorLegenary()
         {
             return item_Legendary;
         }

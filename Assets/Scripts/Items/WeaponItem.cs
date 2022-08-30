@@ -18,5 +18,10 @@ namespace BON
         public string OH_Right_Sword_Attack_01;
         public string OH_Right_Sword_Attack_02;
         public string OH_Heavy_Attack_01;
+
+        [Header("Stamina Costs")]
+        public int baseStamina;
+        public int lightAttackMultiplier;
+        public int heavyAttackMultiplier;
     }
 }

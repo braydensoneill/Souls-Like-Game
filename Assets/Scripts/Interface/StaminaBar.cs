@@ -5,19 +5,20 @@ using UnityEngine.UI;
 
 namespace BON
 {
-    public class HealthBar : MonoBehaviour
+    public class StaminaBar : MonoBehaviour
     {
         public Slider slider;
 
-        public void SetBarMaxHealth(float maxValue)
+        public void SetBarMaxStamina(float maxValue)
         {
             slider.maxValue = maxValue;
             slider.value = maxValue;
         }
 
-        public void SetBarCurrentHealth(float currentValue)
+        public void SetBarCurrentStamina(float currentValue)
         {
             slider.value = currentValue;
         }
     }
 }
+

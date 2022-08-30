@@ -35,7 +35,7 @@ namespace BON
 
                 if(playerStats != null)
                 {
-                    playerStats.TakeDamage(CurrentWeaponDamage);
+                    playerStats.TakeHealthDamage(CurrentWeaponDamage);
                 }    
             }
 

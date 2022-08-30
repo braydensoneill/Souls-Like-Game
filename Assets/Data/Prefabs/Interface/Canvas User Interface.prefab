@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23eb15185de7f084db7c613fa39da412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slider: {fileID: 0}
+  slider: {fileID: 0}
 --- !u!1 &1654279536196599742
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23eb15185de7f084db7c613fa39da412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slider: {fileID: 1654279536201631091}
+  slider: {fileID: 1654279536201631091}
 --- !u!1 &1654279536275886942
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1654279536361950933}
   - component: {fileID: 1654279536361950931}
-  - component: {fileID: 1654279536361950932}
+  - component: {fileID: 3658271326788571452}
   m_Layer: 5
   m_Name: Stamina Bar
   m_TagString: Untagged
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1654279536361950932
+--- !u!114 &3658271326788571452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -808,10 +808,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1654279536361950934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23eb15185de7f084db7c613fa39da412, type: 3}
+  m_Script: {fileID: 11500000, guid: 40a92653aa544ae4c975c5798642ddb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slider: {fileID: 0}
+  slider: {fileID: 0}
 --- !u!1 &1654279536381996952
 GameObject:
   m_ObjectHideFlags: 0

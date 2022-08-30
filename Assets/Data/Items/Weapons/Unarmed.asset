@@ -22,3 +22,6 @@ MonoBehaviour:
   OH_Right_Sword_Attack_01: 
   OH_Right_Sword_Attack_02: 
   OH_Heavy_Attack_01: 
+  baseStamina: 10
+  lightAttackMultiplier: 1
+  heavyAttackMultiplier: 2
