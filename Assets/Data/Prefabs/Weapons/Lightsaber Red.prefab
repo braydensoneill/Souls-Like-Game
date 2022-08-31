@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4329264159065547410}
-  m_LocalRotation: {x: 0.63314587, y: 0.13314621, z: -0.13363044, w: 0.75069386}
-  m_LocalPosition: {x: 0.1112, y: -0.0368, z: 0.0225}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4704430133034410939}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 80.464005, y: 10.676001, z: -11.148001}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2552299819598602481
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d84b0e7ca10d854a995479d17737d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeaponDamage: 25
+  CurrentWeaponDamage: 25
 --- !u!1 &5567937326463158391
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,14 +80,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5567937326463158391}
-  m_LocalRotation: {x: 0.6473567, y: 0.13057214, z: -0.136147, w: 0.7384743}
-  m_LocalPosition: {x: 0.0932, y: -0.0362, z: 0.0297}
+  m_LocalRotation: {x: 0.63314587, y: 0.13314621, z: -0.13363044, w: 0.75069386}
+  m_LocalPosition: {x: 0.1112, y: -0.0368, z: 0.0225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1009640163061529201}
   m_Father: {fileID: 7932120711640806166}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 82.59801, y: 7.393, z: -14.395}
+  m_LocalEulerAnglesHint: {x: 80.464005, y: 10.676001, z: -11.148001}
 --- !u!1001 &5291883626242346183
 PrefabInstance:
   m_ObjectHideFlags: 0
