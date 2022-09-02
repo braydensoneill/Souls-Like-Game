@@ -23,10 +23,10 @@ namespace BON
 
             playerInventory = playerManager.GetComponent<PlayerInventory>();
             playerLocomotion = playerManager.GetComponent<PlayerLocomotion>();
-            animatorHandler = playerManager.GetComponent<AnimatorHandler>();
+            animatorHandler = playerManager.GetComponentInChildren<AnimatorHandler>();
 
             playerLocomotion.rigidbody.velocity = Vector3.zero; // Stops the player from moving while pickup up an item
-            animatorHandler.PlayTargetAnimation("Pick Up Item", true);    //  Plays the animation of looting the item
+            animatorHandler.PlayTargetAnimation("Pickup", true);    //  Plays the animation of looting the item
             playerInventory.weaponsInventory.Add(weapon);
             Destroy(gameObject);
         }

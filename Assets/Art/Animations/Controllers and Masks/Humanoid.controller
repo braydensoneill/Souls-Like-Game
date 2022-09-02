@@ -246,8 +246,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pick Up Item
-  m_Speed: 1
+  m_Name: Pickup
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6909226489405772078}
@@ -260,7 +260,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d81e360da2f27624f96df0c4d1891da0, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2316920e0efe84648b19c979d39aef40, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
