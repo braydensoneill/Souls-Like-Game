@@ -26,6 +26,7 @@ namespace BON
         // Input Variables
         [Header("Inputs")]
         public bool input_B;
+        public bool input_A;
         public bool input_RB;
         public bool input_RT;
         public bool input_Dpad_Up;
@@ -77,6 +78,7 @@ namespace BON
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotInput(delta);
+            HandleInteractInput(delta);
         }
 
         private void MoveInput(float delta)
@@ -158,6 +160,11 @@ namespace BON
             {
                 playerInventory.ChangeLeftWeapon();
             }
+        }
+
+        private void HandleInteractInput(float delta)
+        {
+            inputActions.PlayerActions.Interact.performed += i => input_A = true;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace BON
 
         private Transform _myTransform;
         private Vector3 _cameraTransformPosition;
-        private LayerMask _ignoreLayers;
+        public LayerMask ignoreLayers;
         private Vector3 _cameraFollowVelocity = Vector3.zero;
 
         [Header("Camera Movement")]
@@ -42,7 +42,7 @@ namespace BON
             singleton = this;
             _myTransform = transform;
             _defaultPosition = cameraTransform.localPosition.z;
-            _ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
+            ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
         }
 
         public void FollowTarget(float delta)
@@ -89,7 +89,7 @@ namespace BON
                 _direction,
                 out _hit,
                 Mathf.Abs(_targetPosition),
-                _ignoreLayers))
+                ignoreLayers))
             {
                 float _dis = Vector3.Distance(cameraPivotTransform.position, _hit.point);
                 _targetPosition = -(_dis - cameraCollisionOffset);
