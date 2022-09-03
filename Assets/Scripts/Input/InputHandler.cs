@@ -27,6 +27,7 @@ namespace BON
         [Header("Inputs")]
         public bool input_B;
         public bool input_A;
+        public bool input_Jump;
         public bool input_RB;
         public bool input_RT;
         public bool input_Dpad_Up;
@@ -79,6 +80,7 @@ namespace BON
             HandleAttackInput(delta);
             HandleQuickSlotInput(delta);
             HandleInteractInput(delta);
+            HandleJumpInput(delta);
         }
 
         private void MoveInput(float delta)
@@ -165,6 +167,11 @@ namespace BON
         private void HandleInteractInput(float delta)
         {
             inputActions.PlayerActions.Interact.performed += i => input_A = true;
+        }
+
+        private void HandleJumpInput(float delta)
+        {
+            inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
         }
     }
 }

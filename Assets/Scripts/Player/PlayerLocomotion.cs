@@ -223,6 +223,30 @@ namespace BON
                 myTransform.position = _targetPosition;
             }
         }
+        
+        public void HandleJumping()
+        {
+            if (playerManager.isInteracting)
+                return;
+
+            if(inputHandler.input_Jump)
+            {
+                if(inputHandler.moveAmount > 0)
+                {
+                    // Direction XZ
+                    moveDirection = cameraObject.forward * inputHandler.vertical;
+                    moveDirection += cameraObject.right * inputHandler.horizontal;
+
+                    // Animations
+                    animatorHandler.PlayTargetAnimation("Jump", true);
+                    moveDirection.y = 0;
+
+                    // Rotation
+                    Quaternion _jumpRotation = Quaternion.LookRotation(moveDirection);
+                    myTransform.rotation = _jumpRotation;
+                }    
+            }
+        }
         #endregion
     }
 }

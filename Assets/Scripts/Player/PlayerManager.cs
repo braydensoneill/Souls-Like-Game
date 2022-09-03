@@ -45,6 +45,7 @@ namespace BON
 
             isInteracting = animator.GetBool("isInteracting");
             canDoCombo = animator.GetBool("canDoCombo");
+            animator.SetBool("isAirborne", isAirborne);
 
             inputHandler.flag_Roll = false;
             inputHandler.flag_Sprint = false;
@@ -53,6 +54,7 @@ namespace BON
             playerLocomotion.HandleMovement(_delta);
             playerLocomotion.HandleRollingAndSprinting(_delta);
             playerLocomotion.HandleFalling(_delta, playerLocomotion.moveDirection);
+            playerLocomotion.HandleJumping();
 
             CheckForInteractableObject();
         }
@@ -70,6 +72,7 @@ namespace BON
 
         private void LateUpdate()
         {
+            // Set inputs and flags to false so they can only be called once per frame
             #region Check for Inputs
             inputHandler.flag_Roll = false;
             inputHandler.flag_Sprint = false;
@@ -80,6 +83,7 @@ namespace BON
             inputHandler.input_Dpad_Left = false;
             inputHandler.input_Dpad_Right = false;
             inputHandler.input_A = false;
+            inputHandler.input_Jump = false;
             #endregion
 
             if (isAirborne)
