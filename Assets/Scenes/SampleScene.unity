@@ -8254,6 +8254,11 @@ PrefabInstance:
       propertyPath: _fallSpeed
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 4381958212615282316, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 4381958212615282317, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
         type: 3}
       propertyPath: m_RootOrder

@@ -234,11 +234,11 @@ namespace BON
                 if(inputHandler.moveAmount > 0)
                 {
                     // Direction XZ
-                    moveDirection = cameraObject.forward * inputHandler.vertical;
-                    moveDirection += cameraObject.right * inputHandler.horizontal;
+                    moveDirection = cameraObject.forward * inputHandler.vertical * inputHandler.moveAmount;
+                    moveDirection += cameraObject.right * inputHandler.horizontal * inputHandler.moveAmount;
 
                     // Animations
-                    animatorHandler.PlayTargetAnimation("Jump", true);
+                    animatorHandler.PlayTargetAnimation("Jump", false);
                     moveDirection.y = 0;
 
                     // Rotation
