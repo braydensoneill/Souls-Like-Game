@@ -165,8 +165,6 @@ namespace BON
         private void HandleInteractInput(float delta)
         {
             inputActions.PlayerActions.Interact.performed += i => input_A = true;
-            if (input_A == true)
-                Debug.Log("Pressed F");
         }
     }
 }

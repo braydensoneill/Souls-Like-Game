@@ -11,6 +11,11 @@ namespace BON
         private CameraHandler cameraHandler;
         private PlayerLocomotion playerLocomotion;
 
+        [Header("User Interface")]
+        public GameObject interactablePopUp;
+        public GameObject itemPopUp;
+        private InteractableUI interactableUI;
+
         [Header("Player Flags")]
         public bool isInteracting;
         public bool isSprinting;
@@ -30,6 +35,7 @@ namespace BON
             inputHandler = GetComponent<InputHandler>();
             animator = GetComponentInChildren<Animator>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
+            interactableUI = FindObjectOfType<InteractableUI>();
         }
 
         // Update is called once per frame
@@ -86,21 +92,34 @@ namespace BON
 
             if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers))
             {
-                if(hit.collider.tag == "Interactable")
+                if(hit.collider.tag == "Interactable" && !isInteracting)
                 {
                     Interactable interactableObject = hit.collider.GetComponent<Interactable>();
 
                     if(interactableObject != null)
                     {
                         string interactableText = interactableObject.interactableText;
-                        // set the ui text to the interactable object;s text
-                        // set the text pup up to true
-                        
-                        if(inputHandler.input_A)
+                        interactableUI.interactableText.text = interactableText;
+                        interactablePopUp.SetActive(true);
+
+                        if (inputHandler.input_A && !isInteracting)
                         {
                             hit.collider.GetComponent<Interactable>().Interact(this);
                         }
                     }
+                }
+            }
+
+            else
+            {
+                if(interactablePopUp != null)
+                {
+                    interactablePopUp.SetActive(false);
+                }
+
+                if(itemPopUp != null && inputHandler.input_A)
+                {
+                    itemPopUp.SetActive(false);
                 }
             }
         }

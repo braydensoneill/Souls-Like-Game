@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace BON
 {
@@ -28,7 +30,12 @@ namespace BON
             playerLocomotion.rigidbody.velocity = Vector3.zero; // Stops the player from moving while pickup up an item
             animatorHandler.PlayTargetAnimation("Pickup", true);    //  Plays the animation of looting the item
             playerInventory.weaponsInventory.Add(weapon);
-            Destroy(gameObject);
+
+            playerManager.itemPopUp.GetComponentInChildren<TextMeshProUGUI>().text = weapon.itemName;
+            playerManager.itemPopUp.GetComponentInChildren<RawImage>().texture = weapon.itemIcon.texture;
+            playerManager.itemPopUp.gameObject.SetActive(true);
+            Debug.Log("Item found: " + weapon.itemName);
+            //Destroy(gameObject);
         }
     }
 }
