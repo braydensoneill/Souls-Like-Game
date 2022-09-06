@@ -158,6 +158,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SelectWindow"",
+                    ""type"": ""Button"",
+                    ""id"": ""09bedb10-4a51-4b0d-8d50-a75948d1b6a0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -246,6 +254,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50ad0bed-6ebf-4af1-86c0-340e97860514"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectWindow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88c0b9d3-3036-4f3a-8786-04c8a1ba8bb3"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SelectWindow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -393,6 +423,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerActions_SelectWindow = m_PlayerActions.FindAction("SelectWindow", throwIfNotFound: true);
         // Player Quickslots
         m_PlayerQuickslots = asset.FindActionMap("Player Quickslots", throwIfNotFound: true);
         m_PlayerQuickslots_DPadUp = m_PlayerQuickslots.FindAction("D-Pad Up", throwIfNotFound: true);
@@ -494,6 +525,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_RT;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Jump;
+    private readonly InputAction m_PlayerActions_SelectWindow;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -503,6 +535,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
+        public InputAction @SelectWindow => m_Wrapper.m_PlayerActions_SelectWindow;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -527,6 +560,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
+                @SelectWindow.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSelectWindow;
+                @SelectWindow.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSelectWindow;
+                @SelectWindow.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSelectWindow;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -546,6 +582,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @SelectWindow.started += instance.OnSelectWindow;
+                @SelectWindow.performed += instance.OnSelectWindow;
+                @SelectWindow.canceled += instance.OnSelectWindow;
             }
         }
     }
@@ -619,6 +658,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnRT(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnSelectWindow(InputAction.CallbackContext context);
     }
     public interface IPlayerQuickslotsActions
     {

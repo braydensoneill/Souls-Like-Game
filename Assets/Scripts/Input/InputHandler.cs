@@ -11,6 +11,7 @@ namespace BON
         private PlayerAttacker playerAttacker;
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
+        private UIManager uiManager;
 
         // Direction Variables
         [Header("Direction")]
@@ -27,9 +28,10 @@ namespace BON
         [Header("Inputs")]
         public bool input_B;
         public bool input_A;
-        public bool input_Jump;
         public bool input_RB;
         public bool input_RT;
+        public bool input_Jump;
+        public bool input_Inventory;
         public bool input_Dpad_Up;
         public bool input_Dpad_Down;
         public bool input_Dpad_Left;
@@ -40,6 +42,7 @@ namespace BON
         public bool flag_Roll;
         public bool flag_Sprint;
         public bool flag_Combo;
+        public bool flag_inventory;
 
         // Timer Variables
         [Header("Timers")]
@@ -54,6 +57,7 @@ namespace BON
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
+            uiManager = FindObjectOfType<UIManager>();
         }
 
         public void OnEnable()
@@ -81,6 +85,7 @@ namespace BON
             HandleQuickSlotInput(delta);
             HandleInteractInput(delta);
             HandleJumpInput(delta);
+            HandleInventoryInput();
         }
 
         private void MoveInput(float delta)
@@ -172,6 +177,22 @@ namespace BON
         private void HandleJumpInput(float delta)
         {
             inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
+        }
+
+        private void HandleInventoryInput()
+        {
+            inputActions.PlayerActions.SelectWindow.performed += i => input_Inventory = true;
+        
+            if(input_Inventory)
+            {
+                flag_inventory = !flag_inventory;
+
+                if(flag_inventory)
+                    uiManager.OpenSelectWindow();
+
+                else
+                    uiManager.CloseSelectWindow();
+            }
         }
     }
 }

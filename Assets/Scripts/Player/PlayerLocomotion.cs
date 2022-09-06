@@ -238,7 +238,7 @@ namespace BON
                     moveDirection += cameraObject.right * inputHandler.horizontal * inputHandler.moveAmount;
 
                     // Animations
-                    animatorHandler.PlayTargetAnimation("Jump", false);
+                    animatorHandler.PlayTargetAnimation("Jump", true);
                     moveDirection.y = 0;
 
                     // Rotation
