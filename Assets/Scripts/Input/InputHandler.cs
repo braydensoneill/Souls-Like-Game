@@ -188,10 +188,18 @@ namespace BON
                 flag_inventory = !flag_inventory;
 
                 if(flag_inventory)
+                {
                     uiManager.OpenSelectWindow();
-
+                    uiManager.UpdateUI();
+                    uiManager.hudWindow.SetActive(false);
+                }
+                    
                 else
+                {
                     uiManager.CloseSelectWindow();
+                    uiManager.CloseAllInventoryWindows();
+                    uiManager.hudWindow.SetActive(true);
+                }
             }
         }
     }

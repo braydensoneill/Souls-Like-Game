@@ -35,7 +35,7 @@ namespace BON
             playerManager.itemPopUp.GetComponentInChildren<RawImage>().texture = weapon.itemIcon.texture;
             playerManager.itemPopUp.gameObject.SetActive(true);
             Debug.Log("Item found: " + weapon.itemName);
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
