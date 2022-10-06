@@ -7,25 +7,35 @@ namespace BON
     public class UIManager : MonoBehaviour
     {
         public PlayerInventory playerInventory;
+        EquipmentWindowUI equipmentWindowUI;
 
         [Header("UI Windows")]
         public GameObject hudWindow;
         public GameObject selectWindow;
-        public GameObject weaponInventoryWindow;
+        public GameObject leftPanelSelectWindow;
+        public GameObject leftPanelBackground;
+        public GameObject loadoutWindow;
 
         [Header("Weapon Inventory")]
         public GameObject weaponInventorySlotPrefab;
         public Transform weaponInventorySlotsParent;
         private WeaponInventorySlot[] weaponInventorySlots;
 
+        private void Awake()
+        {
+            equipmentWindowUI = FindObjectOfType<EquipmentWindowUI>();
+        }
+
         private void Start()
         {
             weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+            equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
         }
 
         public void UpdateUI()
         {
             #region Weapon Inventory Slots
+            //change this for loop so it counts backwards if you want new items to show first
             for(int i = 0; i < weaponInventorySlots.Length; i++)
             {
                 if(i < playerInventory.weaponsInventory.Count)
@@ -59,7 +69,9 @@ namespace BON
 
         public void CloseAllInventoryWindows()
         {
-            weaponInventoryWindow.SetActive(false);
+            loadoutWindow.SetActive(false);
+            leftPanelBackground.SetActive(false);
+            leftPanelSelectWindow.SetActive(false);
         }
     }
 }

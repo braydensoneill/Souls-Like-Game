@@ -6,7 +6,7 @@ using TMPro;
 
 namespace BON
 {
-    public class weaponPickup : Interactable
+    public class WeaponPickup : Interactable
     {
         public WeaponItem weapon;
 
