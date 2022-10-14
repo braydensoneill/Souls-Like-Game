@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BON
 {
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : CharacterManager
     {
         private InputHandler inputHandler;
         private Animator animator;

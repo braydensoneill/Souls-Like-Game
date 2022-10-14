@@ -11,6 +11,7 @@ namespace BON
         private PlayerAttacker playerAttacker;
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
+        private CameraHandler cameraHandler;
         private UIManager uiManager;
 
         // Direction Variables
@@ -32,6 +33,7 @@ namespace BON
         public bool input_RT;
         public bool input_Jump;
         public bool input_Inventory;
+        public bool input_LockOn;
         public bool input_Dpad_Up;
         public bool input_Dpad_Down;
         public bool input_Dpad_Left;
@@ -42,7 +44,8 @@ namespace BON
         public bool flag_Roll;
         public bool flag_Sprint;
         public bool flag_Combo;
-        public bool flag_inventory;
+        public bool flag_Inventory;
+        public bool flag_LockOn;
 
         // Timer Variables
         [Header("Timers")]
@@ -58,6 +61,7 @@ namespace BON
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
             uiManager = FindObjectOfType<UIManager>();
+            cameraHandler = FindObjectOfType<CameraHandler>();
         }
 
         public void OnEnable()
@@ -75,7 +79,7 @@ namespace BON
                 inputActions.PlayerActions.Interact.performed += i => input_A = true;
                 inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
                 inputActions.PlayerActions.SelectWindow.performed += i => input_Inventory = true;
-
+                inputActions.PlayerActions.LockOn.performed += i => input_LockOn = true;
 
             }
 
@@ -94,6 +98,7 @@ namespace BON
             HandleAttackInput(delta);
             HandleQuickSlotInput();
             HandleInventoryInput();
+            HandleLockOnInput();
         }
 
         private void MoveInput(float delta)
@@ -175,12 +180,12 @@ namespace BON
         {
             if(input_Inventory)
             {
-                flag_inventory = !flag_inventory;
+                flag_Inventory = !flag_Inventory;
 
-                if(flag_inventory)
+                if(flag_Inventory)
                 {
-                    uiManager.OpenSelectWindow();
                     uiManager.UpdateUI();
+                    uiManager.OpenSelectWindow();
                     uiManager.hudWindow.SetActive(false);
                 }
                     
@@ -190,6 +195,29 @@ namespace BON
                     uiManager.CloseAllInventoryWindows();
                     uiManager.hudWindow.SetActive(true);
                 }
+            }
+        }
+
+        private void HandleLockOnInput()
+        {
+            if(input_LockOn && flag_LockOn == false)
+            {
+                cameraHandler.ClearLockOnTargets();
+                input_LockOn = false;
+                cameraHandler.HandleLockOn();
+
+                if(cameraHandler.nearestLockOnTarget != null)
+                {
+                    cameraHandler.currentLockOnTarget = cameraHandler.nearestLockOnTarget;
+                    flag_LockOn = true;
+                }
+            }
+
+            else  if (input_LockOn && flag_LockOn == true)
+            {
+                input_LockOn = false;
+                flag_LockOn = false;
+                cameraHandler.ClearLockOnTargets();
             }
         }
     }
