@@ -23,7 +23,7 @@ namespace BON
             /*
              * If the handEquipmentSlot is rightHandSlot01 then add the item from the 
              * rightHandSlot at position 0 from the player's inventory. Do this for all
-             * slots usinng this for loop
+             * slots using this for loop
              */
             for(int i = 0; i < handEquipmentSlotUI.Length; i++)
             {

@@ -15,8 +15,8 @@ namespace BON
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[1];
         public WeaponItem[] weaponsInLeftHandSlots = new WeaponItem[1];
 
-        public int currentRightWeaponIndex = -1;
-        public int currentLeftWeaponIndex = -1;
+        public int currentRightWeaponIndex;
+        public int currentLeftWeaponIndex;
 
         public List<WeaponItem> weaponsInventory;
 
@@ -27,17 +27,16 @@ namespace BON
 
         private void Start()
         {
-            rightWeapon = unarmedWeapon;
-            leftWeapon = unarmedWeapon;
-            /*
+            //rightWeapon = unarmedWeapon;
+            //leftWeapon = unarmedWeapon;
+        
             // Declare Weapons
             rightWeapon = weaponsInRightHandSlots[currentRightWeaponIndex];
             leftWeapon = weaponsInLeftHandSlots[currentLeftWeaponIndex];
 
             // Load Weapons
             weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
-            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true);
-            */
+            weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true); 
         }
 
         public void ChangeRightWeapon()

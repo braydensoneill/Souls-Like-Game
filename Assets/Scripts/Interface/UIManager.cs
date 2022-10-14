@@ -19,7 +19,7 @@ namespace BON
         [Header("Weapon Inventory")]
         public GameObject weaponInventorySlotPrefab;
         public Transform weaponInventorySlotsParent;
-        private WeaponInventorySlot[] weaponInventorySlots;
+        WeaponInventorySlot[] weaponInventorySlots;
 
         private void Awake()
         {
@@ -29,7 +29,7 @@ namespace BON
         private void Start()
         {
             weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
-            equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
+            //equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
         }
 
         public void UpdateUI()

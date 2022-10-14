@@ -51,9 +51,8 @@ namespace BON
             inputHandler.flag_Sprint = false;
 
             inputHandler.TickInput(_delta);
-            playerLocomotion.HandleMovement(_delta);
+
             playerLocomotion.HandleRollingAndSprinting(_delta);
-            playerLocomotion.HandleFalling(_delta, playerLocomotion.moveDirection);
             playerLocomotion.HandleJumping();
 
             CheckForInteractableObject();
@@ -63,11 +62,9 @@ namespace BON
         {
             float _delta = Time.fixedDeltaTime;
 
-            if (cameraHandler != null)
-            {
-                cameraHandler.FollowTarget(_delta);
-                cameraHandler.HandleCameraRotation(_delta, inputHandler.mouseX, inputHandler.mouseY);
-            }
+            playerLocomotion.HandleMovement(_delta);
+            playerLocomotion.HandleRollingAndSprinting(_delta);
+            playerLocomotion.HandleFalling(_delta, playerLocomotion.moveDirection);
         }
 
         private void LateUpdate()
@@ -75,7 +72,6 @@ namespace BON
             // Set inputs and flags to false so they can only be called once per frame
             #region Check for Inputs
             inputHandler.flag_Roll = false;
-            inputHandler.flag_Sprint = false;
             inputHandler.input_RB = false;
             inputHandler.input_RT = false;
             inputHandler.input_Dpad_Up = false;
@@ -86,6 +82,14 @@ namespace BON
             inputHandler.input_Jump = false;
             inputHandler.input_Inventory = false;
             #endregion
+
+            float _delta = Time.deltaTime;
+
+            if (cameraHandler != null)
+            {
+                cameraHandler.FollowTarget(_delta);
+                cameraHandler.HandleCameraRotation(_delta, inputHandler.mouseX, inputHandler.mouseY);
+            }
 
             if (isAirborne)
                 playerLocomotion.InAirTimer = playerLocomotion.InAirTimer + Time.deltaTime;

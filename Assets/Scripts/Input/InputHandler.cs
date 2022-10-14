@@ -67,6 +67,16 @@ namespace BON
                 inputActions = new PlayerControls();
                 inputActions.PlayerMovement.Movement.performed += inputActions => _movementInput = inputActions.ReadValue<Vector2>();
                 inputActions.PlayerMovement.Camera.performed += i => _cameraInput = i.ReadValue<Vector2>();
+
+                inputActions.PlayerActions.RB.performed += i => input_RB = true;
+                inputActions.PlayerActions.RT.performed += i => input_RT = true;
+                inputActions.PlayerQuickslots.DPadRight.performed += inputActions => input_Dpad_Right = true;
+                inputActions.PlayerQuickslots.DPadLeft.performed += inputActions => input_Dpad_Left = true;
+                inputActions.PlayerActions.Interact.performed += i => input_A = true;
+                inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
+                inputActions.PlayerActions.SelectWindow.performed += i => input_Inventory = true;
+
+
             }
 
             inputActions.Enable();
@@ -82,9 +92,7 @@ namespace BON
             MoveInput(delta);
             HandleRollInput(delta);
             HandleAttackInput(delta);
-            HandleQuickSlotInput(delta);
-            HandleInteractInput(delta);
-            HandleJumpInput(delta);
+            HandleQuickSlotInput();
             HandleInventoryInput();
         }
 
@@ -100,11 +108,11 @@ namespace BON
         private void HandleRollInput(float delta)
         {
             input_B = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
+            flag_Sprint = input_B;
 
             if (input_B)
             {
                 timer_Roll_Input += delta;
-                flag_Sprint = true;
             }
 
             else
@@ -121,9 +129,6 @@ namespace BON
 
         private void HandleAttackInput(float delta)
         {
-            inputActions.PlayerActions.RB.performed += i => input_RB = true;
-            inputActions.PlayerActions.RT.performed += i => input_RT = true;
-
             if(input_RB)
             {
                 if(playerManager.canDoCombo)
@@ -153,11 +158,8 @@ namespace BON
             }
         }
 
-        private void HandleQuickSlotInput(float delta)
+        private void HandleQuickSlotInput()
         {
-            inputActions.PlayerQuickslots.DPadRight.performed += inputActions => input_Dpad_Right = true;
-            inputActions.PlayerQuickslots.DPadLeft.performed += inputActions => input_Dpad_Left = true;
-
             if(input_Dpad_Right)
             {
                 playerInventory.ChangeRightWeapon();
@@ -169,20 +171,8 @@ namespace BON
             }
         }
 
-        private void HandleInteractInput(float delta)
-        {
-            inputActions.PlayerActions.Interact.performed += i => input_A = true;
-        }
-
-        private void HandleJumpInput(float delta)
-        {
-            inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
-        }
-
         private void HandleInventoryInput()
         {
-            inputActions.PlayerActions.SelectWindow.performed += i => input_Inventory = true;
-        
             if(input_Inventory)
             {
                 flag_inventory = !flag_inventory;

@@ -8,7 +8,7 @@ namespace BON
     public class HandEquipmentSlotUI : MonoBehaviour
     {
         public Image icon;
-        private WeaponItem weapon;
+        WeaponItem weapon;
 
         public bool rightHandSlot01;
         public bool rightHandSlot02;
