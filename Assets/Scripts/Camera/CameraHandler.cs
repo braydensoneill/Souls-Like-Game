@@ -80,23 +80,26 @@ namespace BON
 
         public void HandleCameraRotation(float delta, float mouseXInput, float mouseYInput)
         {
-            // If not currently locked on
-            if (inputHandler.flag_LockOn == false && currentLockOnTarget == null)
+            // If not currently locked on / using the menu
+            if (currentLockOnTarget == null && inputHandler.flag_LockOn == false)
             {
-                _lookAngle += (mouseXInput * lookSpeed) / delta;
-                _pivotAngle -= (mouseYInput * pivotSpeed) / delta;
-                _pivotAngle = Mathf.Clamp(_pivotAngle, minimumPivot, maximumPivot);
+                if(inputHandler.flag_Inventory == false)
+                {
+                    _lookAngle += (mouseXInput * lookSpeed) / delta;
+                    _pivotAngle -= (mouseYInput * pivotSpeed) / delta;
+                    _pivotAngle = Mathf.Clamp(_pivotAngle, minimumPivot, maximumPivot);
 
-                Vector3 _rotation = Vector3.zero;
-                _rotation.y = _lookAngle;
-                Quaternion _targetRotation = Quaternion.Euler(_rotation);
-                _myTransform.rotation = _targetRotation;
+                    Vector3 _rotation = Vector3.zero;
+                    _rotation.y = _lookAngle;
+                    Quaternion _targetRotation = Quaternion.Euler(_rotation);
+                    _myTransform.rotation = _targetRotation;
 
-                _rotation = Vector3.zero;
-                _rotation.x = _pivotAngle;
+                    _rotation = Vector3.zero;
+                    _rotation.x = _pivotAngle;
 
-                _targetRotation = Quaternion.Euler(_rotation);
-                cameraPivotTransform.localRotation = _targetRotation;
+                    _targetRotation = Quaternion.Euler(_rotation);
+                    cameraPivotTransform.localRotation = _targetRotation;
+                }
             }
 
             // If currently locked on
