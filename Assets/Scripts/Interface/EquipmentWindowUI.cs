@@ -26,8 +26,6 @@ namespace BON
              * slots using this for loop
              */
 
-            Debug.Log("Hand Equipment Slot UI Length: " + handEquipmentSlotUI.Length);
-
             for(int i = 0; i < handEquipmentSlotUI.Length; i++)
             {
                 if (handEquipmentSlotUI[i].rightHandSlot01)
