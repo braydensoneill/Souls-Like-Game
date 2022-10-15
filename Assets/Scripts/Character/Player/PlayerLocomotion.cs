@@ -61,8 +61,10 @@ namespace BON
 
         private void HandleRotation(float delta)
         {
+            // Check if the player is currently locked on to a target
             if(inputHandler.flag_LockOn)
             {
+                // Sprinting/Rolling while locked on
                 if(inputHandler.flag_Sprint || inputHandler.flag_Roll)
                 {
                     Vector3 targetDirection = Vector3.zero;
@@ -82,6 +84,7 @@ namespace BON
                     transform.rotation = targetRotation;
                 }
 
+                // Not sprinting or rolling while locked on
                 else
                 {
                     Vector3 rotationDirection = moveDirection;
@@ -94,6 +97,7 @@ namespace BON
                 }
             }
 
+            // Check if the player is NOT currently locked on to a target
             else
             {
                 Vector3 _targetDir = Vector3.zero;

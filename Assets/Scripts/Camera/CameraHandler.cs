@@ -176,9 +176,10 @@ namespace BON
                         {
                             Debug.DrawLine(playerManager.lockOnTransform.position, character.lockOnTransform.position);
 
-                            if (hit.transform.gameObject.layer == environmentLayer)
+                            if (hit.transform.gameObject.layer == environmentLayer.value)
                             {
                                 // cannot lock on to target, object in the way
+                                inputHandler.flag_LockOn = false;
                             }
 
                             else

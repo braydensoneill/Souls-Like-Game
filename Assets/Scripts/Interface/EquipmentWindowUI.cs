@@ -25,6 +25,9 @@ namespace BON
              * rightHandSlot at position 0 from the player's inventory. Do this for all
              * slots using this for loop
              */
+
+            Debug.Log("Hand Equipment Slot UI Length: " + handEquipmentSlotUI.Length);
+
             for(int i = 0; i < handEquipmentSlotUI.Length; i++)
             {
                 if (handEquipmentSlotUI[i].rightHandSlot01)
