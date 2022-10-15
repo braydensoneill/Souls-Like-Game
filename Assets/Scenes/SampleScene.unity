@@ -768,9 +768,9 @@ RectTransform:
   m_Father: {fileID: 1644543932}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 73.7943, y: -22.5}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &91874120
@@ -922,11 +922,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 4381958213783511168}
+  equipmentWindowUI: {fileID: 1446081618}
   hudWindow: {fileID: 1721439974757491758}
   selectWindow: {fileID: 389604784}
-  leftPanelSelectWindow: {fileID: 1644543931}
-  leftPanelBackground: {fileID: 1814701653}
-  loadoutWindow: {fileID: 1775650150}
+  leftPanel: {fileID: 1890694652}
+  equipmentWindow: {fileID: 1840881539}
+  inventoryWindow: {fileID: 1718034169}
   weaponInventorySlotPrefab: {fileID: 1174023237}
   weaponInventorySlotsParent: {fileID: 444012647}
 --- !u!224 &129772747 stripped
@@ -4309,10 +4310,10 @@ RectTransform:
   m_Father: {fileID: 1446081616}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 8.692322, y: -122.24817}
+  m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &591070224
 MonoBehaviour:
@@ -4357,7 +4358,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1446081618}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRightHandSlot02
         m_Mode: 1
         m_Arguments:
@@ -5551,10 +5552,10 @@ RectTransform:
   m_Father: {fileID: 1446081616}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -41.30768, y: -122.24817}
+  m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &785855660
 MonoBehaviour:
@@ -5599,7 +5600,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1446081618}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectRightHandSlot01
         m_Mode: 1
         m_Arguments:
@@ -7255,9 +7256,9 @@ RectTransform:
   m_Father: {fileID: 1644543932}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 122.99049, y: -22.5}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1102514809
@@ -7384,17 +7385,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1775650150}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 389604784}
         m_MethodName: SetActive
         m_Mode: 6
@@ -7406,7 +7396,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1814701653}
+      - m_Target: {fileID: 1890694652}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -7417,7 +7407,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1644543931}
+      - m_Target: {fileID: 1718034169}
         m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
@@ -7734,10 +7724,10 @@ RectTransform:
   m_Father: {fileID: 1446081616}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 58.69232, y: -122.24817}
+  m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164827737
 MonoBehaviour:
@@ -7782,7 +7772,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1446081618}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectLeftHandSlot01
         m_Mode: 1
         m_Arguments:
@@ -7881,7 +7871,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 31.5, y: -46.5}
+  m_AnchoredPosition: {x: 31.5, y: -61.5}
   m_SizeDelta: {x: 33, y: 33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1174023239
@@ -9037,9 +9027,9 @@ RectTransform:
   m_Father: {fileID: 1644543932}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 24.598099, y: -22.5}
   m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1357055828
@@ -9566,6 +9556,11 @@ MonoBehaviour:
   rightHandSlot02Selected: 0
   leftHandSlot01Selected: 0
   leftHandSlot02Selected: 0
+  handEquipmentSlotUI:
+  - {fileID: 785855663}
+  - {fileID: 591070227}
+  - {fileID: 1164827740}
+  - {fileID: 2022287280}
 --- !u!1 &1447345233
 GameObject:
   m_ObjectHideFlags: 0
@@ -10776,7 +10771,40 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1588524533}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 389604784}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1890694652}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1840881539}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1588524533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12959,14 +12987,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1840881540}
-  - component: {fileID: 1840881541}
   m_Layer: 5
   m_Name: Equipment Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1840881540
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12989,22 +13016,6 @@ RectTransform:
   m_AnchoredPosition: {x: -231.5, y: 55.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1840881541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840881539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b792a0292895b8648854ce0f0a0aacca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightHandSlot01Selected: 0
-  rightHandSlot02Selected: 0
-  leftHandSlot01Selected: 0
-  leftHandSlot02Selected: 0
 --- !u!1 &1850912644
 GameObject:
   m_ObjectHideFlags: 0
@@ -13411,7 +13422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1890694653
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14309,10 +14320,10 @@ RectTransform:
   m_Father: {fileID: 1446081616}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 108.69232, y: -122.24817}
+  m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2022287277
 MonoBehaviour:
@@ -14357,7 +14368,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1446081618}
+      - m_Target: {fileID: 0}
         m_MethodName: SelectLeftHandSlot02
         m_Mode: 1
         m_Arguments:
@@ -15560,6 +15571,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 140
       objectReference: {fileID: 0}
+    - target: {fileID: 1721439973534828305, guid: 675e58b35c11751488bca23a56e89997,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -230.811
+      objectReference: {fileID: 0}
     - target: {fileID: 1721439973621354174, guid: 675e58b35c11751488bca23a56e89997,
         type: 3}
       propertyPath: m_Sprite
@@ -15580,6 +15596,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721439973676394125, guid: 675e58b35c11751488bca23a56e89997,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 230.811
       objectReference: {fileID: 0}
     - target: {fileID: 1721439973889958233, guid: 675e58b35c11751488bca23a56e89997,
         type: 3}

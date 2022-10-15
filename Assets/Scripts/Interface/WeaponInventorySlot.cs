@@ -8,9 +8,9 @@ namespace BON
 {
     public class WeaponInventorySlot : MonoBehaviour
     {
+        private WeaponItem weaponItem;
         public Image itemIcon;
         public TextMeshProUGUI itemName;
-        private WeaponItem weaponItem;
 
         public void AddItem(WeaponItem newItem)
         {

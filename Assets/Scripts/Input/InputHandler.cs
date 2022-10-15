@@ -195,7 +195,7 @@ namespace BON
                 else
                 {
                     uiManager.CloseSelectWindow();
-                    uiManager.CloseAllInventoryWindows();
+                    uiManager.CloseLeftPanelWindows();
                     uiManager.hudWindow.SetActive(true);
                 }
             }

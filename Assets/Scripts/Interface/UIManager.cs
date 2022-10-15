@@ -7,14 +7,14 @@ namespace BON
     public class UIManager : MonoBehaviour
     {
         public PlayerInventory playerInventory;
-        EquipmentWindowUI equipmentWindowUI;
+        public EquipmentWindowUI equipmentWindowUI;
 
         [Header("UI Windows")]
         public GameObject hudWindow;
         public GameObject selectWindow;
-        public GameObject leftPanelSelectWindow;
-        public GameObject leftPanelBackground;
-        public GameObject loadoutWindow;
+        public GameObject leftPanel;
+        public GameObject equipmentWindow;
+        public GameObject inventoryWindow;
 
         [Header("Weapon Inventory")]
         public GameObject weaponInventorySlotPrefab;
@@ -23,7 +23,7 @@ namespace BON
 
         private void Awake()
         {
-            equipmentWindowUI = FindObjectOfType<EquipmentWindowUI>();
+
         }
 
         private void Start()
@@ -67,11 +67,11 @@ namespace BON
             selectWindow.SetActive(false);
         }
 
-        public void CloseAllInventoryWindows()
+        public void CloseLeftPanelWindows()
         {
-            loadoutWindow.SetActive(false);
-            leftPanelBackground.SetActive(false);
-            leftPanelSelectWindow.SetActive(false);
+            leftPanel.SetActive(false);
+            equipmentWindow.SetActive(false);
+            inventoryWindow.SetActive(false);
         }
     }
 }
