@@ -34,6 +34,8 @@ namespace BON
         public bool input_Jump;
         public bool input_Inventory;
         public bool input_LockOn;
+        public bool input_Right_Stick_Right;
+        public bool input_Right_Stick_Left;
         public bool input_Dpad_Up;
         public bool input_Dpad_Down;
         public bool input_Dpad_Left;
@@ -80,7 +82,8 @@ namespace BON
                 inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
                 inputActions.PlayerActions.SelectWindow.performed += i => input_Inventory = true;
                 inputActions.PlayerActions.LockOn.performed += i => input_LockOn = true;
-
+                inputActions.PlayerMovement.LockOnTargetRight.performed += i => input_Right_Stick_Right = true;
+                inputActions.PlayerMovement.LockOnTargetLeft.performed += i => input_Right_Stick_Left = true;
             }
 
             inputActions.Enable();
@@ -200,9 +203,10 @@ namespace BON
 
         private void HandleLockOnInput()
         {
+            // Lock on to a target if you are not currently locked on to one
             if(input_LockOn && flag_LockOn == false)
             {
-                cameraHandler.ClearLockOnTargets();
+
                 input_LockOn = false;
                 cameraHandler.HandleLockOn();
 
@@ -213,11 +217,34 @@ namespace BON
                 }
             }
 
+            // Stop locking on to current target
             else  if (input_LockOn && flag_LockOn == true)
             {
                 input_LockOn = false;
                 flag_LockOn = false;
                 cameraHandler.ClearLockOnTargets();
+            }
+
+            if (flag_LockOn && input_Right_Stick_Left)
+            {
+                input_Right_Stick_Left = false;
+                cameraHandler.HandleLockOn();
+
+                if(cameraHandler.leftLockTarget != null)
+                {
+                    cameraHandler.currentLockOnTarget = cameraHandler.leftLockTarget;
+                }
+            }
+
+            if (flag_LockOn && input_Right_Stick_Right)
+            {
+                input_Right_Stick_Right = false;
+                cameraHandler.HandleLockOn();
+
+                if (cameraHandler.rightLockTarget != null)
+                {
+                    cameraHandler.currentLockOnTarget = cameraHandler.rightLockTarget;
+                }
             }
         }
     }
