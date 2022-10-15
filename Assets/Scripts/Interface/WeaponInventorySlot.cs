@@ -2,27 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace BON
 {
     public class WeaponInventorySlot : MonoBehaviour
     {
-        public Image icon;
+        public Image itemIcon;
+        public TextMeshProUGUI itemName;
         private WeaponItem weaponItem;
 
         public void AddItem(WeaponItem newItem)
         {
             weaponItem = newItem;
-            icon.sprite = weaponItem.itemIcon;
-            icon.enabled = true;
+            itemIcon.sprite = weaponItem.itemIcon;
+            itemIcon.enabled = true;
+            itemName.text = weaponItem.name;
             gameObject.SetActive(true);
         }
 
         public void ClearInventorySlot()
         {
             weaponItem = null;
-            icon.sprite = null;
-            icon.enabled = false;
+            itemIcon.sprite = null;
+            itemIcon.enabled = false;
+            itemName.text = "null";
             gameObject.SetActive(false);
         }
     }
