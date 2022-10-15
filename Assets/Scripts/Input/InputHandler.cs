@@ -96,7 +96,7 @@ namespace BON
 
         public void TickInput(float delta)
         {
-            MoveInput(delta);
+            HandleMoveInput(delta);
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotInput();
@@ -104,7 +104,7 @@ namespace BON
             HandleLockOnInput();
         }
 
-        private void MoveInput(float delta)
+        private void HandleMoveInput(float delta)
         {
             horizontal = _movementInput.x;
             vertical = _movementInput.y;
@@ -246,6 +246,8 @@ namespace BON
                     cameraHandler.currentLockOnTarget = cameraHandler.rightLockTarget;
                 }
             }
+
+            cameraHandler.SetCameraHeight();
         }
     }
 }

@@ -7,6 +7,7 @@ namespace BON
     public class CameraHandler : MonoBehaviour
     {
         private InputHandler inputHandler;
+        private PlayerManager playerManager;
         public static CameraHandler singleton;
 
         [Header("General")]
@@ -17,6 +18,7 @@ namespace BON
         private Transform _myTransform;
         private Vector3 _cameraTransformPosition;
         public LayerMask ignoreLayers;
+        public LayerMask environmentLayer;
         private Vector3 _cameraFollowVelocity = Vector3.zero;
 
         [Header("Camera Movement")]
@@ -40,6 +42,8 @@ namespace BON
 
         [Header("Target Lock On")]
         public float maximumLockOnDistance = 30;
+        public float lockedPivotPosition = 1.85f;
+        public float unlockedPivotPosition = 1.5f;
         public Transform currentLockOnTarget;
         public Transform nearestLockOnTarget;
         public Transform leftLockTarget;
@@ -53,6 +57,12 @@ namespace BON
             _defaultPosition = cameraTransform.localPosition.z;
             ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
             inputHandler = FindObjectOfType<InputHandler>();
+            playerManager = FindObjectOfType<PlayerManager>();
+        }
+
+        private void Start()
+        {
+            environmentLayer = LayerMask.NameToLayer("Environment");
         }
 
         public void FollowTarget(float delta)
@@ -155,12 +165,28 @@ namespace BON
                     Vector3 lockTargetDirection = character.transform.position - targetTransform.position;
                     float distanceFromTarget = Vector3.Distance(targetTransform.position, character.transform.position);
                     float viewableAngle = Vector3.Angle(lockTargetDirection, cameraTransform.forward);
+                    RaycastHit hit;
 
                     if(character.transform.root != targetTransform.transform.root && 
                         viewableAngle > -50 && 
                         viewableAngle < 50 && 
                         distanceFromTarget <= maximumLockOnDistance)
                     {
+                        if(Physics.Linecast(playerManager.lockOnTransform.position, character.lockOnTransform.position, out hit))
+                        {
+                            Debug.DrawLine(playerManager.lockOnTransform.position, character.lockOnTransform.position);
+
+                            if (hit.transform.gameObject.layer == environmentLayer)
+                            {
+                                // cannot lock on to target, object in the way
+                            }
+
+                            else
+                            {
+                                availableTargets.Add(character);
+                            }
+                        }
+
                         availableTargets.Add(character);
                     }
                 }
@@ -203,6 +229,31 @@ namespace BON
             availableTargets.Clear();
             currentLockOnTarget = null;
             nearestLockOnTarget = null;
+        }
+
+        public void SetCameraHeight()
+        {
+            Vector3 velocity = Vector3.zero;
+            Vector3 newLockedPosition = new Vector3(0, lockedPivotPosition);
+            Vector3 newUnlockedPosition = new Vector3(0, unlockedPivotPosition);
+
+            if(currentLockOnTarget != null)
+            {
+                cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(
+                    cameraPivotTransform.transform.localPosition,
+                    newLockedPosition,
+                    ref velocity,
+                    Time.deltaTime);
+            }
+
+            else
+            {
+                cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(
+                    cameraPivotTransform.transform.localPosition,
+                    newUnlockedPosition,
+                    ref velocity,
+                    Time.deltaTime);
+            }
         }
     }
 }
