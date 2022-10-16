@@ -16,6 +16,12 @@ namespace BON
         public GameObject equipmentWindow;
         public GameObject inventoryWindow;
 
+        [Header("Equipment Window Slot Selected")]
+        public bool rightHandSlot01Selected;
+        public bool rightHandSlot02Selected;
+        public bool leftHandSlot01Selected;
+        public bool leftHandSlot02Selected;
+
         [Header("Weapon Inventory")]
         public GameObject weaponInventorySlotPrefab;
         public Transform weaponInventorySlotsParent;
@@ -69,9 +75,18 @@ namespace BON
 
         public void CloseLeftPanelWindows()
         {
+            ResetAllSelectedSlots();
             leftPanel.SetActive(false);
             equipmentWindow.SetActive(false);
             inventoryWindow.SetActive(false);
+        }
+
+        public void ResetAllSelectedSlots()
+        {
+            rightHandSlot01Selected = false;
+            rightHandSlot02Selected = false;
+            leftHandSlot01Selected = false;
+            leftHandSlot02Selected = false;
         }
     }
 }
