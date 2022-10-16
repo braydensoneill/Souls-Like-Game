@@ -11,6 +11,7 @@ namespace BON
         private PlayerAttacker playerAttacker;
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
+        private WeaponSlotManager weaponSlotManager;
         private CameraHandler cameraHandler;
         private UIManager uiManager;
 
@@ -29,6 +30,7 @@ namespace BON
         [Header("Inputs")]
         public bool input_B;
         public bool input_A;
+        public bool input_Y;
         public bool input_RB;
         public bool input_RT;
         public bool input_Jump;
@@ -44,6 +46,7 @@ namespace BON
         // Flag Variables
         [Header("Flags")]
         public bool flag_Roll;
+        public bool flag_TwoHand;
         public bool flag_Sprint;
         public bool flag_Combo;
         public bool flag_Inventory;
@@ -62,6 +65,7 @@ namespace BON
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
+            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
             uiManager = FindObjectOfType<UIManager>();
             cameraHandler = FindObjectOfType<CameraHandler>();
         }
@@ -76,14 +80,17 @@ namespace BON
 
                 inputActions.PlayerActions.RB.performed += i => input_RB = true;
                 inputActions.PlayerActions.RT.performed += i => input_RT = true;
+                
                 inputActions.PlayerQuickslots.DPadRight.performed += inputActions => input_Dpad_Right = true;
                 inputActions.PlayerQuickslots.DPadLeft.performed += inputActions => input_Dpad_Left = true;
+                
                 inputActions.PlayerActions.Interact.performed += i => input_A = true;
                 inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
                 inputActions.PlayerActions.SelectWindow.performed += i => input_Inventory = true;
                 inputActions.PlayerActions.LockOn.performed += i => input_LockOn = true;
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => input_Right_Stick_Right = true;
                 inputActions.PlayerMovement.LockOnTargetLeft.performed += i => input_Right_Stick_Left = true;
+                inputActions.PlayerActions.Y.performed += i => input_Y = true;
             }
 
             inputActions.Enable();
@@ -102,6 +109,7 @@ namespace BON
             HandleQuickSlotInput();
             HandleInventoryInput();
             HandleLockOnInput();
+            HandleTwoHandInput();
         }
 
         private void HandleMoveInput(float delta)
@@ -248,6 +256,29 @@ namespace BON
             }
 
             cameraHandler.SetCameraHeight();
+        }
+
+        private void HandleTwoHandInput()
+        {
+            if(input_Y)
+            {
+                input_Y = false;
+
+                flag_TwoHand = !flag_TwoHand;
+
+                if(flag_TwoHand)
+                {
+                    // Enable two handing
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+                }
+
+                else
+                {
+                    // Disable two handing
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
+                }
+            }
         }
     }
 }

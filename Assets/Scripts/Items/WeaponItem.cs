@@ -13,6 +13,7 @@ namespace BON
         [Header("Idle Animations")]
         public string Idle_Arm_Right_01;
         public string Idle_Arm_Left_01;
+        public string Idle_TH;
 
         [Header("Attack Animations")]
         public string OH_Right_Sword_Attack_01;
