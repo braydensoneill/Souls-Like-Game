@@ -12087,6 +12087,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702371241}
   m_CullTransparentMesh: 0
+--- !u!1 &1705084587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1705084588}
+  - component: {fileID: 1705084589}
+  m_Layer: 0
+  m_Name: BackWeaponSlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1705084588
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705084587}
+  m_LocalRotation: {x: 0.6642293, y: -0.39167115, z: -0.2484937, w: 0.5862116}
+  m_LocalPosition: {x: 0.206, y: 0.363, z: -0.136}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2110518214}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 144.26, y: 76.52, z: 89.58399}
+--- !u!114 &1705084589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705084587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6e70f9c393616b48bcfb2b7ba2bc70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentOverride: {fileID: 0}
+  currentWeapon: {fileID: 0}
+  isLeftHandSlot: 0
+  isRightHandSlot: 0
+  isBackSlot: 1
+  currentWeaponModel: {fileID: 0}
 --- !u!1 &1706538217 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 657883895683451946, guid: 000bc9ad15ea06d428330a6a44f9c863,
@@ -14201,8 +14250,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentOverride: {fileID: 0}
+  currentWeapon: {fileID: 0}
   isLeftHandSlot: 0
   isRightHandSlot: 0
+  isBackSlot: 0
   currentWeaponModel: {fileID: 0}
 --- !u!1 &1984643720
 GameObject:
@@ -15315,6 +15366,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101905703}
   m_CullTransparentMesh: 0
+--- !u!4 &2110518214 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4168993669420991506, guid: 764a9cd29e9d34946a0fdda8cd7e0573,
+    type: 3}
+  m_PrefabInstance: {fileID: 4381958213783511167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2115092058
 GameObject:
   m_ObjectHideFlags: 0

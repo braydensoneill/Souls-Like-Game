@@ -7,8 +7,12 @@ namespace BON
     public class WeaponHolderSlot : MonoBehaviour
     {
         public Transform parentOverride;
+        public WeaponItem currentWeapon;
         public bool isLeftHandSlot;
         public bool isRightHandSlot;
+        // TBD isLeftHandSheathSlot
+        // TBD isRightHandSheathSlot
+        public bool isBackSlot;
 
         public GameObject currentWeaponModel;
 

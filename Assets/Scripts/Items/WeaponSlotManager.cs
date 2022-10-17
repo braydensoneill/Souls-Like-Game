@@ -10,6 +10,9 @@ namespace BON
 
         public WeaponHolderSlot leftHandSlot;
         public WeaponHolderSlot rightHandSlot;
+        // TBD leftHandSheathSlot
+        // TBD rightHandSheathSlot
+        public WeaponHolderSlot backSlot;
 
         private DamageCollider _leftHandDamageCollider;
         private DamageCollider _rightHandDamageCollider;
@@ -40,6 +43,10 @@ namespace BON
                 {
                     rightHandSlot = weaponSlot;
                 }
+                else if (weaponSlot.isBackSlot)
+                {
+                    backSlot = weaponSlot;
+                }
             }
         }
 
@@ -47,6 +54,7 @@ namespace BON
         {
             if (isLeft)
             {
+                leftHandSlot.currentWeapon = weaponItem;
                 leftHandSlot.LoadWeaponModel(weaponItem);
                 LoadLeftWeaponDamageCollider();
                 quickslotsUI.UpdateWeaponQuickslotsUI(true, weaponItem);
@@ -62,7 +70,8 @@ namespace BON
             {
                 if(inputHandler.flag_TwoHand)
                 {
-                    // Move current left hand weapon to the back or disable it
+                    backSlot.LoadWeaponModel(leftHandSlot.currentWeapon); // Move current left hand weapon to the back or disable it
+                    leftHandSlot.UnloadWeaponAndDestroy();
                     animator.CrossFade(weaponItem.Idle_TH, 0.2f);
                 }
                 else
@@ -70,6 +79,8 @@ namespace BON
                     #region Handle Right Weapon Idle Animations
 
                     animator.CrossFade("Both Arms Empty", 0.2f);
+
+                    backSlot.UnloadWeaponAndDestroy();
 
                     if (weaponItem != null)
                         animator.CrossFade(weaponItem.Idle_Arm_Right_01, 0.2f);
@@ -79,6 +90,7 @@ namespace BON
                     #endregion
                 }
 
+                rightHandSlot.currentWeapon = weaponItem;
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
                 quickslotsUI.UpdateWeaponQuickslotsUI(false, weaponItem);
