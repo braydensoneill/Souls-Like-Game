@@ -175,7 +175,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "RB",
+                    "name": "RT",
                     "type": "Button",
                     "id": "3cfe2657-2dbd-46cb-b5d2-87c94d532851",
                     "expectedControlType": "Button",
@@ -183,7 +183,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "RT",
+                    "name": "RB",
                     "type": "Button",
                     "id": "e5def6b2-7ae6-4c2a-890b-8be09ea4411e",
                     "expectedControlType": "Button",
@@ -257,7 +257,29 @@
                 {
                     "name": "",
                     "id": "65f322e2-3b3a-4972-9386-75bd73c14668",
-                    "path": "<Keyboard>/e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5e0565c-7805-4d78-9d4d-2333e1d52e5d",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c16fd3e9-912f-4cae-892a-2c80ad5c3c52",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -267,12 +289,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c16fd3e9-912f-4cae-892a-2c80ad5c3c52",
-                    "path": "<Keyboard>/r",
+                    "id": "cd91e5e9-2c16-482f-ad61-ff2636d9b03d",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RT",
+                    "action": "RB",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

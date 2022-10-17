@@ -72,8 +72,8 @@ namespace BON
             // Set inputs and flags to false so they can only be called once per frame
             #region Check for Inputs
             inputHandler.flag_Roll = false;
-            inputHandler.input_RB = false;
             inputHandler.input_RT = false;
+            inputHandler.input_RB = false;
             inputHandler.input_Dpad_Up = false;
             inputHandler.input_Dpad_Down = false;
             inputHandler.input_Dpad_Left = false;

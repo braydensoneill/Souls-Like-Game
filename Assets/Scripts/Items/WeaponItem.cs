@@ -16,9 +16,11 @@ namespace BON
         public string Idle_TH;
 
         [Header("Attack Animations")]
-        public string OH_Right_Sword_Attack_01;
-        public string OH_Right_Sword_Attack_02;
+        public string OH_Sword_Light_Attack_Right_01;
+        public string OH_Sword_Light_Attack_Right_02;
         public string OH_Heavy_Attack_01;
+        public string TH_Sword_Light_Attack_01;
+        public string TH_Sword_Light_Attack_02;
 
         [Header("Stamina Costs")]
         public int baseStamina;

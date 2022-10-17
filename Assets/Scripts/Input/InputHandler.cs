@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,8 +31,8 @@ namespace BON
         public bool input_B;
         public bool input_A;
         public bool input_Y;
-        public bool input_RB;
         public bool input_RT;
+        public bool input_RB;
         public bool input_Jump;
         public bool input_Inventory;
         public bool input_LockOn;
@@ -78,8 +78,8 @@ namespace BON
                 inputActions.PlayerMovement.Movement.performed += inputActions => _movementInput = inputActions.ReadValue<Vector2>();
                 inputActions.PlayerMovement.Camera.performed += i => _cameraInput = i.ReadValue<Vector2>();
 
-                inputActions.PlayerActions.RB.performed += i => input_RB = true;
                 inputActions.PlayerActions.RT.performed += i => input_RT = true;
+                inputActions.PlayerActions.RB.performed += i => input_RB = true;
                 
                 inputActions.PlayerQuickslots.DPadRight.performed += inputActions => input_Dpad_Right = true;
                 inputActions.PlayerQuickslots.DPadLeft.performed += inputActions => input_Dpad_Left = true;
@@ -145,31 +145,35 @@ namespace BON
 
         private void HandleAttackInput(float delta)
         {
-            if(input_RB)
+            // Disable attacks if menu options are open
+            if(uiManager.leftPanel.activeSelf == false && uiManager.selectWindow.activeSelf == false)
             {
-                if(playerManager.canDoCombo)
+                if (input_RT)
                 {
-                    flag_Combo = true;
-                    playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
-                    flag_Combo = false;
+                    if (playerManager.canDoCombo)
+                    {
+                        flag_Combo = true;
+                        playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
+                        flag_Combo = false;
+                    }
+
+                    else
+                    {
+                        if (playerManager.isInteracting)
+                            return;
+
+                        playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
+                    }
                 }
 
-                else
+                if (input_RB) // This is temporary, blocking will be used for this keybind
                 {
-                    if (playerManager.canDoCombo || playerManager.isInteracting)
-                        return;
-
-                    playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
-                }
-            }
-
-            if (input_RT)
-            {
-                if (playerManager. canDoCombo || !playerManager.isInteracting)
-                {
-                    flag_Combo = true;
-                    playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
-                    flag_Combo = false;
+                    if (playerManager.canDoCombo || !playerManager.isInteracting)
+                    {
+                        flag_Combo = true;
+                        playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
+                        flag_Combo = false;
+                    }
                 }
             }
         }
