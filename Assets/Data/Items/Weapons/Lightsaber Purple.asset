@@ -17,6 +17,10 @@ MonoBehaviour:
   modelPrefab: {fileID: 4329264159065547410, guid: 15cc107f642b5a549b3aa607f975a1e7,
     type: 3}
   isUnarmed: 0
+  isHeavy: 0
+  isLight: 1
+  isBow: 0
+  isShield: 0
   Idle_Arm_Right_01: Right_Arm_Idle_01
   Idle_Arm_Left_01: Left_Arm_Idle_01
   Idle_TH: TH_Idle_01

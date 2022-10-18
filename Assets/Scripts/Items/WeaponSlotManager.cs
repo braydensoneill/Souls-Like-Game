@@ -10,9 +10,20 @@ namespace BON
 
         public WeaponHolderSlot leftHandSlot;
         public WeaponHolderSlot rightHandSlot;
-        // TBD leftHandSheathSlot
-        // TBD rightHandSheathSlot
-        public WeaponHolderSlot backSlot;
+
+        #region Create sheath WeaponSlot variables
+        public WeaponHolderSlot sheathHeavy01;
+        public WeaponHolderSlot sheathHeavy02;
+        public WeaponHolderSlot sheathLightRight01;
+        public WeaponHolderSlot sheathLightRight02;
+        public WeaponHolderSlot sheathLightLeft01;
+        public WeaponHolderSlot sheathLightLeft02;
+        public WeaponHolderSlot sheathShield01;
+        public WeaponHolderSlot sheathShield02;
+        public WeaponHolderSlot sheathBow01;
+        public WeaponHolderSlot sheathBow02;
+        //public WeaponHolderSlot backSlot;
+        #endregion
 
         private DamageCollider _leftHandDamageCollider;
         private DamageCollider _rightHandDamageCollider;
@@ -22,7 +33,8 @@ namespace BON
         private QuickSlotsUI quickslotsUI;
 
         private PlayerStats playerStats;
-        InputHandler inputHandler;
+        private InputHandler inputHandler;
+        private PlayerInventory playerInventory;
 
         private void Awake()
         {
@@ -30,23 +42,47 @@ namespace BON
             quickslotsUI = FindObjectOfType<QuickSlotsUI>();
             playerStats = GetComponentInParent<PlayerStats>();
             inputHandler = GetComponentInParent<InputHandler>();
+            playerInventory = GetComponentInParent<PlayerInventory>();
 
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
 
             foreach (WeaponHolderSlot weaponSlot in weaponHolderSlots)
             {
                 if (weaponSlot.isLeftHandSlot)
-                {
                     leftHandSlot = weaponSlot;
-                }
+
                 else if (weaponSlot.isRightHandSlot)
-                {
                     rightHandSlot = weaponSlot;
-                }
-                else if (weaponSlot.isBackSlot)
-                {
-                    backSlot = weaponSlot;
-                }
+
+                else if (weaponSlot.isSheathHeavy01)
+                    sheathHeavy01 = weaponSlot;
+
+                else if (weaponSlot.isSheathHeavy02)
+                    sheathHeavy02 = weaponSlot;
+
+                else if (weaponSlot.isSheathLightRight01)
+                    sheathLightRight01 = weaponSlot;
+
+                else if (weaponSlot.isSheathLightRight02)
+                    sheathLightRight02 = weaponSlot;
+
+                else if (weaponSlot.isSheathLightLeft01)
+                    sheathLightLeft01 = weaponSlot;
+
+                else if (weaponSlot.isSheathLightLeft02)
+                    sheathLightLeft02 = weaponSlot;
+
+                else if (weaponSlot.isSheathShield01)
+                    sheathShield01 = weaponSlot;
+
+                else if (weaponSlot.isSheathShield02)
+                    sheathShield02 = weaponSlot;
+
+                else if (weaponSlot.isSheathBow01)
+                    sheathBow01 = weaponSlot;
+
+                else if (weaponSlot.isSheathBow02)
+                    sheathBow02 = weaponSlot;
             }
         }
 
@@ -66,11 +102,14 @@ namespace BON
                     animator.CrossFade("Left_Arm_Empty", 0.2f);
                 #endregion
             }
+
             else
             {
-                if(inputHandler.flag_TwoHand)
+                Debug.Log("Weapon Item: " + weaponItem.itemName);
+                #region Two-Handed Functionality if active
+                if (inputHandler.flag_TwoHand)
                 {
-                    backSlot.LoadWeaponModel(leftHandSlot.currentWeapon); // Move current left hand weapon to the back or disable it
+                    SheathLeftWeapon();
                     leftHandSlot.UnloadWeaponAndDestroy();
                     animator.CrossFade(weaponItem.Idle_TH, 0.2f);
                 }
@@ -80,7 +119,7 @@ namespace BON
 
                     animator.CrossFade("Both Arms Empty", 0.2f);
 
-                    backSlot.UnloadWeaponAndDestroy();
+                    DestroyCurrentLeftWeaponSheath();
 
                     if (weaponItem != null)
                         animator.CrossFade(weaponItem.Idle_Arm_Right_01, 0.2f);
@@ -89,7 +128,7 @@ namespace BON
                         animator.CrossFade("Right_Arm_Empty", 0.2f);
                     #endregion
                 }
-
+                #endregion
                 rightHandSlot.currentWeapon = weaponItem;
                 rightHandSlot.LoadWeaponModel(weaponItem);
                 LoadRightWeaponDamageCollider();
@@ -140,5 +179,41 @@ namespace BON
             playerStats.TakeStaminaDamage(Mathf.RoundToInt(attackingWeapon.baseStamina * attackingWeapon.heavyAttackMultiplier));
         }
         #endregion
+
+        private void SheathLeftWeapon()
+        {
+            if (playerInventory.leftWeapon.isHeavy)
+                sheathHeavy01.LoadWeaponModel(leftHandSlot.currentWeapon);
+
+            else if (playerInventory.leftWeapon.isLight)
+                sheathLightLeft01.LoadWeaponModel(leftHandSlot.currentWeapon);
+
+            else if (playerInventory.leftWeapon.isBow)
+                sheathBow01.LoadWeaponModel(leftHandSlot.currentWeapon);
+
+            else if (playerInventory.leftWeapon.isShield)
+                sheathShield01.LoadWeaponModel(leftHandSlot.currentWeapon);
+
+            // This else is just to put the item somewhere to prevent crashing if item is missing tag
+            else
+                sheathShield01.LoadWeaponModel(leftHandSlot.currentWeapon);
+        }
+        private void DestroyCurrentLeftWeaponSheath()
+        {
+            if (playerInventory.leftWeapon.isHeavy)
+                sheathHeavy01.UnloadWeaponAndDestroy();
+
+            else if (playerInventory.leftWeapon.isLight)
+                sheathLightLeft01.UnloadWeaponAndDestroy();
+
+            else if (playerInventory.leftWeapon.isBow)
+                sheathBow01.UnloadWeaponAndDestroy();
+
+            else if (playerInventory.leftWeapon.isShield)
+                sheathShield01.UnloadWeaponAndDestroy();
+
+            else
+                return;
+        }
     }
 }

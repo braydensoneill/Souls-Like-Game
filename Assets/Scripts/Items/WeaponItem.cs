@@ -9,6 +9,10 @@ namespace BON
     {
         public GameObject modelPrefab;
         public bool isUnarmed;
+        public bool isHeavy;
+        public bool isLight;
+        public bool isBow;
+        public bool isShield;
 
         [Header("Idle Animations")]
         public string Idle_Arm_Right_01;

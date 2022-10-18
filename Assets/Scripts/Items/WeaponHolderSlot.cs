@@ -10,10 +10,19 @@ namespace BON
         public WeaponItem currentWeapon;
         public bool isLeftHandSlot;
         public bool isRightHandSlot;
-        // TBD isLeftHandSheathSlot
-        // TBD isRightHandSheathSlot
+        #region Create sheath WeaponSlot variables
+        public bool isSheathHeavy01;
+        public bool isSheathHeavy02;
+        public bool isSheathLightRight01;
+        public bool isSheathLightRight02;
+        public bool isSheathLightLeft01;
+        public bool isSheathLightLeft02;
+        public bool isSheathShield01;
+        public bool isSheathShield02;
+        public bool isSheathBow01;
+        public bool isSheathBow02;
         public bool isBackSlot;
-
+        #endregion
         public GameObject currentWeaponModel;
 
         public void UnloadWeapon()
