@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace BON
@@ -16,7 +15,7 @@ namespace BON
         public Transform cameraPivotTransform;
 
         private Transform _myTransform;
-        private Vector3 _cameraTransformPosition;
+        private Vector3 cameraTransformPosition;
         public LayerMask ignoreLayers;
         public LayerMask environmentLayer;
         private Vector3 _cameraFollowVelocity = Vector3.zero;
@@ -26,10 +25,10 @@ namespace BON
         public float followSpeed = 0.1f;
         public float pivotSpeed = 0.03f;
 
-        private float _targetPosition;
-        private float _defaultPosition;
-        private float _lookAngle;
-        private float _pivotAngle;
+        private float targetPosition;
+        private float defaultPosition;
+        private float lookAngle;
+        private float pivotAngle;
 
         [Header("Camera Pivot")]
         public float minimumPivot = -35;
@@ -54,7 +53,7 @@ namespace BON
         {
             singleton = this;
             _myTransform = transform;
-            _defaultPosition = cameraTransform.localPosition.z;
+            defaultPosition = cameraTransform.localPosition.z;
             ignoreLayers = ~(1 << 8 | 1 << 9 | 1 << 10);
             inputHandler = FindObjectOfType<InputHandler>();
             playerManager = FindObjectOfType<PlayerManager>();
@@ -85,17 +84,17 @@ namespace BON
             {
                 if(inputHandler.flag_Inventory == false)
                 {
-                    _lookAngle += (mouseXInput * lookSpeed) / delta;
-                    _pivotAngle -= (mouseYInput * pivotSpeed) / delta;
-                    _pivotAngle = Mathf.Clamp(_pivotAngle, minimumPivot, maximumPivot);
+                    lookAngle += (mouseXInput * lookSpeed) / delta;
+                    pivotAngle -= (mouseYInput * pivotSpeed) / delta;
+                    pivotAngle = Mathf.Clamp(pivotAngle, minimumPivot, maximumPivot);
 
                     Vector3 _rotation = Vector3.zero;
-                    _rotation.y = _lookAngle;
+                    _rotation.y = lookAngle;
                     Quaternion _targetRotation = Quaternion.Euler(_rotation);
                     _myTransform.rotation = _targetRotation;
 
                     _rotation = Vector3.zero;
-                    _rotation.x = _pivotAngle;
+                    _rotation.x = pivotAngle;
 
                     _targetRotation = Quaternion.Euler(_rotation);
                     cameraPivotTransform.localRotation = _targetRotation;
@@ -125,30 +124,30 @@ namespace BON
 
         private void HandleCameraCollisions(float delta)
         {
-            _targetPosition = _defaultPosition;
-            RaycastHit _hit;
-            Vector3 _direction = cameraTransform.position - cameraPivotTransform.position;
-            _direction.Normalize();
+            targetPosition = defaultPosition;
+            RaycastHit hit;
+            Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
+            direction.Normalize();
 
             if (Physics.SphereCast(
                 cameraPivotTransform.position,
                 cameraSphereRadius,
-                _direction,
-                out _hit,
-                Mathf.Abs(_targetPosition),
+                direction,
+                out hit,
+                Mathf.Abs(targetPosition),
                 ignoreLayers))
             {
-                float _dis = Vector3.Distance(cameraPivotTransform.position, _hit.point);
-                _targetPosition = -(_dis - cameraCollisionOffset);
+                float dis = Vector3.Distance(cameraPivotTransform.position, hit.point);
+                targetPosition = -(dis - cameraCollisionOffset);
             }
 
-            if(Mathf.Abs(_targetPosition) < minimumCollisionOffset)
+            if(Mathf.Abs(targetPosition) < minimumCollisionOffset)
             {
-                _targetPosition = -minimumCollisionOffset;
+                targetPosition = -minimumCollisionOffset;
             }
 
-            _cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, _targetPosition, delta / 0.02f);
-            cameraTransform.localPosition = _cameraTransformPosition;
+            cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, delta / 0.02f);
+            cameraTransform.localPosition = cameraTransformPosition;
         }
 
         public void HandleLockOn()

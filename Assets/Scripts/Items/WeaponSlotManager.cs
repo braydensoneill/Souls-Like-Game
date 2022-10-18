@@ -119,7 +119,7 @@ namespace BON
 
                     animator.CrossFade("Both Arms Empty", 0.2f);
 
-                    DestroyCurrentLeftWeaponSheath();
+                    DestroyCurrentlySheathedLeftWeapon();
 
                     if (weaponItem != null)
                         animator.CrossFade(weaponItem.Idle_Arm_Right_01, 0.2f);
@@ -198,7 +198,7 @@ namespace BON
             else
                 sheathShield01.LoadWeaponModel(leftHandSlot.currentWeapon);
         }
-        private void DestroyCurrentLeftWeaponSheath()
+        private void DestroyCurrentlySheathedLeftWeapon()
         {
             if (playerInventory.leftWeapon.isHeavy)
                 sheathHeavy01.UnloadWeaponAndDestroy();
