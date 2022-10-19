@@ -25,8 +25,8 @@ namespace BON
         //public WeaponHolderSlot backSlot;
         #endregion
 
-        private DamageCollider _leftHandDamageCollider;
-        private DamageCollider _rightHandDamageCollider;
+        private DamageCollider leftHandDamageCollider;
+        private DamageCollider rightHandDamageCollider;
 
         private Animator animator;
 
@@ -139,32 +139,32 @@ namespace BON
         #region Handle Weapon's Damage Collider
         public void LoadLeftWeaponDamageCollider()
         {
-            _leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
         }
 
         public void LoadRightWeaponDamageCollider()
         {
-            _rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
         }
 
         public void OpenLeftDamageCollider()
         {
-            _leftHandDamageCollider.EnableDamageCollider();
+            leftHandDamageCollider.EnableDamageCollider();
         }
 
         public void OpenRightDamageCollider()
         {
-            _rightHandDamageCollider.EnableDamageCollider();
+            rightHandDamageCollider.EnableDamageCollider();
         }
 
         public void CloseLeftHandDamageCollider()
         {
-            _leftHandDamageCollider.DisableDamageCollider();
+            leftHandDamageCollider.DisableDamageCollider();
         }
 
         public void CloseRightHandDamageCollider()
         {
-            _rightHandDamageCollider.DisableDamageCollider();
+            rightHandDamageCollider.DisableDamageCollider();
         }
         #endregion
 
