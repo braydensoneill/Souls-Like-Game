@@ -43,10 +43,10 @@ namespace BON
         public float maximumLockOnDistance = 30;
         public float lockedPivotPosition = 1.85f;
         public float unlockedPivotPosition = 1.5f;
-        public Transform currentLockOnTarget;
-        public Transform nearestLockOnTarget;
-        public Transform leftLockTarget;
-        public Transform rightLockTarget;
+        public CharacterManager currentLockOnTarget;
+        public CharacterManager nearestLockOnTarget;
+        public CharacterManager leftLockTarget;
+        public CharacterManager rightLockTarget;
         private List<CharacterManager> availableTargets = new List<CharacterManager>();
 
         private void Awake()
@@ -105,14 +105,14 @@ namespace BON
             else
             {
                 float velocity = 0;
-                Vector3 dir = currentLockOnTarget.position - transform.position;
+                Vector3 dir = currentLockOnTarget.transform.position - transform.position;
                 dir.Normalize();
                 dir.y = 0;
 
                 Quaternion targetRotation = Quaternion.LookRotation(dir);
                 transform.rotation = targetRotation;
 
-                dir = currentLockOnTarget.position - cameraPivotTransform.position;
+                dir = currentLockOnTarget.transform.position - cameraPivotTransform.position;
                 dir.Normalize();
 
                 targetRotation = Quaternion.LookRotation(dir);
@@ -153,7 +153,7 @@ namespace BON
         public void HandleLockOn()
         {
             float shortestDistance = Mathf.Infinity;
-            float shortestDistanceOfLeftTarget = Mathf.Infinity;
+            float shortestDistanceOfLeftTarget = -Mathf.Infinity;
             float shortestDistanceOfRightTarget = Mathf.Infinity;
 
             Collider[] colliders = Physics.OverlapSphere(targetTransform.position, 26);
@@ -181,7 +181,7 @@ namespace BON
                             if (hit.transform.gameObject.layer == environmentLayer.value)
                             {
                                 // cannot lock on to target, object in the way
-                                inputHandler.flag_LockOn = false;
+                                // inputHandler.flag_LockOn = false;
                             }
 
                             else
@@ -189,8 +189,6 @@ namespace BON
                                 availableTargets.Add(character);
                             }
                         }
-
-                        availableTargets.Add(character);
                     }
                 }
             }
@@ -202,26 +200,32 @@ namespace BON
                 if(distanceFromTarget < shortestDistance)
                 {
                     shortestDistance = distanceFromTarget;
-                    nearestLockOnTarget = availableTargets[i].lockOnTransform;
+                    nearestLockOnTarget = availableTargets[i];
                 }
 
                 if(inputHandler.flag_LockOn)
                 {
-                    Vector3 relativeEnemyPosition = currentLockOnTarget.InverseTransformPoint(availableTargets[i].transform.position);
-                    var distanceFromLeftTarget = currentLockOnTarget.transform.position.x - availableTargets[i].transform.position.x;
-                    var distanceFromRightTarget = currentLockOnTarget.transform.position.x + availableTargets[i].transform.position.x;
-                
+                    // TBD - Comment using this video as reference: https://www.youtube.com/watch?v=SH87d9utAmg&ab_channel=SebastianGraves
+
+                    Vector3 relativeEnemyPosition = inputHandler.transform.InverseTransformPoint(availableTargets[i].transform.position);
+                    var distanceFromLeftTarget = relativeEnemyPosition.x;
+                    var distanceFromRightTarget = relativeEnemyPosition.x;
+
                     // check if the new enemy is left of the currentely locked on target
-                    if(relativeEnemyPosition.x > 0.00 && distanceFromLeftTarget < shortestDistanceOfLeftTarget)
+                    if (relativeEnemyPosition.x <= 0.00 && 
+                        distanceFromLeftTarget > shortestDistanceOfLeftTarget && 
+                        availableTargets[i] != currentLockOnTarget)
                     {
                         shortestDistanceOfLeftTarget = distanceFromLeftTarget;
-                        leftLockTarget = availableTargets[i].lockOnTransform;
+                        leftLockTarget = availableTargets[i];
                     }
 
-                    if(relativeEnemyPosition.x < 0.00 && distanceFromRightTarget < shortestDistanceOfRightTarget)
+                    else if(relativeEnemyPosition.x >= 0.00 && 
+                        distanceFromRightTarget < shortestDistanceOfRightTarget &&
+                        availableTargets[i] != currentLockOnTarget)
                     {
                         shortestDistanceOfRightTarget = distanceFromRightTarget;
-                        rightLockTarget = availableTargets[i].lockOnTransform;
+                        rightLockTarget = availableTargets[i];
                     }
                 }
             }

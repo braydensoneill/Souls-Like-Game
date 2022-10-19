@@ -103,6 +103,7 @@ namespace BON
 
         public void TickInput(float delta)
         {
+            Debug.Log("Lock On: " + flag_LockOn);
             HandleMoveInput(delta);
             HandleRollInput(delta);
             HandleAttackInput(delta);
