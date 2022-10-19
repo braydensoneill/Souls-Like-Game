@@ -13,7 +13,7 @@ namespace BON
         private CameraHandler cameraHandler;
         private InputHandler inputHandler;
         [HideInInspector] public Transform myTransform;
-        [HideInInspector] public AnimatorHandler animatorHandler;
+        [HideInInspector] public PlayerAnimatorHandler animatorHandler;
 
         [Header("General")]
         public GameObject normalCamera;
@@ -45,7 +45,7 @@ namespace BON
             playerManager = GetComponent<PlayerManager>();
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            animatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
             cameraObject = Camera.main.transform;
             myTransform = transform;
 

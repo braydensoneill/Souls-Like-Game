@@ -9,14 +9,14 @@ namespace BON
         public HealthBar health_Bar;
         public StaminaBar stamina_Bar;
 
-        private AnimatorHandler animatorHandler;
+        private PlayerAnimatorHandler animatorHandler;
 
 
         private void Awake()
         {
             health_Bar = FindObjectOfType<HealthBar>();
             stamina_Bar = FindObjectOfType<StaminaBar>();
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            animatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         }
 
         // Start is called before the first frame update

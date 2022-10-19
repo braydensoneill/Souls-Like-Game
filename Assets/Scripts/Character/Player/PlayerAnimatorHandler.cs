@@ -4,16 +4,15 @@ using UnityEngine;
 
 namespace BON
 {
-    public class AnimatorHandler : MonoBehaviour
+    public class PlayerAnimatorHandler : CharacterAnimatorHandler
     {
         private PlayerManager playerManager;
-        public Animator animator;
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
 
         public bool canRotate;
-        private int _vertical;
-        private int _horizontal;
+        private int vertical;
+        private int horizontal;
 
         public void Initialise()
         {
@@ -22,8 +21,8 @@ namespace BON
             inputHandler = GetComponentInParent<InputHandler>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
 
-            _vertical = Animator.StringToHash("Vertical");
-            _horizontal = Animator.StringToHash("Horizontal");
+            vertical = Animator.StringToHash("Vertical");
+            horizontal = Animator.StringToHash("Horizontal");
         }
 
         public void UpdateAnimatorValues(float verticalMovement, float horizontalMovement, bool isSprinting)
@@ -72,15 +71,8 @@ namespace BON
                 _h = horizontalMovement;
             }
 
-            animator.SetFloat(_vertical, _v, 0.1f, Time.deltaTime);
-            animator.SetFloat(_horizontal, _h, 0.1f, Time.deltaTime);
-        }
-
-        public void PlayTargetAnimation(string targetAnim, bool isInteracting)
-        {
-            animator.applyRootMotion = isInteracting;
-            animator.SetBool("isInteracting", isInteracting);
-            animator.CrossFade(targetAnim, 0.2f);
+            animator.SetFloat(vertical, _v, 0.1f, Time.deltaTime);
+            animator.SetFloat(horizontal, _h, 0.1f, Time.deltaTime);
         }
 
         public void SetRotation(bool canRotate)

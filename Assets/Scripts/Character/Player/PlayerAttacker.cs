@@ -6,14 +6,14 @@ namespace BON
 {
     public class PlayerAttacker : MonoBehaviour
     {
-        private AnimatorHandler animatorHandler;
+        private PlayerAnimatorHandler animatorHandler;
         private InputHandler inputHandler;
         private WeaponSlotManager weaponSlotManager;
         public string lastAttack;
 
         private void Awake()
         {
-            animatorHandler = GetComponentInChildren<AnimatorHandler>();
+            animatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
             inputHandler = GetComponent<InputHandler>();
             weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
         }

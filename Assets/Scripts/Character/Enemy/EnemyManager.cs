@@ -7,6 +7,7 @@ namespace BON
     public class EnemyManager : CharacterManager
     {
         private EnemyLocomotion enemyLocomotion;
+
         [Header("Enemy Flags ")]
         public bool isInteracting;
 
@@ -20,16 +21,21 @@ namespace BON
             enemyLocomotion = GetComponent<EnemyLocomotion>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             HandleCurrentAction();
         }
 
         private void HandleCurrentAction()
         {
-            if(enemyLocomotion.currentTarget == null)
+            if (enemyLocomotion.currentTarget == null)
             {
                 enemyLocomotion.HandleDectection();
+            }
+
+            else
+            {
+                enemyLocomotion.HandleMoveToTarget();
             }
         }
     }
