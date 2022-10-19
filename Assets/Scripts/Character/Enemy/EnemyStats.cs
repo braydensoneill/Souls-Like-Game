@@ -4,14 +4,9 @@ using UnityEngine;
 
 namespace BON
 {
-    public class EnemyStats : MonoBehaviour
+    public class EnemyStats : CharacterStats
     {
         private Animator animator;
-
-        [Header("Stats")]
-        public float health_Level = 10;
-        public float health_Max;
-        public float health_Current;
 
         private void Awake()
         {
