@@ -60,7 +60,10 @@ namespace BON
 
         private void HandleStateMachine()
         {
-            if(currentState != null)
+            if (enemyStats.isDead)
+                return;
+
+            if (currentState != null)
             {
                 State nextState = currentState.Tick(this, enemyStats, enemyAnimatorHandler);
 

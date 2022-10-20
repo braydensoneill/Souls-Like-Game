@@ -10,7 +10,7 @@ namespace BON
         public WeaponItem rightWeapon;
         public WeaponItem leftWeapon;
         public WeaponItem unarmedWeapon;
-        private WeaponSlotManager weaponSlotManager;
+        private PlayerWeaponSlotManager weaponSlotManager;
 
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[1];
         public WeaponItem[] weaponsInLeftHandSlots = new WeaponItem[1];
@@ -22,7 +22,7 @@ namespace BON
 
         private void Awake()
         {
-            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+            weaponSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
         }
 
         private void Start()

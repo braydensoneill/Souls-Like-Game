@@ -8,14 +8,14 @@ namespace BON
     {
         private PlayerAnimatorHandler animatorHandler;
         private InputHandler inputHandler;
-        private WeaponSlotManager weaponSlotManager;
+        private PlayerWeaponSlotManager weaponSlotManager;
         public string lastAttack;
 
         private void Awake()
         {
             animatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
             inputHandler = GetComponent<InputHandler>();
-            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+            weaponSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
         }
 
         public void HandleWeaponCombo(WeaponItem weapon)

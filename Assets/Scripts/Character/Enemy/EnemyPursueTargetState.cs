@@ -10,6 +10,8 @@ namespace BON
 
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
         {
+            HandleRotationTowardsTarget(enemyManager);
+
             if (enemyManager.isInteracting)
             {
                 enemyAnimatorHandler.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);

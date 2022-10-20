@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BON
 {
-    public class WeaponSlotManager : MonoBehaviour
+    public class PlayerWeaponSlotManager : MonoBehaviour
     {
         public WeaponItem attackingWeapon;
 
@@ -35,6 +35,7 @@ namespace BON
         private PlayerStats playerStats;
         private InputHandler inputHandler;
         private PlayerInventory playerInventory;
+        private PlayerManager playerManager;
 
         private void Awake()
         {
@@ -43,6 +44,7 @@ namespace BON
             playerStats = GetComponentInParent<PlayerStats>();
             inputHandler = GetComponentInParent<InputHandler>();
             playerInventory = GetComponentInParent<PlayerInventory>();
+            playerManager = GetComponentInParent<PlayerManager>();
 
             WeaponHolderSlot[] weaponHolderSlots = GetComponentsInChildren<WeaponHolderSlot>();
 
@@ -147,24 +149,19 @@ namespace BON
             rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
         }
 
-        public void OpenLeftDamageCollider()
+        public void OpenDamageCollider()
         {
-            leftHandDamageCollider.EnableDamageCollider();
+            if (playerManager.isUsingRightHand)
+                rightHandDamageCollider.EnableDamageCollider();
+
+            else if (playerManager.isUsingLeftHand)
+                leftHandDamageCollider.EnableDamageCollider();
         }
 
-        public void OpenRightDamageCollider()
-        {
-            rightHandDamageCollider.EnableDamageCollider();
-        }
-
-        public void CloseLeftHandDamageCollider()
-        {
-            leftHandDamageCollider.DisableDamageCollider();
-        }
-
-        public void CloseRightHandDamageCollider()
+        public void CloseDamageCollider()
         {
             rightHandDamageCollider.DisableDamageCollider();
+            leftHandDamageCollider.DisableDamageCollider();
         }
         #endregion
 

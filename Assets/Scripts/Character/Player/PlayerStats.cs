@@ -44,9 +44,12 @@ namespace BON
             return stamina_Max;
         }
 
-        public void TakeHealthDamage(int damage)
+        public void TakeHealthDamage(int _amount)
         {
-            health_Current = health_Current - damage;
+            if (isDead)
+                return;
+
+            health_Current = health_Current - _amount;
 
             health_Bar.SetBarCurrentHealth(health_Current);
 
@@ -56,13 +59,13 @@ namespace BON
             {
                 health_Current = 0;
                 animatorHandler.PlayTargetAnimation("Dead_01", true);
-                //HandlePlayerDeath
+                isDead = true;
             }
         }
 
-        public void TakeStaminaDamage(int damage)
+        public void TakeStaminaDamage(int _amount)
         {
-            stamina_Current = stamina_Current - damage;
+            stamina_Current = stamina_Current - _amount;
             stamina_Bar.SetBarCurrentStamina(stamina_Current);
         }
 

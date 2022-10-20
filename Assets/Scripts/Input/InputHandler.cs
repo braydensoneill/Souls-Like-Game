@@ -11,9 +11,10 @@ namespace BON
         private PlayerAttacker playerAttacker;
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
-        private WeaponSlotManager weaponSlotManager;
+        private PlayerWeaponSlotManager weaponSlotManager;
         private CameraHandler cameraHandler;
         private UIManager uiManager;
+        private PlayerAnimatorHandler playerAnimatorHandler;
 
         // Direction Variables
         [Header("Direction")]
@@ -65,9 +66,10 @@ namespace BON
             playerAttacker = GetComponent<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
-            weaponSlotManager = GetComponentInChildren<WeaponSlotManager>();
+            weaponSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
             uiManager = FindObjectOfType<UIManager>();
             cameraHandler = FindObjectOfType<CameraHandler>();
+            playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         }
 
         public void OnEnable()
@@ -163,6 +165,10 @@ namespace BON
                         if (playerManager.isInteracting)
                             return;
 
+                        if (playerManager.canDoCombo)
+                            return;
+
+                        playerAnimatorHandler.animator.SetBool("isUsingRightHand", true);
                         playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
                     }
                 }

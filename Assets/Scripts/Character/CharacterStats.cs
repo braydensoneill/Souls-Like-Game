@@ -6,6 +6,9 @@ namespace BON
 {
     public class CharacterStats : MonoBehaviour
     {
+        [Header("General")]
+        public bool isDead;
+
         [Header("Health Stats")]
         public float health_Level = 10;
         public float health_Max;

@@ -25,8 +25,11 @@ namespace BON
             return health_Max;
         }
 
-        public void TakeDamage(int damage)
+        public void TakeHealthDamage(int damage)
         {
+            if (isDead)
+                return;
+
             health_Current = health_Current - damage;
 
             animator.Play("Damage_01");
@@ -35,6 +38,7 @@ namespace BON
             {
                 health_Current = 0;
                 animator.Play("Dead_01");
+                isDead = true;
             }
         }
     }

@@ -22,6 +22,8 @@ namespace BON
         public bool isAirborne;
         public bool isGrounded;
         public bool canDoCombo;
+        public bool isUsingRightHand;
+        public bool isUsingLeftHand;
 
         private void Awake()
         {
@@ -45,6 +47,8 @@ namespace BON
 
             isInteracting = animator.GetBool("isInteracting");
             canDoCombo = animator.GetBool("canDoCombo");
+            isUsingRightHand = animator.GetBool("isUsingRightHand");
+            isUsingLeftHand = animator.GetBool("isUsingLeftHand");
             animator.SetBool("isAirborne", isAirborne);
 
             inputHandler.flag_Roll = false;

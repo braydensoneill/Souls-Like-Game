@@ -9,7 +9,7 @@ namespace BON
     public class WeaponInventorySlot : MonoBehaviour
     {
         PlayerInventory playerInventory;
-        WeaponSlotManager weaponSlotManager;
+        PlayerWeaponSlotManager weaponSlotManager;
         UIManager uiManager;
 
         private WeaponItem item;
@@ -19,7 +19,7 @@ namespace BON
         private void Awake()
         {
             playerInventory = FindObjectOfType<PlayerInventory>();
-            weaponSlotManager = FindObjectOfType<WeaponSlotManager>();
+            weaponSlotManager = FindObjectOfType<PlayerWeaponSlotManager>();
             uiManager = FindObjectOfType<UIManager>();
         }
         public void AddItem(WeaponItem newItem)

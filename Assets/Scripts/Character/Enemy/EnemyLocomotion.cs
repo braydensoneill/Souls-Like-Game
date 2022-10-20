@@ -9,7 +9,11 @@ namespace BON
     {
         private EnemyManager enemyManager;
         private EnemyAnimatorHandler enemyAnimatorHandler;
-        
+
+        [Header("Character Collision")]
+        public CapsuleCollider characterCollider;
+        public CapsuleCollider characterCollisionBlockerCollider;
+
         public LayerMask detectionLayer;
 
         private void Awake()
@@ -20,7 +24,7 @@ namespace BON
 
         private void Start()
         {
-            
+            Physics.IgnoreCollision(characterCollider, characterCollisionBlockerCollider, true);
         }
     }
 }

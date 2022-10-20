@@ -34,6 +34,10 @@ namespace BON
         [SerializeField] private float _fallSpeed = 100;
         [SerializeField] private float _fallForce = 5;
 
+        [Header("Character Collision")]
+        public CapsuleCollider characterCollider;
+        public CapsuleCollider characterCollisionBlockerCollider;
+
         private void Awake()
         {
             cameraHandler = FindObjectOfType<CameraHandler>();
@@ -53,6 +57,7 @@ namespace BON
 
             playerManager.isGrounded = true;
             _ignoreForGroundCheck = ~(1 << 8 | 1 << 11);
+            Physics.IgnoreCollision(characterCollider, characterCollisionBlockerCollider, true);
         }
 
         #region Movement

@@ -80,6 +80,7 @@ namespace BON
             this.canRotate = canRotate;
         }
 
+        #region Handle Combo
         public void EnableCombo()
         {
             animator.SetBool("canDoCombo", true);
@@ -89,6 +90,7 @@ namespace BON
         {
             animator.SetBool("canDoCombo", false);
         }
+        #endregion
 
         private void OnAnimatorMove()
         {
