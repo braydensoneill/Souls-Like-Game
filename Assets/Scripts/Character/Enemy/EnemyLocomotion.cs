@@ -61,6 +61,9 @@ namespace BON
 
         public void HandleMoveToTarget()
         {
+            if (enemyManager.isInteracting)
+                return;
+
             Vector3 targetDirection = currentTarget.transform.position - transform.position; // Look for the direction of the target
             distanceFromTarget = Vector3.Distance(currentTarget.transform.position, transform.position);
             float viewableAngle = Vector3.Angle(targetDirection, transform.forward); // Enemy FOV
