@@ -6,12 +6,12 @@ namespace BON
 {
     public class EnemyAnimatorHandler : CharacterAnimatorHandler
     {
-        private EnemyLocomotion enemyLocomotion;
+        private EnemyManager enemyManager;
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
-            enemyLocomotion = GetComponentInParent<EnemyLocomotion>();
+            enemyManager = GetComponentInParent<EnemyManager>();
         }
 
         /* Any time the animator plays an animation with roo motion, recenter the model
@@ -19,13 +19,13 @@ namespace BON
         private void OnAnimatorMove()
         {
             float delta = Time.deltaTime;
-            enemyLocomotion.enemyRigidbody.drag = 0;
+            enemyManager.enemyRigidbody.drag = 0;
 
             Vector3 deltaPosition = animator.deltaPosition;
             deltaPosition.y = 0;
 
             Vector3 velocity = deltaPosition / delta;
-            enemyLocomotion.enemyRigidbody.velocity = velocity;
+            enemyManager.enemyRigidbody.velocity = velocity;
         }
     }
 }

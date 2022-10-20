@@ -1707,9 +1707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19fea51eb416c4146b0236a34b0fd767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAttacks: []
-  currentAttack: {fileID: 0}
-  enemyPursueTargetState: {fileID: 0}
+  enemyPursueTargetState: {fileID: 761157177}
   detectionLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -4499,8 +4497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfd3f31370f7c4479fe42890226a46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAttacks: []
-  currentAttack: {fileID: 0}
 --- !u!1 &567409670 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 657883895171382166, guid: 000bc9ad15ea06d428330a6a44f9c863,
@@ -5692,8 +5688,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ab194e2acf0974daf90666e5c37243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAttacks: []
-  currentAttack: {fileID: 0}
 --- !u!1 &764097361
 GameObject:
   m_ObjectHideFlags: 0
@@ -7639,7 +7633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockOnTransform: {fileID: 1667181861}
-  currentState: {fileID: 0}
+  currentState: {fileID: 248892142}
   currentTarget: {fileID: 0}
   isInteracting: 0
   detectionRadius: 20
@@ -8459,8 +8453,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca955855581461946817e89795f3063d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyAttacks: []
-  currentAttack: {fileID: 0}
 --- !u!1 &1174023237
 GameObject:
   m_ObjectHideFlags: 0

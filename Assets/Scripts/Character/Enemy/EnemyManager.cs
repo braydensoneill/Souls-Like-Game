@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace BON
 {
@@ -13,14 +14,22 @@ namespace BON
         [Header("General")]
         public State currentState;
         public CharacterStats currentTarget;
+        public NavMeshAgent navmeshAgent;
+        public Rigidbody enemyRigidbody;
 
         [Header("Enemy Flags ")]
         public bool isInteracting;
+
+        [Header("Movement Settings")]
+        public float distanceFromTarget;    // How far from target
+        public float rotationSpeed = 15;
+        public float maximumAttackRange = 2;
 
         [Header("A.I Settings")]
         public float detectionRadius = 20;
         public float minimumDetectionAngle = -50;   // Enemy min field of view angle
         public float maximumDetectionAngle = 50;    // Enemy max field of view angle
+        public float viewableAngle;
 
         public float currentRecoveryTime = 0;
 
@@ -29,6 +38,14 @@ namespace BON
             enemyLocomotion = GetComponent<EnemyLocomotion>();
             enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
             enemyStats = GetComponent<EnemyStats>();
+            navmeshAgent = GetComponentInChildren<NavMeshAgent>();
+            enemyRigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void Start()
+        {
+            navmeshAgent.enabled = false;
+            enemyRigidbody.isKinematic = false;
         }
 
         private void Update()
@@ -74,80 +91,5 @@ namespace BON
                 }
             }
         }
-
-        #region Attacks
-        private void AttackTarget()
-        {
-            /*
-            if (isInteracting)
-                return;
-
-            if(currentAttack == null)
-            {
-                GetNewAttack();
-            }
-
-            else
-            {
-                isInteracting = true;
-                currentRecoveryTime = currentAttack.recoveryTime;
-                enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
-                currentAttack = null;
-            }
-            */
-        }
-
-        private void GetNewAttack()
-        {
-        /*
-            Vector3 targetDirection = enemyLocomotion.currentTarget.transform.position - transform.position;
-            float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
-            enemyLocomotion.distanceFromTarget = Vector3.Distance(enemyLocomotion.currentTarget.transform.position, transform.position);
-
-            int maxScore = 0;
-
-            for (int i = 0; i < enemyAttacks.Length; i++)
-            {
-                EnemyAttackAction enemyAttackAction = enemyAttacks[i];
-
-                if(enemyLocomotion.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack &&
-                    enemyLocomotion.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
-                {
-                    if(viewableAngle <= enemyAttackAction.maximumAttackAngle &&
-                        viewableAngle >= enemyAttackAction.minimumAttackAngle)
-                    {
-                        maxScore += enemyAttackAction.attackScore;
-                    }
-                }
-            }
-
-            int randomValue = Random.Range(0, maxScore);
-            int tempScore = 0;
-
-            for (int i = 0; i < enemyAttacks.Length; i++)
-            {
-                EnemyAttackAction enemyAttackAction = enemyAttacks[i];
-
-                if (enemyLocomotion.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack &&
-                    enemyLocomotion.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
-                {
-                    if (viewableAngle <= enemyAttackAction.maximumAttackAngle &&
-                        viewableAngle >= enemyAttackAction.minimumAttackAngle)
-                    {
-                        if (currentAttack != null)
-                            return;
-
-                        tempScore += enemyAttackAction.attackScore;
-
-                        if(tempScore > randomValue)
-                        {
-                            currentAttack = enemyAttackAction;
-                        }
-                    }
-                }
-            }
-        */
-        }
-        #endregion
     }
 }

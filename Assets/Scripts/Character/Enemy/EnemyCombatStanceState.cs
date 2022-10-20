@@ -6,13 +6,31 @@ namespace BON
 {
     public class EnemyCombatStanceState : State
     {
+        public EnemyAttackState attackState;
+        public EnemyPursueTargetState pursueTargetState;
+
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimator)
         {
-            // Check for attack range
+            enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
+            
             // Potentially circle player or walk around them
-            // If in attack range, return attack state
-            // If on cooldown after attacking, return this state and continue circling player
-            // If the player runs out of range, return the PursueTarget state
+
+            if (enemyManager.currentRecoveryTime <= 0 && 
+                enemyManager.distanceFromTarget <= enemyManager.maximumAttackRange)
+            {
+                return attackState;
+            }
+
+            else if (enemyManager.distanceFromTarget > enemyManager.maximumAttackRange)
+            {
+                return pursueTargetState;
+            }
+
+            else
+            {
+                return this;
+            }
+
             return this;
         }
     }
