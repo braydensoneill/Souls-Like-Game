@@ -32,10 +32,10 @@ namespace BON
                 if(charactersStats != null)
                 {
                     Vector3 targetsDirection = charactersStats.transform.position - enemyManager.transform.position;
-                    enemyManager.viewableAngle = Vector3.Angle(targetsDirection, enemyManager.transform.forward);
+                    float viewableAngle = Vector3.Angle(targetsDirection, enemyManager.transform.forward);
 
-                    if(enemyManager.viewableAngle > enemyManager.minimumDetectionAngle &&
-                        enemyManager.viewableAngle < enemyManager.maximumDetectionAngle)
+                    if(viewableAngle > enemyManager.minimumDetectionAngle &&
+                        viewableAngle < enemyManager.maximumDetectionAngle)
                     {
                         enemyManager.currentTarget = charactersStats;
                         isSleeping = false;

@@ -11,13 +11,16 @@ namespace BON
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
         {
             if (enemyManager.isInteracting)
+            {
+                enemyAnimatorHandler.animator.SetFloat("Vertical", 0, 0.1f, Time.deltaTime);
                 return this;
+            }
+                
+            Vector3 targetDirection = enemyManager.currentTarget.transform.position - enemyManager.transform.position; // Look for the direction of the target
+            float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
+            float viewableAngle = Vector3.Angle(targetDirection, enemyManager.transform.forward); // Enemy FOV
 
-            Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position; // Look for the direction of the target
-            enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
-            float viewableAngle = Vector3.Angle(targetDirection, transform.forward); // Enemy FOV
-
-            if (enemyManager.distanceFromTarget > enemyManager.maximumAttackRange)
+            if (distanceFromTarget > enemyManager.maximumAttackRange)
             {
                 enemyAnimatorHandler.animator.SetFloat("Vertical", 1, 0.1f, Time.deltaTime);
             }
@@ -26,7 +29,7 @@ namespace BON
             enemyManager.navmeshAgent.transform.localPosition = Vector3.zero;
             enemyManager.navmeshAgent.transform.localRotation = Quaternion.identity;
 
-            if(enemyManager.distanceFromTarget <= enemyManager.maximumAttackRange)
+            if(distanceFromTarget <= enemyManager.maximumAttackRange)
             {
                 return combatStanceState;
             }
@@ -63,9 +66,8 @@ namespace BON
 
                 enemyManager.navmeshAgent.enabled = true;
                 enemyManager.navmeshAgent.SetDestination(enemyManager.currentTarget.transform.position);
-
                 enemyManager.enemyRigidbody.velocity = targetVelocity;
-                enemyManager.transform.rotation = Quaternion.Slerp(transform.rotation, enemyManager.navmeshAgent.transform.rotation, enemyManager.rotationSpeed / Time.deltaTime);
+                enemyManager.transform.rotation = Quaternion.Slerp(enemyManager.transform.rotation, enemyManager.navmeshAgent.transform.rotation, enemyManager.rotationSpeed / Time.deltaTime);
             }
         }
     }

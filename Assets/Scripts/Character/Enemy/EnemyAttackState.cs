@@ -14,6 +14,7 @@ namespace BON
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
         {
             Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position; // Look for the direction of the target
+            float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, enemyManager.transform.position);
             float viewableAngle = Vector3.Angle(targetDirection, transform.forward); // Enemy FOV
 
             if (enemyManager.isInteracting)
@@ -22,17 +23,17 @@ namespace BON
             if(currentAttack != null)
             {
                 // If close to perform another currentAttack, get a new attack
-                if(enemyManager.distanceFromTarget < currentAttack.minimumDistanceNeededToAttack)
+                if(distanceFromTarget < currentAttack.minimumDistanceNeededToAttack)
                 {
                     return this;
                 }
 
                 // If close enought to attack, then proceed
-                else if(enemyManager.distanceFromTarget < currentAttack.maximumDistanceNeededToAttack)
+                else if(distanceFromTarget < currentAttack.maximumDistanceNeededToAttack)
                 {
                     // If target is within attack's viewable angle, attack
-                    if(enemyManager.viewableAngle <= currentAttack.maximumAttackAngle &&
-                        enemyManager.viewableAngle >= currentAttack.minimumAttackAngle)
+                    if(viewableAngle <= currentAttack.maximumAttackAngle &&
+                        viewableAngle >= currentAttack.minimumAttackAngle)
                     {
                         if (enemyManager.currentRecoveryTime <= 0 &&
                             enemyManager.isInteracting == false)
@@ -61,7 +62,7 @@ namespace BON
         {
             Vector3 targetDirection = enemyManager.currentTarget.transform.position - transform.position;
             float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
-            enemyManager.distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
+            float distanceFromTarget = Vector3.Distance(enemyManager.currentTarget.transform.position, transform.position);
 
             int maxScore = 0;
 
@@ -69,8 +70,8 @@ namespace BON
             {
                 EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-                if (enemyManager.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack &&
-                    enemyManager.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
+                if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack &&
+                    distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
                 {
                     if (viewableAngle <= enemyAttackAction.maximumAttackAngle &&
                         viewableAngle >= enemyAttackAction.minimumAttackAngle)
@@ -87,8 +88,8 @@ namespace BON
             {
                 EnemyAttackAction enemyAttackAction = enemyAttacks[i];
 
-                if (enemyManager.distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack &&
-                    enemyManager.distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
+                if (distanceFromTarget <= enemyAttackAction.maximumDistanceNeededToAttack &&
+                    distanceFromTarget >= enemyAttackAction.minimumDistanceNeededToAttack)
                 {
                     if (viewableAngle <= enemyAttackAction.maximumAttackAngle &&
                         viewableAngle >= enemyAttackAction.minimumAttackAngle)

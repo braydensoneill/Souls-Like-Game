@@ -21,7 +21,6 @@ namespace BON
         public bool isInteracting;
 
         [Header("Movement Settings")]
-        public float distanceFromTarget;    // How far from target
         public float rotationSpeed = 15;
         public float maximumAttackRange = 2;
 
@@ -29,7 +28,6 @@ namespace BON
         public float detectionRadius = 20;
         public float minimumDetectionAngle = -50;   // Enemy min field of view angle
         public float maximumDetectionAngle = 50;    // Enemy max field of view angle
-        public float viewableAngle;
 
         public float currentRecoveryTime = 0;
 
