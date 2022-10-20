@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 260f8b063a1579e49ad90baf8a942fe9, type: 3}
   m_Name: Attack 01
   m_EditorClassIdentifier: 
-  actionAnimation: 
+  actionAnimation: OH_Sword_Light_Attack_Right_01
   attackScore: 3
   recoveryTime: 2
   maximumAttackAngle: 35

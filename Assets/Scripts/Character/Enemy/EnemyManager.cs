@@ -8,10 +8,11 @@ namespace BON
     {
         private EnemyLocomotion enemyLocomotion;
         private EnemyAnimatorHandler enemyAnimatorHandler;
+        private EnemyStats enemyStats;
 
-        [Header("Enemy Actions")]
-        public EnemyAttackAction[] enemyAttacks;
-        public EnemyAttackAction currentAttack;
+        [Header("General")]
+        public State currentState;
+        public CharacterStats currentTarget;
 
         [Header("Enemy Flags ")]
         public bool isInteracting;
@@ -27,6 +28,7 @@ namespace BON
         {
             enemyLocomotion = GetComponent<EnemyLocomotion>();
             enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
+            enemyStats = GetComponent<EnemyStats>();
         }
 
         private void Update()
@@ -36,31 +38,25 @@ namespace BON
 
         private void FixedUpdate()
         {
-            HandleCurrentAction();
+            HandleStateMachine();
         }
 
-        private void HandleCurrentAction()
+        private void HandleStateMachine()
         {
-            if(enemyLocomotion.currentTarget != null)
+            if(currentState != null)
             {
-                enemyLocomotion.distanceFromTarget = 
-                    Vector3.Distance(enemyLocomotion.currentTarget.transform.position, transform.position);
-            }
+                State nextState = currentState.Tick(this, enemyStats, enemyAnimatorHandler);
 
-            if (enemyLocomotion.currentTarget == null)
-            {
-                enemyLocomotion.HandleDectection();
+                if(nextState != null)
+                {
+                    SwitchToNextState(nextState);
+                }
             }
+        }
 
-            else if(enemyLocomotion.distanceFromTarget > enemyLocomotion.stoppingDistance)
-            {
-                enemyLocomotion.HandleMoveToTarget();
-            }
-
-            else if(enemyLocomotion.distanceFromTarget <= enemyLocomotion.stoppingDistance)
-            {
-                AttackTarget();
-            }
+        private void SwitchToNextState(State _state)
+        {
+            currentState = _state;
         }
 
         private void HandleRecoveryTime()
@@ -82,6 +78,7 @@ namespace BON
         #region Attacks
         private void AttackTarget()
         {
+            /*
             if (isInteracting)
                 return;
 
@@ -97,9 +94,12 @@ namespace BON
                 enemyAnimatorHandler.PlayTargetAnimation(currentAttack.actionAnimation, true);
                 currentAttack = null;
             }
+            */
         }
+
         private void GetNewAttack()
         {
+        /*
             Vector3 targetDirection = enemyLocomotion.currentTarget.transform.position - transform.position;
             float viewableAngle = Vector3.Angle(targetDirection, transform.forward);
             enemyLocomotion.distanceFromTarget = Vector3.Distance(enemyLocomotion.currentTarget.transform.position, transform.position);
@@ -146,7 +146,7 @@ namespace BON
                     }
                 }
             }
-
+        */
         }
         #endregion
     }
