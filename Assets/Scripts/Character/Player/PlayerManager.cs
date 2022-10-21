@@ -9,6 +9,7 @@ namespace BON
         private InputHandler inputHandler;
         private Animator animator;
         private CameraHandler cameraHandler;
+        private PlayerStats playerStats;
         private PlayerLocomotion playerLocomotion;
 
         [Header("User Interface")]
@@ -24,6 +25,7 @@ namespace BON
         public bool canDoCombo;
         public bool isUsingRightHand;
         public bool isUsingLeftHand;
+        public bool isInvulnerable;
 
         private void Awake()
         {
@@ -36,6 +38,7 @@ namespace BON
             cameraHandler = CameraHandler.singleton;
             inputHandler = GetComponent<InputHandler>();
             animator = GetComponentInChildren<Animator>();
+            playerStats = GetComponent<PlayerStats>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
             interactableUI = FindObjectOfType<InteractableUI>();
         }
@@ -49,6 +52,7 @@ namespace BON
             canDoCombo = animator.GetBool("canDoCombo");
             isUsingRightHand = animator.GetBool("isUsingRightHand");
             isUsingLeftHand = animator.GetBool("isUsingLeftHand");
+            isInvulnerable = animator.GetBool("isInvulnerable");
             animator.SetBool("isAirborne", isAirborne);
 
             inputHandler.flag_Roll = false;
@@ -58,6 +62,7 @@ namespace BON
 
             playerLocomotion.HandleRollingAndSprinting(_delta);
             playerLocomotion.HandleJumping();
+            playerStats.RegerateStamina();
 
             CheckForInteractableObject();
         }

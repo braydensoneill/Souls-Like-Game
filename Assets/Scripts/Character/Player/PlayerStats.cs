@@ -6,14 +6,19 @@ namespace BON
 {
     public class PlayerStats : CharacterStats
     {
+        private PlayerManager playerManager;
+        private PlayerAnimatorHandler animatorHandler;
+
         public HealthBar health_Bar;
         public StaminaBar stamina_Bar;
 
-        private PlayerAnimatorHandler animatorHandler;
-
+        public float stamina_Regeneration_Strength = 7.5f;
+        private float stamina_Regeneration_Timer_Current = 0;
+        private float stamina_Regeneration_Timer_Max = 2f;
 
         private void Awake()
         {
+            playerManager = GetComponent<PlayerManager>();
             health_Bar = FindObjectOfType<HealthBar>();
             stamina_Bar = FindObjectOfType<StaminaBar>();
             animatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
@@ -34,18 +39,21 @@ namespace BON
         {
             // Add whatever equation for calculating hp here
             health_Max = health_Level * 10;
-            return health_Max;
+                return health_Max;
         }
 
         private float SetMaxStaminaFromStaminaLevel()
         {
             // Add whatever equation for calculating hp here
             stamina_Max = stamina_Level * 10;
-            return stamina_Max;
+                return stamina_Max;
         }
 
         public void TakeHealthDamage(int _amount)
         {
+            if (playerManager.isInvulnerable)
+                return;
+
             if (isDead)
                 return;
 
@@ -67,6 +75,26 @@ namespace BON
         {
             stamina_Current = stamina_Current - _amount;
             stamina_Bar.SetBarCurrentStamina(stamina_Current);
+        }
+
+        public void RegerateStamina()
+        {
+            if(playerManager.isInteracting)
+            {
+                stamina_Regeneration_Timer_Current = 0;
+            }
+
+            else
+            {
+                stamina_Regeneration_Timer_Current += Time.deltaTime;
+
+                if (stamina_Current <= stamina_Max && 
+                    stamina_Regeneration_Timer_Current > stamina_Regeneration_Timer_Max)
+                {
+                    stamina_Current += stamina_Regeneration_Strength * (Time.deltaTime * stamina_Regeneration_Strength);
+                    stamina_Bar.SetBarCurrentStamina(Mathf.RoundToInt(stamina_Current));
+                }
+            } 
         }
 
     }
