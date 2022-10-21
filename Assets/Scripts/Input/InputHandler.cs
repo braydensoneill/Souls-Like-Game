@@ -63,7 +63,7 @@ namespace BON
 
         private void Awake()
         {
-            playerAttacker = GetComponent<PlayerAttacker>();
+            playerAttacker = GetComponentInChildren<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
             weaponSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
@@ -153,24 +153,7 @@ namespace BON
             {
                 if (input_RT)
                 {
-                    if (playerManager.canDoCombo)
-                    {
-                        flag_Combo = true;
-                        playerAttacker.HandleWeaponCombo(playerInventory.rightWeapon);
-                        flag_Combo = false;
-                    }
-
-                    else
-                    {
-                        if (playerManager.isInteracting)
-                            return;
-
-                        if (playerManager.canDoCombo)
-                            return;
-
-                        playerAnimatorHandler.animator.SetBool("isUsingRightHand", true);
-                        playerAttacker.HandleLightAttack(playerInventory.rightWeapon);
-                    }
+                    playerAttacker.HandleRTAction();
                 }
 
                 if (input_RB) // This is temporary, blocking will be used for this keybind

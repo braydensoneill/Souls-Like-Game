@@ -9,12 +9,14 @@ namespace BON
         private PlayerManager playerManager;
         private PlayerAnimatorHandler animatorHandler;
 
+        [Header("Resource Bars")]
         public HealthBar health_Bar;
         public StaminaBar stamina_Bar;
 
-        public float stamina_Regeneration_Strength = 7.5f;
-        private float stamina_Regeneration_Timer_Current = 0;
-        private float stamina_Regeneration_Timer_Max = 2f;
+        [Header("Player Stamina Regeneration")]
+        public float stamina_Regeneration_Strength = 6f;
+        [SerializeField] private float stamina_Regeneration_Timer_Current = 0;
+        [SerializeField] private float stamina_Regeneration_Timer_Max = 1.5f;
 
         private void Awake()
         {

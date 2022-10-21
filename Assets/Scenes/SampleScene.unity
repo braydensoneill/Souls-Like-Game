@@ -18616,11 +18616,36 @@ PrefabInstance:
       propertyPath: stamina_RegenerationAmount
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8529154958955317421, guid: 822d07266f7eb9f4a85deea15dbfa750,
+        type: 3}
+      propertyPath: stamina_Regeneration_Strength
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8529154958955317423, guid: 822d07266f7eb9f4a85deea15dbfa750,
         type: 3}
       propertyPath: weaponsInLeftHandSlots.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: b80245d640232ca4387be3f317cc0f35,
         type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8529154958955317422, guid: 822d07266f7eb9f4a85deea15dbfa750, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 822d07266f7eb9f4a85deea15dbfa750, type: 3}
+--- !u!1 &8529154957439071832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8835161897609248516, guid: 822d07266f7eb9f4a85deea15dbfa750,
+    type: 3}
+  m_PrefabInstance: {fileID: 8529154957439071831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8529154957439071833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529154957439071832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab574b4d8c34155419cf54b719ede63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastAttack: 

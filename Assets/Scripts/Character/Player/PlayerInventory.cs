@@ -6,11 +6,13 @@ namespace BON
 {
     public class PlayerInventory : MonoBehaviour
     {
+        private PlayerWeaponSlotManager weaponSlotManager;
+
         [Header("Weapon Slots")]
+        public Spell currentSpell;
         public WeaponItem rightWeapon;
         public WeaponItem leftWeapon;
         public WeaponItem unarmedWeapon;
-        private PlayerWeaponSlotManager weaponSlotManager;
 
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[1];
         public WeaponItem[] weaponsInLeftHandSlots = new WeaponItem[1];
