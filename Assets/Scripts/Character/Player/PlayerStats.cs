@@ -77,7 +77,7 @@ namespace BON
             stamina_Bar.SetBarCurrentStamina(stamina_Current);
         }
 
-        public void RegerateStamina()
+        public void RegenerateStamina()
         {
             if(playerManager.isInteracting)
             {
