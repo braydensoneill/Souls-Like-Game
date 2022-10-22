@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8078587a14d25bb4d93487c30db107cd, type: 3}
-  m_Name: Healing Wand
+  m_Name: Staff_Healing
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 669ad388d0c30f546aebe025d07e0b87, type: 3}
-  itemName: Healing Wand
+  itemIcon: {fileID: 21300000, guid: 13c45c9f54e22614d83a4037bbb06c57, type: 3}
+  itemName: Staff of Healing
   modelPrefab: {fileID: 2207933812319807217, guid: d7a1527fa9558fc42955aa426be62ada,
     type: 3}
   isUnarmed: 0

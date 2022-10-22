@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7792201000962073614}
   m_Layer: 0
-  m_Name: Healing Wand
+  m_Name: Staff_Healing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4004449891484013336}
   m_LocalRotation: {x: 0.63314587, y: 0.13314621, z: -0.13363044, w: 0.75069386}
-  m_LocalPosition: {x: 0.1112, y: -0.0368, z: 0.0225}
+  m_LocalPosition: {x: 0.089, y: -0.047, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7706791761177611578}
@@ -73,8 +73,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.16756478, y: 1.613134, z: 0.15134084}
-  m_Center: {x: -0.003340341, y: 0.3080703, z: -0.00341825}
+  m_Size: {x: 0.16756478, y: 2.006567, z: 0.15134084}
+  m_Center: {x: -0.0033409572, y: 0.5046409, z: -0.0034181902}
 --- !u!114 &5892121186074575556
 MonoBehaviour:
   m_ObjectHideFlags: 0

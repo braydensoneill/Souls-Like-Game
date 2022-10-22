@@ -119,15 +119,27 @@ namespace BON
 
         private void PerformRBMagicAction(WeaponItem _weapon)
         {
+            // Don't allow to spam
+            if (playerManager.isInteracting)
+                return;
+
+            // Check weapon type
             if(_weapon.isFaithCaster)
             {
-                if(playerInventory.currentSpell != null &&
-                    playerInventory.currentSpell.isFaithSpell)
+                // Check if player has active spell and if it is a right weapon type
+                if(playerInventory.currentSpell != null && playerInventory.currentSpell.isFaithSpell)
                 {
-                    // Check for FP
+                    // Check if the player has enough mana for the spell cost
+                    if(playerStats.mana_Current >= playerInventory.currentSpell.manaCost)
+                    {
+                        // Cast the spell
+                        playerInventory.currentSpell.AttemptoCastSpell(playerAnimatorHandler, playerStats);
+                    }
 
-                    // Attemp to cast spell
-                    playerInventory.currentSpell.AttemptoCastSpell(playerAnimatorHandler, playerStats);
+                    else
+                    {
+                        playerAnimatorHandler.PlayTargetAnimation("Shrug", true);
+                    }
                 }
             }
         }

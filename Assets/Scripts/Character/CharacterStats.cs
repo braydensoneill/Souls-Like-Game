@@ -18,5 +18,10 @@ namespace BON
         public float stamina_Level = 10;
         public float stamina_Max;
         public float stamina_Current;
+
+        [Header("Mana Stats")]
+        public float mana_Level = 10;
+        public float mana_Max;
+        public float mana_Current;
     }
 }

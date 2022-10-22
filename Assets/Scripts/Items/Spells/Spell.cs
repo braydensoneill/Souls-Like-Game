@@ -10,6 +10,9 @@ namespace BON
         public GameObject spellCastFX;
         public string spellAnimation;
 
+        [Header("Spell Cost")]
+        public float manaCost;
+
         [Header("Spell Type")]
         public bool isFaithSpell;
         public bool isMagicSpell;
@@ -26,6 +29,7 @@ namespace BON
         public virtual void SuccessfullyCastSpell(PlayerAnimatorHandler playerAnimatorHandler, PlayerStats playerStats)
         {
             Debug.Log("You successfully to cast a spell!");
+            playerStats.TakeManaDamage(manaCost);
         }
     }
 }

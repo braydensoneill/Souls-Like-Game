@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90b570b3f636db54aad88d5d8a20f182, type: 3}
-  m_Name: Heal Player
+  m_Name: Heal_Self
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: 669ad388d0c30f546aebe025d07e0b87, type: 3}
   itemName: Heal Player
@@ -19,6 +19,7 @@ MonoBehaviour:
   spellCastFX: {fileID: 5770811148750596353, guid: b15d27d19765ad04c87eb0986a0a9ad0,
     type: 3}
   spellAnimation: Spell_Heal
+  manaCost: 20
   isFaithSpell: 1
   isMagicSpell: 0
   isPyroSpell: 0

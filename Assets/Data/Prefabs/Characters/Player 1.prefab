@@ -2991,7 +2991,6 @@ GameObject:
   - component: {fileID: 8529154958955317410}
   - component: {fileID: 8529154958955317408}
   - component: {fileID: 8529154958955317423}
-  - component: {fileID: 8529154958955317422}
   - component: {fileID: 8529154958955317421}
   m_Layer: 12
   m_Name: Player 1
@@ -3136,6 +3135,7 @@ MonoBehaviour:
   canDoCombo: 0
   isUsingRightHand: 0
   isUsingLeftHand: 0
+  isInvulnerable: 0
 --- !u!114 &8529154958955317423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3148,6 +3148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1e812f2839ad641b0a4717a723b0a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSpell: {fileID: 0}
   rightWeapon: {fileID: 0}
   leftWeapon: {fileID: 0}
   unarmedWeapon: {fileID: 11400000, guid: 2b3a9b2b785ac324cbcbe08895554d5c, type: 2}
@@ -3160,19 +3161,6 @@ MonoBehaviour:
   currentRightWeaponIndex: 0
   currentLeftWeaponIndex: 0
   weaponsInventory: []
---- !u!114 &8529154958955317422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8529154958955317414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab574b4d8c34155419cf54b719ede63a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lastAttack: 
 --- !u!114 &8529154958955317421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3194,6 +3182,9 @@ MonoBehaviour:
   stamina_Current: 0
   health_Bar: {fileID: 0}
   stamina_Bar: {fileID: 0}
+  stamina_Regeneration_Strength: 7.5
+  stamina_Regeneration_Timer_Current: 0
+  stamina_Regeneration_Timer_Max: 1.5
 --- !u!1 &8529154959019019634
 GameObject:
   m_ObjectHideFlags: 0

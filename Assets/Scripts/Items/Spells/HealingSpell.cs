@@ -11,6 +11,7 @@ namespace BON
 
         public override void AttemptoCastSpell(PlayerAnimatorHandler playerAnimatorHandler, PlayerStats playerStats)
         {
+            base.AttemptoCastSpell(playerAnimatorHandler, playerStats);
             GameObject instantiatedWarmUpSpellFX = Instantiate(spellWarmUpFX, playerAnimatorHandler.transform);
             playerAnimatorHandler.PlayTargetAnimation(spellAnimation, true);
             Debug.Log("Attempted to cast spell");
@@ -18,6 +19,7 @@ namespace BON
 
         public override void SuccessfullyCastSpell(PlayerAnimatorHandler playerAnimatorHandler, PlayerStats playerStats)
         {
+            base.SuccessfullyCastSpell(playerAnimatorHandler, playerStats);
             GameObject instantiatedSpellFX = Instantiate(spellCastFX, playerAnimatorHandler.transform);
             playerStats.HealPlayer(healAmount);
             Debug.Log("Successfully casted spell");

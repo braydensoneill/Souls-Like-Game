@@ -9,15 +9,15 @@ namespace BON
     {
         public Slider slider;
 
-        public void SetBarMaxHealth(float maxValue)
+        public void SetMaxHealthBarValue(float _maxValue)
         {
-            slider.maxValue = maxValue;
-            slider.value = maxValue;
+            slider.maxValue = _maxValue;
+            slider.value = _maxValue;
         }
 
-        public void SetBarCurrentHealth(float currentValue)
+        public void SetCurrentHealthBarValue(float _currentValue)
         {
-            slider.value = currentValue;
+            slider.value = _currentValue;
         }
     }
 }
