@@ -8,6 +8,7 @@ namespace BON
     {
         private PlayerAnimatorHandler playerAnimatorHandler;
         private PlayerManager playerManager;
+        private PlayerStats playerStats;
         private PlayerInventory playerInventory;
         private InputHandler inputHandler;
         private PlayerWeaponSlotManager weaponSlotManager;
@@ -18,6 +19,7 @@ namespace BON
         {
             playerAnimatorHandler = GetComponent<PlayerAnimatorHandler>();
             playerManager = GetComponentInParent<PlayerManager>();
+            playerStats = GetComponentInParent<PlayerStats>();
             playerInventory = GetComponentInParent<PlayerInventory>();
             inputHandler = GetComponentInParent<InputHandler>();
             weaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
@@ -123,9 +125,16 @@ namespace BON
                     playerInventory.currentSpell.isFaithSpell)
                 {
                     // Check for FP
+
                     // Attemp to cast spell
+                    playerInventory.currentSpell.AttemptoCastSpell(playerAnimatorHandler, playerStats);
                 }
             }
+        }
+
+        private void SuccessfullyCastSpell() // This function only calls a function in another script. It is also here so it can be called in an animation event()
+        {
+            playerInventory.currentSpell.SuccessfullyCastSpell(playerAnimatorHandler, playerStats);
         }
         #endregion
     }

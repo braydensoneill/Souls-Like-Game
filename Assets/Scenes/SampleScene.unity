@@ -2807,7 +2807,7 @@ PrefabInstance:
     - target: {fileID: 7932120711640806166, guid: f072e4f95ce9f0d4db8029e04539bad1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7932120711640806166, guid: f072e4f95ce9f0d4db8029e04539bad1,
         type: 3}
@@ -18623,9 +18623,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8529154958955317423, guid: 822d07266f7eb9f4a85deea15dbfa750,
         type: 3}
+      propertyPath: leftWeapon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8529154958955317423, guid: 822d07266f7eb9f4a85deea15dbfa750,
+        type: 3}
+      propertyPath: rightWeapon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8529154958955317423, guid: 822d07266f7eb9f4a85deea15dbfa750,
+        type: 3}
+      propertyPath: currentSpell
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a9a9db33e66e254f81fe2202bff698b,
+        type: 2}
+    - target: {fileID: 8529154958955317423, guid: 822d07266f7eb9f4a85deea15dbfa750,
+        type: 3}
+      propertyPath: currentRightWeaponIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8529154958955317423, guid: 822d07266f7eb9f4a85deea15dbfa750,
+        type: 3}
       propertyPath: weaponsInLeftHandSlots.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: b80245d640232ca4387be3f317cc0f35,
+        type: 2}
+    - target: {fileID: 8529154958955317423, guid: 822d07266f7eb9f4a85deea15dbfa750,
+        type: 3}
+      propertyPath: weaponsInRightHandSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1fd74f602cca98241a0f9a9dd1d13a7a,
         type: 2}
     m_RemovedComponents:
     - {fileID: 8529154958955317422, guid: 822d07266f7eb9f4a85deea15dbfa750, type: 3}

@@ -37,6 +37,11 @@ namespace BON
             stamina_Current = stamina_Max;
         }
 
+        private void Update()
+        {
+            health_Bar.SetBarCurrentHealth(health_Current);
+        }
+
         private float SetMaxHealthFromHealthLevel()
         {
             // Add whatever equation for calculating hp here
@@ -97,6 +102,14 @@ namespace BON
                     stamina_Bar.SetBarCurrentStamina(Mathf.RoundToInt(stamina_Current));
                 }
             } 
+        }
+
+        public void HealPlayer(float _healAmount)
+        {
+            health_Current += _healAmount;
+
+            if(health_Current > health_Max)
+                health_Current = health_Max;
         }
 
     }
