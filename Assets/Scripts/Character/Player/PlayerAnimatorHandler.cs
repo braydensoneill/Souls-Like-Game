@@ -11,7 +11,6 @@ namespace BON
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
 
-        public bool canRotate;
         private int vertical;
         private int horizontal;
 
@@ -77,9 +76,14 @@ namespace BON
             animator.SetFloat(horizontal, _h, 0.1f, Time.deltaTime);
         }
 
-        public void SetRotation(bool canRotate)
+        public void CanRotate()
         {
-            this.canRotate = canRotate;
+            animator.SetBool("canRotate", true);
+        }
+
+        public void StopRotation()
+        {
+            animator.SetBool("canRotate", false); ;
         }
 
         public void EnableCombo()
@@ -104,6 +108,7 @@ namespace BON
 
         public override void TakeCriticalDamageAnimationEvent()
         {
+            // Dont play animation here, let the animator bool decide death animation for backstabs
             playerStats.TakeHealthDamageNoAnimation(playerManager.pendingCriticalDamage);
             playerManager.pendingCriticalDamage = 0;
         }

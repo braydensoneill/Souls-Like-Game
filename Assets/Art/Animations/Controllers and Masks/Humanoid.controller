@@ -998,16 +998,16 @@ AnimatorStateMachine:
     m_Position: {x: 80, y: -130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1082960191474269505}
-    m_Position: {x: 880, y: -140, z: 0}
+    m_Position: {x: 960, y: -140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2727414627366966741}
-    m_Position: {x: 880, y: -90, z: 0}
+    m_Position: {x: 960, y: -90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3732657921623216289}
-    m_Position: {x: 1070, y: -220, z: 0}
+    m_Position: {x: 1100, y: -240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4358255231027549941}
-    m_Position: {x: 690, y: -220, z: 0}
+    m_Position: {x: 820, y: -240, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -1105,6 +1105,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: isDead
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: canRotate
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -1270,6 +1276,20 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &1857369410435626158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1dbfcabd12c6664190d1e7eed05afdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetBool: canRotate
+  status: 1
 --- !u!1101 &2006040925119431081
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1400,6 +1420,7 @@ AnimatorState:
   - {fileID: -7792368436977692977}
   - {fileID: 6880907867586707951}
   - {fileID: 2692472031995771857}
+  - {fileID: 1857369410435626158}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

@@ -7,24 +7,24 @@ namespace BON
     public class DamageCollider : MonoBehaviour
     {
         public int CurrentWeaponDamage = 25;
-        private Collider _damageCollider;
+        private Collider damageCollider;
 
         private void Awake()
         {
-            _damageCollider = GetComponent<Collider>();
-            _damageCollider.gameObject.SetActive(true);
-            _damageCollider.isTrigger = true;
-            _damageCollider.enabled = false;
+            damageCollider = GetComponent<Collider>();
+            damageCollider.gameObject.SetActive(true);
+            damageCollider.isTrigger = true;
+            damageCollider.enabled = false;
         }
 
         public void EnableDamageCollider()
         {
-            _damageCollider.enabled = true;
+            damageCollider.enabled = true;
         }
 
         public void DisableDamageCollider()
         {
-            _damageCollider.enabled = false;
+            damageCollider.enabled = false;
         }
 
         private void OnTriggerEnter(Collider other)

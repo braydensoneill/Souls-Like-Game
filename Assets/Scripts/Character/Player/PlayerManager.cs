@@ -10,6 +10,7 @@ namespace BON
         private Animator animator;
         private CameraHandler cameraHandler;
         private PlayerStats playerStats;
+        private PlayerAnimatorHandler playerAnimatorHandler;
         private PlayerLocomotion playerLocomotion;
 
         [Header("User Interface")]
@@ -29,24 +30,20 @@ namespace BON
 
         private void Awake()
         {
-            backStabCollider = GetComponentInChildren<BackStabCollider>();
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            cameraHandler = CameraHandler.singleton;    // do this here or findobjectoftype in awake?
+            cameraHandler = FindObjectOfType<CameraHandler>();
             inputHandler = GetComponent<InputHandler>();
             animator = GetComponentInChildren<Animator>();
             playerStats = GetComponent<PlayerStats>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
+            playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
             interactableUI = FindObjectOfType<InteractableUI>();
+            backStabCollider = GetComponentInChildren<BackStabCollider>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            float _delta = Time.deltaTime;
+            float delta = Time.deltaTime;
 
             isInteracting = animator.GetBool("isInteracting");
             canDoCombo = animator.GetBool("canDoCombo");
@@ -59,9 +56,9 @@ namespace BON
             inputHandler.flag_Roll = false;
             inputHandler.flag_Sprint = false;
 
-            inputHandler.TickInput(_delta);
-
-            playerLocomotion.HandleRollingAndSprinting(_delta);
+            inputHandler.TickInput(delta);
+            playerAnimatorHandler.canRotate = animator.GetBool("canRotate");
+            playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleJumping();
             playerStats.RegenerateStamina();
 
@@ -70,11 +67,12 @@ namespace BON
 
         private void FixedUpdate()
         {
-            float _delta = Time.fixedDeltaTime;
+            float delta = Time.fixedDeltaTime;
 
-            playerLocomotion.HandleMovement(_delta);
-            playerLocomotion.HandleRollingAndSprinting(_delta);
-            playerLocomotion.HandleFalling(_delta, playerLocomotion.moveDirection);
+            playerLocomotion.HandleMovement(delta);
+            playerLocomotion.HandleRollingAndSprinting(delta);
+            playerLocomotion.HandleFalling(delta, playerLocomotion.moveDirection);
+            playerLocomotion.HandleRotation(delta);
         }
 
         private void LateUpdate()
@@ -93,12 +91,12 @@ namespace BON
             inputHandler.input_Inventory = false;
             #endregion
 
-            float _delta = Time.deltaTime;
+            float delta = Time.deltaTime;
 
             if (cameraHandler != null)
             {
-                cameraHandler.FollowTarget(_delta);
-                cameraHandler.HandleCameraRotation(_delta, inputHandler.mouseX, inputHandler.mouseY);
+                cameraHandler.FollowTarget(delta);
+                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
             }
 
             if (isAirborne)

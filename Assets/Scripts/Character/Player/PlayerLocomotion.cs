@@ -13,7 +13,7 @@ namespace BON
         private CameraHandler cameraHandler;
         private InputHandler inputHandler;
         [HideInInspector] public Transform myTransform;
-        [HideInInspector] public PlayerAnimatorHandler animatorHandler;
+        [HideInInspector] public PlayerAnimatorHandler playerAnimatorHandler;
 
         [Header("General")]
         public GameObject normalCamera;
@@ -49,11 +49,11 @@ namespace BON
             playerManager = GetComponent<PlayerManager>();
             rigidbody = GetComponent<Rigidbody>();
             inputHandler = GetComponent<InputHandler>();
-            animatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
+            playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
             cameraObject = Camera.main.transform;
             myTransform = transform;
 
-            animatorHandler.Initialise();
+            playerAnimatorHandler.Initialise();
 
             playerManager.isGrounded = true;
             _ignoreForGroundCheck = ~(1 << 8 | 1 << 11);
@@ -64,65 +64,68 @@ namespace BON
         Vector3 _normalVector;
         Vector3 _targetPosition;
 
-        private void HandleRotation(float delta)
+        public void HandleRotation(float _delta)
         {
-            // Check if the player is currently locked on to a target
-            if(inputHandler.flag_LockOn)
+            if (playerAnimatorHandler.canRotate)
             {
-                // Sprinting/Rolling while locked on
-                if(inputHandler.flag_Sprint || inputHandler.flag_Roll)
+                // Check if the player is currently locked on to a target
+                if (inputHandler.flag_LockOn)
                 {
-                    Vector3 targetDirection = Vector3.zero;
-                    targetDirection = cameraHandler.cameraTransform.forward * inputHandler.vertical;
-                    targetDirection += cameraHandler.cameraTransform.right * inputHandler.horizontal;
-                    targetDirection.Normalize();
-                    targetDirection.y = 0;
-
-                    if (targetDirection == Vector3.zero)
+                    // Sprinting/Rolling while locked on
+                    if (inputHandler.flag_Sprint || inputHandler.flag_Roll)
                     {
-                        targetDirection = transform.forward;
+                        Vector3 targetDirection = Vector3.zero;
+                        targetDirection = cameraHandler.cameraTransform.forward * inputHandler.vertical;
+                        targetDirection += cameraHandler.cameraTransform.right * inputHandler.horizontal;
+                        targetDirection.Normalize();
+                        targetDirection.y = 0;
+
+                        if (targetDirection == Vector3.zero)
+                        {
+                            targetDirection = transform.forward;
+                        }
+
+                        Quaternion tr = Quaternion.LookRotation(targetDirection);
+                        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, _rotationSpeed * Time.deltaTime);
+
+                        transform.rotation = targetRotation;
                     }
 
-                    Quaternion tr = Quaternion.LookRotation(targetDirection);
-                    Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, _rotationSpeed * Time.deltaTime);
-
-                    transform.rotation = targetRotation;
+                    // Not sprinting or rolling while locked on
+                    else
+                    {
+                        Vector3 rotationDirection = moveDirection;
+                        rotationDirection = cameraHandler.currentLockOnTarget.transform.position - transform.position;
+                        rotationDirection.y = 0;
+                        rotationDirection.Normalize();
+                        Quaternion tr = Quaternion.LookRotation(rotationDirection);
+                        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, _rotationSpeed * Time.deltaTime);
+                        transform.rotation = targetRotation;
+                    }
                 }
 
-                // Not sprinting or rolling while locked on
+                // Check if the player is NOT currently locked on to a target
                 else
                 {
-                    Vector3 rotationDirection = moveDirection;
-                    rotationDirection = cameraHandler.currentLockOnTarget.transform.position - transform.position;
-                    rotationDirection.y = 0;
-                    rotationDirection.Normalize();
-                    Quaternion tr = Quaternion.LookRotation(rotationDirection);
-                    Quaternion targetRotation = Quaternion.Slerp(transform.rotation, tr, _rotationSpeed * Time.deltaTime);
-                    transform.rotation = targetRotation;
+                    Vector3 _targetDir = Vector3.zero;
+                    float _moveOverride = inputHandler.moveAmount;
+
+                    _targetDir = cameraObject.forward * inputHandler.vertical;
+                    _targetDir += cameraObject.right * inputHandler.horizontal;
+
+                    _targetDir.Normalize();
+                    _targetDir.y = 0;
+
+                    if (_targetDir == Vector3.zero)
+                        _targetDir = myTransform.forward;
+
+                    float _rs = _rotationSpeed;
+
+                    Quaternion _tr = Quaternion.LookRotation(_targetDir);
+                    Quaternion _targetRotation = Quaternion.Slerp(myTransform.rotation, _tr, _rs * _delta);
+
+                    myTransform.rotation = _targetRotation;
                 }
-            }
-
-            // Check if the player is NOT currently locked on to a target
-            else
-            {
-                Vector3 _targetDir = Vector3.zero;
-                float _moveOverride = inputHandler.moveAmount;
-
-                _targetDir = cameraObject.forward * inputHandler.vertical;
-                _targetDir += cameraObject.right * inputHandler.horizontal;
-
-                _targetDir.Normalize();
-                _targetDir.y = 0;
-
-                if (_targetDir == Vector3.zero)
-                    _targetDir = myTransform.forward;
-
-                float _rs = _rotationSpeed;
-
-                Quaternion _tr = Quaternion.LookRotation(_targetDir);
-                Quaternion _targetRotation = Quaternion.Slerp(myTransform.rotation, _tr, _rs * delta);
-
-                myTransform.rotation = _targetRotation;
             }
         }
 
@@ -165,22 +168,19 @@ namespace BON
 
             if(inputHandler.flag_LockOn && inputHandler.flag_Sprint == false)
             {
-                animatorHandler.UpdateAnimatorValues(inputHandler.vertical, inputHandler.horizontal, playerManager.isSprinting);
+                playerAnimatorHandler.UpdateAnimatorValues(inputHandler.vertical, inputHandler.horizontal, playerManager.isSprinting);
 
             }
 
             else
             {
-                animatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
+                playerAnimatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
             }
-
-            if (animatorHandler.canRotate)
-                HandleRotation(delta);
         }
 
         public void HandleRollingAndSprinting(float delta)
         {
-            if (animatorHandler.animator.GetBool("isInteracting"))
+            if (playerAnimatorHandler.animator.GetBool("isInteracting"))
                 return;
 
             if(inputHandler.flag_Roll)
@@ -190,7 +190,7 @@ namespace BON
 
                 if(inputHandler.moveAmount > 0)
                 {
-                    animatorHandler.PlayTargetAnimation("Roll", true);
+                    playerAnimatorHandler.PlayTargetAnimation("Roll", true);
                     moveDirection.y = 0;
                     Quaternion _rollRotation = Quaternion.LookRotation(moveDirection);
                     myTransform.rotation = _rollRotation;
@@ -198,7 +198,7 @@ namespace BON
 
                 else
                 {
-                    animatorHandler.PlayTargetAnimation("Backstep", true);
+                    playerAnimatorHandler.PlayTargetAnimation("Backstep", true);
                 }
             }
         }
@@ -238,13 +238,13 @@ namespace BON
                     if(InAirTimer > 0.5f)
                     {
                         Debug.Log("Air Time: " + InAirTimer);
-                        animatorHandler.PlayTargetAnimation("Land", true);
+                        playerAnimatorHandler.PlayTargetAnimation("Land", true);
                         InAirTimer = 0;
                     }
 
                     else
                     {
-                        animatorHandler.PlayTargetAnimation("Empty", true);
+                        playerAnimatorHandler.PlayTargetAnimation("Empty", true);
                         InAirTimer = 0;
                     }
 
@@ -263,7 +263,7 @@ namespace BON
                 {
                     if(playerManager.isInteracting == false)
                     {
-                        animatorHandler.PlayTargetAnimation("Fall", true);
+                        playerAnimatorHandler.PlayTargetAnimation("Fall", true);
                     }
 
                     Vector3 _vel = rigidbody.velocity;
@@ -298,7 +298,7 @@ namespace BON
                     moveDirection += cameraObject.right * inputHandler.horizontal * inputHandler.moveAmount;
 
                     // Animations
-                    animatorHandler.PlayTargetAnimation("Jump", true);
+                    playerAnimatorHandler.PlayTargetAnimation("Jump", true);
                     moveDirection.y = 0;
 
                     // Rotation
