@@ -11,7 +11,7 @@ namespace BON
         private PlayerStats playerStats;
         private PlayerInventory playerInventory;
         private InputHandler inputHandler;
-        private PlayerWeaponSlotManager weaponSlotManager;
+        private PlayerWeaponSlotManager playerWeaponSlotManager;
 
         public string lastAttack;
         private LayerMask backStabLayer = 1 << 13;
@@ -23,7 +23,7 @@ namespace BON
             playerStats = GetComponentInParent<PlayerStats>();
             playerInventory = GetComponentInParent<PlayerInventory>();
             inputHandler = GetComponentInParent<InputHandler>();
-            weaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
+            playerWeaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
         }
 
         public void HandleWeaponCombo(WeaponItem weapon)
@@ -46,7 +46,7 @@ namespace BON
 
         public void HandleLightAttack(WeaponItem weapon)
         {
-            weaponSlotManager.attackingWeapon = weapon;
+            playerWeaponSlotManager.attackingWeapon = weapon;
 
             if (inputHandler.flag_TwoHand)
             {
@@ -56,7 +56,7 @@ namespace BON
 
             else
             {
-                weaponSlotManager.attackingWeapon = weapon;
+                playerWeaponSlotManager.attackingWeapon = weapon;
                 playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Right_01, true);
                 lastAttack = weapon.OH_Sword_Light_Attack_Right_01;
             }
@@ -64,7 +64,7 @@ namespace BON
 
         public void HandleHeavyAttack(WeaponItem weapon)
         {
-            weaponSlotManager.attackingWeapon = weapon;
+            playerWeaponSlotManager.attackingWeapon = weapon;
 
             if (inputHandler.flag_TwoHand)
             {
@@ -159,6 +159,7 @@ namespace BON
                 transform.TransformDirection(Vector3.forward), out hit, 0.5f, backStabLayer))
             {
                 CharacterManager enemyCharacterManager = hit.transform.gameObject.transform.GetComponentInParent<CharacterManager>();
+                DamageCollider rightWeapon = playerWeaponSlotManager.rightHandDamageCollider;
 
                 if(enemyCharacterManager != null)
                 {
@@ -177,6 +178,10 @@ namespace BON
                     Quaternion targetRotation = Quaternion.Slerp(playerManager.transform.rotation, tr, 500 * Time.deltaTime);
                     playerManager.transform.rotation = targetRotation;
                     #endregion
+
+                    // Handle Critical Damage
+                    int criticalDamage = playerInventory.rightWeapon.criticalDamageMultiplier * rightWeapon.CurrentWeaponDamage;
+                    enemyCharacterManager.pendingCriticalDamage = criticalDamage;
 
                     // play the animation
                     playerAnimatorHandler.PlayTargetAnimation("Backstab_Stab", true);

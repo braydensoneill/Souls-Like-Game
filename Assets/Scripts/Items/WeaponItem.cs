@@ -7,12 +7,17 @@ namespace BON
     [CreateAssetMenu(menuName = "Items/Weapon Item")]
     public class WeaponItem : Item
     {
+        [Header("General")]
         public GameObject modelPrefab;
         public bool isUnarmed;
         public bool isHeavy;
         public bool isLight;
         public bool isBow;
         public bool isShield;
+
+        [Header("Damage")]
+        public int baseDamage = 25;
+        public int criticalDamageMultiplier = 4;
 
         [Header("Idle Animations")]
         public string Idle_Arm_Right_01;

@@ -14,9 +14,9 @@ namespace BON
         [Header("Combat Colliders")]
         public BoxCollider backStabBoxCollider;
 
-        private void Awake()
-        {
-
-        }
+        // Damage will be inflicted during an animation event
+        // Used in backstab or ripsote animation
+        [Header("Damage Multipliers")]
+        public int pendingCriticalDamage;
     }
 }

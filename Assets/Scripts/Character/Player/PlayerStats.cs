@@ -98,6 +98,20 @@ namespace BON
             }
         }
 
+        public void TakeHealthDamageNoAnimation(int _amount)
+        {
+            if (isDead)
+                return;
+
+            health_Current = health_Current - _amount;
+
+            if (health_Current <= 0)
+            {
+                health_Current = 0;
+                isDead = true;
+            }
+        }
+
         public void TakeStaminaDamage(float _amount)
         {
             stamina_Current -= _amount;

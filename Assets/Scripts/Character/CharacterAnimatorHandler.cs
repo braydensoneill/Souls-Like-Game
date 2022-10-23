@@ -14,5 +14,10 @@ namespace BON
             animator.SetBool("isInteracting", isInteracting);
             animator.CrossFade(targetAnim, 0.2f);
         }
+
+        public virtual void TakeCriticalDamageAnimationEvent()
+        {
+
+        }
     }
 }

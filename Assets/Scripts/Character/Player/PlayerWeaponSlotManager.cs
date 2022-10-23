@@ -6,6 +6,11 @@ namespace BON
 {
     public class PlayerWeaponSlotManager : MonoBehaviour
     {
+        private PlayerStats playerStats;
+        private InputHandler inputHandler;
+        private PlayerInventory playerInventory;
+        private PlayerManager playerManager;
+
         public WeaponItem attackingWeapon;
 
         public WeaponHolderSlot leftHandSlot;
@@ -25,17 +30,12 @@ namespace BON
         //public WeaponHolderSlot backSlot;
         #endregion
 
-        private DamageCollider leftHandDamageCollider;
-        private DamageCollider rightHandDamageCollider;
+        public DamageCollider leftHandDamageCollider;
+        public DamageCollider rightHandDamageCollider;
 
         private Animator animator;
 
         private QuickSlotsUI quickslotsUI;
-
-        private PlayerStats playerStats;
-        private InputHandler inputHandler;
-        private PlayerInventory playerInventory;
-        private PlayerManager playerManager;
 
         private void Awake()
         {
@@ -142,11 +142,13 @@ namespace BON
         public void LoadLeftWeaponDamageCollider()
         {
             leftHandDamageCollider = leftHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            leftHandDamageCollider.CurrentWeaponDamage = playerInventory.leftWeapon.baseDamage;
         }
 
         public void LoadRightWeaponDamageCollider()
         {
             rightHandDamageCollider = rightHandSlot.currentWeaponModel.GetComponentInChildren<DamageCollider>();
+            rightHandDamageCollider.CurrentWeaponDamage = playerInventory.rightWeapon.baseDamage;
         }
 
         public void OpenDamageCollider()

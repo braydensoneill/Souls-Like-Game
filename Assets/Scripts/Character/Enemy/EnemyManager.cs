@@ -52,6 +52,7 @@ namespace BON
             HandleRecoveryTime();
 
             isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
+            enemyAnimatorHandler.animator.SetBool("isDead", enemyStats.isDead);
         }
 
         private void FixedUpdate()
