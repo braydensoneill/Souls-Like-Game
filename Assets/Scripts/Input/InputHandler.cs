@@ -34,6 +34,8 @@ namespace BON
         public bool input_Y;
         public bool input_RT;
         public bool input_RB;
+        public bool input_CriticalAttack;
+
         public bool input_Jump;
         public bool input_Inventory;
         public bool input_LockOn;
@@ -56,6 +58,9 @@ namespace BON
         // Timer Variables
         [Header("Timers")]
         public float timer_Roll_Input;
+
+        [Header("Backstab")]
+        public Transform criticalAttackRayCastStartPoint;
 
         // Input Vectors
         private Vector2 _movementInput;
@@ -93,6 +98,7 @@ namespace BON
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => input_Right_Stick_Right = true;
                 inputActions.PlayerMovement.LockOnTargetLeft.performed += i => input_Right_Stick_Left = true;
                 inputActions.PlayerActions.Y.performed += i => input_Y = true;
+                inputActions.PlayerActions.CriticalAttack.performed += inputActions => input_CriticalAttack = true;
             }
 
             inputActions.Enable();
@@ -113,6 +119,7 @@ namespace BON
             HandleInventoryInput();
             HandleLockOnInput();
             HandleTwoHandInput();
+            HandleCriticalAttackInput();
         }
 
         private void HandleMoveInput(float delta)
@@ -151,12 +158,12 @@ namespace BON
             // Disable attacks if menu options are open
             if(uiManager.leftPanel.activeSelf == false && uiManager.selectWindow.activeSelf == false)
             {
-                if (input_RT)
+                if (input_RB)
                 {
-                    playerAttacker.HandleRTAction();
+                    playerAttacker.HandleRBAction();
                 }
 
-                if (input_RB) // This is temporary, blocking will be used for this keybind
+                if (input_RT) // This is temporary
                 {
                     if (playerManager.canDoCombo || !playerManager.isInteracting)
                     {
@@ -272,6 +279,15 @@ namespace BON
                     weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
                     weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
                 }
+            }
+        }
+
+        private void HandleCriticalAttackInput()
+        {
+            if(input_CriticalAttack)
+            {
+                input_CriticalAttack = false;
+                playerAttacker.AttemptBackStabOrRiposte();
             }
         }
     }

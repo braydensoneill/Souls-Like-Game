@@ -909,6 +909,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106797824}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &107039315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 107039316}
+  m_Layer: 12
+  m_Name: Back Stabber Standing Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &107039316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107039315}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 508350086}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &129772743 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1721439974700599530, guid: 675e58b35c11751488bca23a56e89997,
@@ -1237,6 +1267,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143923169}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &163001336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 163001337}
+  m_Layer: 12
+  m_Name: Combat Transforms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &163001337
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163001336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2055266036}
+  m_Father: {fileID: 2057436914}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &179001444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3924,6 +3985,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 501658208}
   m_CullTransparentMesh: 0
+--- !u!1 &508350085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 508350086}
+  m_Layer: 12
+  m_Name: Combat Transforms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &508350086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508350085}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 107039316}
+  m_Father: {fileID: 1065636478}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &513958793
 GameObject:
   m_ObjectHideFlags: 0
@@ -7940,8 +8032,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca319f618ce99644891afa9ec46447b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backStabCollider: {fileID: 0}
   lockOnTransform: {fileID: 1667181861}
-  currentState: {fileID: 1726874158}
+  backStabBoxCollider: {fileID: 1452016868}
+  currentState: {fileID: 248892142}
   currentTarget: {fileID: 0}
   navmeshAgent: {fileID: 0}
   enemyRigidbody: {fileID: 0}
@@ -9079,6 +9173,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195412564}
   m_CullTransparentMesh: 0
+--- !u!1 &1200943161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1200943162}
+  m_Layer: 12
+  m_Name: Critical Attack Raycast Start Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1200943162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200943161}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1597715622}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1203482693
 GameObject:
   m_ObjectHideFlags: 0
@@ -9435,6 +9559,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2058038105}
+  - {fileID: 1452016867}
   m_Father: {fileID: 1065636478}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10717,6 +10842,64 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447345233}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1452016866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1452016867}
+  - component: {fileID: 1452016868}
+  - component: {fileID: 1452016869}
+  m_Layer: 13
+  m_Name: Back Stab Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1452016867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452016866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: -0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1269982120}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1452016868
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452016866}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.57812196, y: 1, z: 0.06}
+  m_Center: {x: 0.008918896, y: 0, z: 0.000000018925792}
+--- !u!114 &1452016869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452016866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd8c7fec4cf8d746a17867b67fec125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backStabberStandPoint: {fileID: 107039316}
 --- !u!1 &1473157283
 GameObject:
   m_ObjectHideFlags: 0
@@ -12003,6 +12186,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1588524530}
   m_CullTransparentMesh: 0
+--- !u!1 &1597715621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1597715622}
+  m_Layer: 12
+  m_Name: Raycast Start Points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1597715622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597715621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1200943162}
+  m_Father: {fileID: 2057436914}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1598090380
 GameObject:
   m_ObjectHideFlags: 0
@@ -15590,6 +15804,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984643720}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2012136525 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8529154958251537598, guid: 822d07266f7eb9f4a85deea15dbfa750,
+    type: 3}
+  m_PrefabInstance: {fileID: 8529154957439071831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2012417681
 GameObject:
   m_ObjectHideFlags: 0
@@ -16311,6 +16531,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2037572925}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2055266035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2055266036}
+  m_Layer: 12
+  m_Name: Back Stabber Standing Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2055266036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055266035}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 163001337}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2057436914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8529154958955317413, guid: 822d07266f7eb9f4a85deea15dbfa750,
@@ -16627,6 +16877,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071039956}
   m_CullTransparentMesh: 0
+--- !u!1 &2079284384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2079284385}
+  - component: {fileID: 2079284386}
+  - component: {fileID: 2079284387}
+  m_Layer: 13
+  m_Name: Back Stab Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2079284385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079284384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: -0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2012136525}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2079284386
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079284384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.57812196, y: 1, z: 0.06}
+  m_Center: {x: 0.008918896, y: 0, z: 0.000000018925792}
+--- !u!114 &2079284387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079284384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd8c7fec4cf8d746a17867b67fec125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backStabberStandPoint: {fileID: 2055266036}
 --- !u!1 &2084167520
 GameObject:
   m_ObjectHideFlags: 0
@@ -19548,9 +19856,24 @@ PrefabInstance:
       objectReference: {fileID: 1105880964}
     - target: {fileID: 8529154958955317408, guid: 822d07266f7eb9f4a85deea15dbfa750,
         type: 3}
+      propertyPath: backStabCollider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8529154958955317408, guid: 822d07266f7eb9f4a85deea15dbfa750,
+        type: 3}
       propertyPath: interactablePopUp
       value: 
       objectReference: {fileID: 1951237491}
+    - target: {fileID: 8529154958955317408, guid: 822d07266f7eb9f4a85deea15dbfa750,
+        type: 3}
+      propertyPath: backStabBoxCollider
+      value: 
+      objectReference: {fileID: 2079284386}
+    - target: {fileID: 8529154958955317409, guid: 822d07266f7eb9f4a85deea15dbfa750,
+        type: 3}
+      propertyPath: criticalAttackRayCastStartPoint
+      value: 
+      objectReference: {fileID: 1200943162}
     - target: {fileID: 8529154958955317413, guid: 822d07266f7eb9f4a85deea15dbfa750,
         type: 3}
       propertyPath: m_RootOrder
@@ -19664,6 +19987,12 @@ PrefabInstance:
       propertyPath: weaponsInRightHandSlots.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 1fd74f602cca98241a0f9a9dd1d13a7a,
+        type: 2}
+    - target: {fileID: 8529154958955317423, guid: 822d07266f7eb9f4a85deea15dbfa750,
+        type: 3}
+      propertyPath: weaponsInRightHandSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: ff15620b9d573bb438d01f0dfd08c627,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 822d07266f7eb9f4a85deea15dbfa750, type: 3}

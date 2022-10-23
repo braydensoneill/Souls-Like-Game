@@ -54,7 +54,7 @@ namespace BON
             singleton = this;
             _myTransform = transform;
             defaultPosition = cameraTransform.localPosition.z;
-            ignoreLayers = ~(1 << 0 | 1 << 8 | 1 << 10 | 1 << 11 | 1 << 12);    // Don't ignore layer 9 (environment layer)
+            ignoreLayers = ~(1 << 0 | 1 << 8 | 1 << 10 | 1 << 11 | 1 << 12 | 1 << 13);    // Don't ignore layer 9 (environment layer)
             inputHandler = FindObjectOfType<InputHandler>();
             playerManager = FindObjectOfType<PlayerManager>();
         }

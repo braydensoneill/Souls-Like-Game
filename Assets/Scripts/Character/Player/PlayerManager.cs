@@ -29,13 +29,13 @@ namespace BON
 
         private void Awake()
         {
-            
+            backStabCollider = GetComponentInChildren<BackStabCollider>();
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            cameraHandler = CameraHandler.singleton;
+            cameraHandler = CameraHandler.singleton;    // do this here or findobjectoftype in awake?
             inputHandler = GetComponent<InputHandler>();
             animator = GetComponentInChildren<Animator>();
             playerStats = GetComponent<PlayerStats>();
