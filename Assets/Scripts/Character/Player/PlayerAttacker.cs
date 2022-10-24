@@ -28,7 +28,11 @@ namespace BON
 
         public void HandleWeaponCombo(WeaponItem weapon)
         {
-            if(inputHandler.flag_Combo)
+            // Unless the player has insufficient stamina
+            if (playerStats.stamina_Current <= 0)
+                return;
+
+            if (inputHandler.flag_Combo)
             {
                 playerAnimatorHandler.animator.SetBool("canDoCombo", false);
 
@@ -46,6 +50,10 @@ namespace BON
 
         public void HandleLightAttack(WeaponItem weapon)
         {
+            // Unless the player has insufficient stamina
+            if (playerStats.stamina_Current <= 0)
+                return;
+
             playerWeaponSlotManager.attackingWeapon = weapon;
 
             if (inputHandler.flag_TwoHand)
@@ -64,6 +72,10 @@ namespace BON
 
         public void HandleHeavyAttack(WeaponItem weapon)
         {
+            // Unless the player has insufficient stamina
+            if (playerStats.stamina_Current <= 0)
+                return;
+
             playerWeaponSlotManager.attackingWeapon = weapon;
 
             if (inputHandler.flag_TwoHand)
@@ -153,6 +165,10 @@ namespace BON
 
         public void AttemptBackStabOrRiposte()
         {
+            // Unless the player has insufficient stamina
+            if (playerStats.stamina_Current <= 0)
+                return;
+
             RaycastHit hit;
 
             if (Physics.Raycast(inputHandler.criticalAttackRayCastStartPoint.position, 

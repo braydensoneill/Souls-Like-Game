@@ -11,6 +11,7 @@ namespace BON
         private PlayerAttacker playerAttacker;
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
+        private PlayerStats playerStats;
         private PlayerWeaponSlotManager weaponSlotManager;
         private CameraHandler cameraHandler;
         private UIManager uiManager;
@@ -71,6 +72,7 @@ namespace BON
             playerAttacker = GetComponentInChildren<PlayerAttacker>();
             playerInventory = GetComponent<PlayerInventory>();
             playerManager = GetComponent<PlayerManager>();
+            playerStats = GetComponent<PlayerStats>();
             weaponSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
             uiManager = FindObjectOfType<UIManager>();
             cameraHandler = FindObjectOfType<CameraHandler>();
@@ -93,6 +95,8 @@ namespace BON
                 
                 inputActions.PlayerActions.Interact.performed += i => input_A = true;
                 inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
+                inputActions.PlayerActions.Roll.performed += i => input_B = true;
+                inputActions.PlayerActions.Roll.canceled += i => input_B = false;    // Using cancelled here becase sprint uses the same keybind (but holding).
                 inputActions.PlayerActions.SelectWindow.performed += i => input_Inventory = true;
                 inputActions.PlayerActions.LockOn.performed += i => input_LockOn = true;
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => input_Right_Stick_Right = true;
@@ -133,16 +137,26 @@ namespace BON
 
         private void HandleRollInput(float delta)
         {
-            input_B = inputActions.PlayerActions.Roll.phase == UnityEngine.InputSystem.InputActionPhase.Started;
-            flag_Sprint = input_B;
-
             if (input_B)
             {
                 timer_Roll_Input += delta;
+
+                if(playerStats.stamina_Current <= 0)
+                {
+                    input_B = false;
+                    flag_Sprint = false;
+                }
+
+                if(moveAmount > 0.5f && playerStats.stamina_Current > 0)
+                {
+                    flag_Sprint = true;
+                }
             }
 
             else
             {
+                flag_Sprint = false;
+
                 if(timer_Roll_Input > 0 && timer_Roll_Input < 0.5f)
                 {
                     flag_Sprint = false;

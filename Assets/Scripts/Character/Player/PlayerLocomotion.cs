@@ -9,6 +9,7 @@ namespace BON
         [Header("References")]
         public new Rigidbody rigidbody;
         private PlayerManager playerManager;
+        private PlayerStats playerStats;
         private Transform cameraObject;
         private CameraHandler cameraHandler;
         private InputHandler inputHandler;
@@ -34,6 +35,11 @@ namespace BON
         [SerializeField] private float _fallSpeed = 100;
         [SerializeField] private float _fallForce = 5;
 
+        [Header("Stamina Costs")]
+        [SerializeField] private float rollStaminaCost = 20;
+        [SerializeField] private float backstepStaminaCost = 15;
+        [SerializeField] private float sprintCost = 1;
+
         [Header("Character Collision")]
         public CapsuleCollider characterCollider;
         public CapsuleCollider characterCollisionBlockerCollider;
@@ -41,15 +47,16 @@ namespace BON
         private void Awake()
         {
             cameraHandler = FindObjectOfType<CameraHandler>();
+            playerManager = GetComponent<PlayerManager>();
+            playerStats = GetComponent<PlayerStats>();
+            rigidbody = GetComponent<Rigidbody>();
+            inputHandler = GetComponent<InputHandler>();
+            playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            playerManager = GetComponent<PlayerManager>();
-            rigidbody = GetComponent<Rigidbody>();
-            inputHandler = GetComponent<InputHandler>();
-            playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
             cameraObject = Camera.main.transform;
             myTransform = transform;
 
@@ -155,6 +162,7 @@ namespace BON
                 speed = _sprintSpeed;
                 playerManager.isSprinting = true;
                 moveDirection *= speed;
+                playerStats.TakeStaminaDamage(sprintCost);
             }
 
             else
@@ -180,7 +188,12 @@ namespace BON
 
         public void HandleRollingAndSprinting(float delta)
         {
+            // Unless the player is currently interacting
             if (playerAnimatorHandler.animator.GetBool("isInteracting"))
+                return;
+
+            // Unless the player has insufficient stamina
+            if (playerStats.stamina_Current <= 0)
                 return;
 
             if(inputHandler.flag_Roll)
@@ -194,11 +207,13 @@ namespace BON
                     moveDirection.y = 0;
                     Quaternion _rollRotation = Quaternion.LookRotation(moveDirection);
                     myTransform.rotation = _rollRotation;
+                    playerStats.TakeStaminaDamage(rollStaminaCost);
                 }
 
                 else
                 {
                     playerAnimatorHandler.PlayTargetAnimation("Backstep", true);
+                    playerStats.TakeStaminaDamage(backstepStaminaCost);
                 }
             }
         }
@@ -286,10 +301,15 @@ namespace BON
         
         public void HandleJumping()
         {
+            // Unless the player is currently interacting
             if (playerManager.isInteracting)
                 return;
 
-            if(inputHandler.input_Jump)
+            // Unless the player has insufficient stamina
+            if (playerStats.stamina_Current <= 0)
+                return;
+
+            if (inputHandler.input_Jump)
             {
                 if(inputHandler.moveAmount > 0)
                 {
