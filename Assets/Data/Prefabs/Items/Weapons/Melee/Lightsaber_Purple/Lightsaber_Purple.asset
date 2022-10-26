@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8078587a14d25bb4d93487c30db107cd, type: 3}
+  m_Name: Lightsaber_Purple
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 21300000, guid: 3b3dd81ef13324e45bd067e56414e68b, type: 3}
+  itemName: Lightsaber (Purple)
+  modelPrefab: {fileID: 4329264159065547410, guid: 15cc107f642b5a549b3aa607f975a1e7,
+    type: 3}
+  isUnarmed: 0
+  isHeavy: 0
+  isLight: 1
+  isBow: 0
+  isShield: 0
+  baseDamage: 25
+  criticalDamageMultiplier: 4
+  Idle_Arm_Right_01: Right_Arm_Idle_01
+  Idle_Arm_Left_01: Left_Arm_Idle_01
+  Idle_TH: TH_Idle_01
+  OH_Sword_Light_Attack_Right_01: OH_Sword_Light_Attack_Right_01
+  OH_Sword_Light_Attack_Right_02: OH_Sword_Light_Attack_Right_02
+  OH_Heavy_Attack_01: OH_Heavy_Attack_01
+  TH_Sword_Light_Attack_01: TH_Sword_Light_Attack_01
+  TH_Sword_Light_Attack_02: TH_Sword_Light_Attack_02
+  baseStamina: 15
+  lightAttackMultiplier: 1
+  heavyAttackMultiplier: 2
+  isSpellCaster: 0
+  isFaithCaster: 0
+  isPyroCaster: 0
+  isMeleeWeapon: 1

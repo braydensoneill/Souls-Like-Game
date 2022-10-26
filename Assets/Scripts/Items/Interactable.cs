@@ -17,7 +17,7 @@ namespace BON
 
         public virtual void Interact(PlayerManager playerManager)
         {
-            // do something here
+            Debug.Log("You have interacted with an object!");
         }
     }
 }

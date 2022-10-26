@@ -103,17 +103,20 @@ namespace BON
                 playerLocomotion.InAirTimer = playerLocomotion.InAirTimer + Time.deltaTime;
         }
 
+        #region Player Interactions
         public void CheckForInteractableObject()
         {
             RaycastHit hit;
 
-            if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f, cameraHandler.ignoreLayers))
+            if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f))
             {
-                if(hit.collider.tag == "Interactable" && !isInteracting)
+                if (hit.collider.tag == "Interactable" && !isInteracting)
                 {
+                    Debug.Log("Collided with an interactable object!");
+
                     Interactable interactableObject = hit.collider.GetComponent<Interactable>();
 
-                    if(interactableObject != null)
+                    if (interactableObject != null)
                     {
                         string interactableText = interactableObject.interactableText;
                         interactableUI.interactableText.text = interactableText;
@@ -129,16 +132,24 @@ namespace BON
 
             else
             {
-                if(interactablePopUp != null)
+                if (interactablePopUp != null)
                 {
                     interactablePopUp.SetActive(false);
                 }
 
-                if(itemPopUp != null && inputHandler.input_A)
+                if (itemPopUp != null && inputHandler.input_A)
                 {
                     itemPopUp.SetActive(false);
                 }
             }
         }
+
+        public void OpenChestInteraction(Transform _playerStandsHereWhenOpeningChest)
+        {
+            playerLocomotion.rigidbody.velocity = Vector3.zero; // Stops the player from ice skating while looting
+            transform.position = _playerStandsHereWhenOpeningChest.transform.position;
+            playerAnimatorHandler.PlayTargetAnimation("Open_Chest", true);
+        }
+        #endregion
     }
 }
