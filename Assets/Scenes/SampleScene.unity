@@ -7005,6 +7005,7 @@ MonoBehaviour:
   radius: 1
   interactableText: Open Chest
   playerStandingPoint: {fileID: 957261379}
+  itemStandPoint: {fileID: 1977097666}
   itemSpawner: {fileID: 570566635540511868, guid: 7264cd12d9982ac4eac1e81b496cee2b,
     type: 3}
   itemInChest: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a, type: 2}
@@ -14520,6 +14521,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971444797}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1977097665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1977097666}
+  m_Layer: 0
+  m_Name: Item Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1977097666
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977097665}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 953290370}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1984643720
 GameObject:
   m_ObjectHideFlags: 0
@@ -15405,9 +15436,9 @@ MonoBehaviour:
   environmentLayer:
     serializedVersion: 2
     m_Bits: 0
-  lookSpeed: 0.025
+  lookSpeed: 0.015
   followSpeed: 0.1
-  pivotSpeed: 0.025
+  pivotSpeed: 0.015
   minimumPivot: -35
   maximumPivot: 35
   cameraSphereRadius: 0.2

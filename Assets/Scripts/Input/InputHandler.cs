@@ -298,7 +298,7 @@ namespace BON
 
         private void HandleCriticalAttackInput()
         {
-            if(input_CriticalAttack)
+            if(input_CriticalAttack && !playerManager.isInteracting)
             {
                 input_CriticalAttack = false;
                 playerAttacker.AttemptBackStabOrRiposte();
