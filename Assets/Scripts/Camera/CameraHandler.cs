@@ -14,7 +14,7 @@ namespace BON
         public Transform cameraTransform;
         public Transform cameraPivotTransform;
 
-        private Transform _myTransform;
+        private Transform myTransform;
         private Vector3 cameraTransformPosition;
         public LayerMask ignoreLayers;
         public LayerMask environmentLayer;
@@ -33,6 +33,7 @@ namespace BON
         [Header("Camera Pivot")]
         public float minimumPivot = -35;
         public float maximumPivot = 35;
+        public float cameraPivotX = 1.25f;
 
         [Header("Camera Collision")]
         public float cameraSphereRadius = 0.2f;
@@ -52,7 +53,7 @@ namespace BON
         private void Awake()
         {
             singleton = this;
-            _myTransform = transform;
+            myTransform = transform;
             defaultPosition = cameraTransform.localPosition.z;
             ignoreLayers = ~(1 << 0 | 1 << 8 | 1 << 10 | 1 << 11 | 1 << 12 | 1 << 13);    // Don't ignore layer 9 (environment layer)
             inputHandler = FindObjectOfType<InputHandler>();
@@ -64,40 +65,40 @@ namespace BON
             environmentLayer = LayerMask.NameToLayer("Environment");
         }
 
-        public void FollowTarget(float delta)
+        public void FollowTarget(float _delta)
         {
-            Vector3 _targetPosition = Vector3.SmoothDamp(
-                _myTransform.position, 
+            Vector3 targetPosition = Vector3.SmoothDamp(
+                myTransform.position, 
                 targetTransform.position, 
                 ref _cameraFollowVelocity,
-                delta / followSpeed);
+                _delta / followSpeed);
 
-            _myTransform.position = _targetPosition;
+            myTransform.position = targetPosition;
 
-            HandleCameraCollisions(delta);
+            HandleCameraCollisions(_delta);
         }
 
-        public void HandleCameraRotation(float delta, float mouseXInput, float mouseYInput)
+        public void HandleCameraRotation(float _delta, float _mouseXInput, float _mouseYInput)
         {
             // If not currently locked on / using the menu
             if (currentLockOnTarget == null && inputHandler.flag_LockOn == false)
             {
                 if(inputHandler.flag_Inventory == false)
                 {
-                    lookAngle += (mouseXInput * lookSpeed) / delta;
-                    pivotAngle -= (mouseYInput * pivotSpeed) / delta;
+                    lookAngle += (_mouseXInput * lookSpeed) / _delta;
+                    pivotAngle -= (_mouseYInput * pivotSpeed) / _delta;
                     pivotAngle = Mathf.Clamp(pivotAngle, minimumPivot, maximumPivot);
 
-                    Vector3 _rotation = Vector3.zero;
-                    _rotation.y = lookAngle;
-                    Quaternion _targetRotation = Quaternion.Euler(_rotation);
-                    _myTransform.rotation = _targetRotation;
+                    Vector3 rotation = Vector3.zero;
+                    rotation.y = lookAngle;
+                    Quaternion targetRotation = Quaternion.Euler(rotation);
+                    myTransform.rotation = targetRotation;
 
-                    _rotation = Vector3.zero;
-                    _rotation.x = pivotAngle;
+                    rotation = Vector3.zero;
+                    rotation.x = pivotAngle;
 
-                    _targetRotation = Quaternion.Euler(_rotation);
-                    cameraPivotTransform.localRotation = _targetRotation;
+                    targetRotation = Quaternion.Euler(rotation);
+                    cameraPivotTransform.localRotation = targetRotation;
                 }
             }
 
@@ -122,7 +123,7 @@ namespace BON
             }
         }
 
-        private void HandleCameraCollisions(float delta)
+        private void HandleCameraCollisions(float _delta)
         {
             targetPosition = defaultPosition;
             RaycastHit hit;
@@ -146,7 +147,7 @@ namespace BON
                 targetPosition = -minimumCollisionOffset;
             }
 
-            cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, delta / 0.02f);
+            cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, _delta / 0.02f);
             cameraTransform.localPosition = cameraTransformPosition;
         }
 
@@ -241,8 +242,8 @@ namespace BON
         public void SetCameraHeight()
         {
             Vector3 velocity = Vector3.zero;
-            Vector3 newLockedPosition = new Vector3(0, lockedPivotPosition);
-            Vector3 newUnlockedPosition = new Vector3(0, unlockedPivotPosition);
+            Vector3 newLockedPosition = new Vector3(cameraPivotX, lockedPivotPosition);
+            Vector3 newUnlockedPosition = new Vector3(cameraPivotX, unlockedPivotPosition);
 
             if(currentLockOnTarget != null)
             {
