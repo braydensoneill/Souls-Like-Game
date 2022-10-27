@@ -27,7 +27,7 @@ namespace BON
             item = newItem;
             itemIcon.sprite = item.itemIcon;
             itemIcon.enabled = true;
-            itemName.text = item.name;
+            itemName.text = item.itemName;
             gameObject.SetActive(true);
         }
 

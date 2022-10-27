@@ -162,8 +162,11 @@ namespace BON
 
         public void CloseDamageCollider()
         {
-            rightHandDamageCollider.DisableDamageCollider();
-            leftHandDamageCollider.DisableDamageCollider();
+            if (playerManager.isUsingRightHand)
+                rightHandDamageCollider.DisableDamageCollider();
+
+            else if (playerManager.isUsingLeftHand)
+                leftHandDamageCollider.DisableDamageCollider();
         }
         #endregion
 
