@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8078587a14d25bb4d93487c30db107cd, type: 3}
   m_Name: Lightsaber_Red
   m_EditorClassIdentifier: 
-  itemIcon: {fileID: 21300000, guid: 1171e067f21803e43933822be2a067ce, type: 3}
+  itemIcon: {fileID: 21300000, guid: d0d829b8748ca8241920650b6d02bd23, type: 3}
   itemName: Lightsaber (Red)
   modelPrefab: {fileID: 4329264159065547410, guid: ae885dd5e5b9e364c8f3494081f1c682,
     type: 3}

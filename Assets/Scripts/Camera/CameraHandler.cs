@@ -35,7 +35,7 @@ namespace BON
         public float minimumPivot = -35;
         public float maximumPivot = 35;
         public float cameraPivotXNormal = 0.4f;
-        public float cameraPivotXLeftPanel = -1.4f;
+        public float cameraPivotXLeftPanel = -0.8f;
         public float pivotPositionYLocked = 1.65f;
         public float pivotPositionYNormal = 1.4f;
         public float pivotPositionYLeftPanel = 1;
@@ -71,7 +71,8 @@ namespace BON
 
         private void Update()
         {
-            HandleActiveLeftPanelCamera();  // I don't know where to put this yet
+            HandleLockOnCameraPosition();
+            HandleLeftPanelCameraPosition();
         }
 
         public void FollowTarget(float _delta)
@@ -248,17 +249,17 @@ namespace BON
             nearestLockOnTarget = null;
         }
 
-        public void SetCameraHeight()
+        public void HandleLockOnCameraPosition()
         {
             Vector3 velocity = Vector3.zero;
-            Vector3 newLockedPosition = new Vector3(cameraPivotXNormal, pivotPositionYLocked);
-            Vector3 newUnlockedPosition = new Vector3(cameraPivotXNormal, pivotPositionYNormal);
+            Vector3 newPositionLockedCam = new Vector3(cameraPivotTransform.localPosition.x, pivotPositionYLocked);
+            Vector3 newPositionUnlockedCam = new Vector3(cameraPivotTransform.localPosition.x, pivotPositionYNormal);
 
             if(currentLockOnTarget != null)
             {
                 cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(
                     cameraPivotTransform.transform.localPosition,
-                    newLockedPosition,
+                    newPositionLockedCam,
                     ref velocity,
                     Time.deltaTime);
             }
@@ -267,23 +268,23 @@ namespace BON
             {
                 cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(
                     cameraPivotTransform.transform.localPosition,
-                    newUnlockedPosition,
+                    newPositionUnlockedCam,
                     ref velocity,
                     Time.deltaTime);
             }
         }
 
-        public void HandleActiveLeftPanelCamera()
+        public void HandleLeftPanelCameraPosition()
         {
             Vector3 velocity = Vector3.zero;
-            Vector3 leftPanelCameraOn = new Vector3(cameraPivotXLeftPanel, pivotPositionYLeftPanel);
-            Vector3 leftPanelCameraOff = new Vector3(cameraPivotXNormal, pivotPositionYNormal);
+            Vector3 newPositionLeftPanelOn = new Vector3(cameraPivotXLeftPanel, pivotPositionYLeftPanel);
+            Vector3 newPositionRightPanelOff = new Vector3(cameraPivotXNormal, pivotPositionYNormal);
 
             if (uiManager.leftPanel.activeSelf == true)
             {
                 cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(
                     cameraPivotTransform.transform.localPosition,
-                    leftPanelCameraOn,
+                    newPositionLeftPanelOn,
                     ref velocity,
                     Time.deltaTime);
             }
@@ -292,11 +293,10 @@ namespace BON
             {
                 cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(
                     cameraPivotTransform.transform.localPosition,
-                    leftPanelCameraOff,
+                    newPositionRightPanelOff,
                     ref velocity,
                     Time.deltaTime);
             }
-
         }
     }
 }

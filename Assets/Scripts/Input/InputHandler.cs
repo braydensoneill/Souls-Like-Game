@@ -113,12 +113,11 @@ namespace BON
             inputActions.Disable();
         }
 
-        public void TickInput(float delta)
+        public void TickInput(float _delta)
         {
-            Debug.Log("Lock On: " + flag_LockOn);
-            HandleMoveInput(delta);
-            HandleRollInput(delta);
-            HandleAttackInput(delta);
+            HandleMoveInput(_delta);
+            HandleRollInput(_delta);
+            HandleAttackInput(_delta);
             HandleQuickSlotInput();
             HandleLeftPanelInput();
             HandleLockOnInput();
@@ -126,7 +125,7 @@ namespace BON
             HandleCriticalAttackInput();
         }
 
-        private void HandleMoveInput(float delta)
+        private void HandleMoveInput(float _delta)
         {
             horizontal = movementInput.x;
             vertical = movementInput.y;
@@ -135,11 +134,11 @@ namespace BON
             mouseY = cameraInput.y;
         }
 
-        private void HandleRollInput(float delta)
+        private void HandleRollInput(float _delta)
         {
             if (input_B)
             {
-                timer_Roll_Input += delta;
+                timer_Roll_Input += _delta;
 
                 if(playerStats.stamina_Current <= 0)
                 {
@@ -269,8 +268,6 @@ namespace BON
                     cameraHandler.currentLockOnTarget = cameraHandler.rightLockTarget;
                 }
             }
-
-            cameraHandler.SetCameraHeight();
         }
 
         private void HandleTwoHandInput()
