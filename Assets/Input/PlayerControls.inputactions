@@ -215,7 +215,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "SelectWindow",
+                    "name": "LeftWindow",
                     "type": "Button",
                     "id": "09bedb10-4a51-4b0d-8d50-a75948d1b6a0",
                     "expectedControlType": "Button",
@@ -357,7 +357,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectWindow",
+                    "action": "LeftWindow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -368,7 +368,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectWindow",
+                    "action": "LeftWindow",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

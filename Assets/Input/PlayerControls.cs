@@ -228,7 +228,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""SelectWindow"",
+                    ""name"": ""LeftWindow"",
                     ""type"": ""Button"",
                     ""id"": ""09bedb10-4a51-4b0d-8d50-a75948d1b6a0"",
                     ""expectedControlType"": ""Button"",
@@ -370,7 +370,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SelectWindow"",
+                    ""action"": ""LeftWindow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -381,7 +381,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SelectWindow"",
+                    ""action"": ""LeftWindow"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -598,7 +598,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerActions_SelectWindow = m_PlayerActions.FindAction("SelectWindow", throwIfNotFound: true);
+        m_PlayerActions_LeftWindow = m_PlayerActions.FindAction("LeftWindow", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
         m_PlayerActions_Y = m_PlayerActions.FindAction("Y", throwIfNotFound: true);
         // Player Quickslots
@@ -719,7 +719,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_RT;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Jump;
-    private readonly InputAction m_PlayerActions_SelectWindow;
+    private readonly InputAction m_PlayerActions_LeftWindow;
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_Y;
     public struct PlayerActionsActions
@@ -732,7 +732,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
-        public InputAction @SelectWindow => m_Wrapper.m_PlayerActions_SelectWindow;
+        public InputAction @LeftWindow => m_Wrapper.m_PlayerActions_LeftWindow;
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @Y => m_Wrapper.m_PlayerActions_Y;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
@@ -762,9 +762,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnJump;
-                @SelectWindow.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSelectWindow;
-                @SelectWindow.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSelectWindow;
-                @SelectWindow.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSelectWindow;
+                @LeftWindow.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftWindow;
+                @LeftWindow.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftWindow;
+                @LeftWindow.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftWindow;
                 @LockOn.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
                 @LockOn.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
                 @LockOn.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
@@ -793,9 +793,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @SelectWindow.started += instance.OnSelectWindow;
-                @SelectWindow.performed += instance.OnSelectWindow;
-                @SelectWindow.canceled += instance.OnSelectWindow;
+                @LeftWindow.started += instance.OnLeftWindow;
+                @LeftWindow.performed += instance.OnLeftWindow;
+                @LeftWindow.canceled += instance.OnLeftWindow;
                 @LockOn.started += instance.OnLockOn;
                 @LockOn.performed += instance.OnLockOn;
                 @LockOn.canceled += instance.OnLockOn;
@@ -878,7 +878,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnRT(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnSelectWindow(InputAction.CallbackContext context);
+        void OnLeftWindow(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnY(InputAction.CallbackContext context);
     }

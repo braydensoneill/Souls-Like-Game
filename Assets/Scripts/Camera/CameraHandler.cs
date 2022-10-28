@@ -8,6 +8,7 @@ namespace BON
         private InputHandler inputHandler;
         private PlayerManager playerManager;
         public static CameraHandler singleton;
+        private UIManager uiManager;
 
         [Header("General")]
         public Transform targetTransform;
@@ -33,7 +34,11 @@ namespace BON
         [Header("Camera Pivot")]
         public float minimumPivot = -35;
         public float maximumPivot = 35;
-        public float cameraPivotX = 1.25f;
+        public float cameraPivotXNormal = 0.4f;
+        public float cameraPivotXLeftPanel = -1.4f;
+        public float pivotPositionYLocked = 1.65f;
+        public float pivotPositionYNormal = 1.4f;
+        public float pivotPositionYLeftPanel = 1;
 
         [Header("Camera Collision")]
         public float cameraSphereRadius = 0.2f;
@@ -42,8 +47,6 @@ namespace BON
 
         [Header("Target Lock On")]
         public float maximumLockOnDistance = 30;
-        public float lockedPivotPosition = 1.85f;
-        public float unlockedPivotPosition = 1.5f;
         public CharacterManager currentLockOnTarget;
         public CharacterManager nearestLockOnTarget;
         public CharacterManager leftLockTarget;
@@ -58,11 +61,17 @@ namespace BON
             ignoreLayers = ~(1 << 0 | 1 << 8 | 1 << 10 | 1 << 11 | 1 << 12 | 1 << 13);    // Don't ignore layer 9 (environment layer)
             inputHandler = FindObjectOfType<InputHandler>();
             playerManager = FindObjectOfType<PlayerManager>();
+            uiManager = FindObjectOfType<UIManager>();
         }
 
         private void Start()
         {
             environmentLayer = LayerMask.NameToLayer("Environment");
+        }
+
+        private void Update()
+        {
+            HandleActiveLeftPanelCamera();  // I don't know where to put this yet
         }
 
         public void FollowTarget(float _delta)
@@ -83,7 +92,7 @@ namespace BON
             // If not currently locked on / using the menu
             if (currentLockOnTarget == null && inputHandler.flag_LockOn == false)
             {
-                if(inputHandler.flag_Inventory == false)
+                if(inputHandler.flag_LeftPanel == false)
                 {
                     lookAngle += (_mouseXInput * lookSpeed) / _delta;
                     pivotAngle -= (_mouseYInput * pivotSpeed) / _delta;
@@ -242,8 +251,8 @@ namespace BON
         public void SetCameraHeight()
         {
             Vector3 velocity = Vector3.zero;
-            Vector3 newLockedPosition = new Vector3(cameraPivotX, lockedPivotPosition);
-            Vector3 newUnlockedPosition = new Vector3(cameraPivotX, unlockedPivotPosition);
+            Vector3 newLockedPosition = new Vector3(cameraPivotXNormal, pivotPositionYLocked);
+            Vector3 newUnlockedPosition = new Vector3(cameraPivotXNormal, pivotPositionYNormal);
 
             if(currentLockOnTarget != null)
             {
@@ -262,6 +271,32 @@ namespace BON
                     ref velocity,
                     Time.deltaTime);
             }
+        }
+
+        public void HandleActiveLeftPanelCamera()
+        {
+            Vector3 velocity = Vector3.zero;
+            Vector3 leftPanelCameraOn = new Vector3(cameraPivotXLeftPanel, pivotPositionYLeftPanel);
+            Vector3 leftPanelCameraOff = new Vector3(cameraPivotXNormal, pivotPositionYNormal);
+
+            if (uiManager.leftPanel.activeSelf == true)
+            {
+                cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(
+                    cameraPivotTransform.transform.localPosition,
+                    leftPanelCameraOn,
+                    ref velocity,
+                    Time.deltaTime);
+            }
+
+            else
+            {
+                cameraPivotTransform.transform.localPosition = Vector3.SmoothDamp(
+                    cameraPivotTransform.transform.localPosition,
+                    leftPanelCameraOff,
+                    ref velocity,
+                    Time.deltaTime);
+            }
+
         }
     }
 }

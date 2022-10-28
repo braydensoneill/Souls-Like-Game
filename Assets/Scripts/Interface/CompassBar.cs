@@ -56,7 +56,6 @@ namespace BON
         {
             // Objective Marker
             SetMarkerPosition(objectiveMarker, objectiveTransform.position);
-            //SetMarkerVisibility(objectiveMarker, objectiveMarkerIcon);
 
             // Noth Marker
             SetMarkerPosition(northMarker, Vector3.forward * 1000);

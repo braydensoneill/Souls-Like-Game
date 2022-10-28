@@ -63,9 +63,10 @@ namespace BON
             #endregion        
         }
 
-        public void OpenSelectWindow()
+        public void OpenLeftPanelWindow()
         {
-            selectWindow.SetActive(true);
+            leftPanel.SetActive(true);
+            //inventoryWindow.SetActive(true);
         }
 
         public void CloseSelectWindow()
@@ -77,8 +78,8 @@ namespace BON
         {
             ResetAllSelectedSlots();
             leftPanel.SetActive(false);
-            equipmentWindow.SetActive(false);
-            inventoryWindow.SetActive(false);
+            //equipmentWindow.SetActive(false);
+            //inventoryWindow.SetActive(false);
         }
 
         public void ResetAllSelectedSlots()

@@ -38,7 +38,7 @@ namespace BON
         public bool input_CriticalAttack;
 
         public bool input_Jump;
-        public bool input_Inventory;
+        public bool input_LeftPanel;
         public bool input_LockOn;
         public bool input_Right_Stick_Right;
         public bool input_Right_Stick_Left;
@@ -53,7 +53,7 @@ namespace BON
         public bool flag_TwoHand;
         public bool flag_Sprint;
         public bool flag_Combo;
-        public bool flag_Inventory;
+        public bool flag_LeftPanel;
         public bool flag_LockOn;
 
         // Timer Variables
@@ -64,8 +64,8 @@ namespace BON
         public Transform criticalAttackRayCastStartPoint;
 
         // Input Vectors
-        private Vector2 _movementInput;
-        private Vector2 _cameraInput;
+        private Vector2 movementInput;
+        private Vector2 cameraInput;
 
         private void Awake()
         {
@@ -84,8 +84,8 @@ namespace BON
             if(inputActions == null)
             {
                 inputActions = new PlayerControls();
-                inputActions.PlayerMovement.Movement.performed += inputActions => _movementInput = inputActions.ReadValue<Vector2>();
-                inputActions.PlayerMovement.Camera.performed += i => _cameraInput = i.ReadValue<Vector2>();
+                inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
+                inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
 
                 inputActions.PlayerActions.RT.performed += i => input_RT = true;
                 inputActions.PlayerActions.RB.performed += i => input_RB = true;
@@ -97,7 +97,7 @@ namespace BON
                 inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
                 inputActions.PlayerActions.Roll.performed += i => input_B = true;
                 inputActions.PlayerActions.Roll.canceled += i => input_B = false;    // Using cancelled here becase sprint uses the same keybind (but holding).
-                inputActions.PlayerActions.SelectWindow.performed += i => input_Inventory = true;
+                inputActions.PlayerActions.LeftWindow.performed += i => input_LeftPanel = true;
                 inputActions.PlayerActions.LockOn.performed += i => input_LockOn = true;
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => input_Right_Stick_Right = true;
                 inputActions.PlayerMovement.LockOnTargetLeft.performed += i => input_Right_Stick_Left = true;
@@ -120,7 +120,7 @@ namespace BON
             HandleRollInput(delta);
             HandleAttackInput(delta);
             HandleQuickSlotInput();
-            HandleInventoryInput();
+            HandleLeftPanelInput();
             HandleLockOnInput();
             HandleTwoHandInput();
             HandleCriticalAttackInput();
@@ -128,11 +128,11 @@ namespace BON
 
         private void HandleMoveInput(float delta)
         {
-            horizontal = _movementInput.x;
-            vertical = _movementInput.y;
+            horizontal = movementInput.x;
+            vertical = movementInput.y;
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
-            mouseX = _cameraInput.x;
-            mouseY = _cameraInput.y;
+            mouseX = cameraInput.x;
+            mouseY = cameraInput.y;
         }
 
         private void HandleRollInput(float delta)
@@ -202,16 +202,16 @@ namespace BON
             }
         }
 
-        private void HandleInventoryInput()
+        private void HandleLeftPanelInput()
         {
-            if(input_Inventory)
+            if(input_LeftPanel)
             {
-                flag_Inventory = !flag_Inventory;
+                flag_LeftPanel = !flag_LeftPanel;
 
-                if(flag_Inventory)
+                if(flag_LeftPanel)
                 {
                     uiManager.UpdateUI();
-                    uiManager.OpenSelectWindow();
+                    uiManager.OpenLeftPanelWindow();
                     uiManager.hudWindow.SetActive(false);
                 }
                     

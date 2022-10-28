@@ -88,7 +88,7 @@ namespace BON
             inputHandler.input_Dpad_Right = false;
             inputHandler.input_A = false;
             inputHandler.input_Jump = false;
-            inputHandler.input_Inventory = false;
+            inputHandler.input_LeftPanel = false;
             #endregion
 
             float delta = Time.deltaTime;
