@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.5
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1526980366}
-  m_IndirectSpecularColor: {r: 0.08028672, g: 0.09968058, b: 0.30108103, a: 1}
+  m_IndirectSpecularColor: {r: 0.04014336, g: 0.04984029, b: 0.15054052, a: 0.5}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13270,7 +13270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1526980366
 Light:
   m_ObjectHideFlags: 0
@@ -19119,9 +19119,9 @@ MonoBehaviour:
   environmentLayer:
     serializedVersion: 2
     m_Bits: 0
-  lookSpeed: 0.015
+  lookSpeed: 0.002
   followSpeed: 0.1
-  pivotSpeed: 0.01
+  pivotSpeed: 0.0015
   minimumPivot: -35
   maximumPivot: 35
   cameraPivotXNormal: 0.4

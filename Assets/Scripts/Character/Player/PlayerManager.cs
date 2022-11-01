@@ -50,16 +50,18 @@ namespace BON
             isUsingRightHand = animator.GetBool("isUsingRightHand");
             isUsingLeftHand = animator.GetBool("isUsingLeftHand");
             isInvulnerable = animator.GetBool("isInvulnerable");
+            
             animator.SetBool("isAirborne", isAirborne);
             animator.SetBool("isDead", playerStats.isDead);
 
             inputHandler.flag_Roll = false;
             inputHandler.flag_Sprint = false;
-
             inputHandler.TickInput(delta);
+
             playerAnimatorHandler.canRotate = animator.GetBool("canRotate");
             playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleJumping();
+
             playerStats.RegenerateStamina();
 
             CheckForInteractableObject();

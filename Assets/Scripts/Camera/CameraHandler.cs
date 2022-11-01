@@ -71,6 +71,10 @@ namespace BON
 
         private void Update()
         {
+            /* Putting these here rather than HandleLockOnInput() and 
+             *  HandleLeftPanelInput() may have fucked up the direction
+             *  of rolling while locked on to a target.
+             */
             HandleLockOnCameraPosition();
             HandleLeftPanelCameraPosition();
         }

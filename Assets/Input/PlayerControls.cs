@@ -123,7 +123,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""id"": ""3007bc5a-aef9-4c22-b19d-c8d27c2672c3"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""NormalizeVector2"",
+                    ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Camera"",
                     ""isComposite"": false,
