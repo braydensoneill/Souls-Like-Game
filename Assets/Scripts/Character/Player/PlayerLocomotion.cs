@@ -16,6 +16,7 @@ namespace BON
         [HideInInspector] public Transform myTransform;
         [HideInInspector] public PlayerAnimatorHandler playerAnimatorHandler;
 
+        // This should be moved to the References section and the references section should be renamed "general"
         [Header("General")]
         public GameObject normalCamera;
 
