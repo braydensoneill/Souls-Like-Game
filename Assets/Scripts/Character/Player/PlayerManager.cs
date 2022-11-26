@@ -127,6 +127,7 @@ namespace BON
                         if (inputHandler.input_A && !isInteracting)
                         {
                             hit.collider.GetComponent<Interactable>().Interact(this);
+                            interactablePopUp.SetActive(false); // Bug Fix. Interactable text not automatically disabling
                         }
                     }
                 }
