@@ -6,17 +6,18 @@ namespace BON
 {
     public class EnemyStats : CharacterStats
     {
-        private Animator animator;
+        private EnemyAnimatorHandler enemyAnimatorHandler;
 
         private void Awake()
         {
-            animator = GetComponentInChildren<Animator>();
+            enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
         }
 
         void Start()
         {
             health_Max = CalculateMaxHealth();
             health_Current = health_Max;
+            gold_Current = Random.Range(1, 20);
         }
 
         private float CalculateMaxHealth()
@@ -32,13 +33,11 @@ namespace BON
 
             health_Current = health_Current - _amount;
 
-            animator.Play("Damage_01");
+            enemyAnimatorHandler.PlayTargetAnimation("Damage_01", true);
 
             if (health_Current <= 0)
             {
-                health_Current = 0;
-                animator.Play("Dead_01");
-                isDead = true;
+                HandleDeath();
             }
         }
 
@@ -54,6 +53,13 @@ namespace BON
                 health_Current = 0;
                 isDead = true;
             }
+        }
+
+        public void HandleDeath()
+        {
+            health_Current = 0;
+            enemyAnimatorHandler.PlayTargetAnimation("Dead_01", true);
+            isDead = true;
         }
     }
 }

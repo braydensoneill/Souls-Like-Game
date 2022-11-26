@@ -23,5 +23,8 @@ namespace BON
         public float mana_Level = 10;
         public float mana_Max;
         public float mana_Current;
+
+        [Header("Currency")]
+        public int gold_Current = 0;
     }
 }

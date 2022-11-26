@@ -8,6 +8,8 @@ namespace BON
     {
         public PlayerInventory playerInventory;
         public EquipmentWindowUI equipmentWindowUI;
+        //private InventoryGold inventoryGold;
+        //private PlayerStats playerStats;
 
         [Header("UI Windows")]
         public GameObject hudWindow;
@@ -29,12 +31,13 @@ namespace BON
 
         private void Awake()
         {
-
+            
         }
 
         private void Start()
         {
             weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
+
             equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
         }
 
@@ -42,7 +45,7 @@ namespace BON
         {
             #region Weapon Inventory Slots
             //change this for loop so it counts backwards if you want new items to show first
-            for(int i = 0; i < weaponInventorySlots.Length; i++)
+            for (int i = 0; i < weaponInventorySlots.Length; i++)
             {
                 if(i < playerInventory.weaponsInventory.Count)
                 {

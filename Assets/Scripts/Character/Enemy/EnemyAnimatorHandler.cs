@@ -24,6 +24,19 @@ namespace BON
             enemyManager.pendingCriticalDamage = 0;
         }
 
+        public void AwardGoldOnDeath()
+        {
+            PlayerStats playerStats = FindObjectOfType<PlayerStats>();
+            InventoryGold inventoryGold = FindObjectOfType<InventoryGold>();
+
+            if (playerStats != null)
+            {
+                playerStats.AddGold(enemyStats.gold_Current);
+            }
+
+            // If adding multiplayer, scan for every player in the scene and award them the appropriate gold
+        }
+
         /* Any time the animator plays an animation with roo motion, recenter the model
          * back on to the GameObject */
         private void OnAnimatorMove()

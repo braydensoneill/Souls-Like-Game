@@ -158,7 +158,10 @@ namespace BON
                 health_Current = health_Max;
         }
 
-
+        public void AddGold(int _gold)
+        {
+            gold_Current = gold_Current + _gold;
+        }
 
     }
 }
