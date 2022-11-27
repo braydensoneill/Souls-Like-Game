@@ -37,7 +37,7 @@ namespace BON
             playerLocomotion = GetComponent<PlayerLocomotion>();
             playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
             interactableUI = FindObjectOfType<InteractableUI>();
-            backStabCollider = GetComponentInChildren<BackStabCollider>();
+            backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
         }
 
         // Update is called once per frame

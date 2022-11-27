@@ -298,7 +298,7 @@ namespace BON
             if(input_CriticalAttack && !playerManager.isInteracting)
             {
                 input_CriticalAttack = false;
-                playerAttacker.AttemptBackStabOrRiposte();
+                playerAttacker.AttemptBackStabOrParry();
             }
         }
     }

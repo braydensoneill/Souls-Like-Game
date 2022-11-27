@@ -14,7 +14,9 @@ namespace BON
         private PlayerWeaponSlotManager playerWeaponSlotManager;
 
         public string lastAttack;
+
         private LayerMask backStabLayer = 1 << 13;
+        private LayerMask parryLayer = 1 << 14;
 
         private void Awake()
         {
@@ -163,7 +165,7 @@ namespace BON
         }
         #endregion
 
-        public void AttemptBackStabOrRiposte()
+        public void AttemptBackStabOrParry()
         {
             // Unless the player has insufficient stamina
             if (playerStats.stamina_Current <= 0)
@@ -171,21 +173,20 @@ namespace BON
 
             RaycastHit hit;
 
-            if (Physics.Raycast(inputHandler.criticalAttackRayCastStartPoint.position, 
-                transform.TransformDirection(Vector3.forward), out hit, 0.5f, backStabLayer))
+            if (Physics.Raycast(inputHandler.criticalAttackRayCastStartPoint.position, transform.TransformDirection(Vector3.forward), out hit, 0.5f, backStabLayer))
             {
-                CharacterManager enemyCharacterManager = hit.transform.gameObject.transform.GetComponentInParent<CharacterManager>();
+                EnemyManager enemyManager = hit.transform.gameObject.GetComponentInParent<EnemyManager>();
                 DamageCollider rightWeapon = playerWeaponSlotManager.rightHandDamageCollider;
 
-                if(enemyCharacterManager != null)
+                if(enemyManager != null)
                 {
                     // check for team id (avoid friendly fire)
 
                     // pull the character into a transform behind the enemy so the animation looks better
-                    playerManager.transform.position = enemyCharacterManager.backStabCollider.backStabberStandPoint.position;
+                    playerManager.transform.position = enemyManager.backStabCollider.critialDamageStandPosition.position;
 
                     // rotate towards the transform
-                    #region Rotate Towards the target transform
+                    #region Rotate towards the target transform
                     Vector3 rotationDirection = playerManager.transform.root.eulerAngles;
                     rotationDirection = hit.transform.position - playerManager.transform.position;
                     rotationDirection.y = 0;
@@ -197,14 +198,51 @@ namespace BON
 
                     // Handle Critical Damage
                     int criticalDamage = playerInventory.rightWeapon.criticalDamageMultiplier * rightWeapon.CurrentWeaponDamage;
-                    enemyCharacterManager.pendingCriticalDamage = criticalDamage;
+                    enemyManager.pendingCriticalDamage = criticalDamage;
 
                     // play the animation
                     playerAnimatorHandler.PlayTargetAnimation("Backstab_Stab", true);
+                    
+                    // make the enemy play an animation
+                    enemyManager.GetComponentInChildren<EnemyAnimatorHandler>().PlayTargetAnimation("Backstab_Stabbed", true);
+                    
+                    // do damage
+                }
+            }
+
+            else if (Physics.Raycast(inputHandler.criticalAttackRayCastStartPoint.position, transform.TransformDirection(Vector3.forward), out hit, 0.7f, parryLayer))
+            {
+                EnemyManager enemyManager = hit.transform.gameObject.GetComponentInParent<EnemyManager>();
+                DamageCollider rightWeapon = playerWeaponSlotManager.rightHandDamageCollider;
+
+                if (enemyManager != null && enemyManager.canBeParried)
+                {
+                    // check for team id (avoid friendly fire)
+
+                    // pull the character into a transform in front of the enemy so the animation looks better
+                    playerManager.transform.position = enemyManager.parryCollider.critialDamageStandPosition.position;
+
+                    // rotate towards the transform
+                    #region Rotate towards the target transform
+                    Vector3 rotationDirection = playerManager.transform.root.eulerAngles;
+                    rotationDirection = hit.transform.position - playerManager.transform.position;
+                    rotationDirection.y = 0;
+                    rotationDirection.Normalize();
+                    Quaternion tr = Quaternion.LookRotation(rotationDirection);
+                    Quaternion targetRotation = Quaternion.Slerp(playerManager.transform.rotation, tr, 500 * Time.deltaTime);
+                    playerManager.transform.rotation = targetRotation;
+                    #endregion
+
+                    // Handle Critical Damage
+                    int criticalDamage = playerInventory.rightWeapon.criticalDamageMultiplier * rightWeapon.CurrentWeaponDamage;
+                    enemyManager.pendingCriticalDamage = criticalDamage;
+
+                    // play the animation
+                    playerAnimatorHandler.PlayTargetAnimation("Parry_Stab", true);
 
                     // make the enemy play an animation
-                    enemyCharacterManager.GetComponentInChildren<CharacterAnimatorHandler>().PlayTargetAnimation("Backstab_Stabbed", true);
-                    
+                    enemyManager.GetComponentInChildren<EnemyAnimatorHandler>().PlayTargetAnimation("Parry_Stabbed", true);
+
                     // do damage
                 }
             }
