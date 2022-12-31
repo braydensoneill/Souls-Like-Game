@@ -25,7 +25,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d84b0e7ca10d854a995479d17737d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeaponDamage: 25
+  CurrentWeaponDamage: 25
 --- !u!1 &4329264159065547410
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,7 +81,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5567937326463158391}
   m_LocalRotation: {x: 0.63669306, y: 0.058313236, z: -0.112677544, w: 0.7606085}
-  m_LocalPosition: {x: 0.0942, y: -0.0307, z: 0.0014}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1561670384210559372}

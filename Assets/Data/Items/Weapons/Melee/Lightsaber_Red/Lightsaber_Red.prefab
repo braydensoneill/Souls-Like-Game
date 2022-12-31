@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7932120711640806166}
   m_Layer: 0
-  m_Name: Lightsaber Red
+  m_Name: Lightsaber_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5567937326463158391}
   m_LocalRotation: {x: 0.63314587, y: 0.13314621, z: -0.13363044, w: 0.75069386}
-  m_LocalPosition: {x: 0.1112, y: -0.0368, z: 0.0225}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1009640163061529201}
