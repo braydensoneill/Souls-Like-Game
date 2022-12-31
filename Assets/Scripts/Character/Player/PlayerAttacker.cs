@@ -107,6 +107,20 @@ namespace BON
                 PerformRBMagicAction(playerInventory.rightWeapon);
             }
         }
+
+        public void HandleLTAction()
+        {
+            if(playerInventory.leftWeapon.isShield)
+            {
+                // Perform shield weapon art
+                PerformLTWeaponArt(inputHandler.flag_TwoHand);
+            }
+
+            else if (playerInventory.leftWeapon.isMeleeWeapon)
+            {
+                // do a light attack
+            }
+        }
         #endregion
 
         #region Attack Actions
@@ -156,6 +170,25 @@ namespace BON
                         playerAnimatorHandler.PlayTargetAnimation("Shrug", true);
                     }
                 }
+            }
+        }
+
+        private void PerformLTWeaponArt(bool isTwoHanding)
+        {
+            if (playerManager.isInteracting)
+                return;
+
+
+            if(isTwoHanding)
+            {
+                // if we are two handing perform weapon art for right weapon
+                
+            }
+
+            else
+            {
+                // else perform weapon art for left handed weapon
+                playerAnimatorHandler.PlayTargetAnimation(playerInventory.leftWeapon.weapon_art, true);
             }
         }
 

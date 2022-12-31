@@ -34,6 +34,7 @@ namespace BON
         public bool input_A;
         public bool input_Y;
         public bool input_RT;
+        public bool input_LT;
         public bool input_RB;
         public bool input_CriticalAttack;
 
@@ -88,6 +89,7 @@ namespace BON
                 inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
 
                 inputActions.PlayerActions.RT.performed += i => input_RT = true;
+                inputActions.PlayerActions.LT.performed += i => input_LT = true;
                 inputActions.PlayerActions.RB.performed += i => input_RB = true;
                 
                 inputActions.PlayerQuickslots.DPadRight.performed += inputActions => input_Dpad_Right = true;
@@ -183,6 +185,19 @@ namespace BON
                         flag_Combo = true;
                         playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
                         flag_Combo = false;
+                    }
+                }
+
+                if (input_LT)
+                {
+                    if (flag_TwoHand)
+                    {
+                        // if two handed weapon art
+                    }
+
+                    else
+                    {
+                        playerAttacker.HandleLTAction();
                     }
                 }
             }

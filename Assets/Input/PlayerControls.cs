@@ -212,6 +212,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""LT"",
+                    ""type"": ""Button"",
+                    ""id"": ""e50b9c35-d901-4211-a68c-48a9639087ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""75bf1584-5732-48d7-8054-2c438cd6913b"",
@@ -272,50 +280,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Roll"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""65f322e2-3b3a-4972-9386-75bd73c14668"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RB"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b5e0565c-7805-4d78-9d4d-2333e1d52e5d"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RB"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c16fd3e9-912f-4cae-892a-2c80ad5c3c52"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RT"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""cd91e5e9-2c16-482f-ad61-ff2636d9b03d"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -448,6 +412,50 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Critical Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8971ecaa-950e-4fe6-8f37-98dde34f5fbf"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8de1b7e-4df7-40de-a0fd-ecf64a11ac62"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a72a2b1-685c-46bb-802b-7f85d89133e6"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""718dd084-62e6-46a8-8b77-c41e33a459dc"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -596,6 +604,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
         m_PlayerActions_CriticalAttack = m_PlayerActions.FindAction("Critical Attack", throwIfNotFound: true);
         m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
+        m_PlayerActions_LT = m_PlayerActions.FindAction("LT", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_LeftWindow = m_PlayerActions.FindAction("LeftWindow", throwIfNotFound: true);
@@ -717,6 +726,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_RB;
     private readonly InputAction m_PlayerActions_CriticalAttack;
     private readonly InputAction m_PlayerActions_RT;
+    private readonly InputAction m_PlayerActions_LT;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_LeftWindow;
@@ -730,6 +740,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
         public InputAction @CriticalAttack => m_Wrapper.m_PlayerActions_CriticalAttack;
         public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
+        public InputAction @LT => m_Wrapper.m_PlayerActions_LT;
         public InputAction @Interact => m_Wrapper.m_PlayerActions_Interact;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @LeftWindow => m_Wrapper.m_PlayerActions_LeftWindow;
@@ -756,6 +767,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @RT.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRT;
                 @RT.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRT;
                 @RT.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRT;
+                @LT.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLT;
+                @LT.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLT;
+                @LT.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLT;
                 @Interact.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnInteract;
@@ -787,6 +801,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @RT.started += instance.OnRT;
                 @RT.performed += instance.OnRT;
                 @RT.canceled += instance.OnRT;
+                @LT.started += instance.OnLT;
+                @LT.performed += instance.OnLT;
+                @LT.canceled += instance.OnLT;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
@@ -876,6 +893,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnRB(InputAction.CallbackContext context);
         void OnCriticalAttack(InputAction.CallbackContext context);
         void OnRT(InputAction.CallbackContext context);
+        void OnLT(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnLeftWindow(InputAction.CallbackContext context);

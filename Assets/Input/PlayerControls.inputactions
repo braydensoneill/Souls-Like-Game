@@ -199,6 +199,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "LT",
+                    "type": "Button",
+                    "id": "e50b9c35-d901-4211-a68c-48a9639087ee",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "75bf1584-5732-48d7-8054-2c438cd6913b",
@@ -259,50 +267,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "65f322e2-3b3a-4972-9386-75bd73c14668",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RB",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b5e0565c-7805-4d78-9d4d-2333e1d52e5d",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RB",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c16fd3e9-912f-4cae-892a-2c80ad5c3c52",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RT",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cd91e5e9-2c16-482f-ad61-ff2636d9b03d",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -435,6 +399,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Critical Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8971ecaa-950e-4fe6-8f37-98dde34f5fbf",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8de1b7e-4df7-40de-a0fd-ecf64a11ac62",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a72a2b1-685c-46bb-802b-7f85d89133e6",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "718dd084-62e6-46a8-8b77-c41e33a459dc",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RB",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

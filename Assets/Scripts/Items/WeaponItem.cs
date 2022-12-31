@@ -31,6 +31,9 @@ namespace BON
         public string TH_Sword_Light_Attack_01;
         public string TH_Sword_Light_Attack_02;
 
+        [Header("Weapon Art")]
+        public string weapon_art;
+
         [Header("Stamina Costs")]
         public int baseStamina;
         public int lightAttackMultiplier;
