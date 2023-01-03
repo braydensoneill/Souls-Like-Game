@@ -30,15 +30,20 @@ namespace BON
             {
                 if (handEquipmentSlotUI[i].rightHandSlot01)
                     handEquipmentSlotUI[i].AddItem(playerInventory.weaponsInRightHandSlots[0]);
-                
-                else if (handEquipmentSlotUI[i].rightHandSlot02)
-                    handEquipmentSlotUI[i].AddItem(playerInventory.weaponsInRightHandSlots[1]);
 
                 else if (handEquipmentSlotUI[i].leftHandSlot01)
                     handEquipmentSlotUI[i].AddItem(playerInventory.weaponsInLeftHandSlots[0]);
 
-                else if (handEquipmentSlotUI[i].leftHandSlot02)
-                    handEquipmentSlotUI[i].AddItem(playerInventory.weaponsInLeftHandSlots[1]);
+
+                /*I have decided to remove multiple weapon slot functionality for now
+                Every thing will be done the same way, just as an array size of 1 in case I change my mind
+                in the future
+                 */
+                //else if (handEquipmentSlotUI[i].rightHandSlot02)
+                //handEquipmentSlotUI[i].AddItem(playerInventory.weaponsInRightHandSlots[1]);
+
+                //else if (handEquipmentSlotUI[i].leftHandSlot02)
+                    //handEquipmentSlotUI[i].AddItem(playerInventory.weaponsInLeftHandSlots[1]);
             }
         }
 
