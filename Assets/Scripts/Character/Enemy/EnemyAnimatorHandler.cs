@@ -29,7 +29,7 @@ namespace BON
             enemyManager.isParrying = true;
         }
 
-        public void DisableParrying()
+        public void DisableIsParrying()
         {
             enemyManager.isParrying = false;
         }

@@ -76,14 +76,24 @@ namespace BON
             animator.SetFloat(horizontal, _h, 0.1f, Time.deltaTime);
         }
 
-        public void CanRotate()
+        public void EnableIsParrying()
         {
-            animator.SetBool("canRotate", true);
+            playerManager.isParrying = true;
         }
 
-        public void StopRotation()
+        public void DisableIsParrying()
         {
-            animator.SetBool("canRotate", false); ;
+            playerManager.isParrying = false;
+        }
+
+        public void EnableCanBeRiposted()
+        {
+            playerManager.canBeRipsoted = true;
+        }
+
+        public void DisableCanBeRiposted()
+        {
+            playerManager.canBeRipsoted = false;
         }
 
         public void EnableCombo()
@@ -106,25 +116,6 @@ namespace BON
             animator.SetBool("isInvulnerable", false);
         }
 
-        public void EnableIsParrying()
-        {
-            playerManager.isParrying = true;
-        }
-
-        public void DisableParrying()
-        {
-            playerManager.isParrying = false;
-        }
-
-        public void EnableCanBeRiposted()
-        {
-            playerManager.canBeRipsoted = true;
-        }
-
-        public void DisableCanBeRiposted()
-        {
-            playerManager.canBeRipsoted = false;
-        }
 
         public override void TakeCriticalDamageAnimationEvent()
         {

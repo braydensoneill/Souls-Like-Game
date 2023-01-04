@@ -33,14 +33,14 @@ namespace BON
             if(_other.tag == "Player")
             {
                 PlayerStats playerStats = _other.GetComponent<PlayerStats>();
-                CharacterManager enemyCharacterManager = _other.GetComponent<CharacterManager>();
+                CharacterManager playerCharacterManager = _other.GetComponent<CharacterManager>();
 
-                if(enemyCharacterManager != null)
+                if(playerCharacterManager != null)
                 {
-                    if(enemyCharacterManager.isParrying)
+                    if(playerCharacterManager.isParrying)
                     {
                         // Check here if you are parryable
-                        characterManager.GetComponentInChildren<PlayerAnimatorHandler>().PlayTargetAnimation("Parried", true);
+                        characterManager.GetComponentInChildren<CharacterAnimatorHandler>().PlayTargetAnimation("Parry_Parried", true);
                         return;
                     }
                 }
@@ -61,7 +61,7 @@ namespace BON
                     if (enemyCharacterManager.isParrying)
                     {
                         // Check here if you are parryable
-                        characterManager.GetComponentInChildren<PlayerAnimatorHandler>().PlayTargetAnimation("Parried", true);
+                        characterManager.GetComponentInChildren<CharacterAnimatorHandler>().PlayTargetAnimation("Parry_Parried", true);
                         return;
                     }
                 }
