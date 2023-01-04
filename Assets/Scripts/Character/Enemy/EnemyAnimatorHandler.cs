@@ -36,12 +36,12 @@ namespace BON
 
         public void EnableCanBeRiposted()
         {
-            enemyManager.canBeRipsoted = true;
+            enemyManager.canBeRiposted = true;
         }
 
         public void DisableCanBeRiposted()
         {
-            enemyManager.canBeRipsoted = false;
+            enemyManager.canBeRiposted = false;
         }
 
         public void AwardGoldOnDeath()

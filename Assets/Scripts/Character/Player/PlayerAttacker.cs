@@ -248,7 +248,7 @@ namespace BON
                 EnemyManager enemyManager = hit.transform.gameObject.GetComponentInParent<EnemyManager>();
                 DamageCollider rightWeapon = playerWeaponSlotManager.rightHandDamageCollider;
 
-                if (enemyManager != null && enemyManager.canBeParried)
+                if (enemyManager != null && enemyManager.canBeRiposted)
                 {
                     // check for team id (avoid friendly fire)
 

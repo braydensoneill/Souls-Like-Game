@@ -15,7 +15,7 @@ namespace BON
 
         [Header("Combat Flags")]
         public bool canBeParried;
-        public bool canBeRipsoted;
+        public bool canBeRiposted;
         public bool isParrying;
 
         // Damage will be inflicted during an animation event

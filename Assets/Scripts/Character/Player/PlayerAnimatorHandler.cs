@@ -88,12 +88,12 @@ namespace BON
 
         public void EnableCanBeRiposted()
         {
-            playerManager.canBeRipsoted = true;
+            playerManager.canBeRiposted = true;
         }
 
         public void DisableCanBeRiposted()
         {
-            playerManager.canBeRipsoted = false;
+            playerManager.canBeRiposted = false;
         }
 
         public void EnableCombo()
