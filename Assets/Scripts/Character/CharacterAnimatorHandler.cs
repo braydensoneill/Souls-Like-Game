@@ -21,5 +21,15 @@ namespace BON
         {
 
         }
+
+        public void CanRotate()
+        {
+            animator.SetBool("canRotate", true);
+        }
+
+        public void StopRotation()
+        {
+            animator.SetBool("canRotate", false); ;
+        }
     }
 }

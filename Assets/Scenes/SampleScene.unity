@@ -20829,10 +20829,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 1564307144219302438, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: leftHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 971607ba83145b8459122ff893c54987,
+        type: 2}
     - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: canBeParried
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -20842,7 +20848,7 @@ PrefabInstance:
     - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: detectionRadius
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -20854,6 +20860,11 @@ PrefabInstance:
       propertyPath: backStabCollider
       value: 
       objectReference: {fileID: 1841824718}
+    - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: maximumAttackRange
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: gold_Current

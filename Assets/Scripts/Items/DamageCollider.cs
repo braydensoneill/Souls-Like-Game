@@ -6,6 +6,7 @@ namespace BON
 {
     public class DamageCollider : MonoBehaviour
     {
+        public CharacterManager characterManager;
         public int CurrentWeaponDamage = 25;
         private Collider damageCollider;
 
@@ -27,11 +28,22 @@ namespace BON
             damageCollider.enabled = false;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider _other)
         {
-            if(other.tag == "Player")
+            if(_other.tag == "Player")
             {
-                PlayerStats playerStats = other.GetComponent<PlayerStats>();
+                PlayerStats playerStats = _other.GetComponent<PlayerStats>();
+                CharacterManager enemyCharacterManager = _other.GetComponent<CharacterManager>();
+
+                if(enemyCharacterManager != null)
+                {
+                    if(enemyCharacterManager.isParrying)
+                    {
+                        // Check here if you are parryable
+                        characterManager.GetComponentInChildren<PlayerAnimatorHandler>().PlayTargetAnimation("Parried", true);
+                        return;
+                    }
+                }
 
                 if(playerStats != null)
                 {
@@ -39,9 +51,20 @@ namespace BON
                 }    
             }
 
-            if (other.tag == "Enemy")
+            if (_other.tag == "Enemy")
             {
-                EnemyStats enemyStats = other.GetComponent<EnemyStats>();
+                EnemyStats enemyStats = _other.GetComponent<EnemyStats>();
+                CharacterManager enemyCharacterManager = _other.GetComponent<CharacterManager>();
+
+                if (enemyCharacterManager != null)
+                {
+                    if (enemyCharacterManager.isParrying)
+                    {
+                        // Check here if you are parryable
+                        characterManager.GetComponentInChildren<PlayerAnimatorHandler>().PlayTargetAnimation("Parried", true);
+                        return;
+                    }
+                }
 
                 if (enemyStats != null)
                 {

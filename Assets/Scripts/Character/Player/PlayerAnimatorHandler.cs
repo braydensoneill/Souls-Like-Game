@@ -106,6 +106,26 @@ namespace BON
             animator.SetBool("isInvulnerable", false);
         }
 
+        public void EnableIsParrying()
+        {
+            playerManager.isParrying = true;
+        }
+
+        public void DisableParrying()
+        {
+            playerManager.isParrying = false;
+        }
+
+        public void EnableCanBeRiposted()
+        {
+            playerManager.canBeRipsoted = true;
+        }
+
+        public void DisableCanBeRiposted()
+        {
+            playerManager.canBeRipsoted = false;
+        }
+
         public override void TakeCriticalDamageAnimationEvent()
         {
             // Dont play animation here, let the animator bool decide death animation for backstabs

@@ -567,6 +567,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4aec86e1-faee-4a77-9580-47e1af35a968"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""D-Pad Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""48d9e79a-2df0-466b-805b-4048f0c60064"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",

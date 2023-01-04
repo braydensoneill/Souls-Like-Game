@@ -24,6 +24,26 @@ namespace BON
             enemyManager.pendingCriticalDamage = 0;
         }
 
+        public void EnableIsParrying()
+        {
+            enemyManager.isParrying = true;
+        }
+
+        public void DisableParrying()
+        {
+            enemyManager.isParrying = false;
+        }
+
+        public void EnableCanBeRiposted()
+        {
+            enemyManager.canBeRipsoted = true;
+        }
+
+        public void DisableCanBeRiposted()
+        {
+            enemyManager.canBeRipsoted = false;
+        }
+
         public void AwardGoldOnDeath()
         {
             PlayerStats playerStats = FindObjectOfType<PlayerStats>();
