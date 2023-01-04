@@ -20814,6 +20814,56 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.07780009
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.03400016
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.007999895
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9752714
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.07577945
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.20565538
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.028442217
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 9.178
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -23.702002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1.411
+      objectReference: {fileID: 0}
     - target: {fileID: 1564307143997383369, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: critialDamageStandPosition
@@ -20835,6 +20885,46 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 971607ba83145b8459122ff893c54987,
         type: 2}
+    - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.07700045
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.035000026
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.010000195
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99675405
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.08050731
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.00000006705518
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00000017601987
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 9.235001
+      objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: canBeParried
