@@ -10,6 +10,9 @@ namespace BON
 
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
         {
+            if (enemyManager.isInteracting)
+                return this;
+
             HandleRotationTowardsTarget(enemyManager);
 
             if (enemyManager.isInteracting)
