@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7932120711640806166}
   m_Layer: 0
-  m_Name: Lightsaber Cyan
+  m_Name: Lightsaber_Cyan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d84b0e7ca10d854a995479d17737d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeaponDamage: 25
+  characterManager: {fileID: 0}
+  CurrentWeaponDamage: 25
 --- !u!1001 &7539861800428561803
 PrefabInstance:
   m_ObjectHideFlags: 0

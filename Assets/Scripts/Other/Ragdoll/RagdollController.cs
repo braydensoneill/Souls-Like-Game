@@ -21,7 +21,7 @@ namespace BON
         // list of all the colliders in the ragdoll
         private List<Collider> ragdollColliders;
 
-        void Start()
+        void Awake()
         {
             // get the character's rigidbody
             characterRigidbody = GetComponent<Rigidbody>();

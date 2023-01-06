@@ -30,6 +30,10 @@ namespace BON
 
         private void OnTriggerEnter(Collider _other)
         {
+            // do not allow a character to take damage from their own weapon
+            if (gameObject.transform.IsChildOf(_other.gameObject.transform))
+                return;
+
             if(_other.tag == "Player")
             {
                 PlayerStats playerStats = _other.GetComponent<PlayerStats>();
