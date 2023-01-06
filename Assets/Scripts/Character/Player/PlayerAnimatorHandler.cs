@@ -10,6 +10,7 @@ namespace BON
         private PlayerStats playerStats;
         private InputHandler inputHandler;
         private PlayerLocomotion playerLocomotion;
+        private RagdollController ragdollController;
 
         private int vertical;
         private int horizontal;
@@ -21,6 +22,7 @@ namespace BON
             animator = GetComponent<Animator>();
             inputHandler = GetComponentInParent<InputHandler>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
+            ragdollController = GetComponentInParent<RagdollController>();
 
             vertical = Animator.StringToHash("Vertical");
             horizontal = Animator.StringToHash("Horizontal");

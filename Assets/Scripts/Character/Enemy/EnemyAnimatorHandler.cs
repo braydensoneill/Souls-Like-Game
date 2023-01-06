@@ -8,12 +8,14 @@ namespace BON
     {
         private EnemyManager enemyManager;
         private EnemyStats enemyStats;
+        private RagdollController ragdollController;
 
         private void Awake()
         {
             animator = GetComponent<Animator>();
             enemyManager = GetComponentInParent<EnemyManager>();
             enemyStats = GetComponentInParent<EnemyStats>();
+            ragdollController = GetComponentInParent<RagdollController>();
         }
 
         public override void TakeCriticalDamageAnimationEvent()
@@ -75,6 +77,11 @@ namespace BON
             }
 
             // If adding multiplayer, scan for every player in the scene and award them the appropriate gold
+        }
+
+        public override void StartRagdoll()
+        {
+            ragdollController.StartRagdoll();
         }
 
         /* Any time the animator plays an animation with roo motion, recenter the model
