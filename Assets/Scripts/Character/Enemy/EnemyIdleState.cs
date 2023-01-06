@@ -11,6 +11,10 @@ namespace BON
 
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimator)
         {
+            // Only allow the enemy to enter this state if they are not currently interacting
+            if (enemyManager.isInteracting)
+                return this;
+
             #region Handle Enemy Target Detection
             Collider[] colliders = Physics.OverlapSphere(transform.position, enemyManager.detectionRadius, detectionLayer);
 

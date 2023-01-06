@@ -10,6 +10,7 @@ namespace BON
 
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
         {
+            // Only allow the enemy to enter this state if they are not currently interacting
             if (enemyManager.isInteracting)
                 return this;
 
@@ -31,8 +32,6 @@ namespace BON
             }
 
             HandleRotationTowardsTarget(enemyManager);
-            enemyManager.navmeshAgent.transform.localPosition = Vector3.zero;
-            enemyManager.navmeshAgent.transform.localRotation = Quaternion.identity;
 
             if(distanceFromTarget <= enemyManager.maximumAttackRange)
             {

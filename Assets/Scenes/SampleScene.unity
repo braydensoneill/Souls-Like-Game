@@ -13080,6 +13080,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418666944}
   m_CullTransparentMesh: 0
+--- !u!114 &1438873005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1564307144940465346, guid: 000bc9ad15ea06d428330a6a44f9c863,
+    type: 3}
+  m_PrefabInstance: {fileID: 1564307144761533996}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19fea51eb416c4146b0236a34b0fd767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1446081615
 GameObject:
   m_ObjectHideFlags: 0
@@ -20814,6 +20826,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1564307143198499842, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: idleState
+      value: 
+      objectReference: {fileID: 1438873005}
+    - target: {fileID: 1564307143744956998, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: enemyAttacks.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307143744956998, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: enemyAttacks.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8187e00e446bfd64482951e9d61e3463,
+        type: 2}
     - target: {fileID: 1564307143873752394, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -20883,7 +20911,7 @@ PrefabInstance:
         type: 3}
       propertyPath: leftHandWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 971607ba83145b8459122ff893c54987,
+      objectReference: {fileID: 11400000, guid: 2b3a9b2b785ac324cbcbe08895554d5c,
         type: 2}
     - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -20937,6 +20965,11 @@ PrefabInstance:
       objectReference: {fileID: 1203727822}
     - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
+      propertyPath: rotationSpeed
+      value: 365
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
       propertyPath: detectionRadius
       value: 10
       objectReference: {fileID: 0}
@@ -20953,7 +20986,7 @@ PrefabInstance:
     - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: maximumAttackRange
-      value: 4
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}

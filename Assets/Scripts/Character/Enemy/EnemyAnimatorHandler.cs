@@ -24,6 +24,16 @@ namespace BON
             enemyManager.pendingCriticalDamage = 0;
         }
 
+        public void EnableCombo()
+        {
+            animator.SetBool("canDoCombo", true);
+        }
+
+        public void DisableCombo()
+        {
+            animator.SetBool("canDoCombo", false);
+        }
+
         public void EnableIsParrying()
         {
             enemyManager.isParrying = true;
@@ -32,6 +42,16 @@ namespace BON
         public void DisableIsParrying()
         {
             enemyManager.isParrying = false;
+        }
+
+        public void EnableIsInvulnerable()
+        {
+            animator.SetBool("isInvulnerable", true);
+        }
+
+        public void DisableIsInvulnderable()
+        {
+            animator.SetBool("isInvulnerable", false);
         }
 
         public void EnableCanBeRiposted()

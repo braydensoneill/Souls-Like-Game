@@ -7,6 +7,10 @@ namespace BON
     [CreateAssetMenu(menuName = "AI/ Enemy Actions/ Attack Action")]
     public class EnemyAttackAction : EnemyAction
     {
+        public bool canCombo;
+
+        public EnemyAttackAction comboAction;
+
         public int attackScore = 3; // Liklihood of attack to occur
         public float recoveryTime = 2;  // Time to recover after attack is thrown
 

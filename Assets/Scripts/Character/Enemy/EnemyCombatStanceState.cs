@@ -11,6 +11,7 @@ namespace BON
 
         public override State Tick(EnemyManager enemyManager, EnemyStats enemyStats, EnemyAnimatorHandler enemyAnimatorHandler)
         {
+            // Only allow the enemy to enter this state if they are not currently interacting
             if (enemyManager.isInteracting)
                 return this;
 

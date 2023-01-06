@@ -76,26 +76,6 @@ namespace BON
             animator.SetFloat(horizontal, _h, 0.1f, Time.deltaTime);
         }
 
-        public void EnableIsParrying()
-        {
-            playerManager.isParrying = true;
-        }
-
-        public void DisableIsParrying()
-        {
-            playerManager.isParrying = false;
-        }
-
-        public void EnableCanBeRiposted()
-        {
-            playerManager.canBeRiposted = true;
-        }
-
-        public void DisableCanBeRiposted()
-        {
-            playerManager.canBeRiposted = false;
-        }
-
         public void EnableCombo()
         {
             animator.SetBool("canDoCombo", true);
@@ -106,6 +86,16 @@ namespace BON
             animator.SetBool("canDoCombo", false);
         }
 
+        public void EnableIsParrying()
+        {
+            playerManager.isParrying = true;
+        }
+
+        public void DisableIsParrying()
+        {
+            playerManager.isParrying = false;
+        }
+
         public void EnableIsInvulnerable()
         {
             animator.SetBool("isInvulnerable", true);
@@ -114,6 +104,16 @@ namespace BON
         public void DisableIsInvulnderable()
         {
             animator.SetBool("isInvulnerable", false);
+        }
+
+        public void EnableCanBeRiposted()
+        {
+            playerManager.canBeRiposted = true;
+        }
+
+        public void DisableCanBeRiposted()
+        {
+            playerManager.canBeRiposted = false;
         }
 
 

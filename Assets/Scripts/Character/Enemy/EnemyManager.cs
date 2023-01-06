@@ -24,6 +24,9 @@ namespace BON
         public float rotationSpeed = 15;
         public float maximumAttackRange = 2;
 
+        [Header("Combat Flags")]
+        public bool canDoCombo;
+
         [Header("A.I Settings")]
         public float detectionRadius = 20;
         public float minimumDetectionAngle = -50;   // Enemy min field of view angle
@@ -52,12 +55,18 @@ namespace BON
             HandleRecoveryTime();
 
             isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
+
+            HandleStateMachine();   // This needs to go in between the isinteracting and candocombo variables for some reason
+
+            canDoCombo = enemyAnimatorHandler.animator.GetBool("canDoCombo");
             enemyAnimatorHandler.animator.SetBool("isDead", enemyStats.isDead);
         }
 
-        private void FixedUpdate()
+        private void LateUpdate()
         {
-            HandleStateMachine();
+            // This is a bug fix to stop the enemy from often spinning uncontrollably
+            navmeshAgent.transform.localPosition = Vector3.zero;
+            navmeshAgent.transform.localRotation = Quaternion.identity;
         }
 
         private void HandleStateMachine()
