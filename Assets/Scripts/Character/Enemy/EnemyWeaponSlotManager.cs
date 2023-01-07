@@ -79,12 +79,12 @@ namespace BON
             }
         }
 
-        public void OpenDamageColldier()
+        public void OpenDamageCollider()
         {
             rightHandDamageCollider.EnableDamageCollider();
         }
 
-        public void CloseDamageColldier()
+        public void CloseDamageCollider()
         {
             rightHandDamageCollider.DisableDamageCollider();
         }
