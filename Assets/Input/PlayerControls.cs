@@ -201,7 +201,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""id"": ""fef70c03-cea9-4502-9e83-b91f07c884b4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""Critical Attack"",

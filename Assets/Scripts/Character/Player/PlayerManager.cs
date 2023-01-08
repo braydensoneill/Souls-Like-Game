@@ -24,9 +24,15 @@ namespace BON
         public bool isAirborne;
         public bool isGrounded;
         public bool canDoCombo;
+
         public bool isUsingRightHand;
         public bool isUsingLeftHand;
         public bool isInvulnerable;
+
+        public bool isBlocking;
+        public bool isBlockingLeftHand;
+        public bool isBlockingRightHand;
+        public bool isBlockingTwoHand;
 
         private void Awake()
         {
@@ -50,9 +56,14 @@ namespace BON
             isUsingRightHand = animator.GetBool("isUsingRightHand");
             isUsingLeftHand = animator.GetBool("isUsingLeftHand");
             isInvulnerable = animator.GetBool("isInvulnerable");
-            
+
+            animator.SetBool("isBlockingRightHand", isBlockingRightHand);
+            animator.SetBool("isBlockingLeftHand", isBlockingLeftHand);
+            animator.SetBool("isBlockingTwoHand", isBlockingTwoHand);
             animator.SetBool("isAirborne", isAirborne);
             animator.SetBool("isDead", playerStats.isDead);
+
+            SetIsBlocking(); // This may need to go somewhere else for readability
 
             inputHandler.flag_Roll = false;
             inputHandler.flag_Sprint = false;
@@ -104,6 +115,17 @@ namespace BON
 
             if (isAirborne)
                 playerLocomotion.InAirTimer = playerLocomotion.InAirTimer + Time.deltaTime;
+        }
+
+        private bool SetIsBlocking()
+        {
+            if (isBlockingLeftHand == true || isBlockingRightHand == true || isBlockingTwoHand == true)
+                isBlocking = true;
+
+            else
+                isBlocking = false;
+
+            return isBlocking;
         }
 
         #region Player Interactions

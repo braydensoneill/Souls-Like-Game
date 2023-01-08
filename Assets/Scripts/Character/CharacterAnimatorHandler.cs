@@ -9,10 +9,10 @@ namespace BON
         public Animator animator;
         public bool canRotate;
 
-        public void PlayTargetAnimation(string targetAnim, bool isInteracting)
+        public void PlayTargetAnimation(string targetAnim, bool isInteracting, bool canRotate = false)
         {
             animator.applyRootMotion = isInteracting;
-            animator.SetBool("canRotate", false);
+            animator.SetBool("canRotate", canRotate);
             animator.SetBool("isInteracting", isInteracting);
             animator.CrossFade(targetAnim, 0.2f);
         }

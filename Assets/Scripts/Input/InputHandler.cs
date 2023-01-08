@@ -91,9 +91,10 @@ namespace BON
 
                 inputActions.PlayerActions.RT.performed += i => input_RT = true;
                 inputActions.PlayerActions.LT.performed += i => input_LT = true;
-                inputActions.PlayerActions.RB.performed += i => input_RB = true;    // will use cancelled here in the future for heavy attacks
+                inputActions.PlayerActions.RB.performed += i => input_RB = true;    // may use cancelled here in the future for heavy attacks
                 inputActions.PlayerActions.LB.performed += i => input_LB = true;
-                
+                inputActions.PlayerActions.LB.canceled += i => input_LB = false;
+
                 inputActions.PlayerQuickslots.DPadRight.performed += inputActions => input_Dpad_Right = true;
                 inputActions.PlayerQuickslots.DPadLeft.performed += inputActions => input_Dpad_Left = true;
                 
@@ -179,10 +180,14 @@ namespace BON
             // Right hand weapon input
             if (input_RB)
                 playerAttacker.HandleRBAction();
+            //else
+                playerManager.isBlockingRightHand = false;
 
             // Left hand weapon input
             if (input_LB)
                 playerAttacker.HandleLBAction();
+            else
+                playerManager.isBlockingLeftHand = false;
 
             // Change this to if the player attacks while blocking
             if (input_LT)   

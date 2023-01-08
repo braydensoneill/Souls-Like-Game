@@ -100,12 +100,12 @@ namespace BON
                 PerformRBMeleeAction();
             }
 
-            else if (playerInventory.rightWeapon.isShield)
+            if (playerInventory.rightWeapon.isShield)
             {
                 PerformRBBlockAction();
             }
 
-            else if (playerInventory.rightWeapon.isSpellCaster ||
+            if (playerInventory.rightWeapon.isSpellCaster ||
                 playerInventory.rightWeapon.isFaithCaster ||
                 playerInventory.rightWeapon.isPyroCaster)
             {
@@ -120,12 +120,12 @@ namespace BON
                 // PeformLBMeleeAction();
             }
 
-            else if (playerInventory.leftWeapon.isShield)
+            if (playerInventory.leftWeapon.isShield)
             {
                 PerformLBBlockAction();
             }
 
-            else if (playerInventory.leftWeapon.isSpellCaster ||
+            if (playerInventory.leftWeapon.isSpellCaster ||
                 playerInventory.leftWeapon.isFaithCaster ||
                 playerInventory.leftWeapon.isPyroCaster)
             {
@@ -226,20 +226,26 @@ namespace BON
         #region Defence Actions
         private void PerformRBBlockAction()
         {
-            if (playerManager.isInteracting)
+            // Ignore this if the player is interacting or already blocking
+            if (playerManager.isInteracting || playerManager.isBlocking)
                 return;
 
             // Add functionality for if the shield is in the left hand here
-            Debug.Log("Player is blocking with their right hand");
+            playerAnimatorHandler.PlayTargetAnimation("Block_Shield_Right_Start", false, true);
+
+            playerManager.isBlockingRightHand = true;
         }
 
         private void PerformLBBlockAction()
         {
-            if (playerManager.isInteracting)
+            // Ignore this if the player is interacting or already blocking
+            if (playerManager.isInteracting || playerManager.isBlocking)
                 return;
 
             // Add functionality for if the shield is in the right hand here
-            Debug.Log("Player is blocking with their left hand");
+            playerAnimatorHandler.PlayTargetAnimation("Block_Shield_Left_Start", false, true);
+
+            playerManager.isBlockingLeftHand = true;
         }
         #endregion
 
