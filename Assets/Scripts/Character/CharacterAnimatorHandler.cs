@@ -9,11 +9,6 @@ namespace BON
         public Animator animator;
         public bool canRotate;
 
-        public void Awake()
-        {
-
-        }
-
         public void PlayTargetAnimation(string targetAnim, bool isInteracting)
         {
             animator.applyRootMotion = isInteracting;

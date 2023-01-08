@@ -100,11 +100,36 @@ namespace BON
                 PerformRBMeleeAction();
             }
 
+            else if (playerInventory.rightWeapon.isShield)
+            {
+                PerformRBBlockAction();
+            }
+
             else if (playerInventory.rightWeapon.isSpellCaster ||
                 playerInventory.rightWeapon.isFaithCaster ||
                 playerInventory.rightWeapon.isPyroCaster)
             {
                 PerformRBMagicAction(playerInventory.rightWeapon);
+            }
+        }
+
+        public void HandleLBAction()
+        {
+            if (playerInventory.leftWeapon.isMeleeWeapon)
+            {
+                // PeformLBMeleeAction();
+            }
+
+            else if (playerInventory.leftWeapon.isShield)
+            {
+                PerformLBBlockAction();
+            }
+
+            else if (playerInventory.leftWeapon.isSpellCaster ||
+                playerInventory.leftWeapon.isFaithCaster ||
+                playerInventory.leftWeapon.isPyroCaster)
+            {
+                // PerformLBMagicAction(playerInventory.leftWeapon);
             }
         }
 
@@ -195,6 +220,26 @@ namespace BON
         private void SuccessfullyCastSpell() // This function only calls a function in another script. It is also here so it can be called in an animation event()
         {
             playerInventory.currentSpell.SuccessfullyCastSpell(playerAnimatorHandler, playerStats);
+        }
+        #endregion
+
+        #region Defence Actions
+        private void PerformRBBlockAction()
+        {
+            if (playerManager.isInteracting)
+                return;
+
+            // Add functionality for if the shield is in the left hand here
+            Debug.Log("Player is blocking with their right hand");
+        }
+
+        private void PerformLBBlockAction()
+        {
+            if (playerManager.isInteracting)
+                return;
+
+            // Add functionality for if the shield is in the right hand here
+            Debug.Log("Player is blocking with their left hand");
         }
         #endregion
 

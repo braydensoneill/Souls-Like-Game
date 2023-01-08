@@ -36,6 +36,7 @@ namespace BON
         public bool input_RT;
         public bool input_LT;
         public bool input_RB;
+        public bool input_LB;
         public bool input_CriticalAttack;
 
         public bool input_Jump;
@@ -90,7 +91,8 @@ namespace BON
 
                 inputActions.PlayerActions.RT.performed += i => input_RT = true;
                 inputActions.PlayerActions.LT.performed += i => input_LT = true;
-                inputActions.PlayerActions.RB.performed += i => input_RB = true;
+                inputActions.PlayerActions.RB.performed += i => input_RB = true;    // will use cancelled here in the future for heavy attacks
+                inputActions.PlayerActions.LB.performed += i => input_LB = true;
                 
                 inputActions.PlayerQuickslots.DPadRight.performed += inputActions => input_Dpad_Right = true;
                 inputActions.PlayerQuickslots.DPadLeft.performed += inputActions => input_Dpad_Left = true;
@@ -119,7 +121,7 @@ namespace BON
         {
             HandleMoveInput(_delta);
             HandleRollInput(_delta);
-            HandleAttackInput(_delta);
+            HandleWeaponInput(_delta);
             HandleQuickSlotInput();
             HandleLeftPanelInput();
             HandleLockOnInput();
@@ -168,37 +170,31 @@ namespace BON
             }
         }
 
-        private void HandleAttackInput(float delta)
+        private void HandleWeaponInput(float delta)
         {
             // Disable attacks if menu options are open
-            if(uiManager.leftPanel.activeSelf == false && uiManager.selectWindow.activeSelf == false)
+            if (uiManager.leftPanel.activeSelf == true || uiManager.selectWindow.activeSelf == true)
+                return;
+
+            // Right hand weapon input
+            if (input_RB)
+                playerAttacker.HandleRBAction();
+
+            // Left hand weapon input
+            if (input_LB)
+                playerAttacker.HandleLBAction();
+
+            // Change this to if the player attacks while blocking
+            if (input_LT)   
             {
-                if (input_RB)
+                if (flag_TwoHand)
                 {
-                    playerAttacker.HandleRBAction();
+                    // if two handed weapon art
                 }
 
-                if (input_RT) // This is temporary
+                else
                 {
-                    if (playerManager.canDoCombo || !playerManager.isInteracting)
-                    {
-                        flag_Combo = true;
-                        playerAttacker.HandleHeavyAttack(playerInventory.rightWeapon);
-                        flag_Combo = false;
-                    }
-                }
-
-                if (input_LT)
-                {
-                    if (flag_TwoHand)
-                    {
-                        // if two handed weapon art
-                    }
-
-                    else
-                    {
-                        playerAttacker.HandleLTAction();
-                    }
+                    playerAttacker.HandleLTAction();
                 }
             }
         }
