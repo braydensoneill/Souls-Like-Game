@@ -36,6 +36,8 @@ namespace BON
         public bool input_RT;
         public bool input_LT;
         public bool input_RB;
+        public bool input_RBHold;
+
         public bool input_LB;
         public bool input_CriticalAttack;
 
@@ -61,6 +63,8 @@ namespace BON
         // Timer Variables
         [Header("Timers")]
         public float timer_Roll_Input;
+        public float timer_RB_Input;
+        public float timer_LB_Input;
 
         [Header("Backstab")]
         public Transform criticalAttackRayCastStartPoint;
@@ -81,6 +85,11 @@ namespace BON
             playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         }
 
+        private void Update()
+        {
+            //Debug.Log("timer_RB: " + timer);
+        }
+
         public void OnEnable()
         {
             if(inputActions == null)
@@ -92,6 +101,8 @@ namespace BON
                 inputActions.PlayerActions.RT.performed += i => input_RT = true;
                 inputActions.PlayerActions.LT.performed += i => input_LT = true;
                 inputActions.PlayerActions.RB.performed += i => input_RB = true;    // may use cancelled here in the future for heavy attacks
+                inputActions.PlayerActions.RB.canceled += i => input_RB = false;
+
                 inputActions.PlayerActions.LB.performed += i => input_LB = true;
                 inputActions.PlayerActions.LB.canceled += i => input_LB = false;
 
@@ -171,24 +182,41 @@ namespace BON
             }
         }
 
-        private void HandleWeaponInput(float delta)
+        private void HandleWeaponInput(float _delta)
         {
             // Disable attacks if menu options are open
             if (uiManager.leftPanel.activeSelf == true || uiManager.selectWindow.activeSelf == true)
                 return;
 
             // Right hand weapon input
-            if (input_RB)
+            if (input_RB && playerInventory.rightWeapon.isMeleeWeapon)
+                timer_RB_Input += _delta;
+
+            else if (input_RB && playerInventory.rightWeapon.isMeleeWeapon == false)
                 playerAttacker.HandleRBAction();
-            //else
+
+            else
+            {
+                if (playerInventory.rightWeapon.isMeleeWeapon)
+                    playerAttacker.HandleRBAction(timer_RB_Input);
+
                 playerManager.isBlockingRightHand = false;
+            }
+                
 
             // Left hand weapon input
             if (input_LB)
+            {
                 playerAttacker.HandleLBAction();
-            else
-                playerManager.isBlockingLeftHand = false;
+            }
 
+            else
+            {
+                timer_LB_Input = 0;
+                playerManager.isBlockingLeftHand = false;
+            }
+                
+           
             // Change this to if the player attacks while blocking
             if (input_LT)   
             {

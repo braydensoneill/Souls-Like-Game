@@ -94,7 +94,6 @@ namespace BON
             #region Check for Inputs
             inputHandler.flag_Roll = false;
             inputHandler.input_RT = false;
-            inputHandler.input_RB = false;
             inputHandler.input_LT = false;
             inputHandler.input_Dpad_Up = false;
             inputHandler.input_Dpad_Down = false;

@@ -180,7 +180,7 @@
                     "id": "3cfe2657-2dbd-46cb-b5d2-87c94d532851",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": ""
                 },
                 {
                     "name": "LB",

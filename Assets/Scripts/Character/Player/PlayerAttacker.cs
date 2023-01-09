@@ -15,6 +15,11 @@ namespace BON
 
         public string lastAttack;
 
+        private float timeTo_HeavyAttack = 0.65f;
+
+        private bool flag_HeavyAttack_Right;
+        private bool flag_HeavyAttack_Left;
+
         private LayerMask backStabLayer = 1 << 13;
         private LayerMask parryLayer = 1 << 14;
 
@@ -93,11 +98,27 @@ namespace BON
         }
 
         #region Input Actions
-        public void HandleRBAction()
+        public void HandleRBAction(float _holdDuration = 0)
         {
             if(playerInventory.rightWeapon.isMeleeWeapon)
             {
-                PerformRBMeleeAction();
+                // perform a light attack if the timer ends between 0 and the decimal
+                if (_holdDuration > 0 && _holdDuration < timeTo_HeavyAttack)
+                {
+                    flag_HeavyAttack_Right = false;
+                    PerformRBMeleeAction(flag_HeavyAttack_Right);
+                    inputHandler.timer_RB_Input = 0;
+                }
+
+                // perform a heavy attack if the timer is greater than the decimal
+                else if (_holdDuration >= timeTo_HeavyAttack)
+                {
+                    flag_HeavyAttack_Right = true;
+                    PerformRBMeleeAction(flag_HeavyAttack_Right);
+                    inputHandler.timer_RB_Input = 0;
+                }
+
+                flag_HeavyAttack_Right = false;
             }
 
             if (playerInventory.rightWeapon.isShield)
@@ -113,11 +134,24 @@ namespace BON
             }
         }
 
-        public void HandleLBAction()
+        public void HandleLBAction(float _holdDuration = 0)
         {
             if (playerInventory.leftWeapon.isMeleeWeapon)
             {
-                // PeformLBMeleeAction();
+                // the decimal represents the delay holding down the input
+                if (_holdDuration > 0 && _holdDuration < timeTo_HeavyAttack)
+                {
+                    flag_HeavyAttack_Left = false;
+                    // PerformLBMeleeAction(inputHandler.flag_HeavyAttack_Left, _delta);
+                }
+
+                else if (_holdDuration >= timeTo_HeavyAttack)
+                {
+                    flag_HeavyAttack_Left = true;
+                    // PerformLBMeleeAction(inputHandler.flag_HeavyAttack_Left, _delta);
+                }
+
+                flag_HeavyAttack_Left = false;
             }
 
             if (playerInventory.leftWeapon.isShield)
@@ -143,13 +177,13 @@ namespace BON
 
             else if (playerInventory.leftWeapon.isMeleeWeapon)
             {
-                // do a light attack
+                // do a light attack (dunno where this came from)
             }
         }
         #endregion
 
         #region Attack Actions
-        private void PerformRBMeleeAction()
+        private void PerformRBMeleeAction(bool _isHeavyAttack)
         {
             if (playerManager.canDoCombo)
             {
@@ -167,7 +201,12 @@ namespace BON
                     return;
 
                 playerAnimatorHandler.animator.SetBool("isUsingRightHand", true);
-                HandleLightAttack(playerInventory.rightWeapon);
+
+                if (_isHeavyAttack)
+                    Debug.Log("Performed heavy attack");
+
+                else
+                    HandleLightAttack(playerInventory.rightWeapon);
             }
         }
 
