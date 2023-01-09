@@ -188,35 +188,49 @@ namespace BON
             if (uiManager.leftPanel.activeSelf == true || uiManager.selectWindow.activeSelf == true)
                 return;
 
+            #region Handle RB Input
             // Right hand weapon input
-            if (input_RB && playerInventory.rightWeapon.isMeleeWeapon)
-                timer_RB_Input += _delta;
+            if(input_RB)
+            {
+                if (playerInventory.rightWeapon.isMeleeWeapon)
+                    timer_RB_Input += _delta;
 
-            else if (input_RB && playerInventory.rightWeapon.isMeleeWeapon == false)
-                playerAttacker.HandleRBAction();
+                else
+                    playerAttacker.HandleRBAction();
+            }
 
             else
             {
                 if (playerInventory.rightWeapon.isMeleeWeapon)
                     playerAttacker.HandleRBAction(timer_RB_Input);
 
-                playerManager.isBlockingRightHand = false;
+                else
+                    playerManager.isBlockingRightHand = false;
             }
-                
+            #endregion
 
+            #region Handle LB Input
             // Left hand weapon input
             if (input_LB)
             {
-                playerAttacker.HandleLBAction();
+                if (playerInventory.leftWeapon.isMeleeWeapon)
+                    timer_LB_Input += _delta;
+
+                else
+                    playerAttacker.HandleLBAction();
             }
 
             else
             {
-                timer_LB_Input = 0;
-                playerManager.isBlockingLeftHand = false;
+                if (playerInventory.leftWeapon.isMeleeWeapon)
+                    playerAttacker.HandleLBAction(timer_LB_Input);
+
+                else
+                    playerManager.isBlockingLeftHand = false;
             }
-                
-           
+            #endregion
+
+            #region Handle LT Input
             // Change this to if the player attacks while blocking
             if (input_LT)   
             {
@@ -230,6 +244,7 @@ namespace BON
                     playerAttacker.HandleLTAction();
                 }
             }
+            #endregion
         }
 
         private void HandleQuickSlotInput()

@@ -15,8 +15,6 @@ namespace BON
 
         public string lastAttack;
 
-        private float timeTo_HeavyAttack = 0.65f;
-
         private bool flag_HeavyAttack_Right;
         private bool flag_HeavyAttack_Left;
 
@@ -103,7 +101,7 @@ namespace BON
             if(playerInventory.rightWeapon.isMeleeWeapon)
             {
                 // perform a light attack if the timer ends between 0 and the decimal
-                if (_holdDuration > 0 && _holdDuration < timeTo_HeavyAttack)
+                if (_holdDuration > 0 && _holdDuration < playerInventory.rightWeapon.heavyAttackHoldTime)
                 {
                     flag_HeavyAttack_Right = false;
                     PerformRBMeleeAction(flag_HeavyAttack_Right);
@@ -111,14 +109,13 @@ namespace BON
                 }
 
                 // perform a heavy attack if the timer is greater than the decimal
-                else if (_holdDuration >= timeTo_HeavyAttack)
+                else if (_holdDuration >= playerInventory.rightWeapon.heavyAttackHoldTime)
                 {
                     flag_HeavyAttack_Right = true;
                     PerformRBMeleeAction(flag_HeavyAttack_Right);
-                    inputHandler.timer_RB_Input = 0;
-                }
-
-                flag_HeavyAttack_Right = false;
+                    flag_HeavyAttack_Right = false;
+                    inputHandler.timer_RB_Input = 0;    
+                }    
             }
 
             if (playerInventory.rightWeapon.isShield)
@@ -138,20 +135,22 @@ namespace BON
         {
             if (playerInventory.leftWeapon.isMeleeWeapon)
             {
-                // the decimal represents the delay holding down the input
-                if (_holdDuration > 0 && _holdDuration < timeTo_HeavyAttack)
+                // perform a light attack if the timer ends between 0 and the decimal
+                if (_holdDuration > 0 && _holdDuration < playerInventory.leftWeapon.heavyAttackHoldTime)
                 {
                     flag_HeavyAttack_Left = false;
-                    // PerformLBMeleeAction(inputHandler.flag_HeavyAttack_Left, _delta);
+                    //PerformLBMeleeAction(flag_HeavyAttack_Left);
+                    inputHandler.timer_LB_Input = 0;
                 }
 
-                else if (_holdDuration >= timeTo_HeavyAttack)
+                // perform a heavy attack if the timer is greater than the decimal
+                else if (_holdDuration >= playerInventory.leftWeapon.heavyAttackHoldTime)
                 {
                     flag_HeavyAttack_Left = true;
-                    // PerformLBMeleeAction(inputHandler.flag_HeavyAttack_Left, _delta);
+                    //PerformLBMeleeAction(flag_HeavyAttack_Left);
+                    flag_HeavyAttack_Left = false;
+                    inputHandler.timer_LB_Input = 0;
                 }
-
-                flag_HeavyAttack_Left = false;
             }
 
             if (playerInventory.leftWeapon.isShield)
