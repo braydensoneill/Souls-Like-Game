@@ -42,14 +42,13 @@ namespace BON
                 playerAnimatorHandler.animator.SetBool("canDoCombo", false);
 
                 if (lastAttack == weapon.OH_Sword_Light_Attack_Right_01)
-                {
                     playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Right_02, true);
-                }
+
+                else if (lastAttack == weapon.OH_Sword_Light_Attack_Left_01)
+                    playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Left_02, true);
 
                 else if(lastAttack == weapon.TH_Sword_Light_Attack_01)
-                {
                     playerAnimatorHandler.PlayTargetAnimation(weapon.TH_Sword_Light_Attack_02, true);
-                }
             }
         }
 
@@ -70,8 +69,18 @@ namespace BON
             else
             {
                 playerWeaponSlotManager.attackingWeapon = weapon;
-                playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Right_01, true);
-                lastAttack = weapon.OH_Sword_Light_Attack_Right_01;
+
+                if(playerManager.isUsingRightHand)
+                {
+                    playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Right_01, true);
+                    lastAttack = weapon.OH_Sword_Light_Attack_Right_01;
+                }
+
+                else if (playerManager.isUsingLeftHand)
+                {
+                    playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Left_01, true);
+                    lastAttack = weapon.OH_Sword_Light_Attack_Left_01;
+                }
             }
         }
 
@@ -139,7 +148,7 @@ namespace BON
                 if (_holdDuration > 0 && _holdDuration < playerInventory.leftWeapon.heavyAttackHoldTime)
                 {
                     flag_HeavyAttack_Left = false;
-                    //PerformLBMeleeAction(flag_HeavyAttack_Left);
+                    PerformLBMeleeAction(flag_HeavyAttack_Left);
                     inputHandler.timer_LB_Input = 0;
                 }
 
@@ -147,7 +156,7 @@ namespace BON
                 else if (_holdDuration >= playerInventory.leftWeapon.heavyAttackHoldTime)
                 {
                     flag_HeavyAttack_Left = true;
-                    //PerformLBMeleeAction(flag_HeavyAttack_Left);
+                    PerformLBMeleeAction(flag_HeavyAttack_Left);
                     flag_HeavyAttack_Left = false;
                     inputHandler.timer_LB_Input = 0;
                 }
@@ -233,6 +242,33 @@ namespace BON
                         playerAnimatorHandler.PlayTargetAnimation("Shrug", true);
                     }
                 }
+            }
+        }
+
+        private void PerformLBMeleeAction(bool _isHeavyAttack)
+        {
+            if (playerManager.canDoCombo)
+            {
+                inputHandler.flag_Combo = true;
+                HandleWeaponCombo(playerInventory.leftWeapon);
+                inputHandler.flag_Combo = false;
+            }
+
+            else
+            {
+                if (playerManager.isInteracting)
+                    return;
+
+                if (playerManager.canDoCombo)
+                    return;
+
+                playerAnimatorHandler.animator.SetBool("isUsingLeftHand", true);
+
+                if (_isHeavyAttack)
+                    Debug.Log("Performed heavy attack");
+
+                else
+                    HandleLightAttack(playerInventory.rightWeapon);
             }
         }
 

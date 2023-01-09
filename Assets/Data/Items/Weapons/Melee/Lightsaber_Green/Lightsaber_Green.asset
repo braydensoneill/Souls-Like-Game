@@ -21,6 +21,7 @@ MonoBehaviour:
   isLight: 1
   isBow: 0
   isShield: 0
+  heavyAttackHoldTime: 0.65
   baseDamage: 25
   criticalDamageMultiplier: 4
   Idle_Arm_Right_01: Right_Arm_Idle_01
@@ -28,9 +29,12 @@ MonoBehaviour:
   Idle_TH: TH_Idle_01
   OH_Sword_Light_Attack_Right_01: OH_Sword_Light_Attack_Right_01
   OH_Sword_Light_Attack_Right_02: OH_Sword_Light_Attack_Right_02
+  OH_Sword_Light_Attack_Left_01: OH_Sword_Light_Attack_Left_01
+  OH_Sword_Light_Attack_Left_02: OH_Sword_Light_Attack_Left_02
   OH_Heavy_Attack_01: OH_Heavy_Attack_01
   TH_Sword_Light_Attack_01: TH_Sword_Light_Attack_01
   TH_Sword_Light_Attack_02: TH_Sword_Light_Attack_02
+  weapon_art: 
   baseStamina: 15
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2
