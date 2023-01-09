@@ -31,7 +31,7 @@ namespace BON
             playerWeaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
         }
 
-        public void HandleWeaponCombo(WeaponItem weapon)
+        public void HandleWeaponCombo(WeaponItem weapon, bool isLeftAttack = false)
         {
             // Unless the player has insufficient stamina
             if (playerStats.stamina_Current <= 0)
@@ -41,10 +41,10 @@ namespace BON
             {
                 playerAnimatorHandler.animator.SetBool("canDoCombo", false);
 
-                if (lastAttack == weapon.OH_Sword_Light_Attack_Right_01)
+                if (lastAttack == weapon.OH_Sword_Light_Attack_Right_01 && isLeftAttack == false)
                     playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Right_02, true);
 
-                else if (lastAttack == weapon.OH_Sword_Light_Attack_Left_01)
+                else if (lastAttack == weapon.OH_Sword_Light_Attack_Left_01 && isLeftAttack == true)
                     playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Left_02, true);
 
                 else if(lastAttack == weapon.TH_Sword_Light_Attack_01)
@@ -52,7 +52,7 @@ namespace BON
             }
         }
 
-        public void HandleLightAttack(WeaponItem weapon)
+        public void HandleLightAttack(WeaponItem weapon, bool isLeftAttack = false)
         {
             // Unless the player has insufficient stamina
             if (playerStats.stamina_Current <= 0)
@@ -68,18 +68,18 @@ namespace BON
 
             else
             {
-                playerWeaponSlotManager.attackingWeapon = weapon;
+                //playerWeaponSlotManager.attackingWeapon = weapon;
 
-                if(playerManager.isUsingRightHand)
-                {
-                    playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Right_01, true);
-                    lastAttack = weapon.OH_Sword_Light_Attack_Right_01;
-                }
-
-                else if (playerManager.isUsingLeftHand)
+                if (isLeftAttack == true)
                 {
                     playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Left_01, true);
                     lastAttack = weapon.OH_Sword_Light_Attack_Left_01;
+                }
+
+                else if (isLeftAttack == false)
+                {
+                    playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Right_01, true);
+                    lastAttack = weapon.OH_Sword_Light_Attack_Right_01;
                 }
             }
         }
@@ -196,7 +196,7 @@ namespace BON
             if (playerManager.canDoCombo)
             {
                 inputHandler.flag_Combo = true;
-                HandleWeaponCombo(playerInventory.rightWeapon);
+                HandleWeaponCombo(playerInventory.rightWeapon, false);
                 inputHandler.flag_Combo = false;
             }
 
@@ -250,7 +250,7 @@ namespace BON
             if (playerManager.canDoCombo)
             {
                 inputHandler.flag_Combo = true;
-                HandleWeaponCombo(playerInventory.leftWeapon);
+                HandleWeaponCombo(playerInventory.leftWeapon, true);
                 inputHandler.flag_Combo = false;
             }
 
@@ -268,7 +268,7 @@ namespace BON
                     Debug.Log("Performed heavy attack");
 
                 else
-                    HandleLightAttack(playerInventory.rightWeapon);
+                    HandleLightAttack(playerInventory.leftWeapon, true);
             }
         }
 
