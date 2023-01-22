@@ -192,7 +192,7 @@ namespace BON
             // Right hand weapon input
             if(input_RB)
             {
-                if (playerInventory.rightWeapon.isMeleeWeapon)
+                if (playerInventory.rightWeapon.isMeleeWeapon && playerManager.isBlocking == false)
                     timer_RB_Input += _delta;
 
                 else
@@ -201,7 +201,7 @@ namespace BON
 
             else
             {
-                if (playerInventory.rightWeapon.isMeleeWeapon)
+                if (playerInventory.rightWeapon.isMeleeWeapon && playerManager.isBlocking == false)
                     playerAttacker.HandleRBAction(timer_RB_Input);
 
                 else
@@ -213,7 +213,7 @@ namespace BON
             // Left hand weapon input
             if (input_LB)
             {
-                if (playerInventory.leftWeapon.isMeleeWeapon)
+                if (playerInventory.leftWeapon.isMeleeWeapon && playerManager.isBlocking == false)
                     timer_LB_Input += _delta;
 
                 else
@@ -222,7 +222,7 @@ namespace BON
 
             else
             {
-                if (playerInventory.leftWeapon.isMeleeWeapon)
+                if (playerInventory.leftWeapon.isMeleeWeapon && playerManager.isBlocking == false)
                     playerAttacker.HandleLBAction(timer_LB_Input);
 
                 else
@@ -230,7 +230,26 @@ namespace BON
             }
             #endregion
 
-            #region Handle LT Input
+            #region Handle Simultaneous RB and LB input
+            if(input_RB && playerManager.isBlockingLeftHand)
+            {
+                // parry left hand
+                playerAttacker.HandleLTAction();
+            }
+
+            else if(input_LB && playerManager.isBlockingRightHand)
+            {
+                // parry right hand
+                Debug.Log("Peformed parry with right hand");
+            }
+
+            else if (input_RB && playerManager.isBlockingTwoHand)
+            {
+                // weapon art
+                Debug.Log("Performed Weapon Art");
+            }
+            
+            /*
             // Change this to if the player attacks while blocking
             if (input_LT)   
             {
@@ -243,7 +262,7 @@ namespace BON
                 {
                     playerAttacker.HandleLTAction();
                 }
-            }
+            }*/
             #endregion
         }
 

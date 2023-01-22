@@ -5180,12 +5180,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1199510556}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &480425665 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 1564307143530040694, guid: 000bc9ad15ea06d428330a6a44f9c863,
-    type: 3}
-  m_PrefabInstance: {fileID: 1564307144761533996}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &486089945 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1564307144189204495, guid: 000bc9ad15ea06d428330a6a44f9c863,
@@ -6803,14 +6797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa8395d441eaf654ba3a588262b0c055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterCollider: {fileID: 701943998}
-  characterCollisionBlocker: {fileID: 480425665}
---- !u!136 &701943998 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 1564307145219732397, guid: 000bc9ad15ea06d428330a6a44f9c863,
-    type: 3}
-  m_PrefabInstance: {fileID: 1564307144761533996}
-  m_PrefabAsset: {fileID: 0}
+  characterGameObject: {fileID: 701943992}
+  characterSprite: {fileID: 1131417377}
 --- !u!1 &709872186
 GameObject:
   m_ObjectHideFlags: 0
@@ -10762,6 +10750,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125784875}
   m_CullTransparentMesh: 0
+--- !u!1 &1131417377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1564307144657274095, guid: 000bc9ad15ea06d428330a6a44f9c863,
+    type: 3}
+  m_PrefabInstance: {fileID: 1564307144761533996}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1135037095
 GameObject:
   m_ObjectHideFlags: 0
@@ -21940,6 +21934,11 @@ PrefabInstance:
       propertyPath: gold_Current
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 1564307144657274095, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1564307144801299583, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: m_Layer
@@ -21959,6 +21958,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsKinematic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307145219732397, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1564307145219732399, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}

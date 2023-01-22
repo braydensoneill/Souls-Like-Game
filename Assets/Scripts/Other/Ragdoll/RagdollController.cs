@@ -6,47 +6,61 @@ namespace BON
 {
     public class RagdollController : MonoBehaviour
     {
-        // reference to the character's rigidbody
+        // character component references
+        private Animator characterAnimator;
+        public GameObject characterGameObject;
+        public GameObject characterSprite;
         private Rigidbody characterRigidbody;
+        private Collider characterCollider;
 
-        // reference to the character's collider
-        [SerializeField] CapsuleCollider characterCollider;
+        // character limb component references
+        private Collider[] allColliders;
 
-        // reference to the character's combat collision blocker collider
-        [SerializeField] CapsuleCollider characterCollisionBlocker;
+        private Collider[] ragdollLimbColliders;
+        private Rigidbody[] ragdollLimbRigidbodies;
 
-        // reference to the character's characterStats
-        private CharacterStats characterStats;
-
-        // list of all the colliders in the ragdoll
-        private List<Collider> ragdollColliders;
 
         void Awake()
         {
-            // get the character's rigidbody
+            // get the character's components
+            characterAnimator = GetComponentInChildren<Animator>();
             characterRigidbody = GetComponent<Rigidbody>();
+            characterCollider = GetComponent<Collider>();
+            allColliders = characterGameObject.GetComponentsInChildren<Collider>();
 
-            // get the character's characterStats
-            characterStats = GetComponent<CharacterStats>();
-
-            // get all the colliders in the ragdoll
-            ragdollColliders = new List<Collider>(GetComponentsInChildren<Collider>());
+            // get the character's limbs' components
+            ragdollLimbColliders = characterSprite.GetComponentsInChildren<Collider>();
+            ragdollLimbRigidbodies = characterSprite.GetComponentsInChildren<Rigidbody>();
         }
 
-        public void StartRagdoll()
+        public void RagdollModeOn()
         {
-            // disable the character's rigidbody
-            characterRigidbody.isKinematic = true;
+            characterAnimator.enabled = false;
 
-            // disable the character's collider
-            characterCollider.isTrigger = true;
+            foreach (Collider collider in allColliders)
+                collider.enabled = false;
 
-            // disable the character's collision blocker collider
-            characterCollisionBlocker.isTrigger = true;
-
-            // enable all the ragdoll colliders
-            foreach (Collider collider in ragdollColliders)
+            foreach (Collider collider in ragdollLimbColliders)
                 collider.enabled = true;
+
+            foreach (Rigidbody rigidbody in ragdollLimbRigidbodies)
+                rigidbody.isKinematic = false;
+
+            characterCollider.enabled = false;
+            characterRigidbody.isKinematic = true;
+        }
+
+        public void RagdollModeOff()
+        {
+            foreach(Collider collider in ragdollLimbColliders)
+                collider.enabled = false;
+
+            foreach (Rigidbody rigidbody in ragdollLimbRigidbodies)
+                rigidbody.isKinematic = true;
+
+            characterAnimator.enabled = true;
+            characterCollider.enabled = true;
+            characterRigidbody.isKinematic = false;
         }
     }
 }

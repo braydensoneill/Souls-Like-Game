@@ -10,6 +10,7 @@ namespace BON
         private EnemyLocomotion enemyLocomotion;
         private EnemyAnimatorHandler enemyAnimatorHandler;
         private EnemyStats enemyStats;
+        private RagdollController ragdollController;
 
         [Header("General")]
         public State currentState;
@@ -42,6 +43,7 @@ namespace BON
             navmeshAgent = GetComponentInChildren<NavMeshAgent>();
             enemyRigidbody = GetComponent<Rigidbody>();
             backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
+            ragdollController = GetComponentInParent<RagdollController>();
         }
 
         private void Start()
@@ -52,6 +54,7 @@ namespace BON
 
         private void Update()
         {
+            HandleDeathState();
             HandleRecoveryTime();
 
             isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
@@ -104,6 +107,18 @@ namespace BON
                     isInteracting = false;
                 }
             }
+        }
+
+        private void HandleDeathState()
+        {
+            if (enemyStats.health_Current > 0)
+                return;
+
+            enemyStats.health_Current = 0;
+            enemyAnimatorHandler.AwardGoldOnDeath();
+            enemyStats.isDead = true;
+            this.gameObject.tag = "Untagged";
+            ragdollController.RagdollModeOn();
         }
     }
 }

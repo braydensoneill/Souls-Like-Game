@@ -79,9 +79,9 @@ namespace BON
             // If adding multiplayer, scan for every player in the scene and award them the appropriate gold
         }
 
-        public override void StartRagdoll()
+        public void RagdollModeOn()
         {
-            ragdollController.StartRagdoll();
+            ragdollController.RagdollModeOn();
         }
 
         /* Any time the animator plays an animation with roo motion, recenter the model

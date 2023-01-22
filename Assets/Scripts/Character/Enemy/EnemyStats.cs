@@ -17,7 +17,7 @@ namespace BON
         {
             health_Max = CalculateMaxHealth();
             health_Current = health_Max;
-            gold_Current = Random.Range(1, 20);
+            gold_Current = Random.Range(1, 20); // may be moved to enemy inventory
         }
 
         private float CalculateMaxHealth()
@@ -34,11 +34,6 @@ namespace BON
             health_Current = health_Current - _amount;
 
             enemyAnimatorHandler.PlayTargetAnimation("Damage_01", true);
-
-            if (health_Current <= 0)
-            {
-                HandleDeath();
-            }
         }
 
         public void TakeHealthDamageNoAnimation(int _amount)
@@ -53,13 +48,6 @@ namespace BON
                 health_Current = 0;
                 isDead = true;
             }
-        }
-
-        public void HandleDeath()
-        {
-            health_Current = 0;
-            enemyAnimatorHandler.PlayTargetAnimation("Dead_01", true);
-            isDead = true;
         }
     }
 }
