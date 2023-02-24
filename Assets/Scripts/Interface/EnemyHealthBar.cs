@@ -22,9 +22,8 @@ namespace BON
         {
             hideBarTimerCurrent = hideBarTimerCurrent - Time.deltaTime;
 
-            Debug.Log("Enemy Health Bar Timer:" + hideBarTimerCurrent);
-            HandleHealthBarVisibilty();
-            HandleHealthBarOnDeath();
+            HandleBarVisibilty();
+            HandleBarOnDeath();
         }
 
         private void LateUpdate()
@@ -32,19 +31,19 @@ namespace BON
             HandleCanvasRotation();
         }
 
-        public void SetCurrentHealthBarValue(float _health)
+        public void SetCurrentBarValue(float _currentValue)
         {
-            slider.value = _health;
+            slider.value = _currentValue;
 
-            // Reset bar timer and make it visible when health bar is updated
+            // Reset bar timer and make it visible when value is updated
             ResetHideBarTimer();
-            HandleHealthBarVisibilty();
+            HandleBarVisibilty();
         }
 
-        public void SetMaxHealthBarValue(float _maxHealth)
+        public void SetMaxBarValue(float _maxValue)
         {
-            slider.maxValue = _maxHealth;
-            slider.value = _maxHealth;
+            slider.maxValue = _maxValue;
+            slider.value = _maxValue;
         }
 
         public void ResetHideBarTimer()
@@ -52,7 +51,7 @@ namespace BON
             hideBarTimerCurrent = hideBarTimerMax;
         }
 
-        private void HandleHealthBarVisibilty()
+        private void HandleBarVisibilty()
         {
             if (hideBarTimerCurrent <= 0)
             {
@@ -69,7 +68,7 @@ namespace BON
             }
         }
 
-        private void HandleHealthBarOnDeath()
+        private void HandleBarOnDeath()
         {
             if (slider.value <= 0)
             {

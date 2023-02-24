@@ -7,17 +7,82 @@ namespace BON
 {
     public class HealthBar : MonoBehaviour
     {
-        public Slider slider;
+        public Transform cameraTransform;
+        private Slider slider;
 
-        public void SetCurrentHealthBarValue(float _currentValue)
+        private float hideBarTimerCurrent = 0;
+        private float hideBarTimerMax = 3;
+
+        private void Awake()
         {
-            slider.value = _currentValue;
+            slider = GetComponentInChildren<Slider>();
         }
 
-        public void SetMaxHealthBarValue(float _maxValue)
+        private void Update()
+        {
+            hideBarTimerCurrent = hideBarTimerCurrent - Time.deltaTime;
+
+            HandleBarVisibilty();
+            HandleBarOnDeath();
+        }
+
+        private void LateUpdate()
+        {
+            HandleCanvasRotation();
+        }
+
+        public void SetCurrentBarValue(float _currentValue)
+        {
+            slider.value = _currentValue;
+
+            // Reset bar timer and make it visible when value is updated
+            ResetHideBarTimer();
+            HandleBarVisibilty();
+        }
+
+        public void SetMaxBarValue(float _maxValue)
         {
             slider.maxValue = _maxValue;
             slider.value = _maxValue;
+        }
+
+        public void ResetHideBarTimer()
+        {
+            hideBarTimerCurrent = hideBarTimerMax;
+        }
+
+        private void HandleBarVisibilty()
+        {
+            if (hideBarTimerCurrent <= 0)
+            {
+                hideBarTimerCurrent = 0;
+                slider.gameObject.SetActive(false);
+            }
+
+            else
+            {
+                if (!slider.gameObject.activeInHierarchy)
+                {
+                    slider.gameObject.SetActive(true);
+                }
+            }
+        }
+
+        private void HandleBarOnDeath()
+        {
+            if (slider.value <= 0)
+            {
+                Destroy(slider.gameObject);
+            }
+        }
+
+        private void HandleCanvasRotation()
+        {
+            if (slider != null)
+            {
+                transform.forward = cameraTransform.forward * -1;
+                transform.Rotate(0, 180, 0);
+            }
         }
     }
 }

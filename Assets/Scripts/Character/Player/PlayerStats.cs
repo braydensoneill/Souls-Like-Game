@@ -34,25 +34,25 @@ namespace BON
             // Initialise Health Values
             health_Max = SetMaxHealthFromHealthLevel();
             health_Current = health_Max;
-            health_Bar.SetMaxHealthBarValue(health_Max);
-            health_Bar.SetCurrentHealthBarValue(health_Current);
+            health_Bar.SetMaxBarValue(health_Max);
+            //health_Bar.SetCurrentBarValue(health_Current);
 
             // Initialise Stamina Values
             stamina_Max = SetMaxStaminaFromStaminaLevel();
             stamina_Current = stamina_Max;
-            stamina_Bar.SetMaxStaminaBarValue(stamina_Max);
-            stamina_Bar.SetCurrentStaminaBarValue(stamina_Current);
+            stamina_Bar.SetMaxBarValue(stamina_Max);
+            //stamina_Bar.SetCurrentBarValue(stamina_Current);
 
             // Initialise Mana Values
             mana_Max = SetMaxManaFromManaLevel();
             mana_Current = mana_Max;
-            mana_Bar.SetMaxManaBarValue(mana_Max);
-            mana_Bar.SetCurrentManaBarValue(mana_Current);
+            mana_Bar.SetMaxBarValue(mana_Max);
+            //mana_Bar.SetCurrentBarValue(mana_Current);
         }
 
         private void Update()
         {
-            health_Bar.SetCurrentHealthBarValue(health_Current);
+            //health_Bar.SetCurrentBarValue(health_Current);
         }
 
         private float SetMaxHealthFromHealthLevel()
@@ -84,10 +84,9 @@ namespace BON
             if (isDead)
                 return;
 
-            health_Current -= - _amount;
+            health_Current -= _amount;
 
-            health_Bar.SetCurrentHealthBarValue(health_Current);
-
+            health_Bar.SetCurrentBarValue(health_Current);
             animatorHandler.PlayTargetAnimation("Damage_01", true);
 
             if(health_Current <= 0)
@@ -104,6 +103,7 @@ namespace BON
                 return;
 
             health_Current = health_Current - _amount;
+            health_Bar.SetCurrentBarValue(health_Current);
 
             if (health_Current <= 0)
             {
@@ -115,7 +115,7 @@ namespace BON
         public void TakeStaminaDamage(float _amount)
         {
             stamina_Current -= _amount;
-            stamina_Bar.SetCurrentStaminaBarValue(stamina_Current);
+            stamina_Bar.SetCurrentBarValue(stamina_Current);
 
             if (stamina_Current <= 0)
                 stamina_Current = 0;
@@ -124,7 +124,7 @@ namespace BON
         public void TakeManaDamage(float _amount)
         {
             mana_Current -= _amount;
-            mana_Bar.SetCurrentManaBarValue(mana_Current);
+            mana_Bar.SetCurrentBarValue(mana_Current);
 
             if(mana_Current <= 0)
                 mana_Current = 0;
@@ -145,7 +145,7 @@ namespace BON
                     stamina_Regeneration_Timer_Current > stamina_Regeneration_Timer_Max)
                 {
                     stamina_Current += stamina_Regeneration_Strength * (Time.deltaTime * stamina_Regeneration_Strength);
-                    stamina_Bar.SetCurrentStaminaBarValue(Mathf.RoundToInt(stamina_Current));
+                    stamina_Bar.SetCurrentBarValue(Mathf.RoundToInt(stamina_Current));
                 }
             } 
         }
@@ -153,8 +153,9 @@ namespace BON
         public void HealPlayer(float _amount)
         {
             health_Current += _amount;
+            health_Bar.SetCurrentBarValue(health_Current);
 
-            if(health_Current > health_Max)
+            if (health_Current > health_Max)
                 health_Current = health_Max;
         }
 

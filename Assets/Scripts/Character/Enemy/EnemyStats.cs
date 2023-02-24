@@ -18,7 +18,7 @@ namespace BON
         {
             health_Max = CalculateMaxHealth();
             health_Current = health_Max;
-            enemyHealthBar.SetMaxHealthBarValue(health_Max);
+            enemyHealthBar.SetMaxBarValue(health_Max);
             gold_Current = Random.Range(1, 20); // may be moved to enemy inventory
         }
 
@@ -34,7 +34,7 @@ namespace BON
                 return;
 
             health_Current = health_Current - _amount;
-            enemyHealthBar.SetCurrentHealthBarValue(health_Current);
+            enemyHealthBar.SetCurrentBarValue(health_Current);
 
             enemyAnimatorHandler.PlayTargetAnimation("Damage_01", true);
         }
@@ -45,7 +45,7 @@ namespace BON
                 return;
 
             health_Current = health_Current - _amount;
-            enemyHealthBar.SetCurrentHealthBarValue(health_Current);
+            enemyHealthBar.SetCurrentBarValue(health_Current);
 
             if (health_Current <= 0)
             {
