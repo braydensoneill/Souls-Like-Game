@@ -1,0 +1,11 @@
+Player HUD
+	remove bottom right weapon ui
+	move bottom right item ui to eqiupment tab
+
+
+Interactable & item popups
+	interactable objects should have their own world canvas containing the interactable popup text
+	item popups might be changed to a periodically appearing world canvas where the item was picked up
+
+Ragdoll
+	ragdoll is still fucked when an enemy dies
