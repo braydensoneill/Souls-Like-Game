@@ -9,3 +9,10 @@ Interactable & item popups
 
 Ragdoll
 	ragdoll is still fucked when an enemy dies
+
+Combat
+	change combat in a way where attack animations do not controll the lower body
+	change combat isInteracting to isAttacking
+
+Shields
+	cannot parry with left shield yet

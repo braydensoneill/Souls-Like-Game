@@ -15,17 +15,17 @@ namespace BON
         public ManaBar mana_Bar;
 
         [Header("Player Health Regeneration")]
-        public float health_Regeneration_Strength = 1;
+        public float health_Regeneration_Strength = 2;
         [SerializeField] private float health_Regeneration_Timer_Current = 0;
         [SerializeField] private float health_Regeneration_Timer_Max = 1;
 
         [Header("Player Stamina Regeneration")]
-        public float stamina_Regeneration_Strength = 6;
+        public float stamina_Regeneration_Strength = 10;
         [SerializeField] private float stamina_Regeneration_Timer_Current = 0;
         [SerializeField] private float stamina_Regeneration_Timer_Max = 1;
 
         [Header("Player Mana Regeneration")]
-        public float mana_Regeneration_Strength = 6;
+        public float mana_Regeneration_Strength = 10;
         [SerializeField] private float mana_Regeneration_Timer_Current = 0;
         [SerializeField] private float mana_Regeneration_Timer_Max = 1;
 
