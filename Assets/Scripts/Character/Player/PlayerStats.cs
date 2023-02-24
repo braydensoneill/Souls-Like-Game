@@ -14,10 +14,20 @@ namespace BON
         public StaminaBar stamina_Bar;
         public ManaBar mana_Bar;
 
+        [Header("Player Health Regeneration")]
+        public float health_Regeneration_Strength = 1;
+        [SerializeField] private float health_Regeneration_Timer_Current = 0;
+        [SerializeField] private float health_Regeneration_Timer_Max = 1;
+
         [Header("Player Stamina Regeneration")]
-        public float stamina_Regeneration_Strength = 6f;
+        public float stamina_Regeneration_Strength = 6;
         [SerializeField] private float stamina_Regeneration_Timer_Current = 0;
-        [SerializeField] private float stamina_Regeneration_Timer_Max = 1.5f;
+        [SerializeField] private float stamina_Regeneration_Timer_Max = 1;
+
+        [Header("Player Mana Regeneration")]
+        public float mana_Regeneration_Strength = 6;
+        [SerializeField] private float mana_Regeneration_Timer_Current = 0;
+        [SerializeField] private float mana_Regeneration_Timer_Max = 1;
 
         private void Awake()
         {
@@ -130,27 +140,58 @@ namespace BON
                 mana_Current = 0;
         }
 
-        public void RegenerateStamina()
+        public void PassiveRegenerateHealth()
+        {
+            if (playerManager.isInteracting)
+            {
+                health_Regeneration_Timer_Current = 0;
+                return;
+            }
+                
+            health_Regeneration_Timer_Current += Time.deltaTime;
+
+            if (health_Current < health_Max &&
+                health_Regeneration_Timer_Current > health_Regeneration_Timer_Max)
+            {
+                RestoreHealth(health_Regeneration_Strength * Time.deltaTime);
+            }            
+        }
+
+        public void PassiveRegenerateStamina()
         {
             if(playerManager.isInteracting)
             {
                 stamina_Regeneration_Timer_Current = 0;
+                return;
             }
 
-            else
-            {
-                stamina_Regeneration_Timer_Current += Time.deltaTime;
+            stamina_Regeneration_Timer_Current += Time.deltaTime;
 
-                if (stamina_Current <= stamina_Max && 
-                    stamina_Regeneration_Timer_Current > stamina_Regeneration_Timer_Max)
-                {
-                    stamina_Current += stamina_Regeneration_Strength * (Time.deltaTime * stamina_Regeneration_Strength);
-                    stamina_Bar.SetCurrentBarValue(Mathf.RoundToInt(stamina_Current));
-                }
-            } 
+            if (stamina_Current < stamina_Max &&
+                stamina_Regeneration_Timer_Current > stamina_Regeneration_Timer_Max)
+            {
+                RestoreStamina(stamina_Regeneration_Strength * Time.deltaTime);
+            }
         }
 
-        public void HealPlayer(float _amount)
+        public void PassiveRegenerateMana()
+        {
+            if (playerManager.isInteracting)
+            {
+                mana_Regeneration_Timer_Current = 0;
+                return;
+            }
+
+            mana_Regeneration_Timer_Current += Time.deltaTime;
+
+            if (mana_Current < mana_Max &&
+                mana_Regeneration_Timer_Current > mana_Regeneration_Timer_Max)
+            {
+                RestoreMana(mana_Regeneration_Strength * Time.deltaTime);
+            }
+        }
+
+        public void RestoreHealth(float _amount)
         {
             health_Current += _amount;
             health_Bar.SetCurrentBarValue(health_Current);
@@ -158,6 +199,25 @@ namespace BON
             if (health_Current > health_Max)
                 health_Current = health_Max;
         }
+
+        public void RestoreStamina(float _amount)
+        {
+            stamina_Current += _amount;
+            stamina_Bar.SetCurrentBarValue(stamina_Current);
+
+            if (stamina_Current > stamina_Max)
+                stamina_Current = stamina_Max;
+        }
+
+        public void RestoreMana(float _amount)
+        {
+            mana_Current += _amount;
+            mana_Bar.SetCurrentBarValue(mana_Current);
+
+            if (mana_Current > mana_Max)
+                mana_Current = mana_Max;
+        }
+
 
         public void AddGold(int _gold)
         {

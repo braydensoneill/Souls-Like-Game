@@ -2798,7 +2798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282840810}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.5}
+  m_LocalPosition: {x: 0.17, y: 0, z: -2.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 891400276}
@@ -23365,6 +23365,16 @@ PrefabInstance:
       propertyPath: stamina_Bar
       value: 
       objectReference: {fileID: 1228881753}
+    - target: {fileID: 2753865172430565593, guid: 328032148731ad74597231601397030e,
+        type: 3}
+      propertyPath: mana_Regeneration_Strength
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2753865172430565593, guid: 328032148731ad74597231601397030e,
+        type: 3}
+      propertyPath: health_Regeneration_Strength
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2753865172430565595, guid: 328032148731ad74597231601397030e,
         type: 3}
       propertyPath: weaponsInventory.Array.size

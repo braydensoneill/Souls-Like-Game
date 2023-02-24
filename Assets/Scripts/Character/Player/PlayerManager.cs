@@ -75,7 +75,9 @@ namespace BON
             playerLocomotion.HandleRollingAndSprinting(delta);
             playerLocomotion.HandleJumping();
 
-            playerStats.RegenerateStamina();
+            playerStats.PassiveRegenerateHealth();
+            playerStats.PassiveRegenerateStamina();
+            playerStats.PassiveRegenerateMana();
 
             CheckForInteractableObject();
         }

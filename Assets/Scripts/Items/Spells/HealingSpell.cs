@@ -21,7 +21,7 @@ namespace BON
         {
             base.SuccessfullyCastSpell(playerAnimatorHandler, playerStats);
             GameObject instantiatedSpellFX = Instantiate(spellCastFX, playerAnimatorHandler.transform);
-            playerStats.HealPlayer(healAmount);
+            playerStats.RestoreHealth(healAmount);
             Debug.Log("Successfully casted spell");
         }
     }
