@@ -16,6 +16,8 @@ namespace BON
         [Header("User Interface")]
         public GameObject interactablePopUp;
         public GameObject itemPopUp;
+        private float itemPopUpTimerCurrent = 0;
+        private float itemPopUpTimerMax = 3;
         private InteractableUI interactableUI;
 
         [Header("Player Flags")]
@@ -128,43 +130,56 @@ namespace BON
         }
 
         #region Player Interactions
-        public void CheckForInteractableObject()
+        public void CheckForInteractableObject()    // this entire thing will probabably be moved to its own class
         {
             RaycastHit hit;
 
             if (Physics.SphereCast(transform.position, 0.3f, transform.forward, out hit, 1f))
             {
-                if (hit.collider.tag == "Interactable" && !isInteracting)
+                if (isInteracting)
+                    return;
+
+                if (hit.collider.tag != "Interactable")
+                    return;
+
+                Debug.Log("Collided with an interactable object!");
+                Interactable interactableObject = hit.collider.GetComponent<Interactable>();
+
+                if (interactableObject == null)
+                     return;
+
+                string interactableText = interactableObject.interactableText;
+                interactableUI.interactableText.text = interactableText;
+                interactablePopUp.SetActive(true);
+
+                if (inputHandler.input_A && !isInteracting)
                 {
-                    Debug.Log("Collided with an interactable object!");
-
-                    Interactable interactableObject = hit.collider.GetComponent<Interactable>();
-
-                    if (interactableObject != null)
-                    {
-                        string interactableText = interactableObject.interactableText;
-                        interactableUI.interactableText.text = interactableText;
-                        interactablePopUp.SetActive(true);
-
-                        if (inputHandler.input_A && !isInteracting)
-                        {
-                            hit.collider.GetComponent<Interactable>().Interact(this);
-                            interactablePopUp.SetActive(false); // Bug Fix. Interactable text not automatically disabling
-                        }
-                    }
+                    hit.collider.GetComponent<Interactable>().Interact(this);
+                    interactablePopUp.SetActive(false); // Bug Fix. Interactable text not automatically disabling
                 }
             }
 
             else
             {
+                // disable the interatable popup if there is no interactable object in range
                 if (interactablePopUp != null)
                 {
                     interactablePopUp.SetActive(false);
                 }
+            }
 
-                if (itemPopUp != null && inputHandler.input_A)
+            //when all of this functionality is put into its own class, must allow for multiple item popups at once
+            // check if there is an item popup currently active
+            if (itemPopUp != null)
+            {
+                // if so, start the timer
+                itemPopUpTimerCurrent -= Time.deltaTime;
+
+                // if the timer reaches zero, disable the item popup and restart the timer for next time
+                if (itemPopUpTimerCurrent <= 0)
                 {
                     itemPopUp.SetActive(false);
+                    itemPopUpTimerCurrent = itemPopUpTimerMax;
                 }
             }
         }
