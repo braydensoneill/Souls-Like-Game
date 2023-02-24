@@ -22,8 +22,11 @@ namespace BON
         {
             hideBarTimerCurrent = hideBarTimerCurrent - Time.deltaTime;
 
+            // Do not execute if slider no longer exists
+            if (slider == null)
+                return;
+
             HandleBarVisibilty();
-            HandleBarOnDeath();
         }
 
         private void LateUpdate()
@@ -65,14 +68,6 @@ namespace BON
                 {
                     slider.gameObject.SetActive(true);
                 }
-            }
-        }
-
-        private void HandleBarOnDeath()
-        {
-            if (slider.value <= 0)
-            {
-                Destroy(slider.gameObject);
             }
         }
 

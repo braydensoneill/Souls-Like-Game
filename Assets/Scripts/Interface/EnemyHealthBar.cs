@@ -22,6 +22,10 @@ namespace BON
         {
             hideBarTimerCurrent = hideBarTimerCurrent - Time.deltaTime;
 
+            // Do not execute if slider no longer exists
+            if (slider == null)
+                return;
+
             HandleBarVisibilty();
             HandleBarOnDeath();
         }
