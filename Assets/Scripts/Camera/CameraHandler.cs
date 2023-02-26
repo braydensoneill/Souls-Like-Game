@@ -27,11 +27,14 @@ namespace BON
         public float pivotSpeed = 0.03f;
 
         [Header("Camera Zoom")]
-        [SerializeField] float cameraZoomCurrent;
-        public float cameraZoomIntensity;
+        //[SerializeField] private float cameraZoomCurrent;
+        public float cameraZoomIntensity = 0.5f;
+        private float cameraZoomMinimum = -5;
+        private float cameraZoomMaximum = -2;
 
-        private float targetPosition;
+        private float collisionTargetPosition;
         private float defaultPosition;
+        private float zoomedTargetPosition;
         private float lookAngle;
         private float pivotAngle;
 
@@ -96,6 +99,51 @@ namespace BON
             HandleCameraCollisions(_delta);
         }
 
+        public void HandleCameraZoom(float _delta, float _mouseScrollY)
+        {
+            if (inputHandler.flag_LeftPanel == true)
+                return;
+
+            zoomedTargetPosition = defaultPosition + (_mouseScrollY * cameraZoomIntensity);
+
+            if (collisionTargetPosition < zoomedTargetPosition)
+            {
+                cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, zoomedTargetPosition, _delta / 0.02f);
+                cameraTransform.localPosition = cameraTransformPosition;
+            }
+        }
+
+        private void HandleCameraCollisions(float _delta)
+        {
+            collisionTargetPosition = zoomedTargetPosition;
+            RaycastHit hit;
+            Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
+            direction.Normalize();
+
+            if (Physics.SphereCast(
+                cameraPivotTransform.position,
+                cameraSphereRadius,
+                direction,
+                out hit,
+                Mathf.Abs(collisionTargetPosition),
+                ignoreLayers))
+            {
+                float dis = Vector3.Distance(cameraPivotTransform.position, hit.point);
+                collisionTargetPosition = -(dis - cameraCollisionOffset);
+            }
+
+            if (Mathf.Abs(collisionTargetPosition) < minimumCollisionOffset)
+            {
+                collisionTargetPosition = -minimumCollisionOffset;
+            }
+
+            if (collisionTargetPosition >= zoomedTargetPosition)
+            {
+                cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, collisionTargetPosition, _delta / 0.02f);
+                cameraTransform.localPosition = cameraTransformPosition;
+            }
+        }
+
         public void HandleCameraRotation(float _delta, float _mouseXInput, float _mouseYInput)
         {
             // If not currently locked on / using the menu
@@ -138,43 +186,6 @@ namespace BON
                 eulerAngle.y = 0;
                 cameraPivotTransform.localEulerAngles = eulerAngle;
             }
-        }
-
-        public void HandleCameraZoom(float _delta, float _mouseScrollY)
-        {
-            if (inputHandler.flag_LeftPanel == true)
-                    return;
-
-
-            // cant figure how to do this properly yet
-        }
-
-        private void HandleCameraCollisions(float _delta)
-        {
-            targetPosition = defaultPosition;
-            RaycastHit hit;
-            Vector3 direction = cameraTransform.position - cameraPivotTransform.position;
-            direction.Normalize();
-
-            if (Physics.SphereCast(
-                cameraPivotTransform.position,
-                cameraSphereRadius,
-                direction,
-                out hit,
-                Mathf.Abs(targetPosition),
-                ignoreLayers))
-            {
-                float dis = Vector3.Distance(cameraPivotTransform.position, hit.point);
-                targetPosition = -(dis - cameraCollisionOffset);
-            }
-
-            if(Mathf.Abs(targetPosition) < minimumCollisionOffset)
-            {
-                targetPosition = -minimumCollisionOffset;
-            }
-
-            cameraTransformPosition.z = Mathf.Lerp(cameraTransform.localPosition.z, targetPosition, _delta / 0.02f);
-            cameraTransform.localPosition = cameraTransformPosition;
         }
 
         public void HandleLockOn()
@@ -313,6 +324,16 @@ namespace BON
                     ref velocity,
                     Time.deltaTime);
             }
+        }
+
+        public float getCameraZoomMaximum()
+        {
+            return cameraZoomMaximum;
+        }
+
+        public float getCameraZoomMinimum()
+        {
+            return cameraZoomMinimum;
         }
     }
 }

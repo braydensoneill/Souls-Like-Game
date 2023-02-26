@@ -27,7 +27,10 @@ namespace BON
         public float moveAmount;
         public float mouseX;
         public float mouseY;
+
         public float mouseScrollY;
+        private float mouseScrollYMinimum = 0;
+        private float mouseScrollYMaximum = 12;
 
         // Input Variables
         [Header("Inputs")]
@@ -158,10 +161,10 @@ namespace BON
             mouseY = cameraMoveInput.y;
 
             // camera zoom move
-            if (cameraZoomMoveInput > 0)
+            if (cameraZoomMoveInput > 0 && cameraHandler.cameraTransform.localPosition.z < cameraHandler.getCameraZoomMaximum())
                 mouseScrollY++;
 
-            if (cameraZoomMoveInput < 0)
+            if (cameraZoomMoveInput < 0 && cameraHandler.cameraTransform.localPosition.z > cameraHandler.getCameraZoomMinimum())
                 mouseScrollY--;
         }
 
