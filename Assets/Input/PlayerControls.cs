@@ -19,7 +19,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             ""id"": ""7f95dc40-1034-479b-bda9-68db60dc8d2f"",
             ""actions"": [
                 {
-                    ""name"": ""Movement"",
+                    ""name"": ""Player Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""3402f4ce-9989-44be-bbba-4560e02f19ee"",
                     ""expectedControlType"": ""Vector2"",
@@ -27,10 +27,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Camera"",
+                    ""name"": ""Camera Move"",
                     ""type"": ""PassThrough"",
                     ""id"": ""2e2b82e2-983b-4a66-b08a-b64aeb643626"",
                     ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Camera Zoom"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""df1133c0-9af8-4b7e-8fc9-543bd28c714c"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -59,7 +67,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""Player Move"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -70,7 +78,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""Player Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -81,7 +89,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""Player Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -92,7 +100,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""Player Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -103,7 +111,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
+                    ""action"": ""Player Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -114,7 +122,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": ""StickDeadzone"",
                     ""groups"": """",
-                    ""action"": ""Camera"",
+                    ""action"": ""Camera Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -125,7 +133,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Camera"",
+                    ""action"": ""Camera Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -170,6 +178,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Lock On Target Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24e06dcc-3b13-4c18-a48a-17082716f4ba"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Camera Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -260,7 +279,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Y"",
+                    ""name"": ""T"",
                     ""type"": ""Button"",
                     ""id"": ""26d64063-1489-411e-bc1b-5440c3ca3eea"",
                     ""expectedControlType"": ""Button"",
@@ -382,11 +401,11 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2d81d15a-6ced-43e3-a77d-00eba5101a54"",
-                    ""path"": ""<Keyboard>/y"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Y"",
+                    ""action"": ""T"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -397,7 +416,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Y"",
+                    ""action"": ""T"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -635,8 +654,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
 }");
         // Player Movement
         m_PlayerMovement = asset.FindActionMap("Player Movement", throwIfNotFound: true);
-        m_PlayerMovement_Movement = m_PlayerMovement.FindAction("Movement", throwIfNotFound: true);
-        m_PlayerMovement_Camera = m_PlayerMovement.FindAction("Camera", throwIfNotFound: true);
+        m_PlayerMovement_PlayerMove = m_PlayerMovement.FindAction("Player Move", throwIfNotFound: true);
+        m_PlayerMovement_CameraMove = m_PlayerMovement.FindAction("Camera Move", throwIfNotFound: true);
+        m_PlayerMovement_CameraZoom = m_PlayerMovement.FindAction("Camera Zoom", throwIfNotFound: true);
         m_PlayerMovement_LockOnTargetLeft = m_PlayerMovement.FindAction("Lock On Target Left", throwIfNotFound: true);
         m_PlayerMovement_LockOnTargetRight = m_PlayerMovement.FindAction("Lock On Target Right", throwIfNotFound: true);
         // Player Actions
@@ -651,7 +671,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_LeftWindow = m_PlayerActions.FindAction("LeftWindow", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
-        m_PlayerActions_Y = m_PlayerActions.FindAction("Y", throwIfNotFound: true);
+        m_PlayerActions_T = m_PlayerActions.FindAction("T", throwIfNotFound: true);
         // Player Quickslots
         m_PlayerQuickslots = asset.FindActionMap("Player Quickslots", throwIfNotFound: true);
         m_PlayerQuickslots_DPadUp = m_PlayerQuickslots.FindAction("D-Pad Up", throwIfNotFound: true);
@@ -707,16 +727,18 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     // Player Movement
     private readonly InputActionMap m_PlayerMovement;
     private IPlayerMovementActions m_PlayerMovementActionsCallbackInterface;
-    private readonly InputAction m_PlayerMovement_Movement;
-    private readonly InputAction m_PlayerMovement_Camera;
+    private readonly InputAction m_PlayerMovement_PlayerMove;
+    private readonly InputAction m_PlayerMovement_CameraMove;
+    private readonly InputAction m_PlayerMovement_CameraZoom;
     private readonly InputAction m_PlayerMovement_LockOnTargetLeft;
     private readonly InputAction m_PlayerMovement_LockOnTargetRight;
     public struct PlayerMovementActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerMovementActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Movement => m_Wrapper.m_PlayerMovement_Movement;
-        public InputAction @Camera => m_Wrapper.m_PlayerMovement_Camera;
+        public InputAction @PlayerMove => m_Wrapper.m_PlayerMovement_PlayerMove;
+        public InputAction @CameraMove => m_Wrapper.m_PlayerMovement_CameraMove;
+        public InputAction @CameraZoom => m_Wrapper.m_PlayerMovement_CameraZoom;
         public InputAction @LockOnTargetLeft => m_Wrapper.m_PlayerMovement_LockOnTargetLeft;
         public InputAction @LockOnTargetRight => m_Wrapper.m_PlayerMovement_LockOnTargetRight;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
@@ -728,12 +750,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_PlayerMovementActionsCallbackInterface != null)
             {
-                @Movement.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
-                @Movement.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
-                @Movement.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnMovement;
-                @Camera.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCamera;
-                @Camera.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCamera;
-                @Camera.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCamera;
+                @PlayerMove.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPlayerMove;
+                @PlayerMove.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPlayerMove;
+                @PlayerMove.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnPlayerMove;
+                @CameraMove.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCameraMove;
+                @CameraMove.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCameraMove;
+                @CameraMove.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCameraMove;
+                @CameraZoom.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCameraZoom;
+                @CameraZoom.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCameraZoom;
+                @CameraZoom.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCameraZoom;
                 @LockOnTargetLeft.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLockOnTargetLeft;
                 @LockOnTargetLeft.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLockOnTargetLeft;
                 @LockOnTargetLeft.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnLockOnTargetLeft;
@@ -744,12 +769,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Movement.started += instance.OnMovement;
-                @Movement.performed += instance.OnMovement;
-                @Movement.canceled += instance.OnMovement;
-                @Camera.started += instance.OnCamera;
-                @Camera.performed += instance.OnCamera;
-                @Camera.canceled += instance.OnCamera;
+                @PlayerMove.started += instance.OnPlayerMove;
+                @PlayerMove.performed += instance.OnPlayerMove;
+                @PlayerMove.canceled += instance.OnPlayerMove;
+                @CameraMove.started += instance.OnCameraMove;
+                @CameraMove.performed += instance.OnCameraMove;
+                @CameraMove.canceled += instance.OnCameraMove;
+                @CameraZoom.started += instance.OnCameraZoom;
+                @CameraZoom.performed += instance.OnCameraZoom;
+                @CameraZoom.canceled += instance.OnCameraZoom;
                 @LockOnTargetLeft.started += instance.OnLockOnTargetLeft;
                 @LockOnTargetLeft.performed += instance.OnLockOnTargetLeft;
                 @LockOnTargetLeft.canceled += instance.OnLockOnTargetLeft;
@@ -774,7 +802,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_LeftWindow;
     private readonly InputAction m_PlayerActions_LockOn;
-    private readonly InputAction m_PlayerActions_Y;
+    private readonly InputAction m_PlayerActions_T;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -789,7 +817,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @LeftWindow => m_Wrapper.m_PlayerActions_LeftWindow;
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
-        public InputAction @Y => m_Wrapper.m_PlayerActions_Y;
+        public InputAction @T => m_Wrapper.m_PlayerActions_T;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -829,9 +857,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @LockOn.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
                 @LockOn.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
                 @LockOn.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLockOn;
-                @Y.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
-                @Y.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
-                @Y.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnY;
+                @T.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnT;
+                @T.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnT;
+                @T.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnT;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -866,9 +894,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @LockOn.started += instance.OnLockOn;
                 @LockOn.performed += instance.OnLockOn;
                 @LockOn.canceled += instance.OnLockOn;
-                @Y.started += instance.OnY;
-                @Y.performed += instance.OnY;
-                @Y.canceled += instance.OnY;
+                @T.started += instance.OnT;
+                @T.performed += instance.OnT;
+                @T.canceled += instance.OnT;
             }
         }
     }
@@ -932,8 +960,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     public PlayerQuickslotsActions @PlayerQuickslots => new PlayerQuickslotsActions(this);
     public interface IPlayerMovementActions
     {
-        void OnMovement(InputAction.CallbackContext context);
-        void OnCamera(InputAction.CallbackContext context);
+        void OnPlayerMove(InputAction.CallbackContext context);
+        void OnCameraMove(InputAction.CallbackContext context);
+        void OnCameraZoom(InputAction.CallbackContext context);
         void OnLockOnTargetLeft(InputAction.CallbackContext context);
         void OnLockOnTargetRight(InputAction.CallbackContext context);
     }
@@ -949,7 +978,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnLeftWindow(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
-        void OnY(InputAction.CallbackContext context);
+        void OnT(InputAction.CallbackContext context);
     }
     public interface IPlayerQuickslotsActions
     {

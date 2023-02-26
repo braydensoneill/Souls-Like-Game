@@ -6,7 +6,7 @@
             "id": "7f95dc40-1034-479b-bda9-68db60dc8d2f",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "Player Move",
                     "type": "PassThrough",
                     "id": "3402f4ce-9989-44be-bbba-4560e02f19ee",
                     "expectedControlType": "Vector2",
@@ -14,10 +14,18 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Camera",
+                    "name": "Camera Move",
                     "type": "PassThrough",
                     "id": "2e2b82e2-983b-4a66-b08a-b64aeb643626",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Camera Zoom",
+                    "type": "PassThrough",
+                    "id": "df1133c0-9af8-4b7e-8fc9-543bd28c714c",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 },
@@ -46,7 +54,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Player Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -57,7 +65,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Player Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -68,7 +76,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Player Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -79,7 +87,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Player Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -90,7 +98,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Player Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -101,7 +109,7 @@
                     "interactions": "",
                     "processors": "StickDeadzone",
                     "groups": "",
-                    "action": "Camera",
+                    "action": "Camera Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -112,7 +120,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Camera",
+                    "action": "Camera Move",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -157,6 +165,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Lock On Target Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24e06dcc-3b13-4c18-a48a-17082716f4ba",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Camera Zoom",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -247,7 +266,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Y",
+                    "name": "T",
                     "type": "Button",
                     "id": "26d64063-1489-411e-bc1b-5440c3ca3eea",
                     "expectedControlType": "Button",
@@ -369,11 +388,11 @@
                 {
                     "name": "",
                     "id": "2d81d15a-6ced-43e3-a77d-00eba5101a54",
-                    "path": "<Keyboard>/y",
+                    "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Y",
+                    "action": "T",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -384,7 +403,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Y",
+                    "action": "T",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

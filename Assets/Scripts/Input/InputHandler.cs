@@ -27,12 +27,13 @@ namespace BON
         public float moveAmount;
         public float mouseX;
         public float mouseY;
+        public float mouseScrollY;
 
         // Input Variables
         [Header("Inputs")]
         public bool input_B;
         public bool input_A;
-        public bool input_Y;
+        public bool input_T;
         public bool input_RT;
         public bool input_LT;
         public bool input_RB;
@@ -70,8 +71,11 @@ namespace BON
         public Transform criticalAttackRayCastStartPoint;
 
         // Input Vectors
-        private Vector2 movementInput;
-        private Vector2 cameraInput;
+        private Vector2 playerMoveInput;
+        private Vector2 cameraMoveInput;
+
+        // Camera Zoom variables
+        private float cameraZoomMoveInput;
 
         private void Awake()
         {
@@ -95,8 +99,9 @@ namespace BON
             if(inputActions == null)
             {
                 inputActions = new PlayerControls();
-                inputActions.PlayerMovement.Movement.performed += inputActions => movementInput = inputActions.ReadValue<Vector2>();
-                inputActions.PlayerMovement.Camera.performed += i => cameraInput = i.ReadValue<Vector2>();
+                inputActions.PlayerMovement.PlayerMove.performed += inputActions => playerMoveInput = inputActions.ReadValue<Vector2>();
+                inputActions.PlayerMovement.CameraMove.performed += i => cameraMoveInput = i.ReadValue<Vector2>();
+                inputActions.PlayerMovement.CameraZoom.performed += i => cameraZoomMoveInput = i.ReadValue<float>();
 
                 inputActions.PlayerActions.RT.performed += i => input_RT = true;
                 inputActions.PlayerActions.LT.performed += i => input_LT = true;
@@ -117,7 +122,7 @@ namespace BON
                 inputActions.PlayerActions.LockOn.performed += i => input_LockOn = true;
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => input_Right_Stick_Right = true;
                 inputActions.PlayerMovement.LockOnTargetLeft.performed += i => input_Right_Stick_Left = true;
-                inputActions.PlayerActions.Y.performed += i => input_Y = true;
+                inputActions.PlayerActions.T.performed += i => input_T = true;
                 inputActions.PlayerActions.CriticalAttack.performed += inputActions => input_CriticalAttack = true;
             }
 
@@ -143,11 +148,21 @@ namespace BON
 
         private void HandleMoveInput(float _delta)
         {
-            horizontal = movementInput.x;
-            vertical = movementInput.y;
+            // player move
+            horizontal = playerMoveInput.x;
+            vertical = playerMoveInput.y;
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
-            mouseX = cameraInput.x;
-            mouseY = cameraInput.y;
+            
+            // camera move
+            mouseX = cameraMoveInput.x;
+            mouseY = cameraMoveInput.y;
+
+            // camera zoom move
+            if (cameraZoomMoveInput > 0)
+                mouseScrollY++;
+
+            if (cameraZoomMoveInput < 0)
+                mouseScrollY--;
         }
 
         private void HandleRollInput(float _delta)
@@ -350,9 +365,9 @@ namespace BON
 
         private void HandleTwoHandInput()
         {
-            if(input_Y)
+            if(input_T)
             {
-                input_Y = false;
+                input_T = false;
 
                 flag_TwoHand = !flag_TwoHand;
 

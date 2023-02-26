@@ -26,6 +26,10 @@ namespace BON
         public float followSpeed = 0.1f;
         public float pivotSpeed = 0.03f;
 
+        [Header("Camera Zoom")]
+        [SerializeField] float cameraZoomCurrent;
+        public float cameraZoomIntensity;
+
         private float targetPosition;
         private float defaultPosition;
         private float lookAngle;
@@ -97,23 +101,23 @@ namespace BON
             // If not currently locked on / using the menu
             if (currentLockOnTarget == null && inputHandler.flag_LockOn == false)
             {
-                if(inputHandler.flag_LeftPanel == false)
-                {
-                    lookAngle += (_mouseXInput * lookSpeed) / _delta;
-                    pivotAngle -= (_mouseYInput * pivotSpeed) / _delta;
-                    pivotAngle = Mathf.Clamp(pivotAngle, minimumPivot, maximumPivot);
+                if (inputHandler.flag_LeftPanel == true)
+                    return;
 
-                    Vector3 rotation = Vector3.zero;
-                    rotation.y = lookAngle;
-                    Quaternion targetRotation = Quaternion.Euler(rotation);
-                    myTransform.rotation = targetRotation;
+                lookAngle += (_mouseXInput * lookSpeed) / _delta;
+                pivotAngle -= (_mouseYInput * pivotSpeed) / _delta;
+                pivotAngle = Mathf.Clamp(pivotAngle, minimumPivot, maximumPivot);
 
-                    rotation = Vector3.zero;
-                    rotation.x = pivotAngle;
+                Vector3 rotation = Vector3.zero;
+                rotation.y = lookAngle;
+                Quaternion targetRotation = Quaternion.Euler(rotation);
+                myTransform.rotation = targetRotation;
 
-                    targetRotation = Quaternion.Euler(rotation);
-                    cameraPivotTransform.localRotation = targetRotation;
-                }
+                rotation = Vector3.zero;
+                rotation.x = pivotAngle;
+
+                targetRotation = Quaternion.Euler(rotation);
+                cameraPivotTransform.localRotation = targetRotation;
             }
 
             // If currently locked on
@@ -134,6 +138,15 @@ namespace BON
                 eulerAngle.y = 0;
                 cameraPivotTransform.localEulerAngles = eulerAngle;
             }
+        }
+
+        public void HandleCameraZoom(float _delta, float _mouseScrollY)
+        {
+            if (inputHandler.flag_LeftPanel == true)
+                    return;
+
+
+            // cant figure how to do this properly yet
         }
 
         private void HandleCameraCollisions(float _delta)

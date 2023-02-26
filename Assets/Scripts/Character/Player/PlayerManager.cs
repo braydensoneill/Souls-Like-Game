@@ -112,6 +112,7 @@ namespace BON
 
             if (cameraHandler != null)
             {
+                cameraHandler.HandleCameraZoom(delta, inputHandler.mouseScrollY);
                 cameraHandler.FollowTarget(delta);
                 cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
             }

@@ -16,3 +16,10 @@ Combat
 
 Shields
 	cannot parry with left shield yet
+
+Camera
+	I have added the functionality for camera zoom inputs.
+	Everything work so far up until actually moving the camera
+	Must add functionality to HandleCameraZoom
+	Don't know how to get it to work smoothly with FollowTarget and HandleCameraCollisions
+	Still need to add input action for controller zoom
