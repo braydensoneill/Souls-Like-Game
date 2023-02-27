@@ -2,7 +2,6 @@ Player HUD
 	remove bottom right weapon ui
 	move bottom right item ui to eqiupment tab
 
-
 Interactable & item popups
 	interactable objects should have their own world canvas containing the interactable popup text
 	item popups might be changed to a periodically appearing world canvas where the item was picked up
@@ -23,3 +22,12 @@ Camera
 	Must add functionality to HandleCameraZoom
 	Don't know how to get it to work smoothly with FollowTarget and HandleCameraCollisions
 	Still need to add input action for controller zoom
+
+UI
+	Create a UIManagerScreen
+	Create a UIManagerWorld
+	They will contain an update function for everything rather than having loads of them
+	(maybe only UIManager is enough)
+
+Other
+	rename CameraHandler to CameraManager

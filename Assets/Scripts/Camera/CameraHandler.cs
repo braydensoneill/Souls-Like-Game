@@ -29,7 +29,7 @@ namespace BON
         [Header("Camera Zoom")]
         //[SerializeField] private float cameraZoomCurrent;
         public float cameraZoomIntensity = 0.5f;
-        private float cameraZoomMinimum = -5;
+        private float cameraZoomMinimum = -4;
         private float cameraZoomMaximum = -2;
 
         private float collisionTargetPosition;
@@ -105,6 +105,12 @@ namespace BON
                 return;
 
             zoomedTargetPosition = defaultPosition + (_mouseScrollY * cameraZoomIntensity);
+
+            if (zoomedTargetPosition > cameraZoomMaximum)
+                zoomedTargetPosition = cameraZoomMaximum;
+
+            if (zoomedTargetPosition < cameraZoomMinimum)
+                zoomedTargetPosition = cameraZoomMinimum;
 
             if (collisionTargetPosition < zoomedTargetPosition)
             {
