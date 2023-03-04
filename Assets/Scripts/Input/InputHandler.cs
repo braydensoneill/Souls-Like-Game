@@ -13,7 +13,7 @@ namespace BON
         private PlayerManager playerManager;
         private PlayerStats playerStats;
         private PlayerWeaponSlotManager weaponSlotManager;
-        private CameraHandler cameraHandler;
+        private CameraManager cameraManager;
         private UIManager uiManager;
         private PlayerAnimatorHandler playerAnimatorHandler;
 
@@ -88,7 +88,7 @@ namespace BON
             playerStats = GetComponent<PlayerStats>();
             weaponSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
             uiManager = FindObjectOfType<UIManager>();
-            cameraHandler = FindObjectOfType<CameraHandler>();
+            cameraManager = FindObjectOfType<CameraManager>();
             playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         }
 
@@ -161,10 +161,10 @@ namespace BON
             mouseY = cameraMoveInput.y;
 
             // camera zoom move
-            if (cameraZoomMoveInput > 0 && cameraHandler.cameraTransform.localPosition.z < cameraHandler.getCameraZoomMaximum())
+            if (cameraZoomMoveInput > 0 && cameraManager.cameraTransform.localPosition.z < cameraManager.getCameraZoomMaximum())
                 mouseScrollY++;
 
-            if (cameraZoomMoveInput < 0 && cameraHandler.cameraTransform.localPosition.z > cameraHandler.getCameraZoomMinimum())
+            if (cameraZoomMoveInput < 0 && cameraManager.cameraTransform.localPosition.z > cameraManager.getCameraZoomMinimum())
                 mouseScrollY--;
         }
 
@@ -326,11 +326,11 @@ namespace BON
             {
 
                 input_LockOn = false;
-                cameraHandler.HandleLockOn();
+                cameraManager.HandleLockOn();
 
-                if(cameraHandler.nearestLockOnTarget != null)
+                if(cameraManager.nearestLockOnTarget != null)
                 {
-                    cameraHandler.currentLockOnTarget = cameraHandler.nearestLockOnTarget;
+                    cameraManager.currentLockOnTarget = cameraManager.nearestLockOnTarget;
                     flag_LockOn = true;
                 }
             }
@@ -340,28 +340,28 @@ namespace BON
             {
                 input_LockOn = false;
                 flag_LockOn = false;
-                cameraHandler.ClearLockOnTargets();
+                cameraManager.ClearLockOnTargets();
             }
 
             if (flag_LockOn && input_Right_Stick_Left)
             {
                 input_Right_Stick_Left = false;
-                cameraHandler.HandleLockOn();
+                cameraManager.HandleLockOn();
 
-                if(cameraHandler.leftLockTarget != null)
+                if(cameraManager.leftLockTarget != null)
                 {
-                    cameraHandler.currentLockOnTarget = cameraHandler.leftLockTarget;
+                    cameraManager.currentLockOnTarget = cameraManager.leftLockTarget;
                 }
             }
 
             if (flag_LockOn && input_Right_Stick_Right)
             {
                 input_Right_Stick_Right = false;
-                cameraHandler.HandleLockOn();
+                cameraManager.HandleLockOn();
 
-                if (cameraHandler.rightLockTarget != null)
+                if (cameraManager.rightLockTarget != null)
                 {
-                    cameraHandler.currentLockOnTarget = cameraHandler.rightLockTarget;
+                    cameraManager.currentLockOnTarget = cameraManager.rightLockTarget;
                 }
             }
         }

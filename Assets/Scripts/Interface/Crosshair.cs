@@ -7,12 +7,12 @@ namespace BON
 {
     public class Crosshair : MonoBehaviour
     {
-        private CameraHandler cameraManager;
+        private CameraManager cameraManager;
         public Image icon;
 
         private void Awake()
         {
-            cameraManager = FindObjectOfType<CameraHandler>();
+            cameraManager = FindObjectOfType<CameraManager>();
         }
 
         private void Update()

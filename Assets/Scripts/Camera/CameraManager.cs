@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace BON
 {
-    public class CameraHandler : MonoBehaviour
+    public class CameraManager : MonoBehaviour
     {
         private InputHandler inputHandler;
         private PlayerManager playerManager;
-        public static CameraHandler singleton;
+        public static CameraManager singleton;
         private UIManager uiManager;
 
         [Header("General")]
@@ -340,6 +340,11 @@ namespace BON
         public float getCameraZoomMinimum()
         {
             return cameraZoomMinimum;
+        }
+
+        public float getCameraZoomDifference()
+        {
+            return System.Math.Abs(getCameraZoomMaximum()) - System.Math.Abs(getCameraZoomMinimum());
         }
     }
 }

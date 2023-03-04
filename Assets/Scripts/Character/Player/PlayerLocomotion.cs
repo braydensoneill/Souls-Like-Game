@@ -11,7 +11,7 @@ namespace BON
         private PlayerManager playerManager;
         private PlayerStats playerStats;
         private Transform cameraObject;
-        private CameraHandler cameraHandler;
+        private CameraManager cameraManager;
         private InputHandler inputHandler;
         [HideInInspector] public Transform myTransform;
         [HideInInspector] public PlayerAnimatorHandler playerAnimatorHandler;
@@ -47,7 +47,7 @@ namespace BON
 
         private void Awake()
         {
-            cameraHandler = FindObjectOfType<CameraHandler>();
+            cameraManager = FindObjectOfType<CameraManager>();
             playerManager = GetComponent<PlayerManager>();
             playerStats = GetComponent<PlayerStats>();
             rigidbody = GetComponent<Rigidbody>();
@@ -83,8 +83,8 @@ namespace BON
                     if (inputHandler.flag_Sprint || inputHandler.flag_Roll)
                     {
                         Vector3 targetDirection = Vector3.zero;
-                        targetDirection = cameraHandler.cameraTransform.forward * inputHandler.vertical;
-                        targetDirection += cameraHandler.cameraTransform.right * inputHandler.horizontal;
+                        targetDirection = cameraManager.cameraTransform.forward * inputHandler.vertical;
+                        targetDirection += cameraManager.cameraTransform.right * inputHandler.horizontal;
                         targetDirection.Normalize();
                         targetDirection.y = 0;
 
@@ -103,7 +103,7 @@ namespace BON
                     else
                     {
                         Vector3 rotationDirection = moveDirection;
-                        rotationDirection = cameraHandler.currentLockOnTarget.transform.position - transform.position;
+                        rotationDirection = cameraManager.currentLockOnTarget.transform.position - transform.position;
                         rotationDirection.y = 0;
                         rotationDirection.Normalize();
                         Quaternion tr = Quaternion.LookRotation(rotationDirection);

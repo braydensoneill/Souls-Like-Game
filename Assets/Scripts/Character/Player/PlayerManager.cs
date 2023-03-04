@@ -8,7 +8,7 @@ namespace BON
     {
         private InputHandler inputHandler;
         private Animator animator;
-        private CameraHandler cameraHandler;
+        private CameraManager cameraManager;
         private PlayerStats playerStats;
         private PlayerAnimatorHandler playerAnimatorHandler;
         private PlayerLocomotion playerLocomotion;
@@ -38,7 +38,7 @@ namespace BON
 
         private void Awake()
         {
-            cameraHandler = FindObjectOfType<CameraHandler>();
+            cameraManager = FindObjectOfType<CameraManager>();
             inputHandler = GetComponent<InputHandler>();
             animator = GetComponentInChildren<Animator>();
             playerStats = GetComponent<PlayerStats>();
@@ -110,11 +110,11 @@ namespace BON
 
             float delta = Time.deltaTime;
 
-            if (cameraHandler != null)
+            if (cameraManager != null)
             {
-                cameraHandler.HandleCameraZoom(delta, inputHandler.mouseScrollY);
-                cameraHandler.FollowTarget(delta);
-                cameraHandler.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+                cameraManager.HandleCameraZoom(delta, inputHandler.mouseScrollY);
+                cameraManager.FollowTarget(delta);
+                cameraManager.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
             }
 
             if (isAirborne)

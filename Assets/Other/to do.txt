@@ -17,17 +17,14 @@ Shields
 	cannot parry with left shield yet
 
 Camera
-	I have added the functionality for camera zoom inputs.
-	Everything work so far up until actually moving the camera
-	Must add functionality to HandleCameraZoom
-	Don't know how to get it to work smoothly with FollowTarget and HandleCameraCollisions
-	Still need to add input action for controller zoom
+	small bug with camera zoom when camera collides with wall
+	you wont be able to scroll out further, but inputmanager.mousescrollY will still increment
+	this means that when you stop colliding the camera with the wall,
+	you will have to keep scrolling in until it catches back up to the appropriate amount before, 
+	the camera moves again
 
 UI
 	Create a UIManagerScreen
 	Create a UIManagerWorld
 	They will contain an update function for everything rather than having loads of them
 	(maybe only UIManager is enough)
-
-Other
-	rename CameraHandler to CameraManager
