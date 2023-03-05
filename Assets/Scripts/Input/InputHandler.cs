@@ -151,21 +151,27 @@ namespace BON
 
         private void HandleMoveInput(float _delta)
         {
-            // player move
+            // player move input
             horizontal = playerMoveInput.x;
             vertical = playerMoveInput.y;
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
-            
-            // camera move
+
+            // camera move input
             mouseX = cameraMoveInput.x;
             mouseY = cameraMoveInput.y;
 
-            // camera zoom move
-            if (cameraZoomMoveInput > 0 && cameraManager.cameraTransform.localPosition.z < cameraManager.getCameraZoomMaximum())
+            // camera zoom move input
+            if (cameraZoomMoveInput > 0 && cameraManager.cameraTransform.localPosition.z < cameraManager.getCameraZoomMinimum())
                 mouseScrollY++;
 
-            if (cameraZoomMoveInput < 0 && cameraManager.cameraTransform.localPosition.z > cameraManager.getCameraZoomMinimum())
+            else if (mouseScrollY > cameraManager.getCameraZoomDifference())
+                mouseScrollY = cameraManager.getCameraZoomDifference();
+
+            if (cameraZoomMoveInput < 0 && cameraManager.cameraTransform.localPosition.z > cameraManager.getCameraZoomMaximum())
                 mouseScrollY--;
+
+            else if (mouseScrollY < -cameraManager.getCameraZoomDifference())
+                mouseScrollY = -cameraManager.getCameraZoomDifference();
         }
 
         private void HandleRollInput(float _delta)
