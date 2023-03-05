@@ -1610,7 +1610,7 @@ AnimatorStateMachine:
     m_Position: {x: 80, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7757487768192016969}
-    m_Position: {x: 670, y: 70, z: 0}
+    m_Position: {x: 670, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1913697949600966651}
     m_Position: {x: 80, y: 170, z: 0}
@@ -1625,10 +1625,10 @@ AnimatorStateMachine:
     m_Position: {x: 80, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8994591949279336349}
-    m_Position: {x: 670, y: 120, z: 0}
+    m_Position: {x: 670, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 9007599840315407250}
-    m_Position: {x: 670, y: 170, z: 0}
+    m_Position: {x: 880, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3300210715579687340}
     m_Position: {x: 80, y: 270, z: 0}
@@ -1637,7 +1637,7 @@ AnimatorStateMachine:
     m_Position: {x: 80, y: 320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7700693735993808529}
-    m_Position: {x: 670, y: 220, z: 0}
+    m_Position: {x: 670, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8763396873666938758}
     m_Position: {x: 80, y: -130, z: 0}
@@ -1675,20 +1675,17 @@ AnimatorStateMachine:
     m_State: {fileID: 1769750838555597717}
     m_Position: {x: 610, y: -500, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 2498745249445037612}
-    m_Position: {x: 0, y: 0, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: -5905129167732308092}
-    m_Position: {x: 670, y: -30, z: 0}
+    m_Position: {x: 670, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3289125695632975145}
-    m_Position: {x: 670, y: 20, z: 0}
+    m_Position: {x: 880, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6635687543502823339}
     m_Position: {x: 670, y: -130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3819804342467066494}
-    m_Position: {x: 670, y: -80, z: 0}
+    m_Position: {x: 880, y: -130, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

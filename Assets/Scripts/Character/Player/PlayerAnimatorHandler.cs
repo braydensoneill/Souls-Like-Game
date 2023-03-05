@@ -8,7 +8,7 @@ namespace BON
     {
         private PlayerManager playerManager;
         private PlayerStats playerStats;
-        private InputHandler inputHandler;
+        private InputManager inputManager;
         private PlayerLocomotion playerLocomotion;
         private RagdollController ragdollController;
 
@@ -20,7 +20,7 @@ namespace BON
             playerManager = GetComponentInParent<PlayerManager>();
             playerStats = GetComponentInParent<PlayerStats>();
             animator = GetComponent<Animator>();
-            inputHandler = GetComponentInParent<InputHandler>();
+            inputManager = GetComponentInParent<InputManager>();
             playerLocomotion = GetComponentInParent<PlayerLocomotion>();
             ragdollController = GetComponentInParent<RagdollController>();
 

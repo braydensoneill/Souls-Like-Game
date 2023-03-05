@@ -7,7 +7,7 @@ namespace BON
     public class PlayerWeaponSlotManager : MonoBehaviour
     {
         private PlayerStats playerStats;
-        private InputHandler inputHandler;
+        private InputManager inputManager;
         private PlayerInventory playerInventory;
         private PlayerManager playerManager;
 
@@ -42,7 +42,7 @@ namespace BON
             animator = GetComponent<Animator>();
             quickslotsUI = FindObjectOfType<QuickSlotsUI>();
             playerStats = GetComponentInParent<PlayerStats>();
-            inputHandler = GetComponentInParent<InputHandler>();
+            inputManager = GetComponentInParent<InputManager>();
             playerInventory = GetComponentInParent<PlayerInventory>();
             playerManager = GetComponentInParent<PlayerManager>();
 
@@ -109,7 +109,7 @@ namespace BON
             {
                 Debug.Log("Weapon Item: " + weaponItem.itemName);
                 #region Two-Handed Functionality if active
-                if (inputHandler.flag_TwoHand)
+                if (inputManager.flag_TwoHand)
                 {
                     SheathLeftWeapon();
                     leftHandSlot.UnloadWeaponAndDestroy();

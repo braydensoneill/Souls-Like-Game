@@ -5,7 +5,7 @@ namespace BON
 {
     public class CameraManager : MonoBehaviour
     {
-        private InputHandler inputHandler;
+        private InputManager inputManager;
         private PlayerManager playerManager;
         public static CameraManager singleton;
         private UIManager uiManager;
@@ -66,7 +66,7 @@ namespace BON
             myTransform = transform;
             defaultPosition = cameraTransform.localPosition.z;
             ignoreLayers = ~(1 << 0 | 1 << 8 | 1 << 10 | 1 << 11 | 1 << 12 | 1 << 13 | 1 << 14);    // Don't ignore layer 9 (environment layer)
-            inputHandler = FindObjectOfType<InputHandler>();
+            inputManager = FindObjectOfType<InputManager>();
             playerManager = FindObjectOfType<PlayerManager>();
             uiManager = FindObjectOfType<UIManager>();
         }
@@ -101,7 +101,7 @@ namespace BON
 
         public void HandleCameraZoom(float _delta, float _mouseScrollY)
         {
-            if (inputHandler.flag_LeftPanel == true)
+            if (inputManager.flag_LeftPanel == true)
                 return;
 
             zoomedTargetPosition = defaultPosition + (_mouseScrollY * cameraZoomIntensity);
@@ -153,9 +153,9 @@ namespace BON
         public void HandleCameraRotation(float _delta, float _mouseXInput, float _mouseYInput)
         {
             // If not currently locked on / using the menu
-            if (currentLockOnTarget == null && inputHandler.flag_LockOn == false)
+            if (currentLockOnTarget == null && inputManager.flag_LockOn == false)
             {
-                if (inputHandler.flag_LeftPanel == true)
+                if (inputManager.flag_LeftPanel == true)
                     return;
 
                 lookAngle += (_mouseXInput * lookSpeed) / _delta;
@@ -225,7 +225,7 @@ namespace BON
                             if (hit.transform.gameObject.layer == environmentLayer.value)
                             {
                                 // cannot lock on to target, object in the way
-                                // inputHandler.flag_LockOn = false;
+                                // inputManager.flag_LockOn = false;
                             }
 
                             else
@@ -247,11 +247,11 @@ namespace BON
                     nearestLockOnTarget = availableTargets[i];
                 }
 
-                if(inputHandler.flag_LockOn)
+                if(inputManager.flag_LockOn)
                 {
                     // TBD - Comment using this video as reference: https://www.youtube.com/watch?v=SH87d9utAmg&ab_channel=SebastianGraves
 
-                    Vector3 relativeEnemyPosition = inputHandler.transform.InverseTransformPoint(availableTargets[i].transform.position);
+                    Vector3 relativeEnemyPosition = inputManager.transform.InverseTransformPoint(availableTargets[i].transform.position);
                     var distanceFromLeftTarget = relativeEnemyPosition.x;
                     var distanceFromRightTarget = relativeEnemyPosition.x;
 

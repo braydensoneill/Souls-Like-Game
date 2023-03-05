@@ -10,7 +10,7 @@ namespace BON
         private PlayerManager playerManager;
         private PlayerStats playerStats;
         private PlayerInventory playerInventory;
-        private InputHandler inputHandler;
+        private InputManager inputManager;
         private PlayerWeaponSlotManager playerWeaponSlotManager;
 
         public string lastAttack;
@@ -27,7 +27,7 @@ namespace BON
             playerManager = GetComponentInParent<PlayerManager>();
             playerStats = GetComponentInParent<PlayerStats>();
             playerInventory = GetComponentInParent<PlayerInventory>();
-            inputHandler = GetComponentInParent<InputHandler>();
+            inputManager = GetComponentInParent<InputManager>();
             playerWeaponSlotManager = GetComponent<PlayerWeaponSlotManager>();
         }
 
@@ -37,7 +37,7 @@ namespace BON
             if (playerStats.stamina_Current <= 0)
                 return;
 
-            if (inputHandler.flag_Combo)
+            if (inputManager.flag_Combo)
             {
                 playerAnimatorHandler.animator.SetBool("canDoCombo", false);
 
@@ -60,7 +60,7 @@ namespace BON
 
             playerWeaponSlotManager.attackingWeapon = weapon;
 
-            if (inputHandler.flag_TwoHand)
+            if (inputManager.flag_TwoHand)
             {
                 playerAnimatorHandler.PlayTargetAnimation(weapon.TH_Sword_Light_Attack_01, true);
                 lastAttack = weapon.TH_Sword_Light_Attack_01;
@@ -92,7 +92,7 @@ namespace BON
 
             playerWeaponSlotManager.attackingWeapon = weapon;
 
-            if (inputHandler.flag_TwoHand)
+            if (inputManager.flag_TwoHand)
             {
 
             }
@@ -114,7 +114,7 @@ namespace BON
                 {
                     flag_HeavyAttack_Right = false;
                     PerformRBMeleeAction(flag_HeavyAttack_Right);
-                    inputHandler.timer_RB_Input = 0;
+                    inputManager.timer_RB_Input = 0;
                 }
 
                 // perform a heavy attack if the timer is greater than the decimal
@@ -123,7 +123,7 @@ namespace BON
                     flag_HeavyAttack_Right = true;
                     PerformRBMeleeAction(flag_HeavyAttack_Right);
                     flag_HeavyAttack_Right = false;
-                    inputHandler.timer_RB_Input = 0;    
+                    inputManager.timer_RB_Input = 0;    
                 }    
             }
 
@@ -149,7 +149,7 @@ namespace BON
                 {
                     flag_HeavyAttack_Left = false;
                     PerformLBMeleeAction(flag_HeavyAttack_Left);
-                    inputHandler.timer_LB_Input = 0;
+                    inputManager.timer_LB_Input = 0;
                 }
 
                 // perform a heavy attack if the timer is greater than the decimal
@@ -158,7 +158,7 @@ namespace BON
                     flag_HeavyAttack_Left = true;
                     PerformLBMeleeAction(flag_HeavyAttack_Left);
                     flag_HeavyAttack_Left = false;
-                    inputHandler.timer_LB_Input = 0;
+                    inputManager.timer_LB_Input = 0;
                 }
             }
 
@@ -180,7 +180,7 @@ namespace BON
             if(playerInventory.leftWeapon.isShield)
             {
                 // Perform shield weapon art
-                PerformLTWeaponArt(inputHandler.flag_TwoHand);
+                PerformLTWeaponArt(inputManager.flag_TwoHand);
             }
 
             else if (playerInventory.leftWeapon.isMeleeWeapon)
@@ -195,9 +195,9 @@ namespace BON
         {
             if (playerManager.canDoCombo)
             {
-                inputHandler.flag_Combo = true;
+                inputManager.flag_Combo = true;
                 HandleWeaponCombo(playerInventory.rightWeapon, false);
-                inputHandler.flag_Combo = false;
+                inputManager.flag_Combo = false;
             }
 
             else
@@ -249,9 +249,9 @@ namespace BON
         {
             if (playerManager.canDoCombo)
             {
-                inputHandler.flag_Combo = true;
+                inputManager.flag_Combo = true;
                 HandleWeaponCombo(playerInventory.leftWeapon, true);
-                inputHandler.flag_Combo = false;
+                inputManager.flag_Combo = false;
             }
 
             else
@@ -331,7 +331,7 @@ namespace BON
 
             RaycastHit hit;
 
-            if (Physics.Raycast(inputHandler.criticalAttackRayCastStartPoint.position, transform.TransformDirection(Vector3.forward), out hit, 0.5f, backStabLayer))
+            if (Physics.Raycast(inputManager.criticalAttackRayCastStartPoint.position, transform.TransformDirection(Vector3.forward), out hit, 0.5f, backStabLayer))
             {
                 EnemyManager enemyManager = hit.transform.gameObject.GetComponentInParent<EnemyManager>();
                 DamageCollider rightWeapon = playerWeaponSlotManager.rightHandDamageCollider;
@@ -368,7 +368,7 @@ namespace BON
                 }
             }
 
-            else if (Physics.Raycast(inputHandler.criticalAttackRayCastStartPoint.position, transform.TransformDirection(Vector3.forward), out hit, 0.7f, parryLayer))
+            else if (Physics.Raycast(inputManager.criticalAttackRayCastStartPoint.position, transform.TransformDirection(Vector3.forward), out hit, 0.7f, parryLayer))
             {
                 EnemyManager enemyManager = hit.transform.gameObject.GetComponentInParent<EnemyManager>();
                 DamageCollider rightWeapon = playerWeaponSlotManager.rightHandDamageCollider;

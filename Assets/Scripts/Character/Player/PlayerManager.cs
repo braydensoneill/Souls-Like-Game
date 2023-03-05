@@ -6,7 +6,7 @@ namespace BON
 {
     public class PlayerManager : CharacterManager
     {
-        private InputHandler inputHandler;
+        private InputManager inputManager;
         private Animator animator;
         private CameraManager cameraManager;
         private PlayerStats playerStats;
@@ -39,7 +39,7 @@ namespace BON
         private void Awake()
         {
             cameraManager = FindObjectOfType<CameraManager>();
-            inputHandler = GetComponent<InputHandler>();
+            inputManager = GetComponent<InputManager>();
             animator = GetComponentInChildren<Animator>();
             playerStats = GetComponent<PlayerStats>();
             playerLocomotion = GetComponent<PlayerLocomotion>();
@@ -67,9 +67,9 @@ namespace BON
 
             SetIsBlocking(); // This may need to go somewhere else for readability
 
-            inputHandler.flag_Roll = false;
-            inputHandler.flag_Sprint = false;
-            inputHandler.TickInput(delta);
+            inputManager.flag_Roll = false;
+            inputManager.flag_Sprint = false;
+            inputManager.TickInput(delta);
 
             playerAnimatorHandler.canRotate = animator.GetBool("canRotate");
             playerLocomotion.HandleRollingAndSprinting(delta);
@@ -96,25 +96,25 @@ namespace BON
         {
             // Set inputs and flags to false so they can only be called once per frame
             #region Check for Inputs
-            inputHandler.flag_Roll = false;
-            inputHandler.input_RT = false;
-            inputHandler.input_LT = false;
-            inputHandler.input_Dpad_Up = false;
-            inputHandler.input_Dpad_Down = false;
-            inputHandler.input_Dpad_Left = false;
-            inputHandler.input_Dpad_Right = false;
-            inputHandler.input_A = false;
-            inputHandler.input_Jump = false;
-            inputHandler.input_LeftPanel = false;
+            inputManager.flag_Roll = false;
+            inputManager.input_RT = false;
+            inputManager.input_LT = false;
+            inputManager.input_Dpad_Up = false;
+            inputManager.input_Dpad_Down = false;
+            inputManager.input_Dpad_Left = false;
+            inputManager.input_Dpad_Right = false;
+            inputManager.input_A = false;
+            inputManager.input_Jump = false;
+            inputManager.input_LeftPanel = false;
             #endregion
 
             float delta = Time.deltaTime;
 
             if (cameraManager != null)
             {
-                cameraManager.HandleCameraZoom(delta, inputHandler.mouseScrollY);
+                cameraManager.HandleCameraZoom(delta, inputManager.mouseScrollY);
                 cameraManager.FollowTarget(delta);
-                cameraManager.HandleCameraRotation(delta, inputHandler.mouseX, inputHandler.mouseY);
+                cameraManager.HandleCameraRotation(delta, inputManager.mouseX, inputManager.mouseY);
             }
 
             if (isAirborne)
@@ -155,7 +155,7 @@ namespace BON
                 interactableUI.interactableText.text = interactableText;
                 interactablePopUp.SetActive(true);
 
-                if (inputHandler.input_A && !isInteracting)
+                if (inputManager.input_A && !isInteracting)
                 {
                     hit.collider.GetComponent<Interactable>().Interact(this);
                     interactablePopUp.SetActive(false); // Bug Fix. Interactable text not automatically disabling

@@ -12,7 +12,7 @@ namespace BON
         private PlayerStats playerStats;
         private Transform cameraObject;
         private CameraManager cameraManager;
-        private InputHandler inputHandler;
+        private InputManager inputManager;
         [HideInInspector] public Transform myTransform;
         [HideInInspector] public PlayerAnimatorHandler playerAnimatorHandler;
 
@@ -51,7 +51,7 @@ namespace BON
             playerManager = GetComponent<PlayerManager>();
             playerStats = GetComponent<PlayerStats>();
             rigidbody = GetComponent<Rigidbody>();
-            inputHandler = GetComponent<InputHandler>();
+            inputManager = GetComponent<InputManager>();
             playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
         }
 
@@ -77,14 +77,14 @@ namespace BON
             if (playerAnimatorHandler.canRotate)
             {
                 // Check if the player is currently locked on to a target
-                if (inputHandler.flag_LockOn)
+                if (inputManager.flag_LockOn)
                 {
                     // Sprinting/Rolling while locked on
-                    if (inputHandler.flag_Sprint || inputHandler.flag_Roll)
+                    if (inputManager.flag_Sprint || inputManager.flag_Roll)
                     {
                         Vector3 targetDirection = Vector3.zero;
-                        targetDirection = cameraManager.cameraTransform.forward * inputHandler.vertical;
-                        targetDirection += cameraManager.cameraTransform.right * inputHandler.horizontal;
+                        targetDirection = cameraManager.cameraTransform.forward * inputManager.vertical;
+                        targetDirection += cameraManager.cameraTransform.right * inputManager.horizontal;
                         targetDirection.Normalize();
                         targetDirection.y = 0;
 
@@ -116,10 +116,10 @@ namespace BON
                 else
                 {
                     Vector3 _targetDir = Vector3.zero;
-                    float _moveOverride = inputHandler.moveAmount;
+                    float _moveOverride = inputManager.moveAmount;
 
-                    _targetDir = cameraObject.forward * inputHandler.vertical;
-                    _targetDir += cameraObject.right * inputHandler.horizontal;
+                    _targetDir = cameraObject.forward * inputManager.vertical;
+                    _targetDir += cameraObject.right * inputManager.horizontal;
 
                     _targetDir.Normalize();
                     _targetDir.y = 0;
@@ -139,26 +139,26 @@ namespace BON
 
         public void HandleMovement(float delta)
         {
-            if (inputHandler.flag_Roll)
+            if (inputManager.flag_Roll)
                 return;
 
             if (playerManager.isInteracting)
                 return;
 
-            moveDirection = cameraObject.forward * inputHandler.vertical;
-            moveDirection += cameraObject.right * inputHandler.horizontal;
+            moveDirection = cameraObject.forward * inputManager.vertical;
+            moveDirection += cameraObject.right * inputManager.horizontal;
             moveDirection.Normalize();
             moveDirection.y = 0;
 
             float speed = _movementSpeed;
 
-            if (inputHandler.moveAmount < 0.5)
+            if (inputManager.moveAmount < 0.5)
             {
                 moveDirection *= _walkSpeed;
                 playerManager.isSprinting = false;
             }
 
-            else if (inputHandler.flag_Sprint && inputHandler.moveAmount > 0.5)
+            else if (inputManager.flag_Sprint && inputManager.moveAmount > 0.5)
             {
                 speed = _sprintSpeed;
                 playerManager.isSprinting = true;
@@ -175,15 +175,15 @@ namespace BON
             Vector3 _projectedVelocity = Vector3.ProjectOnPlane(moveDirection, _normalVector);
             rigidbody.velocity = _projectedVelocity;
 
-            if(inputHandler.flag_LockOn && inputHandler.flag_Sprint == false)
+            if(inputManager.flag_LockOn && inputManager.flag_Sprint == false)
             {
-                playerAnimatorHandler.UpdateAnimatorValues(inputHandler.vertical, inputHandler.horizontal, playerManager.isSprinting);
+                playerAnimatorHandler.UpdateAnimatorValues(inputManager.vertical, inputManager.horizontal, playerManager.isSprinting);
 
             }
 
             else
             {
-                playerAnimatorHandler.UpdateAnimatorValues(inputHandler.moveAmount, 0, playerManager.isSprinting);
+                playerAnimatorHandler.UpdateAnimatorValues(inputManager.moveAmount, 0, playerManager.isSprinting);
             }
         }
 
@@ -197,12 +197,12 @@ namespace BON
             if (playerStats.stamina_Current <= 0)
                 return;
 
-            if(inputHandler.flag_Roll)
+            if(inputManager.flag_Roll)
             {
-                moveDirection = cameraObject.forward * inputHandler.vertical;
-                moveDirection += cameraObject.right * inputHandler.horizontal;
+                moveDirection = cameraObject.forward * inputManager.vertical;
+                moveDirection += cameraObject.right * inputManager.horizontal;
 
-                if(inputHandler.moveAmount > 0)
+                if(inputManager.moveAmount > 0)
                 {
                     playerAnimatorHandler.PlayTargetAnimation("Roll", true);
                     moveDirection.y = 0;
@@ -289,7 +289,7 @@ namespace BON
                 }
             }
 
-            if(playerManager.isInteracting || inputHandler.moveAmount > 0)
+            if(playerManager.isInteracting || inputManager.moveAmount > 0)
             {
                 myTransform.position = Vector3.Lerp(myTransform.position, _targetPosition, Time.deltaTime / 0.1f);
             }
@@ -310,13 +310,13 @@ namespace BON
             if (playerStats.stamina_Current <= 0)
                 return;
 
-            if (inputHandler.input_Jump)
+            if (inputManager.input_Jump)
             {
-                if(inputHandler.moveAmount > 0)
+                if(inputManager.moveAmount > 0)
                 {
                     // Direction XZ
-                    moveDirection = cameraObject.forward * inputHandler.vertical * inputHandler.moveAmount;
-                    moveDirection += cameraObject.right * inputHandler.horizontal * inputHandler.moveAmount;
+                    moveDirection = cameraObject.forward * inputManager.vertical * inputManager.moveAmount;
+                    moveDirection += cameraObject.right * inputManager.horizontal * inputManager.moveAmount;
 
                     // Animations
                     playerAnimatorHandler.PlayTargetAnimation("Jump", true);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BON
 {
-    public class InputHandler : MonoBehaviour
+    public class InputManager : MonoBehaviour
     {
         // References
         private PlayerControls inputActions;

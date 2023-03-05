@@ -39,6 +39,8 @@ namespace BON
             weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
 
             equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
+
+            Cursor.visible = false;
         }
 
         public void UpdateUI()
@@ -69,6 +71,7 @@ namespace BON
         public void OpenLeftPanelWindow()
         {
             leftPanel.SetActive(true);
+            Cursor.visible = true;
             //inventoryWindow.SetActive(true);
         }
 
@@ -81,6 +84,7 @@ namespace BON
         {
             ResetAllSelectedSlots();
             leftPanel.SetActive(false);
+            Cursor.visible = false;
             //equipmentWindow.SetActive(false);
             //inventoryWindow.SetActive(false);
         }
