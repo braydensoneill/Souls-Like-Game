@@ -139,7 +139,9 @@ namespace BON
 
         public void TickInput(float _delta)
         {
-            HandleMoveInput(_delta);
+            HandlePlayerMoveInput(_delta);
+            HandleCameraMoveInput(_delta);
+            HandleCameraZoomInput(_delta);
             HandleRollInput(_delta);
             HandleWeaponInput(_delta);
             HandleQuickSlotInput();
@@ -149,17 +151,23 @@ namespace BON
             HandleCriticalAttackInput();
         }
 
-        private void HandleMoveInput(float _delta)
+        private void HandlePlayerMoveInput(float _delta)
         {
             // player move input
             horizontal = playerMoveInput.x;
             vertical = playerMoveInput.y;
             moveAmount = Mathf.Clamp01(Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+        }
 
+        private void HandleCameraMoveInput(float _delta)
+        {
             // camera move input
             mouseX = cameraMoveInput.x;
             mouseY = cameraMoveInput.y;
+        }
 
+        private void HandleCameraZoomInput(float _delta)
+        {
             // camera zoom move input
             if (cameraZoomMoveInput > 0 && cameraManager.cameraTransform.localPosition.z < cameraManager.getCameraZoomMinimum())
                 mouseScrollY++;
