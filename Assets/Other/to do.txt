@@ -28,3 +28,10 @@ UI
 	Create a UIManagerWorld
 	They will contain an update function for everything rather than having loads of them
 	(maybe only UIManager is enough)
+
+
+Current Changes for next commit
+	Moved floor to environment layer so that the camera can collide with it
+	Cursor is now longer visible unless the left panel is open
+	InputHandler renamed to InputManager to adhere to a consistent naming convention.
+	All references to the inputHandler script in other files have also been changed to inputManager
