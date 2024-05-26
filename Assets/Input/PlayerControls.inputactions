@@ -11,7 +11,8 @@
                     "id": "3402f4ce-9989-44be-bbba-4560e02f19ee",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Camera Move",
@@ -19,7 +20,8 @@
                     "id": "2e2b82e2-983b-4a66-b08a-b64aeb643626",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Camera Zoom",
@@ -27,7 +29,8 @@
                     "id": "df1133c0-9af8-4b7e-8fc9-543bd28c714c",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Lock On Target Left",
@@ -35,7 +38,8 @@
                     "id": "dff9ea49-c985-48c9-a5d4-97f1e330bc1b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Lock On Target Right",
@@ -43,7 +47,8 @@
                     "id": "68216a3e-5fb3-4fab-9755-a2a13876cd33",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -191,7 +196,8 @@
                     "id": "c87e4da7-60b0-4fbb-a856-afe5483a5c53",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RB",
@@ -199,7 +205,8 @@
                     "id": "3cfe2657-2dbd-46cb-b5d2-87c94d532851",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "LB",
@@ -207,7 +214,8 @@
                     "id": "fef70c03-cea9-4502-9e83-b91f07c884b4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Critical Attack",
@@ -215,7 +223,8 @@
                     "id": "d8401ab2-689b-4174-8266-fe46cfa415e0",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RT",
@@ -223,7 +232,8 @@
                     "id": "e5def6b2-7ae6-4c2a-890b-8be09ea4411e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "LT",
@@ -231,7 +241,8 @@
                     "id": "e50b9c35-d901-4211-a68c-48a9639087ee",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Interact",
@@ -239,7 +250,8 @@
                     "id": "75bf1584-5732-48d7-8054-2c438cd6913b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Jump",
@@ -247,15 +259,17 @@
                     "id": "d94e1375-ff98-4541-bc7e-04341dd9dc76",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "LeftWindow",
+                    "name": "UI Character",
                     "type": "Button",
                     "id": "09bedb10-4a51-4b0d-8d50-a75948d1b6a0",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "LockOn",
@@ -263,15 +277,17 @@
                     "id": "666687f9-34a6-4358-a492-fd95a3b9fc23",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "T",
+                    "name": "Two Hand",
                     "type": "Button",
                     "id": "26d64063-1489-411e-bc1b-5440c3ca3eea",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -344,29 +360,29 @@
                 {
                     "name": "",
                     "id": "50ad0bed-6ebf-4af1-86c0-340e97860514",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftWindow",
+                    "action": "UI Character",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "88c0b9d3-3036-4f3a-8786-04c8a1ba8bb3",
-                    "path": "<Gamepad>/start",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftWindow",
+                    "action": "UI Character",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "4d392a81-6c8e-48c3-aaa9-e9fc3e20337f",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/capsLock",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -388,11 +404,11 @@
                 {
                     "name": "",
                     "id": "2d81d15a-6ced-43e3-a77d-00eba5101a54",
-                    "path": "<Keyboard>/t",
+                    "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "T",
+                    "action": "Two Hand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -403,7 +419,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "T",
+                    "action": "Two Hand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -507,7 +523,8 @@
                     "id": "06486357-5ade-4f1c-9b98-380e19e73e3a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "D-Pad Down",
@@ -515,7 +532,8 @@
                     "id": "fc5fe2b6-f2ac-40a5-b77c-b6225d28ef11",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "D-Pad Left",
@@ -523,7 +541,8 @@
                     "id": "3489bba5-7c2a-4563-80a4-47de51e1e009",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "D- Pad Right",
@@ -531,7 +550,8 @@
                     "id": "9c5b60bc-7cbb-4405-b67e-1cad9953daaf",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [

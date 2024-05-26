@@ -121,11 +121,11 @@ namespace BON
                 inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
                 inputActions.PlayerActions.Roll.performed += i => input_B = true;
                 inputActions.PlayerActions.Roll.canceled += i => input_B = false;    // Using cancelled here becase sprint uses the same keybind (but holding).
-                inputActions.PlayerActions.LeftWindow.performed += i => input_LeftPanel = true;
+                inputActions.PlayerActions.UICharacter.performed += i => input_LeftPanel = true;
                 inputActions.PlayerActions.LockOn.performed += i => input_LockOn = true;
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => input_Right_Stick_Right = true;
                 inputActions.PlayerMovement.LockOnTargetLeft.performed += i => input_Right_Stick_Left = true;
-                inputActions.PlayerActions.T.performed += i => input_T = true;
+                inputActions.PlayerActions.TwoHand.performed += i => input_T = true;
                 inputActions.PlayerActions.CriticalAttack.performed += inputActions => input_CriticalAttack = true;
             }
 
