@@ -1,3 +1,19 @@
+
+GENERAL
+- Consumables/Spells are now both considered Utilities.
+- Don't show UI for current utilities. Show potions/books(spells) on the characters waist (Q slot on left, E slot on right)
+
+EQUIPMENT SYSTEM REVAMP
+- Remove Equipment slots UI page
+- Add Inventory submenus (All, Weapons, Armour, Utilities)
+- Press items to equip/unequip rather than redirect to equipment screen
+- While in inventory, if area loot in range, show right window of available loot
+- When equiping a weapon, check if main hand is available, if not, fill offhand slot
+- Utility slots are handled like equipping weapons
+
+
+---------- DOWN IS OLD --------------
+
 Player HUD
 	remove bottom right weapon ui
 	move bottom right item ui to eqiupment tab
@@ -8,10 +24,6 @@ Interactable & item popups
 
 Ragdoll
 	ragdoll is still fucked when an enemy dies
-
-Combat
-	change combat in a way where attack animations do not controll the lower body
-	change combat isInteracting to isAttacking
 
 Shields
 	cannot parry with left shield yet
@@ -29,9 +41,6 @@ UI
 	They will contain an update function for everything rather than having loads of them
 	(maybe only UIManager is enough)
 
-
-Current Changes for next commit
-	Moved floor to environment layer so that the camera can collide with it
-	Cursor is now longer visible unless the left panel is open
-	InputHandler renamed to InputManager to adhere to a consistent naming convention.
-	All references to the inputHandler script in other files have also been changed to inputManager
+MOVEMENT
+	Remove stamina?
+	Allow jumping to move player box rather than just player sprite

@@ -14,6 +14,8 @@ namespace BON
         public WeaponItem leftWeapon;
         public WeaponItem unarmedWeapon;
 
+        public bool equipNextWeaponToRightHand;
+
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[1];
         public WeaponItem[] weaponsInLeftHandSlots = new WeaponItem[1];
 
@@ -39,6 +41,8 @@ namespace BON
             // Load Weapons
             weaponSlotManager.LoadWeaponOnSlot(rightWeapon, false);
             weaponSlotManager.LoadWeaponOnSlot(leftWeapon, true); 
+
+            equipNextWeaponToRightHand = true;
         }
 
         public void ChangeRightWeapon()

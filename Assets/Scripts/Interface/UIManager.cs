@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +9,6 @@ namespace BON
     {
         public PlayerInventory playerInventory;
         public EquipmentWindowUI equipmentWindowUI;
-        //private InventoryGold inventoryGold;
-        //private PlayerStats playerStats;
 
         [Header("UI Windows")]
         public GameObject hudWindow;
@@ -29,29 +28,20 @@ namespace BON
         public Transform weaponInventorySlotsParent;
         WeaponInventorySlot[] weaponInventorySlots;
 
-        private void Awake()
-        {
-            
-        }
-
         private void Start()
         {
             weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
-
             equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
-
             Cursor.visible = false;
         }
 
-        public void UpdateUI()
+        public void RefreshUI()
         {
-            #region Weapon Inventory Slots
-            //change this for loop so it counts backwards if you want new items to show first
             for (int i = 0; i < weaponInventorySlots.Length; i++)
             {
-                if(i < playerInventory.weaponsInventory.Count)
+                if (i < playerInventory.weaponsInventory.Count)
                 {
-                    if(weaponInventorySlots.Length < playerInventory.weaponsInventory.Count)
+                    if (weaponInventorySlots.Length < playerInventory.weaponsInventory.Count)
                     {
                         Instantiate(weaponInventorySlotPrefab, weaponInventorySlotsParent);
                         weaponInventorySlots = weaponInventorySlotsParent.GetComponentsInChildren<WeaponInventorySlot>();
@@ -59,20 +49,17 @@ namespace BON
 
                     weaponInventorySlots[i].AddItem(playerInventory.weaponsInventory[i]);
                 }
-
                 else
                 {
                     weaponInventorySlots[i].ClearInventorySlot();
                 }
             }
-            #endregion        
         }
 
         public void OpenLeftPanelWindow()
         {
             leftPanel.SetActive(true);
             Cursor.visible = true;
-            //inventoryWindow.SetActive(true);
         }
 
         public void CloseSelectWindow()
@@ -82,20 +69,29 @@ namespace BON
 
         public void CloseLeftPanelWindows()
         {
-            ResetAllSelectedSlots();
             leftPanel.SetActive(false);
             Cursor.visible = false;
-            //equipmentWindow.SetActive(false);
-            //inventoryWindow.SetActive(false);
         }
 
-        public void ResetAllSelectedSlots()
+        public void HighlightEquippedInventorySlots()
         {
-            rightHandSlot01Selected = false;
-            rightHandSlot02Selected = false;
-            leftHandSlot01Selected = false;
-            leftHandSlot02Selected = false;
+            foreach (var slot in weaponInventorySlots)
+            {
+                slot.itemIsEquippedBackground.SetActive(slot.IsEquipped());
+            }
+        }
+
+        public void ClearEquippedStatusForItem(WeaponItem item)
+        {
+            foreach (WeaponInventorySlot slot in weaponInventorySlots)
+            {
+                if (slot.GetItem() == item)
+                {
+                    slot.itemIsEquippedInLeftHand = false;
+                    slot.itemIsEquippedInRightHand = false;
+                    slot.itemIsEquippedBackground.SetActive(false);
+                }
+            }
         }
     }
 }
-

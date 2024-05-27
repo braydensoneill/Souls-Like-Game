@@ -319,7 +319,7 @@ namespace BON
 
                 if(flag_LeftPanel)
                 {
-                    uiManager.UpdateUI();
+                    uiManager.RefreshUI();
                     uiManager.OpenLeftPanelWindow();
                     uiManager.hudWindow.SetActive(false);
                 }

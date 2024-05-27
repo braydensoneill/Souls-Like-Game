@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 namespace BON
 {
     public class WeaponInventorySlot : MonoBehaviour
     {
-        PlayerInventory playerInventory;
-        PlayerWeaponSlotManager weaponSlotManager;
-        UIManager uiManager;
+        private PlayerInventory playerInventory;
+        private PlayerWeaponSlotManager weaponSlotManager;
+        private UIManager uiManager;
 
         private WeaponItem item;
+
+        public bool itemIsEquippedInLeftHand;
+        public bool itemIsEquippedInRightHand;
+
         public Image itemIcon;
         public TextMeshProUGUI itemName;
+
+        public GameObject itemIsEquippedBackground;
 
         private void Awake()
         {
@@ -22,6 +29,7 @@ namespace BON
             weaponSlotManager = FindObjectOfType<PlayerWeaponSlotManager>();
             uiManager = FindObjectOfType<UIManager>();
         }
+
         public void AddItem(WeaponItem newItem)
         {
             item = newItem;
@@ -40,52 +48,92 @@ namespace BON
             gameObject.SetActive(false);
         }
 
-        public void EquipThisItem()
+        public bool IsEquipped()
         {
-            if(uiManager.rightHandSlot01Selected)
-            {
-                playerInventory.weaponsInventory.Add(playerInventory.weaponsInRightHandSlots[0]);   // Add current item to inventory
-                playerInventory.weaponsInRightHandSlots[0] = item;  // Equip this new item
-                playerInventory.weaponsInventory.Remove(item);  // Remove item
-            }
+            return itemIsEquippedInLeftHand || itemIsEquippedInRightHand;
+        }
 
-            else if(uiManager.rightHandSlot02Selected)
-            {
-                playerInventory.weaponsInventory.Add(playerInventory.weaponsInRightHandSlots[1]);
-                playerInventory.weaponsInRightHandSlots[1] = item;  // Equip this new item
-                playerInventory.weaponsInventory.Remove(item);  // Remove item
-            }
+        public WeaponItem GetItem()
+        {
+            return item;
+        }
 
-            else if(uiManager.leftHandSlot01Selected)
-            {
-                playerInventory.weaponsInventory.Add(playerInventory.weaponsInLeftHandSlots[0]);
-                playerInventory.weaponsInLeftHandSlots[0] = item;  // Equip this new item
-                playerInventory.weaponsInventory.Remove(item);  // Remove item
-            }
-
-            else if (uiManager.leftHandSlot02Selected)
-            {
-                playerInventory.weaponsInventory.Add(playerInventory.weaponsInLeftHandSlots[1]);
-                playerInventory.weaponsInLeftHandSlots[1] = item;  // Equip this new item#
-                playerInventory.weaponsInventory.Remove(item);  // Remove item
-            }
-
+        public void SelectThisItem()
+        {
+            if (IsEquipped())
+                UnequipThisItem();
             else
-            {
-                return;
-            }
+                EquipThisItem();
 
-            // Update the weapon models
+            UpdateWeapons();
+            uiManager.HighlightEquippedInventorySlots();
+        }
+
+        private void UpdateWeapons()
+        {
             playerInventory.rightWeapon = playerInventory.weaponsInRightHandSlots[playerInventory.currentRightWeaponIndex];
             playerInventory.leftWeapon = playerInventory.weaponsInLeftHandSlots[playerInventory.currentLeftWeaponIndex];
 
             weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
             weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
+        }
 
-            // Update icons for equipped weapons in the equipment screen
-            uiManager.equipmentWindowUI.LoadWeaponsOnEquipmentScreen(playerInventory);
-            uiManager.ResetAllSelectedSlots();
+        public void EquipThisItem()
+        {
+            if (playerInventory.equipNextWeaponToRightHand)
+            {
+                // Clear previous right hand equipped status
+                WeaponItem currentRightHandWeapon = playerInventory.weaponsInRightHandSlots[playerInventory.currentRightWeaponIndex];
+                if (currentRightHandWeapon != null)
+                {
+                    uiManager.ClearEquippedStatusForItem(currentRightHandWeapon);
+                }
+
+                EquipToHand(ref playerInventory.weaponsInRightHandSlots[playerInventory.currentRightWeaponIndex], ref itemIsEquippedInRightHand, false);
+            }
+            else
+            {
+                // Clear previous left hand equipped status
+                WeaponItem currentLeftHandWeapon = playerInventory.weaponsInLeftHandSlots[playerInventory.currentLeftWeaponIndex];
+                if (currentLeftHandWeapon != null)
+                {
+                    uiManager.ClearEquippedStatusForItem(currentLeftHandWeapon);
+                }
+
+                EquipToHand(ref playerInventory.weaponsInLeftHandSlots[playerInventory.currentLeftWeaponIndex], ref itemIsEquippedInLeftHand, true);
+            }
+
+            // Set the equipped background
+            itemIsEquippedBackground.SetActive(true);
+        }
+
+        private void EquipToHand(ref WeaponItem handSlot, ref bool isEquippedFlag, bool equipNextToRight)
+        {
+            handSlot = item;
+            isEquippedFlag = true;
+            playerInventory.equipNextWeaponToRightHand = equipNextToRight;
+        }
+
+        public void UnequipThisItem()
+        {
+            if (itemIsEquippedInRightHand)
+            {
+                UnequipFromHand(ref playerInventory.weaponsInRightHandSlots[playerInventory.currentRightWeaponIndex], ref itemIsEquippedInRightHand, true);
+            }
+            else if (itemIsEquippedInLeftHand)
+            {
+                UnequipFromHand(ref playerInventory.weaponsInLeftHandSlots[playerInventory.currentLeftWeaponIndex], ref itemIsEquippedInLeftHand, false);
+            }
+
+            // Clear the equipped background
+            itemIsEquippedBackground.SetActive(false);
+        }
+
+        private void UnequipFromHand(ref WeaponItem handSlot, ref bool isEquippedFlag, bool equipNextToRight)
+        {
+            handSlot = playerInventory.unarmedWeapon;
+            isEquippedFlag = false;
+            playerInventory.equipNextWeaponToRightHand = equipNextToRight || playerInventory.weaponsInRightHandSlots[playerInventory.currentRightWeaponIndex] == playerInventory.unarmedWeapon;
         }
     }
 }
-
