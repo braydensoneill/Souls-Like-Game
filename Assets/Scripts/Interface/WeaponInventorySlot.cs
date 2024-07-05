@@ -58,12 +58,12 @@ namespace BON
             return item;
         }
 
-        public void SelectThisItem()
+        public void SelectThisItem(int _mouseButtonPressed)
         {
             if (IsEquipped())
                 UnequipThisItem();
             else
-                EquipThisItem();
+                EquipThisItem(_mouseButtonPressed);
 
             UpdateWeapons();
             uiManager.HighlightEquippedInventorySlots();
@@ -78,9 +78,9 @@ namespace BON
             weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
         }
 
-        public void EquipThisItem()
+        public void EquipThisItem(int _mouseButtonPressed)
         {
-            if (playerInventory.equipNextWeaponToRightHand)
+            if (_mouseButtonPressed == 1)
             {
                 // Clear previous right hand equipped status
                 WeaponItem currentRightHandWeapon = playerInventory.weaponsInRightHandSlots[playerInventory.currentRightWeaponIndex];
@@ -91,7 +91,8 @@ namespace BON
 
                 EquipToHand(ref playerInventory.weaponsInRightHandSlots[playerInventory.currentRightWeaponIndex], ref itemIsEquippedInRightHand, false);
             }
-            else
+            
+            else if (_mouseButtonPressed == 2)
             {
                 // Clear previous left hand equipped status
                 WeaponItem currentLeftHandWeapon = playerInventory.weaponsInLeftHandSlots[playerInventory.currentLeftWeaponIndex];
