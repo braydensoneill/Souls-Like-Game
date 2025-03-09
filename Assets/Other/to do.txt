@@ -26,6 +26,9 @@ Enemy
 - Ragdoll working for Enemy
 - Not currently working for Player
 
+Pickups
+- Make pickups depend on crosshair location rather than player location/rotation
+
 ---------- DOWN IS OLD --------------
 Interactable & item popups
 	interactable objects should have their own world canvas containing the interactable popup text
