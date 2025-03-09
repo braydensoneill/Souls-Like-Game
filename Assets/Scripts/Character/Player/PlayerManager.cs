@@ -187,12 +187,14 @@ namespace BON
             }
         }
 
+        /*
         public void OpenChestInteraction(Transform _playerStandsHereWhenOpeningChest)
         {
             playerLocomotion.rigidbody.linearVelocity = Vector3.zero; // Stops the player from ice skating while looting
             transform.position = _playerStandsHereWhenOpeningChest.transform.position;
             playerAnimatorHandler.PlayTargetAnimation("Open_Chest", true);
         }
+        */
         #endregion
     }
 }

@@ -22,9 +22,9 @@ namespace BON
         private Vector3 _cameraFollowVelocity = Vector3.zero;
 
         [Header("Camera Movement")]
-        public float lookSpeed = 0.1f;
-        public float followSpeed = 0.1f;
-        public float pivotSpeed = 0.03f;
+        public float lookSpeed = 0.0015f;   // camera sensitivity (left/right)
+        public float followSpeed = 0.1f;    // camera 'catch up' to player
+        public float pivotSpeed = 0.00125f;    // camera sensitivity (up/down)
 
         [Header("Camera Zoom")]
         //[SerializeField] private float cameraZoomCurrent;

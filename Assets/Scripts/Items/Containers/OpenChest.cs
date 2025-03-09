@@ -23,6 +23,7 @@ namespace BON
 
         public override void Interact(PlayerManager _playerManager)
         {
+            /*
             // Rotate the player towards the chest
             #region Rotate the player towards the chest
             Vector3 rotationDirection = transform.position - _playerManager.transform.position;
@@ -32,11 +33,12 @@ namespace BON
             Quaternion targetRotation = Quaternion.Slerp(_playerManager.transform.rotation, tr, 300 * Time.deltaTime);
             _playerManager.transform.rotation = targetRotation;
             #endregion
+            */
 
             // Move the player in front of the chest
-            #region Lock the player's transform to a point in front of the chest
-            _playerManager.OpenChestInteraction(playerStandingPoint);
-            #endregion
+            //#region Lock the player's transform to a point in front of the chest
+            //_playerManager.OpenChestInteraction(playerStandingPoint);
+            //#endregion
             
             // Open the chest lid and animate the player
             animator.Play("Chest_Open");
