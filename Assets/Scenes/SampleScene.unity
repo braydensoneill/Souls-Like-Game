@@ -1164,7 +1164,12 @@ PrefabInstance:
         type: 3}
       propertyPath: leftHandWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 2b3a9b2b785ac324cbcbe08895554d5c,
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144219302438, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: rightHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a,
         type: 2}
     - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -1240,6 +1245,16 @@ PrefabInstance:
         type: 3}
       propertyPath: maximumAttackRange
       value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: maximumDetectionAngle
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1564307144652207187, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: minimumDetectionAngle
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -24090,7 +24105,7 @@ MonoBehaviour:
   compassBar: {fileID: 1382746879}
   playerTransform: {fileID: 2057436914}
   cameraTransform: {fileID: 282840814}
-  objectiveTransform: {fileID: 0}
+  objectiveTransform: {fileID: 953290370}
   objectiveMarker: {fileID: 1911652967}
   objectiveMarkerVisual: {fileID: 233105002}
   northMarker: {fileID: 2117426404}
