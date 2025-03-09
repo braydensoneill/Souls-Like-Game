@@ -280,7 +280,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""Roll"",
                     ""type"": ""Button"",
                     ""id"": ""c87e4da7-60b0-4fbb-a856-afe5483a5c53"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -446,7 +446,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""50ad0bed-6ebf-4af1-86c0-340e97860514"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/b"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -468,7 +468,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4d392a81-6c8e-48c3-aaa9-e9fc3e20337f"",
-                    ""path"": ""<Keyboard>/capsLock"",
+                    ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

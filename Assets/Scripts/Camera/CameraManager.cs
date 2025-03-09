@@ -29,8 +29,8 @@ namespace BON
         [Header("Camera Zoom")]
         //[SerializeField] private float cameraZoomCurrent;
         public float cameraZoomIntensity = 0.5f;
-        private float cameraZoomMinimum = -2;
-        private float cameraZoomMaximum = -4;
+        private float cameraZoomMinimum = -1;
+        private float cameraZoomMaximum = -5;
 
         private float collisionTargetPosition;
         private float defaultPosition;
