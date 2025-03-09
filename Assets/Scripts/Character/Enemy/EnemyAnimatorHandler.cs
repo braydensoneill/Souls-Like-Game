@@ -89,13 +89,13 @@ namespace BON
         private void OnAnimatorMove()
         {
             float delta = Time.deltaTime;
-            enemyManager.enemyRigidbody.drag = 0;
+            enemyManager.enemyRigidbody.linearDamping = 0;
 
             Vector3 deltaPosition = animator.deltaPosition;
             deltaPosition.y = 0;
 
             Vector3 velocity = deltaPosition / delta;
-            enemyManager.enemyRigidbody.velocity = velocity;
+            enemyManager.enemyRigidbody.linearVelocity = velocity;
         }
     }
 }

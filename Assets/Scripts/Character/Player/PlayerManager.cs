@@ -189,7 +189,7 @@ namespace BON
 
         public void OpenChestInteraction(Transform _playerStandsHereWhenOpeningChest)
         {
-            playerLocomotion.rigidbody.velocity = Vector3.zero; // Stops the player from ice skating while looting
+            playerLocomotion.rigidbody.linearVelocity = Vector3.zero; // Stops the player from ice skating while looting
             transform.position = _playerStandsHereWhenOpeningChest.transform.position;
             playerAnimatorHandler.PlayTargetAnimation("Open_Chest", true);
         }

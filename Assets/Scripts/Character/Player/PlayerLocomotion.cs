@@ -173,7 +173,7 @@ namespace BON
             }
 
             Vector3 _projectedVelocity = Vector3.ProjectOnPlane(moveDirection, _normalVector);
-            rigidbody.velocity = _projectedVelocity;
+            rigidbody.linearVelocity = _projectedVelocity;
 
             if(inputManager.flag_LockOn && inputManager.flag_Sprint == false)
             {
@@ -282,9 +282,9 @@ namespace BON
                         playerAnimatorHandler.PlayTargetAnimation("Fall", true);
                     }
 
-                    Vector3 _vel = rigidbody.velocity;
+                    Vector3 _vel = rigidbody.linearVelocity;
                     _vel.Normalize();
-                    rigidbody.velocity = _vel * (_movementSpeed / 2);
+                    rigidbody.linearVelocity = _vel * (_movementSpeed / 2);
                     playerManager.isAirborne = true;
                 }
             }

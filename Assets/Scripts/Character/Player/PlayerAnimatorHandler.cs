@@ -133,13 +133,13 @@ namespace BON
 
             float _delta = Time.deltaTime;
 
-            playerLocomotion.rigidbody.drag = 0;
+            playerLocomotion.rigidbody.linearDamping = 0;
 
             Vector3 _deltaPosition = animator.deltaPosition;
             _deltaPosition.y = 0;
 
             Vector3 _velocity = _deltaPosition / _delta;
-            playerLocomotion.rigidbody.velocity = _velocity;
+            playerLocomotion.rigidbody.linearVelocity = _velocity;
         }
     }
 }

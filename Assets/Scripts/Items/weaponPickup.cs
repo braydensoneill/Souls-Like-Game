@@ -27,7 +27,7 @@ namespace BON
             playerLocomotion = playerManager.GetComponent<PlayerLocomotion>();
             animatorHandler = playerManager.GetComponentInChildren<PlayerAnimatorHandler>();
 
-            playerLocomotion.rigidbody.velocity = Vector3.zero; // Stops the player from moving while pickup up an item
+            playerLocomotion.rigidbody.linearVelocity = Vector3.zero; // Stops the player from moving while pickup up an item
             animatorHandler.PlayTargetAnimation("Pickup", true);    //  Plays the animation of looting the item
             playerInventory.weaponsInventory.Add(weapon);
 
