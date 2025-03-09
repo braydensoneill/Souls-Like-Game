@@ -23491,8 +23491,8 @@ MonoBehaviour:
   followSpeed: 0.1
   pivotSpeed: 0.0015
   cameraZoomIntensity: 0.5
-  minimumPivot: -90
-  maximumPivot: 90
+  minimumPivot: -85
+  maximumPivot: 85
   cameraPivotXNormal: 0.65
   cameraPivotXLeftPanel: -0.8
   pivotPositionYLocked: 1.65

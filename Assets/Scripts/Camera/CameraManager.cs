@@ -39,8 +39,8 @@ namespace BON
         private float pivotAngle;
 
         [Header("Camera Pivot")]
-        public float minimumPivot = -90;    // how far can i look up (was -35)
-        public float maximumPivot = 90;     // how far can i look down (was 35)
+        public float minimumPivot = -85;    // how far can i look up (was -35)
+        public float maximumPivot = 85;     // how far can i look down (was 35)
         public float cameraPivotXNormal = 0.4f;
         public float cameraPivotXLeftPanel = -0.8f;
         public float pivotPositionYLocked = 1.65f;
