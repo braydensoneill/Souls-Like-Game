@@ -23487,7 +23487,7 @@ MonoBehaviour:
   environmentLayer:
     serializedVersion: 2
     m_Bits: 0
-  lookSpeed: 0.002
+  lookSpeed: 0.001
   followSpeed: 0.1
   pivotSpeed: 0.0015
   cameraZoomIntensity: 0.5
