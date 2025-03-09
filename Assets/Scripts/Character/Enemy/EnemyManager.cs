@@ -54,7 +54,6 @@ namespace BON
 
         private void Update()
         {
-            HandleDeathState();
             HandleRecoveryTime();
 
             isInteracting = enemyAnimatorHandler.animator.GetBool("isInteracting");
@@ -63,6 +62,8 @@ namespace BON
 
             canDoCombo = enemyAnimatorHandler.animator.GetBool("canDoCombo");
             enemyAnimatorHandler.animator.SetBool("isDead", enemyStats.isDead);
+
+            HandleDeathState();
         }
 
         private void LateUpdate()
@@ -109,7 +110,7 @@ namespace BON
             }
         }
 
-        private void HandleDeathState()
+        public override void HandleDeathState()
         {
             // Check if the enemy is already dead and ragdoll mode is already on
             if (enemyStats.getHealthCurrent() > 0 || ragdollController.IsRagdolling())

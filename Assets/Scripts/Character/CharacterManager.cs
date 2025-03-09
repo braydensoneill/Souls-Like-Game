@@ -22,5 +22,9 @@ namespace BON
         // Used in backstab or ripsote animation
         [Header("Damage Multipliers")]
         public int pendingCriticalDamage;
+
+        public virtual void HandleDeathState() {
+            // Check children
+        }
     }
 }
