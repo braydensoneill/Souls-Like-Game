@@ -19,6 +19,9 @@ namespace BON
         private Collider[] ragdollLimbColliders;
         private Rigidbody[] ragdollLimbRigidbodies;
 
+        // ragdoll state
+        private bool isRagdolling;
+
 
         void Awake()
         {
@@ -31,36 +34,57 @@ namespace BON
             // get the character's limbs' components
             ragdollLimbColliders = characterSprite.GetComponentsInChildren<Collider>();
             ragdollLimbRigidbodies = characterSprite.GetComponentsInChildren<Rigidbody>();
+
+            isRagdolling = false;
+
+            RagdollModeOff();
         }
 
         public void RagdollModeOn()
         {
             characterAnimator.enabled = false;
 
+            // Disable the original character collider to avoid conflicts with ragdoll physics
+            characterCollider.enabled = false;
+
+            // Disable all character colliders
             foreach (Collider collider in allColliders)
                 collider.enabled = false;
 
+            // Enable the ragdoll limb colliders
             foreach (Collider collider in ragdollLimbColliders)
                 collider.enabled = true;
 
+            // Disable kinematic mode on ragdoll rigidbodies to allow physics interaction
             foreach (Rigidbody rigidbody in ragdollLimbRigidbodies)
                 rigidbody.isKinematic = false;
 
-            characterCollider.enabled = false;
+            // Make the main character rigidbody kinematic to prevent it from interacting with physics
             characterRigidbody.isKinematic = true;
         }
 
         public void RagdollModeOff()
         {
+            // Disable ragdoll colliders
             foreach(Collider collider in ragdollLimbColliders)
                 collider.enabled = false;
 
+            // Enable kinematic mode on ragdoll rigidbodies
             foreach (Rigidbody rigidbody in ragdollLimbRigidbodies)
                 rigidbody.isKinematic = true;
 
-            characterAnimator.enabled = true;
+            // Enable the character's collider
             characterCollider.enabled = true;
+
+            // Re-enable the character animator for normal behavior
+            characterAnimator.enabled = true;
+
+            // Make the character's rigidbody non-kinematic
             characterRigidbody.isKinematic = false;
+        }
+
+        public bool IsRagdolling() {
+            return isRagdolling;
         }
     }
 }

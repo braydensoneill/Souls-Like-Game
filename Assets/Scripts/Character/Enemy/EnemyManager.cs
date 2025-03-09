@@ -111,13 +111,25 @@ namespace BON
 
         private void HandleDeathState()
         {
-            if (enemyStats.health_Current > 0)
+            // Check if the enemy is already dead and ragdoll mode is already on
+            if (enemyStats.getHealthCurrent() > 0 || ragdollController.IsRagdolling())
                 return;
 
-            enemyStats.health_Current = 0;
-            enemyAnimatorHandler.AwardGoldOnDeath();
+            // Set health to zero (just in case) and mark the enemy as dead
+            enemyStats.setHealthCurrent(0);
             enemyStats.isDead = true;
+
+            // Handle death-related actions (like awarding gold, tagging)
+            enemyAnimatorHandler.AwardGoldOnDeath();
             this.gameObject.tag = "Untagged";
+
+            // Disable the Animator to cancel any ongoing animations
+            if (enemyAnimatorHandler.animator != null)
+            {
+                enemyAnimatorHandler.animator.enabled = false;
+            }
+
+            // Only call ragdoll mode once
             ragdollController.RagdollModeOn();
         }
     }

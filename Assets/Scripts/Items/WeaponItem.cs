@@ -17,8 +17,8 @@ namespace BON
         public float heavyAttackHoldTime;
 
         [Header("Damage")]
-        public int baseDamage = 25;
-        public int criticalDamageMultiplier = 4;
+        public int baseDamage;
+        public int criticalDamageMultiplier;
 
         [Header("Idle Animations")]
         public string Idle_Arm_Right_01;

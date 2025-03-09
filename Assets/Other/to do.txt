@@ -4,11 +4,11 @@ GENERAL
 - Don't show UI for current utilities. Show potions/books(spells) on the characters waist (Q slot on left, E slot on right)
 
 WeaponInventory
-	Add left/right button functionality equipping weapons to respective hand
+- Add left/right button functionality equipping weapons to respective hand
 
 Two-Hand Functionality
-	Remove changing from 1h to 2h
-	Set some weapons as two handed (i think i added size checks for sheathing already)
+- Remove changing from 1h to 2h
+- Set some weapons as two handed (i think i added size checks for sheathing already)
 
 EQUIPMENT SYSTEM REVAMP
 - Remove Equipment slots UI page
@@ -18,14 +18,18 @@ EQUIPMENT SYSTEM REVAMP
 - When equiping a weapon, check if main hand is available, if not, fill offhand slot
 - Utility slots are handled like equipping weapons
 
+Camera
+- Forward momentum is currently tied to camera direction (if looking down, speed will be zero)
+- Fix crosshair camera pointing to interactable objects
+
+Enemy
+- Ragdoll working for Enemy
+- Not currently working for Player
 
 ---------- DOWN IS OLD --------------
 Interactable & item popups
 	interactable objects should have their own world canvas containing the interactable popup text
 	item popups might be changed to a periodically appearing world canvas where the item was picked up
-
-Ragdoll
-	ragdoll is still fucked when an enemy dies
 
 Shields
 	cannot parry with left shield yet
@@ -44,5 +48,8 @@ UI
 	(maybe only UIManager is enough)
 
 MOVEMENT
-	Remove stamina?
+	Remove stamina? Just a hinderance?
 	Allow jumping to move player box rather than just player sprite
+
+
+

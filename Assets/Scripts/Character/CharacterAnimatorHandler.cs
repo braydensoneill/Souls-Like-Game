@@ -29,7 +29,7 @@ namespace BON
 
         public virtual void TakeCriticalDamageAnimationEvent()
         {
-
+            // Check child
         }
     }
 }

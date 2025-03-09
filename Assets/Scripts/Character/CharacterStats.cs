@@ -12,7 +12,7 @@ namespace BON
         [Header("Health Stats")]
         public float health_Level = 10;
         public float health_Max;
-        public float health_Current;
+        [SerializeField] protected float health_Current;  // will be changing all to serializefield
 
         [Header("Stamina Stats")]
         public float stamina_Level = 10;
@@ -26,5 +26,13 @@ namespace BON
 
         [Header("Currency")]
         public int gold_Current = 0;
+
+        public float getHealthCurrent() {
+            return health_Current;
+        }
+
+        public void setHealthCurrent(float health_Current) {
+            this.health_Current = health_Current;
+        }
     }
 }
