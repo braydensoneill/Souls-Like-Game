@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lightsaber_Green
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: d8575f80ebd60404d8790f0371c22254, type: 3}
-  itemName: Lightsaber (Green)
+  itemName: Lightsaber (Off-Hand)
   modelPrefab: {fileID: 4329264159065547410, guid: 03757409f1d33df4c8dbf6e079f89e91,
     type: 3}
   isUnarmed: 0

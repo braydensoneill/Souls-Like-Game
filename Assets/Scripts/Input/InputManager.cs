@@ -1,4 +1,4 @@
-﻿ using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -99,7 +99,7 @@ namespace BON
 
         public void OnEnable()
         {
-            if(inputActions == null)
+            if (inputActions == null)
             {
                 inputActions = new PlayerControls();
                 inputActions.PlayerMovement.PlayerMove.performed += inputActions => playerMoveInput = inputActions.ReadValue<Vector2>();
@@ -116,7 +116,7 @@ namespace BON
 
                 inputActions.PlayerQuickslots.DPadRight.performed += inputActions => input_Dpad_Right = true;
                 inputActions.PlayerQuickslots.DPadLeft.performed += inputActions => input_Dpad_Left = true;
-                
+
                 inputActions.PlayerActions.Interact.performed += i => input_A = true;
                 inputActions.PlayerActions.Jump.performed += i => input_Jump = true;
                 inputActions.PlayerActions.Roll.performed += i => input_B = true;
@@ -188,13 +188,13 @@ namespace BON
             {
                 timer_Roll_Input += _delta;
 
-                if(playerStats.stamina_Current <= 0)
+                if (playerStats.stamina_Current <= 0)
                 {
                     input_B = false;
                     flag_Sprint = false;
                 }
 
-                if(moveAmount > 0.5f && playerStats.stamina_Current > 0)
+                if (moveAmount > 0.5f && playerStats.stamina_Current > 0)
                 {
                     flag_Sprint = true;
                 }
@@ -204,7 +204,7 @@ namespace BON
             {
                 flag_Sprint = false;
 
-                if(timer_Roll_Input > 0 && timer_Roll_Input < 0.5f)
+                if (timer_Roll_Input > 0 && timer_Roll_Input < 0.5f)
                 {
                     flag_Sprint = false;
                     flag_Roll = true;
@@ -222,7 +222,7 @@ namespace BON
 
             #region Handle RB Input
             // Right hand weapon input
-            if(input_RB)
+            if (input_RB)
             {
                 if (playerInventory.rightWeapon.isMeleeWeapon && playerManager.isBlocking == false)
                     timer_RB_Input += _delta;
@@ -263,13 +263,13 @@ namespace BON
             #endregion
 
             #region Handle Simultaneous RB and LB input
-            if(input_RB && playerManager.isBlockingLeftHand)
+            if (input_RB && playerManager.isBlockingLeftHand)
             {
                 // parry left hand
                 playerAttacker.HandleLTAction();
             }
 
-            else if(input_LB && playerManager.isBlockingRightHand)
+            else if (input_LB && playerManager.isBlockingRightHand)
             {
                 // parry right hand
                 Debug.Log("Peformed parry with right hand");
@@ -280,7 +280,7 @@ namespace BON
                 // weapon art
                 Debug.Log("Performed Weapon Art");
             }
-            
+
             /*
             // Change this to if the player attacks while blocking
             if (input_LT)   
@@ -300,12 +300,12 @@ namespace BON
 
         private void HandleQuickSlotInput()
         {
-            if(input_Dpad_Right)
+            if (input_Dpad_Right)
             {
                 playerInventory.ChangeRightWeapon();
             }
 
-            if(input_Dpad_Left)
+            if (input_Dpad_Left)
             {
                 playerInventory.ChangeLeftWeapon();
             }
@@ -313,17 +313,17 @@ namespace BON
 
         private void HandleLeftPanelInput()
         {
-            if(input_LeftPanel)
+            if (input_LeftPanel)
             {
                 flag_LeftPanel = !flag_LeftPanel;
 
-                if(flag_LeftPanel)
+                if (flag_LeftPanel)
                 {
-                    uiManager.RefreshUI();
+                    uiManager.UpdateWeaponInventorySlots();
                     uiManager.OpenLeftPanelWindow();
                     uiManager.hudWindow.SetActive(false);
                 }
-                    
+
                 else
                 {
                     uiManager.CloseSelectWindow();
@@ -336,13 +336,13 @@ namespace BON
         private void HandleLockOnInput()
         {
             // Lock on to a target if you are not currently locked on to one
-            if(input_LockOn && flag_LockOn == false)
+            if (input_LockOn && flag_LockOn == false)
             {
 
                 input_LockOn = false;
                 cameraManager.HandleLockOn();
 
-                if(cameraManager.nearestLockOnTarget != null)
+                if (cameraManager.nearestLockOnTarget != null)
                 {
                     cameraManager.currentLockOnTarget = cameraManager.nearestLockOnTarget;
                     flag_LockOn = true;
@@ -350,7 +350,7 @@ namespace BON
             }
 
             // Stop locking on to current target
-            else  if (input_LockOn && flag_LockOn == true)
+            else if (input_LockOn && flag_LockOn == true)
             {
                 input_LockOn = false;
                 flag_LockOn = false;
@@ -362,7 +362,7 @@ namespace BON
                 input_Right_Stick_Left = false;
                 cameraManager.HandleLockOn();
 
-                if(cameraManager.leftLockTarget != null)
+                if (cameraManager.leftLockTarget != null)
                 {
                     cameraManager.currentLockOnTarget = cameraManager.leftLockTarget;
                 }
@@ -382,13 +382,13 @@ namespace BON
 
         private void HandleTwoHandInput()
         {
-            if(input_T)
+            if (input_T)
             {
                 input_T = false;
 
                 flag_TwoHand = !flag_TwoHand;
 
-                if(flag_TwoHand)
+                if (flag_TwoHand)
                 {
                     // Enable two handing
                     weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
@@ -405,7 +405,7 @@ namespace BON
 
         private void HandleCriticalAttackInput()
         {
-            if(input_CriticalAttack && !playerManager.isInteracting)
+            if (input_CriticalAttack && !playerManager.isInteracting)
             {
                 input_CriticalAttack = false;
                 playerAttacker.AttemptBackStabOrParry();

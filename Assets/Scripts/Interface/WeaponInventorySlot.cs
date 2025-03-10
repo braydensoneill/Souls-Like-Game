@@ -67,7 +67,6 @@ namespace BON
                 EquipThisItem();
 
             UpdateWeapons();
-            uiManager.HighlightEquippedInventorySlots();
         }
 
         private void UpdateWeapons()
@@ -78,6 +77,8 @@ namespace BON
 
             weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
             weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
+
+            uiManager.HighlightEquippedInventorySlots();
         }
 
         public void EquipThisItem()

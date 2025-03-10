@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Item_Weapon_Melee_Lightsaber_Red
   m_EditorClassIdentifier: 
   itemIcon: {fileID: 21300000, guid: d0d829b8748ca8241920650b6d02bd23, type: 3}
-  itemName: Lightsaber (Red)
+  itemName: Lightsaber
   modelPrefab: {fileID: 4329264159065547410, guid: ae885dd5e5b9e364c8f3494081f1c682,
     type: 3}
   isUnarmed: 0
@@ -21,6 +21,8 @@ MonoBehaviour:
   isLight: 1
   isBow: 0
   isShield: 0
+  isOffHand: 0
+  isTwoHand: 0
   heavyAttackHoldTime: 0.65
   baseDamage: 25
   criticalDamageMultiplier: 4

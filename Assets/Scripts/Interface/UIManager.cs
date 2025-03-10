@@ -35,7 +35,7 @@ namespace BON
             Cursor.visible = false;
         }
 
-        public void RefreshUI()
+        public void UpdateWeaponInventorySlots()
         {
             for (int i = 0; i < weaponInventorySlots.Length; i++)
             {
