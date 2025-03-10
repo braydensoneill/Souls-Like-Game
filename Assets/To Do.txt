@@ -1,3 +1,7 @@
+KNOWN BUGS
+- Lock-on only works if an enemy is not inside an empty object in the heirarchy?? Even if player is in the same one
+- The highlighting for currently equipped items in the inventory is janky. Looks like it happens when equpping something
+on a slot to replace a currently equipped item.
 
 GENERAL
 - Consumables/Spells are now both considered Utilities.

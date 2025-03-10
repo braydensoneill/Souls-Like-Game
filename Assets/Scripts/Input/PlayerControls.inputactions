@@ -275,7 +275,7 @@
                     "name": "LockOn",
                     "type": "Button",
                     "id": "666687f9-34a6-4358-a492-fd95a3b9fc23",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
