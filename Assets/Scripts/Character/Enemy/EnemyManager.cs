@@ -10,7 +10,7 @@ namespace BON
         private EnemyLocomotion enemyLocomotion;
         private EnemyAnimatorHandler enemyAnimatorHandler;
         private EnemyStats enemyStats;
-        private RagdollController ragdollController;
+        //private RagdollController ragdollController;
 
         [Header("General")]
         public State currentState;
@@ -43,7 +43,7 @@ namespace BON
             navmeshAgent = GetComponentInChildren<NavMeshAgent>();
             enemyRigidbody = GetComponent<Rigidbody>();
             backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
-            ragdollController = GetComponentInParent<RagdollController>();
+            //ragdollController = GetComponentInParent<RagdollController>();
         }
 
         private void Start()
@@ -62,8 +62,6 @@ namespace BON
 
             canDoCombo = enemyAnimatorHandler.animator.GetBool("canDoCombo");
             enemyAnimatorHandler.animator.SetBool("isDead", enemyStats.isDead);
-
-            HandleDeathState();
         }
 
         private void LateUpdate()
@@ -82,7 +80,7 @@ namespace BON
             {
                 State nextState = currentState.Tick(this, enemyStats, enemyAnimatorHandler);
 
-                if(nextState != null)
+                if (nextState != null)
                 {
                     SwitchToNextState(nextState);
                 }
@@ -96,14 +94,14 @@ namespace BON
 
         private void HandleRecoveryTime()
         {
-            if(currentRecoveryTime > 0)
+            if (currentRecoveryTime > 0)
             {
                 currentRecoveryTime -= Time.deltaTime;
             }
 
-            if(isInteracting)
+            if (isInteracting)
             {
-                if(currentRecoveryTime <= 0)
+                if (currentRecoveryTime <= 0)
                 {
                     isInteracting = false;
                 }
@@ -112,26 +110,11 @@ namespace BON
 
         public override void HandleDeathState()
         {
-            // Check if the enemy is already dead and ragdoll mode is already on
-            if (enemyStats.getHealthCurrent() > 0 || ragdollController.IsRagdolling())
-                return;
+            // See parent class for more
+            base.HandleDeathState();
 
-            // Set health to zero (just in case) and mark the enemy as dead
-            enemyStats.setHealthCurrent(0);
-            enemyStats.isDead = true;
-
-            // Handle death-related actions (like awarding gold, tagging)
+            // Handle death-related actions (like giving gold)
             enemyAnimatorHandler.AwardGoldOnDeath();
-            this.gameObject.tag = "Untagged";
-
-            // Disable the Animator to cancel any ongoing animations
-            if (enemyAnimatorHandler.animator != null)
-            {
-                enemyAnimatorHandler.animator.enabled = false;
-            }
-
-            // Only call ragdoll mode once
-            ragdollController.RagdollModeOn();
         }
     }
 }

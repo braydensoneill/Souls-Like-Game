@@ -12,7 +12,7 @@ namespace BON
         private PlayerStats playerStats;
         private PlayerAnimatorHandler playerAnimatorHandler;
         private PlayerLocomotion playerLocomotion;
-        private RagdollController ragdollController;
+        //private RagdollController ragdollController;
 
         [Header("User Interface")]
         public GameObject interactablePopUp;
@@ -47,7 +47,7 @@ namespace BON
             playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
             interactableUI = FindObjectOfType<InteractableUI>();
             backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
-            ragdollController = GetComponentInParent<RagdollController>();
+            //ragdollController = GetComponentInParent<RagdollController>();
         }
 
         // Update is called once per frame
@@ -82,8 +82,6 @@ namespace BON
             playerStats.PassiveRegenerateMana();
 
             CheckForInteractableObject();
-
-            HandleDeathState();
         }
 
         private void FixedUpdate()
@@ -153,7 +151,7 @@ namespace BON
                 Interactable interactableObject = hit.collider.GetComponent<Interactable>();
 
                 if (interactableObject == null)
-                     return;
+                    return;
 
                 string interactableText = interactableObject.interactableText;
                 interactableUI.interactableText.text = interactableText;
@@ -203,25 +201,8 @@ namespace BON
 
         public override void HandleDeathState()
         {
-            // Check if the enemy is already dead and ragdoll mode is already on
-            if (playerStats.getHealthCurrent() > 0 || ragdollController.IsRagdolling())
-                return;
-
-            // Set health to zero (just in case) and mark the enemy as dead
-            playerStats.setHealthCurrent(0);
-            playerStats.isDead = true;
-
-            // Handle death-related actions (like awarding gold, tagging)
-            this.gameObject.tag = "Untagged";
-
-            // Disable the Animator to cancel any ongoing animations
-            if (playerAnimatorHandler.animator != null)
-            {
-                playerAnimatorHandler.animator.enabled = false;
-            }
-
-            // Only call ragdoll mode once
-            ragdollController.RagdollModeOn();
+            // See parent class for more
+            base.HandleDeathState();
         }
     }
 }
