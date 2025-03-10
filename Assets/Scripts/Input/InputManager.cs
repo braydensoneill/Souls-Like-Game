@@ -266,13 +266,13 @@ namespace BON
             if (input_RB && playerManager.isBlockingLeftHand)
             {
                 // parry left hand
-                playerAttacker.HandleLTAction();
+                playerAttacker.HandleWeaponSpecialLeft(playerInventory.leftWeapon);
             }
 
             else if (input_LB && playerManager.isBlockingRightHand)
             {
                 // parry right hand
-                Debug.Log("Peformed parry with right hand");
+                playerAttacker.HandleWeaponSpecialRight(playerInventory.rightWeapon);
             }
 
             else if (input_RB && playerManager.isBlockingTwoHand)

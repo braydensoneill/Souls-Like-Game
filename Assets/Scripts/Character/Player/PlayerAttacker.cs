@@ -47,7 +47,7 @@ namespace BON
                 else if (lastAttack == weapon.OH_Sword_Light_Attack_Left_01 && isLeftAttack == true)
                     playerAnimatorHandler.PlayTargetAnimation(weapon.OH_Sword_Light_Attack_Left_02, true);
 
-                else if(lastAttack == weapon.TH_Sword_Light_Attack_01)
+                else if (lastAttack == weapon.TH_Sword_Light_Attack_01)
                     playerAnimatorHandler.PlayTargetAnimation(weapon.TH_Sword_Light_Attack_02, true);
             }
         }
@@ -60,7 +60,7 @@ namespace BON
 
             playerWeaponSlotManager.attackingWeapon = weapon;
 
-            if (inputManager.flag_TwoHand)
+            if (weapon.isTwoHand)
             {
                 playerAnimatorHandler.PlayTargetAnimation(weapon.TH_Sword_Light_Attack_01, true);
                 lastAttack = weapon.TH_Sword_Light_Attack_01;
@@ -92,7 +92,7 @@ namespace BON
 
             playerWeaponSlotManager.attackingWeapon = weapon;
 
-            if (inputManager.flag_TwoHand)
+            if (weapon.isTwoHand)
             {
 
             }
@@ -107,7 +107,7 @@ namespace BON
         #region Input Actions
         public void HandleRBAction(float _holdDuration = 0)
         {
-            if(playerInventory.rightWeapon.isMeleeWeapon)
+            if (playerInventory.rightWeapon.isMeleeWeapon)
             {
                 // perform a light attack if the timer ends between 0 and the decimal
                 if (_holdDuration > 0 && _holdDuration < playerInventory.rightWeapon.heavyAttackHoldTime)
@@ -123,8 +123,8 @@ namespace BON
                     flag_HeavyAttack_Right = true;
                     PerformRBMeleeAction(flag_HeavyAttack_Right);
                     flag_HeavyAttack_Right = false;
-                    inputManager.timer_RB_Input = 0;    
-                }    
+                    inputManager.timer_RB_Input = 0;
+                }
             }
 
             if (playerInventory.rightWeapon.isShield)
@@ -175,17 +175,21 @@ namespace BON
             }
         }
 
-        public void HandleLTAction()
+        public void HandleWeaponSpecialLeft(WeaponItem weapon)
         {
-            if(playerInventory.leftWeapon.isShield)
+            if (playerInventory.leftWeapon.isShield)
             {
-                // Perform shield weapon art
-                PerformLTWeaponArt(inputManager.flag_TwoHand);
+                // Perform shield weapon special
+                PerformWeaponSpecialLeft(playerInventory.leftWeapon.isTwoHand);
             }
+        }
 
-            else if (playerInventory.leftWeapon.isMeleeWeapon)
+        public void HandleWeaponSpecialRight(WeaponItem weapon)
+        {
+            if (playerInventory.rightWeapon.isShield)
             {
-                // do a light attack (dunno where this came from)
+                // Perform shield weapon special
+                PerformWeaponSpecialRight();
             }
         }
         #endregion
@@ -225,13 +229,13 @@ namespace BON
                 return;
 
             // Check weapon type
-            if(_weapon.isFaithCaster)
+            if (_weapon.isFaithCaster)
             {
                 // Check if player has active spell and if it is a right weapon type
-                if(playerInventory.currentSpell != null && playerInventory.currentSpell.isFaithSpell)
+                if (playerInventory.currentSpell != null && playerInventory.currentSpell.isFaithSpell)
                 {
                     // Check if the player has enough mana for the spell cost
-                    if(playerStats.mana_Current >= playerInventory.currentSpell.manaCost)
+                    if (playerStats.mana_Current >= playerInventory.currentSpell.manaCost)
                     {
                         // Cast the spell
                         playerInventory.currentSpell.AttemptoCastSpell(playerAnimatorHandler, playerStats);
@@ -272,16 +276,14 @@ namespace BON
             }
         }
 
-        private void PerformLTWeaponArt(bool isTwoHanding)
+        private void PerformWeaponSpecialLeft(bool isTwoHand)
         {
             if (playerManager.isInteracting)
                 return;
 
-
-            if(isTwoHanding)
+            if (isTwoHand)
             {
-                // if we are two handing perform weapon art for right weapon
-                
+                // if we are two handing, perform weapon art for right weapon
             }
 
             else
@@ -289,6 +291,17 @@ namespace BON
                 // else perform weapon art for left handed weapon
                 playerAnimatorHandler.PlayTargetAnimation(playerInventory.leftWeapon.weapon_art, true);
             }
+        }
+
+        private void PerformWeaponSpecialRight(/*no need to check for 2H here*/)
+        {
+            if (playerManager.isInteracting)
+                return;
+
+            // no need to check for 2H here
+
+            // else perform weapon art for left handed weapon
+            playerAnimatorHandler.PlayTargetAnimation(playerInventory.rightWeapon.weapon_art, true);
         }
 
         private void SuccessfullyCastSpell() // This function only calls a function in another script. It is also here so it can be called in an animation event()
@@ -336,7 +349,7 @@ namespace BON
                 EnemyManager enemyManager = hit.transform.gameObject.GetComponentInParent<EnemyManager>();
                 DamageCollider rightWeapon = playerWeaponSlotManager.rightHandDamageCollider;
 
-                if(enemyManager != null)
+                if (enemyManager != null)
                 {
                     // check for team id (avoid friendly fire)
 
@@ -360,10 +373,10 @@ namespace BON
 
                     // play the animation
                     playerAnimatorHandler.PlayTargetAnimation("Backstab_Stab", true);
-                    
+
                     // make the enemy play an animation
                     enemyManager.GetComponentInChildren<EnemyAnimatorHandler>().PlayTargetAnimation("Backstab_Stabbed", true);
-                    
+
                     // do damage
                 }
             }
