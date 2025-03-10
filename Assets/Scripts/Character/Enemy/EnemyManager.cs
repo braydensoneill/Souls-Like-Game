@@ -10,7 +10,6 @@ namespace BON
         private EnemyLocomotion enemyLocomotion;
         private EnemyAnimatorHandler enemyAnimatorHandler;
         private EnemyStats enemyStats;
-        //private RagdollController ragdollController;
 
         [Header("General")]
         public State currentState;
@@ -35,15 +34,15 @@ namespace BON
 
         public float currentRecoveryTime = 0;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake(); // Calls the character maanger awake function
             enemyLocomotion = GetComponent<EnemyLocomotion>();
             enemyAnimatorHandler = GetComponentInChildren<EnemyAnimatorHandler>();
             enemyStats = GetComponent<EnemyStats>();
             navmeshAgent = GetComponentInChildren<NavMeshAgent>();
             enemyRigidbody = GetComponent<Rigidbody>();
             backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
-            //ragdollController = GetComponentInParent<RagdollController>();
         }
 
         private void Start()
@@ -62,6 +61,8 @@ namespace BON
 
             canDoCombo = enemyAnimatorHandler.animator.GetBool("canDoCombo");
             enemyAnimatorHandler.animator.SetBool("isDead", enemyStats.isDead);
+
+            HandleDeathState();
         }
 
         private void LateUpdate()
@@ -110,7 +111,6 @@ namespace BON
 
         public override void HandleDeathState()
         {
-            // See parent class for more
             base.HandleDeathState();
 
             // Handle death-related actions (like giving gold)

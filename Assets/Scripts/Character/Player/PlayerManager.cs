@@ -12,7 +12,6 @@ namespace BON
         private PlayerStats playerStats;
         private PlayerAnimatorHandler playerAnimatorHandler;
         private PlayerLocomotion playerLocomotion;
-        //private RagdollController ragdollController;
 
         [Header("User Interface")]
         public GameObject interactablePopUp;
@@ -37,8 +36,9 @@ namespace BON
         public bool isBlockingRightHand;
         public bool isBlockingTwoHand;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake(); // Calls the character maanger awake function
             cameraManager = FindObjectOfType<CameraManager>();
             inputManager = GetComponent<InputManager>();
             animator = GetComponentInChildren<Animator>();
@@ -47,7 +47,6 @@ namespace BON
             playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
             interactableUI = FindObjectOfType<InteractableUI>();
             backStabCollider = GetComponentInChildren<CriticalDamageCollider>();
-            //ragdollController = GetComponentInParent<RagdollController>();
         }
 
         // Update is called once per frame
@@ -82,6 +81,8 @@ namespace BON
             playerStats.PassiveRegenerateMana();
 
             CheckForInteractableObject();
+
+            HandleDeathState();
         }
 
         private void FixedUpdate()
@@ -201,7 +202,6 @@ namespace BON
 
         public override void HandleDeathState()
         {
-            // See parent class for more
             base.HandleDeathState();
         }
     }

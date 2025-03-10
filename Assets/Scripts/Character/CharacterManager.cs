@@ -27,16 +27,11 @@ namespace BON
         [Header("Damage Multipliers")]
         public int pendingCriticalDamage;
 
-        void Awake()
+        protected virtual void Awake()
         {
             characterAnimatorHandler = GetComponentInChildren<CharacterAnimatorHandler>();
             characterStats = GetComponent<CharacterStats>();
             ragdollController = GetComponentInParent<RagdollController>();
-        }
-
-        void Update()
-        {
-            HandleDeathState();
         }
 
         public virtual void HandleDeathState()
