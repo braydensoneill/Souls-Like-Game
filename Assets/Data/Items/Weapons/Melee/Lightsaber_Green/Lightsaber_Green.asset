@@ -21,6 +21,8 @@ MonoBehaviour:
   isLight: 1
   isBow: 0
   isShield: 0
+  isOffHand: 1
+  isTwoHand: 0
   heavyAttackHoldTime: 0.65
   baseDamage: 25
   criticalDamageMultiplier: 4

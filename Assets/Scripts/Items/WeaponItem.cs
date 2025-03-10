@@ -14,6 +14,8 @@ namespace BON
         public bool isLight;
         public bool isBow;
         public bool isShield;
+        public bool isOffHand;
+        public bool isTwoHand;
         public float heavyAttackHoldTime;
 
         [Header("Damage")]
