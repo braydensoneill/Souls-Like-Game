@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8078587a14d25bb4d93487c30db107cd, type: 3}
+  m_Name: Item_Weapon_Wooden_Shield
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 21300000, guid: 5956535ec36462541a82df2aba57ffc6, type: 3}
+  itemName: Wooden Shield
+  modelPrefab: {fileID: 1997529230127443939, guid: 7834afd54abfaca44855a65e31878caf,
+    type: 3}
+  isUnarmed: 0
+  isHeavy: 0
+  isLight: 0
+  isBow: 0
+  isShield: 1
+  heavyAttackHoldTime: 0.65
+  baseDamage: 25
+  criticalDamageMultiplier: 4
+  Idle_Arm_Right_01: Right_Arm_Idle_01
+  Idle_Arm_Left_01: Left_Arm_Idle_01
+  Idle_TH: TH_Idle_01
+  OH_Sword_Light_Attack_Right_01: OH_Sword_Light_Attack_Right_01
+  OH_Sword_Light_Attack_Right_02: OH_Sword_Light_Attack_Right_02
+  OH_Sword_Light_Attack_Left_01: OH_Sword_Light_Attack_Left_01
+  OH_Sword_Light_Attack_Left_02: OH_Sword_Light_Attack_Left_02
+  OH_Heavy_Attack_01: OH_Heavy_Attack_01
+  TH_Sword_Light_Attack_01: TH_Sword_Light_Attack_01
+  TH_Sword_Light_Attack_02: TH_Sword_Light_Attack_02
+  weapon_art: Parry_Parry
+  baseStamina: 20
+  lightAttackMultiplier: 1
+  heavyAttackMultiplier: 2
+  isSpellCaster: 0
+  isFaithCaster: 0
+  isPyroCaster: 0
+  isMeleeWeapon: 0

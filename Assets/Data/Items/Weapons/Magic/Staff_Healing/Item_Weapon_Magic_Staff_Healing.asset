@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8078587a14d25bb4d93487c30db107cd, type: 3}
+  m_Name: Item_Weapon_Magic_Staff_Healing
+  m_EditorClassIdentifier: 
+  itemIcon: {fileID: 21300000, guid: 13c45c9f54e22614d83a4037bbb06c57, type: 3}
+  itemName: Staff of Healing
+  modelPrefab: {fileID: 2207933812319807217, guid: d7a1527fa9558fc42955aa426be62ada,
+    type: 3}
+  isUnarmed: 0
+  isHeavy: 0
+  isLight: 1
+  isBow: 0
+  isShield: 0
+  Idle_Arm_Right_01: Right_Arm_Idle_01
+  Idle_Arm_Left_01: Left_Arm_Idle_01
+  Idle_TH: TH_Idle_01
+  OH_Sword_Light_Attack_Right_01: OH_Sword_Light_Attack_Right_01
+  OH_Sword_Light_Attack_Right_02: OH_Sword_Light_Attack_Right_02
+  OH_Heavy_Attack_01: OH_Heavy_Attack_01
+  TH_Sword_Light_Attack_01: TH_Sword_Light_Attack_01
+  TH_Sword_Light_Attack_02: TH_Sword_Light_Attack_02
+  baseStamina: 0
+  lightAttackMultiplier: 0
+  heavyAttackMultiplier: 0
+  isSpellCaster: 0
+  isFaithCaster: 1
+  isPyroCaster: 0
+  isMeleeWeapon: 0
