@@ -92,49 +92,62 @@ namespace BON
         {
             if (isLeft)
             {
+                // Equip weapon in left hand slot
                 leftHandSlot.currentWeapon = weaponItem;
                 leftHandSlot.LoadWeaponModel(weaponItem);
                 LoadLeftWeaponDamageCollider();
                 quickslotsUI.UpdateWeaponQuickslotsUI(true, weaponItem);
+
                 #region Handle Left Weapon Idle Animations
                 if (weaponItem != null)
                     animator.CrossFade(weaponItem.Idle_Arm_Left_01, 0.2f);
-
                 else
                     animator.CrossFade("Left_Arm_Empty", 0.2f);
                 #endregion
             }
-
             else
             {
-                Debug.Log("Weapon Item: " + weaponItem.itemName);
-                #region Two-Handed Functionality if active
-                if (inputManager.flag_TwoHand)
+                // Check if the weapon is two-handed
+                if (weaponItem.isTwoHand)
                 {
-                    SheathLeftWeapon();
-                    leftHandSlot.UnloadWeaponAndDestroy();
+                    // Equip the weapon as a two-handed weapon (both hands)
+                    rightHandSlot.currentWeapon = weaponItem;
+                    rightHandSlot.LoadWeaponModel(weaponItem);
+                    LoadRightWeaponDamageCollider();
+                    quickslotsUI.UpdateWeaponQuickslotsUI(false, weaponItem);
+
+                    // Handle the right hand animation for two-handed
                     animator.CrossFade(weaponItem.Idle_TH, 0.2f);
+
+                    // Optionally, unload the left weapon if it's a two-handed weapon
+                    leftHandSlot.UnloadWeaponAndDestroy();
+
+                    // Disable any left-hand damage collider if the weapon is two-handed
+                    if (leftHandDamageCollider != null)
+                    {
+                        leftHandDamageCollider.DisableDamageCollider();
+                    }
+
+                    // Update quick slots UI
+                    quickslotsUI.UpdateWeaponQuickslotsUI(false, weaponItem);
                 }
                 else
                 {
+                    // Equip weapon in right hand if not two-handed
+                    rightHandSlot.currentWeapon = weaponItem;
+                    rightHandSlot.LoadWeaponModel(weaponItem);
+                    LoadRightWeaponDamageCollider();
+                    quickslotsUI.UpdateWeaponQuickslotsUI(false, weaponItem);
+
                     #region Handle Right Weapon Idle Animations
-
                     animator.CrossFade("Both Arms Empty", 0.2f);
-
                     DestroyCurrentlySheathedLeftWeapon();
-
                     if (weaponItem != null)
                         animator.CrossFade(weaponItem.Idle_Arm_Right_01, 0.2f);
-
                     else
                         animator.CrossFade("Right_Arm_Empty", 0.2f);
                     #endregion
                 }
-                #endregion
-                rightHandSlot.currentWeapon = weaponItem;
-                rightHandSlot.LoadWeaponModel(weaponItem);
-                LoadRightWeaponDamageCollider();
-                quickslotsUI.UpdateWeaponQuickslotsUI(false, weaponItem);
             }
         }
 
