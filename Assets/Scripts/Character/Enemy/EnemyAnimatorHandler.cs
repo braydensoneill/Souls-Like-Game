@@ -69,14 +69,11 @@ namespace BON
         public void AwardGoldOnDeath()
         {
             PlayerStats playerStats = FindObjectOfType<PlayerStats>();
-            InventoryGold inventoryGold = FindObjectOfType<InventoryGold>();
+            //InventoryGold inventoryGold = FindObjectOfType<InventoryGold>();
 
-            if (playerStats != null)
-            {
+            if (playerStats != null && enemyStats != null)
                 playerStats.AddGold(enemyStats.gold_Current);
-            }
 
-            // If adding multiplayer, scan for every player in the scene and award them the appropriate gold
         }
 
         public void RagdollModeOn()

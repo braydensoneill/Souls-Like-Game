@@ -1259,7 +1259,7 @@ PrefabInstance:
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: gold_Current
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -1377,10 +1377,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1137371213}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
-        type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 68557287}
     - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       insertIndex: -1
@@ -1678,25 +1674,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterGameObject: {fileID: 68557262}
   characterSprite: {fileID: 68557263}
---- !u!114 &68557287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68557262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805cba721ab755c4099b3a8e8d73245f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockOnTransform: {fileID: 0}
-  backStabCollider: {fileID: 0}
-  parryCollider: {fileID: 0}
-  canBeParried: 0
-  canBeRiposted: 0
-  isParrying: 0
-  pendingCriticalDamage: 0
 --- !u!54 &76112190
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10413,7 +10390,7 @@ PrefabInstance:
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: gold_Current
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -10531,10 +10508,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 15183460}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
-        type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 635860000}
     - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       insertIndex: -1
@@ -10832,25 +10805,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterGameObject: {fileID: 635859975}
   characterSprite: {fileID: 635859976}
---- !u!114 &635860000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635859975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805cba721ab755c4099b3a8e8d73245f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockOnTransform: {fileID: 0}
-  backStabCollider: {fileID: 0}
-  parryCollider: {fileID: 0}
-  canBeParried: 0
-  canBeRiposted: 0
-  isParrying: 0
-  pendingCriticalDamage: 0
 --- !u!54 &647421795
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12968,7 +12922,7 @@ PrefabInstance:
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: gold_Current
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -13086,10 +13040,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 665613743}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
-        type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 756605936}
     - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       insertIndex: -1
@@ -13387,25 +13337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterGameObject: {fileID: 756605911}
   characterSprite: {fileID: 756605912}
---- !u!114 &756605936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756605911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805cba721ab755c4099b3a8e8d73245f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockOnTransform: {fileID: 0}
-  backStabCollider: {fileID: 0}
-  parryCollider: {fileID: 0}
-  canBeParried: 0
-  canBeRiposted: 0
-  isParrying: 0
-  pendingCriticalDamage: 0
 --- !u!1 &756916173
 GameObject:
   m_ObjectHideFlags: 0
@@ -23086,7 +23017,7 @@ PrefabInstance:
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: gold_Current
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -23204,10 +23135,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1535289391}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
-        type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1326065789}
     - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       insertIndex: -1
@@ -23505,25 +23432,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterGameObject: {fileID: 1326065763}
   characterSprite: {fileID: 1326065764}
---- !u!114 &1326065789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326065763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805cba721ab755c4099b3a8e8d73245f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockOnTransform: {fileID: 0}
-  backStabCollider: {fileID: 0}
-  parryCollider: {fileID: 0}
-  canBeParried: 0
-  canBeRiposted: 0
-  isParrying: 0
-  pendingCriticalDamage: 0
 --- !u!1 &1341960402
 GameObject:
   m_ObjectHideFlags: 0
@@ -32997,7 +32905,7 @@ PrefabInstance:
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: gold_Current
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -33115,10 +33023,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1245669429}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
-        type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1862782214}
     - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       insertIndex: -1
@@ -33416,25 +33320,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterGameObject: {fileID: 1862782187}
   characterSprite: {fileID: 1862782188}
---- !u!114 &1862782214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862782187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805cba721ab755c4099b3a8e8d73245f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockOnTransform: {fileID: 0}
-  backStabCollider: {fileID: 0}
-  parryCollider: {fileID: 0}
-  canBeParried: 0
-  canBeRiposted: 0
-  isParrying: 0
-  pendingCriticalDamage: 0
 --- !u!1 &1866105308
 GameObject:
   m_ObjectHideFlags: 0
@@ -35158,7 +35043,7 @@ PrefabInstance:
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: gold_Current
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -35276,10 +35161,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1094866362}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
-        type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 1960287464}
     - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       insertIndex: -1
@@ -35577,25 +35458,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterGameObject: {fileID: 1960287437}
   characterSprite: {fileID: 1960287438}
---- !u!114 &1960287464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960287437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805cba721ab755c4099b3a8e8d73245f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockOnTransform: {fileID: 0}
-  backStabCollider: {fileID: 0}
-  parryCollider: {fileID: 0}
-  canBeParried: 0
-  canBeRiposted: 0
-  isParrying: 0
-  pendingCriticalDamage: 0
 --- !u!1 &1968225296
 GameObject:
   m_ObjectHideFlags: 0
@@ -37592,7 +37454,7 @@ PrefabInstance:
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: gold_Current
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1564307144652207191, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -37710,10 +37572,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 600444903}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
-        type: 3}
-      insertIndex: 4
-      addedObject: {fileID: 2040957209}
     - targetCorrespondingSourceObject: {fileID: 1564307145219732307, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       insertIndex: -1
@@ -38011,25 +37869,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterGameObject: {fileID: 2040957182}
   characterSprite: {fileID: 2040957183}
---- !u!114 &2040957209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040957182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805cba721ab755c4099b3a8e8d73245f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lockOnTransform: {fileID: 0}
-  backStabCollider: {fileID: 0}
-  parryCollider: {fileID: 0}
-  canBeParried: 0
-  canBeRiposted: 0
-  isParrying: 0
-  pendingCriticalDamage: 0
 --- !u!114 &2042724289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38231,7 +38070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterGameObject: {fileID: 1101456573}
   characterSprite: {fileID: 692026786}
---- !u!114 &2057436934
+--- !u!114 &2057436941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -38249,6 +38088,7 @@ MonoBehaviour:
   canBeParried: 0
   canBeRiposted: 0
   isParrying: 0
+  isDead: 0
   pendingCriticalDamage: 0
 --- !u!54 &2057464589
 Rigidbody:
@@ -40384,7 +40224,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'weaponsInventory.Array.data[4]'
       value: 
-      objectReference: {fileID: 11400000, guid: 273c1606b8550f748bbc2dd4b0d18e23,
+      objectReference: {fileID: 11400000, guid: f24a2b2eba9006a40811e79d3b1882d3,
         type: 2}
     - target: {fileID: 2753865172430565595, guid: 328032148731ad74597231601397030e,
         type: 3}
@@ -40683,12 +40523,12 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2753865172430565586, guid: 328032148731ad74597231601397030e,
         type: 3}
-      insertIndex: 5
-      addedObject: {fileID: 2057436934}
+      insertIndex: -1
+      addedObject: {fileID: 2057436927}
     - targetCorrespondingSourceObject: {fileID: 2753865172430565586, guid: 328032148731ad74597231601397030e,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2057436927}
+      addedObject: {fileID: 2057436941}
     - targetCorrespondingSourceObject: {fileID: 2968630080817947691, guid: 328032148731ad74597231601397030e,
         type: 3}
       insertIndex: -1

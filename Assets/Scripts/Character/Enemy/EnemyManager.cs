@@ -31,8 +31,10 @@ namespace BON
         public float detectionRadius = 20;
         public float minimumDetectionAngle = -50;   // Enemy min field of view angle
         public float maximumDetectionAngle = 50;    // Enemy max field of view angle
-
         public float currentRecoveryTime = 0;
+
+        [Header("Loot (TEMP)")]
+        public bool goldAwarded; // temp - will probably add 'coins' object to loot manually
 
         protected override void Awake()
         {
@@ -113,8 +115,13 @@ namespace BON
         {
             base.HandleDeathState();
 
-            // Handle death-related actions (like giving gold)
-            enemyAnimatorHandler.AwardGoldOnDeath();
+            // Check if the enemy is dead and gold has not been awarded yet
+            if (enemyStats.isDead && !goldAwarded)
+            {
+                // Handle death-related actions (like giving gold)
+                enemyAnimatorHandler.AwardGoldOnDeath();
+                goldAwarded = true; // Flag that gold has been awarded
+            }
         }
     }
 }

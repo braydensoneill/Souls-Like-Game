@@ -22,6 +22,8 @@ namespace BON
         public bool canBeRiposted;
         public bool isParrying;
 
+        public bool isDead;
+
         // Damage will be inflicted during an animation event
         // Used in backstab or ripsote animation
         [Header("Damage Multipliers")]
