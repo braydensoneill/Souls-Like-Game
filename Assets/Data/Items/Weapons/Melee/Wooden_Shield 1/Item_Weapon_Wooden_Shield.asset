@@ -21,7 +21,7 @@ MonoBehaviour:
   isLight: 0
   isBow: 0
   isShield: 1
-  isOffHand: 0
+  isOffHand: 1
   isTwoHand: 0
   heavyAttackHoldTime: 0.65
   baseDamage: 25
@@ -36,7 +36,7 @@ MonoBehaviour:
   OH_Heavy_Attack_01: OH_Heavy_Attack_01
   TH_Sword_Light_Attack_01: TH_Sword_Light_Attack_01
   TH_Sword_Light_Attack_02: TH_Sword_Light_Attack_02
-  weapon_art: Parry_Parry_Right
+  weapon_art: Parry_Parry_Left
   baseStamina: 20
   lightAttackMultiplier: 1
   heavyAttackMultiplier: 2
