@@ -1169,7 +1169,7 @@ PrefabInstance:
         type: 3}
       propertyPath: rightHandWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a,
+      objectReference: {fileID: 11400000, guid: b4f7d89d6d133c94a99c804aa68efe7c,
         type: 2}
     - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -3040,7 +3040,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -5734,7 +5734,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -6386,7 +6386,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -7685,7 +7685,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -8890,7 +8890,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -10329,6 +10329,12 @@ PrefabInstance:
       propertyPath: leftHandWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 2b3a9b2b785ac324cbcbe08895554d5c,
+        type: 2}
+    - target: {fileID: 1564307144219302438, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: rightHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: b4f7d89d6d133c94a99c804aa68efe7c,
         type: 2}
     - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -12867,6 +12873,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 2b3a9b2b785ac324cbcbe08895554d5c,
         type: 2}
+    - target: {fileID: 1564307144219302438, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: rightHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: b4f7d89d6d133c94a99c804aa68efe7c,
+        type: 2}
     - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13984,7 +13996,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -16361,7 +16373,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -22888,6 +22900,12 @@ PrefabInstance:
       propertyPath: leftHandWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 2b3a9b2b785ac324cbcbe08895554d5c,
+        type: 2}
+    - target: {fileID: 1564307144219302438, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: rightHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: b4f7d89d6d133c94a99c804aa68efe7c,
         type: 2}
     - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -29800,7 +29818,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -30467,7 +30485,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -31011,7 +31029,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -31226,7 +31244,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
@@ -32704,6 +32722,12 @@ PrefabInstance:
       propertyPath: leftHandWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 2b3a9b2b785ac324cbcbe08895554d5c,
+        type: 2}
+    - target: {fileID: 1564307144219302438, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: rightHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: b4f7d89d6d133c94a99c804aa68efe7c,
         type: 2}
     - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -34928,6 +34952,12 @@ PrefabInstance:
       propertyPath: leftHandWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 2b3a9b2b785ac324cbcbe08895554d5c,
+        type: 2}
+    - target: {fileID: 1564307144219302438, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: rightHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: b4f7d89d6d133c94a99c804aa68efe7c,
         type: 2}
     - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -37344,6 +37374,12 @@ PrefabInstance:
       propertyPath: leftHandWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 2b3a9b2b785ac324cbcbe08895554d5c,
+        type: 2}
+    - target: {fileID: 1564307144219302438, guid: 000bc9ad15ea06d428330a6a44f9c863,
+        type: 3}
+      propertyPath: rightHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: b4f7d89d6d133c94a99c804aa68efe7c,
         type: 2}
     - target: {fileID: 1564307144363472986, guid: 000bc9ad15ea06d428330a6a44f9c863,
         type: 3}
@@ -41288,7 +41324,7 @@ PrefabInstance:
     - target: {fileID: 5399744000718650961, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8504436117295146750, guid: 939b7bdc65ddf1646a9d5d7a8081dbac,
         type: 3}
