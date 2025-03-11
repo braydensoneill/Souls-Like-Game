@@ -6139,7 +6139,7 @@ Transform:
   - {fileID: 457022463}
   - {fileID: 1500540922}
   - {fileID: 1059207367}
-  - {fileID: 1964602098}
+  - {fileID: 1934745858}
   m_Father: {fileID: 1226548963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &386375315
@@ -26828,7 +26828,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d0d561ef7674fbd419f9078f496b1290, type: 2}
+  - {fileID: 2100000, guid: c34b02192ec235c4790957a96e835e7f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34114,6 +34114,95 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 1, y: 0.05}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1934745857
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 385014851}
+    m_Modifications:
+    - target: {fileID: 924381003339382869, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_Name
+      value: Art_Weapon_Melee_Iron_Claymore
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.392
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.508
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.34453854
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.87582064
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.3361402
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.035232782
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 141.157
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 12.600998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 46.451996
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a901944e1a2adbe4885749aba5895256, type: 3}
+--- !u!4 &1934745858 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5148312013421573814, guid: a901944e1a2adbe4885749aba5895256,
+    type: 3}
+  m_PrefabInstance: {fileID: 1934745857}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1943268384 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 987051618435182604, guid: 328032148731ad74597231601397030e,
@@ -35338,95 +35427,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterGameObject: {fileID: 1960287437}
   characterSprite: {fileID: 1960287438}
---- !u!1001 &1964602097
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 385014851}
-    m_Modifications:
-    - target: {fileID: 924381003339382869, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_Name
-      value: Art_Weapon_Melee_Iron_Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.224
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.176
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.59880435
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.74136555
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.27162883
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.13426955
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 54.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -475.20502
-      objectReference: {fileID: 0}
-    - target: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 256.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b52ed9e169145444f8f26ebabae15f60, type: 3}
---- !u!4 &1964602098 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5148312013421573814, guid: b52ed9e169145444f8f26ebabae15f60,
-    type: 3}
-  m_PrefabInstance: {fileID: 1964602097}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1968225296
 GameObject:
   m_ObjectHideFlags: 0
@@ -40180,7 +40180,7 @@ PrefabInstance:
     - target: {fileID: 2753865172430565595, guid: 328032148731ad74597231601397030e,
         type: 3}
       propertyPath: weaponsInventory.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2753865172430565595, guid: 328032148731ad74597231601397030e,
         type: 3}
@@ -40198,7 +40198,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'weaponsInventory.Array.data[2]'
       value: 
-      objectReference: {fileID: 11400000, guid: 7e1e8f2902d775d43bd0e5d18069b17a,
+      objectReference: {fileID: 11400000, guid: c6f8cbebeead49a46a1194a528c024cd,
         type: 2}
     - target: {fileID: 2753865172430565595, guid: 328032148731ad74597231601397030e,
         type: 3}
