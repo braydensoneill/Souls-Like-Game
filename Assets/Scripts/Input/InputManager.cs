@@ -13,6 +13,7 @@ namespace BON
         private PlayerManager playerManager;
         private PlayerStats playerStats;
         private PlayerWeaponSlotManager weaponSlotManager;
+        private WeaponInventorySlot weaponInventorySlot;
         private CameraManager cameraManager;
         private UIManager uiManager;
         private PlayerAnimatorHandler playerAnimatorHandler;
@@ -36,15 +37,13 @@ namespace BON
         [Header("Inputs")]
         public bool input_B;
         public bool input_A;
-        public bool input_T;
         public bool input_RT;
         public bool input_LT;
         public bool input_RB;
         public bool input_RBHold;
-
         public bool input_LB;
         public bool input_CriticalAttack;
-
+        public bool input_Sheath;
         public bool input_Jump;
         public bool input_LeftPanel;
         public bool input_LockOn;
@@ -58,7 +57,7 @@ namespace BON
         // Flag Variables
         [Header("Flags")]
         public bool flag_Roll;
-        public bool flag_TwoHand;
+        public bool flag_Sheath;
         public bool flag_Sprint;
         public bool flag_Combo;
         public bool flag_LeftPanel;
@@ -87,6 +86,7 @@ namespace BON
             playerManager = GetComponent<PlayerManager>();
             playerStats = GetComponent<PlayerStats>();
             weaponSlotManager = GetComponentInChildren<PlayerWeaponSlotManager>();
+            weaponInventorySlot = GetComponentInChildren<WeaponInventorySlot>();
             uiManager = FindObjectOfType<UIManager>();
             cameraManager = FindObjectOfType<CameraManager>();
             playerAnimatorHandler = GetComponentInChildren<PlayerAnimatorHandler>();
@@ -125,7 +125,7 @@ namespace BON
                 inputActions.PlayerActions.LockOn.performed += i => input_LockOn = true;
                 inputActions.PlayerMovement.LockOnTargetRight.performed += i => input_Right_Stick_Right = true;
                 inputActions.PlayerMovement.LockOnTargetLeft.performed += i => input_Right_Stick_Left = true;
-                inputActions.PlayerActions.TwoHand.performed += i => input_T = true;
+                inputActions.PlayerActions.Sheath.performed += i => input_Sheath = true;
                 inputActions.PlayerActions.CriticalAttack.performed += inputActions => input_CriticalAttack = true;
             }
 
@@ -147,7 +147,7 @@ namespace BON
             HandleQuickSlotInput();
             HandleLeftPanelInput();
             HandleLockOnInput();
-            HandleTwoHandInput();
+            HandleSheathInput();
             HandleCriticalAttackInput();
         }
 
@@ -380,23 +380,25 @@ namespace BON
             }
         }
 
-        private void HandleTwoHandInput()
+        // tbd - something wrong with weaponslotmanager.xxx here
+        private void HandleSheathInput()
         {
-            if (input_T)
+            if (input_Sheath)
             {
-                input_T = false;
+                input_Sheath = false;
 
-                flag_TwoHand = !flag_TwoHand;
+                flag_Sheath = !flag_Sheath;
 
-                if (flag_TwoHand)
+                if (flag_Sheath)
                 {
-                    // Enable two handing
+                    // Sheath Weapons
                     weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
+                    weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
                 }
 
                 else
                 {
-                    // Disable two handing
+                    // Unsheath Weapons
                     weaponSlotManager.LoadWeaponOnSlot(playerInventory.rightWeapon, false);
                     weaponSlotManager.LoadWeaponOnSlot(playerInventory.leftWeapon, true);
                 }

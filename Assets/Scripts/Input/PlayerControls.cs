@@ -325,7 +325,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""LT"",
                     ""type"": ""Button"",
                     ""id"": ""e50b9c35-d901-4211-a68c-48a9639087ee"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -367,10 +367,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Two Hand"",
+                    ""name"": ""Sheath"",
                     ""type"": ""Button"",
                     ""id"": ""26d64063-1489-411e-bc1b-5440c3ca3eea"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -494,7 +494,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Two Hand"",
+                    ""action"": ""Sheath"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -505,7 +505,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Two Hand"",
+                    ""action"": ""Sheath"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -607,7 +607,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""D-Pad Up"",
                     ""type"": ""Button"",
                     ""id"": ""06486357-5ade-4f1c-9b98-380e19e73e3a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -764,7 +764,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_UICharacter = m_PlayerActions.FindAction("UI Character", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
-        m_PlayerActions_TwoHand = m_PlayerActions.FindAction("Two Hand", throwIfNotFound: true);
+        m_PlayerActions_Sheath = m_PlayerActions.FindAction("Sheath", throwIfNotFound: true);
         // Player Quickslots
         m_PlayerQuickslots = asset.FindActionMap("Player Quickslots", throwIfNotFound: true);
         m_PlayerQuickslots_DPadUp = m_PlayerQuickslots.FindAction("D-Pad Up", throwIfNotFound: true);
@@ -1003,7 +1003,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_UICharacter;
     private readonly InputAction m_PlayerActions_LockOn;
-    private readonly InputAction m_PlayerActions_TwoHand;
+    private readonly InputAction m_PlayerActions_Sheath;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player Actions".
     /// </summary>
@@ -1056,9 +1056,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerActions/TwoHand".
+        /// Provides access to the underlying input action "PlayerActions/Sheath".
         /// </summary>
-        public InputAction @TwoHand => m_Wrapper.m_PlayerActions_TwoHand;
+        public InputAction @Sheath => m_Wrapper.m_PlayerActions_Sheath;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1115,9 +1115,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LockOn.started += instance.OnLockOn;
             @LockOn.performed += instance.OnLockOn;
             @LockOn.canceled += instance.OnLockOn;
-            @TwoHand.started += instance.OnTwoHand;
-            @TwoHand.performed += instance.OnTwoHand;
-            @TwoHand.canceled += instance.OnTwoHand;
+            @Sheath.started += instance.OnSheath;
+            @Sheath.performed += instance.OnSheath;
+            @Sheath.canceled += instance.OnSheath;
         }
 
         /// <summary>
@@ -1159,9 +1159,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LockOn.started -= instance.OnLockOn;
             @LockOn.performed -= instance.OnLockOn;
             @LockOn.canceled -= instance.OnLockOn;
-            @TwoHand.started -= instance.OnTwoHand;
-            @TwoHand.performed -= instance.OnTwoHand;
-            @TwoHand.canceled -= instance.OnTwoHand;
+            @Sheath.started -= instance.OnSheath;
+            @Sheath.performed -= instance.OnSheath;
+            @Sheath.canceled -= instance.OnSheath;
         }
 
         /// <summary>
@@ -1445,12 +1445,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLockOn(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Two Hand" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Sheath" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTwoHand(InputAction.CallbackContext context);
+        void OnSheath(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Player Quickslots" which allows adding and removing callbacks.

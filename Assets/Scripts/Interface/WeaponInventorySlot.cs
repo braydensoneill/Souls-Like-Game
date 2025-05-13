@@ -47,7 +47,7 @@ namespace BON
             gameObject.SetActive(false);
         }
 
-        public bool IsEquipped()
+        public bool getIsEquipped()
         {
             return itemIsEquippedInLeftHand || itemIsEquippedInRightHand;
         }
@@ -58,10 +58,10 @@ namespace BON
         }
 
         // The method called by the Button's OnClick
-        public void OnButtonClick()
+        public void ToggleItemEquipped()
         {
             // Check if item is already equipped
-            if (IsEquipped())
+            if (getIsEquipped())
                 UnequipThisItem();
             else
                 EquipThisItem();

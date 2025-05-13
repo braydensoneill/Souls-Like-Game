@@ -77,7 +77,7 @@ namespace BON
         {
             foreach (var slot in weaponInventorySlots)
             {
-                slot.itemIsEquippedBackground.SetActive(slot.IsEquipped());
+                slot.itemIsEquippedBackground.SetActive(slot.getIsEquipped());
             }
         }
 

@@ -239,7 +239,7 @@
                     "name": "LT",
                     "type": "Button",
                     "id": "e50b9c35-d901-4211-a68c-48a9639087ee",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -281,10 +281,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Two Hand",
+                    "name": "Sheath",
                     "type": "Button",
                     "id": "26d64063-1489-411e-bc1b-5440c3ca3eea",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -408,7 +408,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Two Hand",
+                    "action": "Sheath",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -419,7 +419,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Two Hand",
+                    "action": "Sheath",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -521,7 +521,7 @@
                     "name": "D-Pad Up",
                     "type": "Button",
                     "id": "06486357-5ade-4f1c-9b98-380e19e73e3a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
